@@ -17,13 +17,14 @@ class ViewController: UIViewController {
         let login = loginInput.text!
         let password = passInput.text!
         
-        if login == "example@vk.ru" && password == "12345678" {
-            print ("Вы успешно авторизовались")
+        if login == "admin" && password == "12345678" {
+            performSegue(withIdentifier: "MainTabbar", sender: sender)
         }
         else {
-            print ("Неверные логин или пароль")
+            let alert = UIAlertController(title: "Ошибка", message: "Неверная пара логин/пароль", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
-        
     }
     
     override func viewDidLoad() {
