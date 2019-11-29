@@ -17,7 +17,8 @@ class ViewController: UIViewController {
         let login = loginInput.text!
         let password = passInput.text!
         
-        if login == "admin" && password == "12345678" {
+//        if login == "admin" && password == "12345678" {
+        if login == "" && password == "" {
             performSegue(withIdentifier: "MainTabbar", sender: sender)
         }
         else {
