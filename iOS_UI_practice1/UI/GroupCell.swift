@@ -9,7 +9,8 @@
 import UIKit
 
 class GroupCell: UITableViewCell {
-
+    
     @IBOutlet weak var caption: UILabel!
     @IBOutlet weak var subTitle: UILabel!
+    @IBOutlet var groupImage: UIImageView!
 }

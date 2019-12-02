@@ -11,12 +11,26 @@ import UIKit
 class FriendList: UITableViewController {
     
     // MARK: - Table view data source
-    var friendList = ["Василий Комаров", "Ирина Лаврентьева", "Анна Кузнецова", "Михаил Пирогов"]
-    var sectionsCaption = ["Заявки в друзья", "Важные"]
+    let testUsersList = ["Василий Комаров": false, "Евгений Григорьев": false, "Ирина Лаврентьева": true, "Анна Кузнецова": true, "Михаил Пирогов": true, "Олег Смирнов" : true]
+    let sectionsCaption = ["Заявки в друзья", "Важные"]
+    
+    var friendList = [User]()
+    var requestList = [User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        for user in testUsersList {
+            let name = String(user.key.split(separator: " ")[0])
+            let family = String(user.key.split(separator: " ")[1])
+            
+            if user.value {
+                friendList.append(User(firstName: name, familyName: family))
+            }
+            else {
+                requestList.append(User(firstName: name, familyName: family, isFriend: user.value))
+            }
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -50,12 +64,13 @@ class FriendList: UITableViewController {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RequestTemplate", for: indexPath) as! RequestCell
-            cell.userName.text = friendList[indexPath.row]
-            cell.num.text = "10"
+            cell.userName.text = requestList[indexPath.row].fullName
+            cell.num.text = String(requestList.count)
+            // Как-то надо подцеплять картинку для аватара
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTemplate", for: indexPath) as! FriendCell
-            cell.userName.text = friendList[indexPath.row]
+            cell.userName.text = friendList[indexPath.row].fullName
             return cell
         }
     }
@@ -71,7 +86,7 @@ class FriendList: UITableViewController {
             return
         }
         
-        let username = friendList[indexPath.row]
+        let username = friendList[indexPath.row].fullName
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "PhotoController") as! PhotoController
         viewController.user = username

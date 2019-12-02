@@ -240,22 +240,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="40" minimumInteritemSpacing="30" id="zhe-4f-dUW">
-                            <size key="itemSize" width="160" height="160"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="6" sectionInsetReference="layoutMargins" id="zhe-4f-dUW">
+                            <size key="itemSize" width="110" height="110"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="0.0"/>
+                            <inset key="sectionInset" minX="8" minY="5" maxX="8" maxY="5"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photo" id="A2j-Rb-gib" customClass="PhotoCell" customModule="iOS_UI_practice1" customModuleProvider="target">
-                                <rect key="frame" x="10" y="10" width="160" height="160"/>
+                                <rect key="frame" x="16" y="13" width="110" height="110"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo1" translatesAutoresizingMaskIntoConstraints="NO" id="F3J-di-4xz">
-                                            <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
                                         </imageView>
                                     </subviews>
                                 </view>
@@ -283,34 +283,35 @@
         <!--Groups View Controller-->
         <scene sceneID="Tmm-7G-u5l">
             <objects>
-                <tableViewController id="Hj5-Zc-uth" userLabel="Groups View Controller" sceneMemberID="viewController">
+                <tableViewController id="Hj5-Zc-uth" userLabel="Groups View Controller" customClass="MyGroupsList" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="oal-e7-X4P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="5yB-Yv-Qaq" customClass="GroupCell" customModule="iOS_UI_practice1" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupTemplate" id="5yB-Yv-Qaq" userLabel="Group Cell" customClass="GroupCell" customModule="iOS_UI_practice1" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5yB-Yv-Qaq" id="jbV-hz-2C3">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="74.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sip-J8-Egk">
-                                            <rect key="frame" x="12" y="12" width="50" height="50"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sip-J8-Egk">
+                                            <rect key="frame" x="20" y="14.333333333333336" width="46" height="46"/>
                                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
+                                                <constraint firstAttribute="width" constant="46" id="8eK-zJ-aev"/>
                                                 <constraint firstAttribute="width" secondItem="sip-J8-Egk" secondAttribute="height" multiplier="1:1" id="GTA-7C-3Kn"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Музыка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHo-rC-rCr">
-                                            <rect key="frame" x="70" y="42" width="59" height="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Музыка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHo-rC-rCr">
+                                            <rect key="frame" x="74" y="42" width="59" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Музыка 2.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C46-TN-OPK">
-                                            <rect key="frame" x="70" y="12" width="205" height="22"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Музыка 2.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C46-TN-OPK">
+                                            <rect key="frame" x="74" y="12" width="95" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -322,11 +323,12 @@
                                         <constraint firstItem="C46-TN-OPK" firstAttribute="leading" secondItem="sip-J8-Egk" secondAttribute="trailing" constant="8" id="QFc-a4-DR2"/>
                                         <constraint firstItem="dHo-rC-rCr" firstAttribute="leading" secondItem="sip-J8-Egk" secondAttribute="trailing" constant="8" id="hjJ-sF-gSL"/>
                                         <constraint firstItem="C46-TN-OPK" firstAttribute="top" secondItem="jbV-hz-2C3" secondAttribute="top" constant="12" id="lOR-rN-hHN"/>
-                                        <constraint firstItem="sip-J8-Egk" firstAttribute="centerY" secondItem="jbV-hz-2C3" secondAttribute="centerY" id="mK2-Mm-zeX"/>
+                                        <constraint firstItem="sip-J8-Egk" firstAttribute="centerY" secondItem="jbV-hz-2C3" secondAttribute="centerY" id="q6S-JM-nXr"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="caption" destination="C46-TN-OPK" id="LlW-03-P74"/>
+                                    <outlet property="groupImage" destination="sip-J8-Egk" id="RO7-sx-953"/>
                                     <outlet property="subTitle" destination="dHo-rC-rCr" id="7Xu-Qn-bfx"/>
                                 </connections>
                             </tableViewCell>
