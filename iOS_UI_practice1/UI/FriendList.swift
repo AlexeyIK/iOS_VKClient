@@ -10,8 +10,21 @@ import UIKit
 
 class FriendList: UITableViewController {
     
-    // MARK: - Table view data source
-    let testUsersList = ["Василий Комаров": false, "Евгений Григорьев": false, "Ирина Лаврентьева": true, "Анна Кузнецова": true, "Михаил Пирогов": true, "Олег Смирнов" : true]
+    // Список тестовых юзеров
+    let testUsersList : [User] = [
+        User(firstName: "Василий", familyName: "Комаров", isFriend: false, gender: GenderType.Male),
+        User(firstName: "Евгений", familyName: "Григорьев", isFriend: false, gender: GenderType.Male),
+        User(firstName: "Ирина", familyName: "Лаврентьева", isFriend: true, gender: GenderType.Female),
+        User(firstName: "Анна", familyName: "Кузнецова", isFriend: true, gender: GenderType.Female),
+        User(firstName: "Михаил", familyName: "Пирогов", isFriend: true, gender: GenderType.Male),
+        User(firstName: "Олег", familyName: "Смирнов", isFriend: true, gender: GenderType.Male),
+        User(firstName: "Анонимус", familyName: "Анонимович", isFriend: true),
+        User(firstName: "Кара", familyName: "Небесная", isFriend: true),
+        User(firstName: "Ольга", familyName: "Ковальчук", isFriend: true, gender: GenderType.Female),
+        User(firstName: "Максим", familyName: "Сухой", isFriend: true, gender: GenderType.Male)
+    ]
+
+    // Названия секций
     let sectionsCaption = ["Заявки в друзья", "Важные"]
     
     var friendList = [User]()
@@ -20,26 +33,17 @@ class FriendList: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        for user in testUsersList {
-            let name = String(user.key.split(separator: " ")[0])
-            let family = String(user.key.split(separator: " ")[1])
-            
-            if user.value {
-                friendList.append(User(firstName: name, familyName: family))
+        for nextUser in testUsersList {
+            if nextUser.isFriend {
+                friendList.append(nextUser)
             }
             else {
-                requestList.append(User(firstName: name, familyName: family, isFriend: user.value))
+                requestList.append(nextUser)
             }
         }
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 2
     }
     
@@ -48,7 +52,6 @@ class FriendList: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         switch section {
         case 0:
             return 1
@@ -64,13 +67,20 @@ class FriendList: UITableViewController {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RequestTemplate", for: indexPath) as! RequestCell
-            cell.userName.text = requestList[indexPath.row].fullName
+            let user = requestList[indexPath.row]
+            
+            cell.userName.text = user.fullName
             cell.num.text = String(requestList.count)
-            // Как-то надо подцеплять картинку для аватара
+            cell.avatar.image = user.avatar
+            
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTemplate", for: indexPath) as! FriendCell
-            cell.userName.text = friendList[indexPath.row].fullName
+            let user = friendList[indexPath.row]
+            
+            cell.userName.text = user.fullName
+            cell.avatar.image = user.avatar
+            
             return cell
         }
     }

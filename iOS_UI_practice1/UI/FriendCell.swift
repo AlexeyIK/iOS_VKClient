@@ -10,9 +10,11 @@ import UIKit
 
 class FriendCell : UITableViewCell {
     @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var avatar: UIImageView!
 }
 
 class RequestCell : UITableViewCell {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var num: UILabel!
+    @IBOutlet weak var avatar: UIImageView!
 }

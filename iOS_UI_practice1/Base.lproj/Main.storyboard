@@ -33,7 +33,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rqx-Lt-LWL">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rqx-Lt-LWL">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="812"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VK_Blue_Logo_transparent" translatesAutoresizingMaskIntoConstraints="NO" id="Xz0-63-GKY">
@@ -71,7 +71,7 @@
                                         </constraints>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Epg-yd-nyP">
                                         <rect key="frame" x="152.66666666666666" y="423.66666666666669" width="70" height="36"/>
@@ -145,7 +145,6 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ONz-zk-BQp">
                                             <rect key="frame" x="16" y="10" width="50" height="50"/>
-                                            <color key="backgroundColor" red="1" green="1" blue="0.57309144300000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="ONz-zk-BQp" secondAttribute="height" multiplier="1:1" id="HFy-Is-gCB"/>
                                                 <constraint firstAttribute="width" constant="50" id="PrR-hi-fBF"/>
@@ -179,6 +178,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="avatar" destination="ONz-zk-BQp" id="8G6-hV-q3V"/>
                                     <outlet property="num" destination="8ud-qX-Dds" id="Myb-24-QIb"/>
                                     <outlet property="userName" destination="JQl-Zj-FQk" id="2hq-kd-C7a"/>
                                 </connections>
@@ -192,7 +192,6 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gSn-gy-2dl">
                                             <rect key="frame" x="16" y="15" width="50" height="50"/>
-                                            <color key="backgroundColor" red="1" green="1" blue="0.57309144300000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="gSn-gy-2dl" secondAttribute="height" multiplier="1:1" id="KfT-zd-ii9"/>
                                                 <constraint firstAttribute="width" constant="50" id="qFt-FA-p6W"/>
@@ -214,6 +213,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="avatar" destination="gSn-gy-2dl" id="yvk-X7-dfg"/>
                                     <outlet property="userName" destination="1aW-nf-I90" id="kbU-ti-zCV"/>
                                 </connections>
                             </tableViewCell>
@@ -298,7 +298,6 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sip-J8-Egk">
                                             <rect key="frame" x="20" y="14.333333333333336" width="46" height="46"/>
-                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="46" id="8eK-zJ-aev"/>
                                                 <constraint firstAttribute="width" secondItem="sip-J8-Egk" secondAttribute="height" multiplier="1:1" id="GTA-7C-3Kn"/>
