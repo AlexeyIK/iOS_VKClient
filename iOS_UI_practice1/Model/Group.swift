@@ -16,6 +16,8 @@ enum GroupType {
     case Humor
     case Interests
     case Movies
+    case Games
+    case Public
 }
 
 class Group {
@@ -26,17 +28,19 @@ class Group {
     var isMeInGroup : Bool
     var image : UIImage?
     
-    init(name: String, type: GroupType, membersCount: Int, isAMember: Bool) {
+    init(name: String, type: GroupType, membersCount: Int?, isAMember: Bool) {
         self.groupName = name
         self.groupType = type
         self.isMeInGroup = isAMember
+        self.numOfMembers = membersCount
     }
     
-    init(name: String, type: GroupType, membersCount: Int, isAMember: Bool, image: UIImage) {
+    init(name: String, type: GroupType, membersCount: Int?, isAMember: Bool, image: UIImage) {
         self.groupName = name
         self.groupType = type
         self.isMeInGroup = isAMember
         self.image = image
+        self.numOfMembers = membersCount
     }
     
     func GroupTypeToText(groupType: GroupType) -> String {
@@ -51,6 +55,10 @@ class Group {
             return "Музыка"
         case .Photography:
             return "Фотография"
+        case .Games:
+            return "Игры"
+        default:
+            return "Сообщество"
         }
     }
 }
