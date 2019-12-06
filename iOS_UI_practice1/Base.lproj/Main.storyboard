@@ -143,9 +143,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="69.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Isr-pQ-c76" customClass="AvatarView" customModule="iOS_UI_practice1" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Isr-pQ-c76" customClass="AvatarView" customModule="iOS_UI_practice1" customModuleProvider="target">
                                             <rect key="frame" x="13.999999999999996" y="9.9999999999999964" width="49.666666666666657" height="49.666666666666657"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kmi-KS-0nz" userLabel="Shadow">
+                                                    <rect key="frame" x="0.0" y="0.0" width="49.666666666666664" height="49.666666666666664"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_ava_female1" translatesAutoresizingMaskIntoConstraints="NO" id="ONz-zk-BQp">
                                                     <rect key="frame" x="-1" y="-1" width="52" height="52"/>
                                                     <constraints>
@@ -154,23 +158,29 @@
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" red="1" green="1" blue="0.57309144300000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="ONz-zk-BQp" firstAttribute="centerX" secondItem="Isr-pQ-c76" secondAttribute="centerX" id="GKe-1s-8lH"/>
+                                                <constraint firstItem="Kmi-KS-0nz" firstAttribute="width" secondItem="Isr-pQ-c76" secondAttribute="width" id="INe-Gw-eJD"/>
                                                 <constraint firstItem="ONz-zk-BQp" firstAttribute="centerY" secondItem="Isr-pQ-c76" secondAttribute="centerY" id="Q5P-Nf-G6t"/>
+                                                <constraint firstItem="Kmi-KS-0nz" firstAttribute="centerY" secondItem="Isr-pQ-c76" secondAttribute="centerY" id="SFo-FJ-Xrp"/>
                                                 <constraint firstAttribute="width" secondItem="Isr-pQ-c76" secondAttribute="height" multiplier="1:1" id="YbW-xk-Z7f"/>
+                                                <constraint firstItem="Kmi-KS-0nz" firstAttribute="centerX" secondItem="Isr-pQ-c76" secondAttribute="centerX" id="gsu-gW-0uV"/>
+                                                <constraint firstItem="Kmi-KS-0nz" firstAttribute="height" secondItem="Isr-pQ-c76" secondAttribute="height" id="iLz-T8-eaK"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                     <real key="value" value="26"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                    <real key="value" value="10"/>
+                                                    <real key="value" value="4"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Василий Комаров" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQl-Zj-FQk">
-                                            <rect key="frame" x="79.999999999999986" y="24.333333333333329" width="143.66666666666663" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Анастасия Петрова" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQl-Zj-FQk">
+                                            <rect key="frame" x="80" y="24.333333333333329" width="156" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -193,13 +203,13 @@
                                         <constraint firstItem="Isr-pQ-c76" firstAttribute="top" secondItem="v0a-2z-lWt" secondAttribute="top" constant="10" id="SeO-he-HZU"/>
                                         <constraint firstItem="Isr-pQ-c76" firstAttribute="leading" secondItem="v0a-2z-lWt" secondAttribute="leading" constant="14" id="UsG-rr-bMf"/>
                                         <constraint firstItem="8ud-qX-Dds" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JQl-Zj-FQk" secondAttribute="trailing" constant="30" id="V0v-in-xeg"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Isr-pQ-c76" secondAttribute="trailing" constant="15" id="wLh-il-SLQ"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Isr-pQ-c76" secondAttribute="trailing" constant="200" id="wLh-il-SLQ"/>
                                         <constraint firstItem="JQl-Zj-FQk" firstAttribute="centerY" secondItem="v0a-2z-lWt" secondAttribute="centerY" id="xf9-LK-v1F"/>
                                         <constraint firstItem="8ud-qX-Dds" firstAttribute="centerY" secondItem="v0a-2z-lWt" secondAttribute="centerY" id="y0L-jR-Cav"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="avatar" destination="ONz-zk-BQp" id="8G6-hV-q3V"/>
+                                    <outlet property="avatar" destination="ONz-zk-BQp" id="7fx-7a-ed4"/>
                                     <outlet property="num" destination="8ud-qX-Dds" id="Myb-24-QIb"/>
                                     <outlet property="userName" destination="JQl-Zj-FQk" id="2hq-kd-C7a"/>
                                 </connections>
@@ -211,30 +221,59 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="79.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gSn-gy-2dl">
-                                            <rect key="frame" x="16" y="15" width="50" height="50"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tLf-uL-sgE" customClass="AvatarView" customModule="iOS_UI_practice1" customModuleProvider="target">
+                                            <rect key="frame" x="15" y="14" width="52" height="52"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xMZ-om-knJ" userLabel="Shadow">
+                                                    <rect key="frame" x="0.0" y="0.0" width="52" height="52"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_ava_male1" translatesAutoresizingMaskIntoConstraints="NO" id="Mk1-mv-USi">
+                                                    <rect key="frame" x="0.0" y="0.0" width="52" height="52"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="52" id="170-Ow-7CM"/>
+                                                        <constraint firstAttribute="width" secondItem="Mk1-mv-USi" secondAttribute="height" multiplier="1:1" id="yDG-Om-5D1"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="gSn-gy-2dl" secondAttribute="height" multiplier="1:1" id="KfT-zd-ii9"/>
-                                                <constraint firstAttribute="width" constant="50" id="qFt-FA-p6W"/>
+                                                <constraint firstItem="xMZ-om-knJ" firstAttribute="width" secondItem="tLf-uL-sgE" secondAttribute="width" id="6YZ-1e-48I"/>
+                                                <constraint firstItem="Mk1-mv-USi" firstAttribute="centerX" secondItem="tLf-uL-sgE" secondAttribute="centerX" id="Bl0-kQ-nMC"/>
+                                                <constraint firstItem="xMZ-om-knJ" firstAttribute="height" secondItem="tLf-uL-sgE" secondAttribute="height" id="BvD-ua-Koi"/>
+                                                <constraint firstAttribute="height" constant="52" id="QDS-7f-qdU"/>
+                                                <constraint firstItem="xMZ-om-knJ" firstAttribute="centerX" secondItem="tLf-uL-sgE" secondAttribute="centerX" id="QMh-QC-u15"/>
+                                                <constraint firstItem="Mk1-mv-USi" firstAttribute="centerY" secondItem="tLf-uL-sgE" secondAttribute="centerY" id="WOW-cs-zzc"/>
+                                                <constraint firstAttribute="width" constant="52" id="gyS-Iu-QIB"/>
+                                                <constraint firstItem="xMZ-om-knJ" firstAttribute="centerY" secondItem="tLf-uL-sgE" secondAttribute="centerY" id="ptn-qZ-ldV"/>
                                             </constraints>
-                                        </imageView>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="26"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                    <real key="value" value="4"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Василий Комаров" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1aW-nf-I90">
-                                            <rect key="frame" x="76" y="29.333333333333329" width="144" height="21"/>
+                                            <rect key="frame" x="82" y="29.333333333333329" width="144" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="gSn-gy-2dl" firstAttribute="leading" secondItem="vsw-YS-SK5" secondAttribute="leading" constant="16" id="77A-HR-375"/>
+                                        <constraint firstItem="tLf-uL-sgE" firstAttribute="width" secondItem="tLf-uL-sgE" secondAttribute="height" multiplier="1:1" id="9ez-su-lKM"/>
+                                        <constraint firstItem="tLf-uL-sgE" firstAttribute="leading" secondItem="vsw-YS-SK5" secondAttribute="leading" constant="15" id="AP6-rT-ls4"/>
                                         <constraint firstItem="1aW-nf-I90" firstAttribute="centerY" secondItem="vsw-YS-SK5" secondAttribute="centerY" id="AXA-QN-pNB"/>
-                                        <constraint firstItem="1aW-nf-I90" firstAttribute="leading" secondItem="gSn-gy-2dl" secondAttribute="trailing" constant="10" id="CTn-HD-NNo"/>
-                                        <constraint firstItem="gSn-gy-2dl" firstAttribute="centerY" secondItem="vsw-YS-SK5" secondAttribute="centerY" id="TjA-Zz-j8l"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tLf-uL-sgE" secondAttribute="trailing" constant="200" id="Ugg-nn-HRC"/>
+                                        <constraint firstItem="tLf-uL-sgE" firstAttribute="centerY" secondItem="vsw-YS-SK5" secondAttribute="centerY" id="b9R-yK-jCD"/>
+                                        <constraint firstItem="1aW-nf-I90" firstAttribute="leading" secondItem="tLf-uL-sgE" secondAttribute="trailing" constant="15" id="e1m-eA-l3I"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1aW-nf-I90" secondAttribute="trailing" constant="15" id="znF-0h-yC8"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="avatar" destination="gSn-gy-2dl" id="yvk-X7-dfg"/>
+                                    <outlet property="avatar" destination="Mk1-mv-USi" id="neT-ZG-mQf"/>
                                     <outlet property="userName" destination="1aW-nf-I90" id="kbU-ti-zCV"/>
                                 </connections>
                             </tableViewCell>
@@ -268,7 +307,7 @@
                             <inset key="sectionInset" minX="8" minY="5" maxX="8" maxY="5"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photo" id="A2j-Rb-gib" customClass="PhotoCell" customModule="iOS_UI_practice1" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photo" id="A2j-Rb-gib" customClass="PhotoCell" customModule="iOS_UI_practice1" customModuleProvider="target">
                                 <rect key="frame" x="16" y="13" width="110" height="110"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -278,11 +317,24 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo1" translatesAutoresizingMaskIntoConstraints="NO" id="F3J-di-4xz">
                                             <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
                                         </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAA-lp-iW8" customClass="LikeButtonController" customModule="iOS_UI_practice1" customModuleProvider="target">
+                                            <rect key="frame" x="80" y="80" width="34" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="gAA-lp-iW8" secondAttribute="height" multiplier="1:1" id="MzQ-VW-5ro"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="likeColor">
+                                                    <color key="value" red="1" green="0.0" blue="0.034920876077063845" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
                                     </subviews>
                                 </view>
                                 <constraints>
+                                    <constraint firstItem="gAA-lp-iW8" firstAttribute="top" secondItem="F3J-di-4xz" secondAttribute="bottom" constant="-30" id="0zJ-T7-e2O"/>
                                     <constraint firstItem="F3J-di-4xz" firstAttribute="top" secondItem="A2j-Rb-gib" secondAttribute="top" id="Ah9-kB-Pxs"/>
                                     <constraint firstAttribute="trailing" secondItem="F3J-di-4xz" secondAttribute="trailing" id="EzB-A2-g9k"/>
+                                    <constraint firstItem="gAA-lp-iW8" firstAttribute="leading" secondItem="F3J-di-4xz" secondAttribute="trailing" constant="-30" id="ZEx-o6-Ai0"/>
                                     <constraint firstItem="F3J-di-4xz" firstAttribute="leading" secondItem="A2j-Rb-gib" secondAttribute="leading" id="qOH-CT-pua"/>
                                     <constraint firstAttribute="bottom" secondItem="F3J-di-4xz" secondAttribute="bottom" id="tDs-RE-OqN"/>
                                 </constraints>
@@ -519,5 +571,6 @@
         <image name="VK_Blue_Logo_transparent" width="1024" height="1024"/>
         <image name="photo1" width="190" height="176"/>
         <image name="user_ava_female1" width="200" height="200"/>
+        <image name="user_ava_male1" width="604" height="604"/>
     </resources>
 </document>

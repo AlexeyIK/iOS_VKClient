@@ -12,6 +12,8 @@ import UIKit
 @IBDesignable class AvatarView : UIView {
     
     @IBInspectable var mainColor : UIColor = UIColor.white
+    @IBInspectable var shadowColor : UIColor = UIColor.black
+    @IBInspectable var shadowOpacity : Float = 0.2
     @IBInspectable var cornerRadius : CGFloat = 20 {
         didSet {
             setNeedsDisplay()
@@ -23,12 +25,20 @@ import UIKit
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        let newLayer = CALayer()
+        let shadowView = self.subviews[0]
+        let imageView = self.subviews[1]
         
-        layer.cornerRadius = cornerRadius
-        newLayer.shadowRadius = shadowRadius;
-        newLayer.shadowColor = UIColor.black.cgColor
-        newLayer.shadowOpacity = 0.1
+        shadowView.layer.masksToBounds = false
+        shadowView.layer.cornerRadius = cornerRadius
+        shadowView.layer.shadowRadius = shadowRadius
+        shadowView.layer.shadowOpacity = shadowOpacity
+        shadowView.layer.backgroundColor = UIColor.black.cgColor
+        shadowView.layer.shadowColor = shadowColor.cgColor
+        shadowView.layer.shadowOffset = CGSize.zero
+        
+        imageView.layer.cornerRadius = cornerRadius
+        imageView.layer.masksToBounds = true
+        
         setNeedsDisplay()
     }
 }

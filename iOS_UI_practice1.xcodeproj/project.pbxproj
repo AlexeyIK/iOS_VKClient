@@ -22,6 +22,7 @@
 		5AAC414723947AF900BA698A /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAC414623947AF900BA698A /* Group.swift */; };
 		5AAC414B23947EE300BA698A /* MyGroupsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAC414A23947EE300BA698A /* MyGroupsList.swift */; };
 		5ACDE7DD239196CB00A9672F /* PhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACDE7DC239196CB00A9672F /* PhotoController.swift */; };
+		F14DAF3A239ABB3100D21230 /* LikeButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14DAF39239ABB3100D21230 /* LikeButtonController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		5AAC414623947AF900BA698A /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		5AAC414A23947EE300BA698A /* MyGroupsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsList.swift; sourceTree = "<group>"; };
 		5ACDE7DC239196CB00A9672F /* PhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoController.swift; sourceTree = "<group>"; };
+		F14DAF39239ABB3100D21230 /* LikeButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButtonController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				5A35739C2395CDE000D3D6AC /* GroupCell.swift */,
 				5A35739A2395CC2600D3D6AC /* AllGroupsList.swift */,
 				5A3FE591239997B5002F286D /* AvatarView.swift */,
+				F14DAF39239ABB3100D21230 /* LikeButtonController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F14DAF3A239ABB3100D21230 /* LikeButtonController.swift in Sources */,
 				5ACDE7DD239196CB00A9672F /* PhotoController.swift in Sources */,
 				5A3640362389DE7400945E79 /* ViewController.swift in Sources */,
 				5A3640342389DE7400945E79 /* AppDelegate.swift in Sources */,
