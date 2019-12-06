@@ -66,28 +66,35 @@ class FriendList: UITableViewController {
         
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RequestTemplate", for: indexPath) as! RequestCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "RequestTemplate", for: indexPath) as? RequestCell else {
+                return UITableViewCell()
+            }
             let user = requestList[indexPath.row]
             
             cell.userName.text = user.fullName
             cell.num.text = String(requestList.count)
-            cell.avatar.image = user.avatar
+            cell.avatar.image = UIImage(named: user.avatar)
             
             return cell
         default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTemplate", for: indexPath) as! FriendCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTemplate", for: indexPath) as? FriendCell else {
+                return UITableViewCell()
+            }
             let user = friendList[indexPath.row]
             
             cell.userName.text = user.fullName
-            cell.avatar.image = user.avatar
+            cell.avatar.image = UIImage(named: user.avatar)
             
             return cell
         }
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete {
-            // удалить
+            // удалить друга
+            friendList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     

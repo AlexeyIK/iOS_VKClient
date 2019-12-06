@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-@IBDesignable class AvatarView : UIView {
+@IBDesignable class ImageWithShadowView : UIView {
     
     @IBInspectable var mainColor : UIColor = UIColor.white
     @IBInspectable var shadowColor : UIColor = UIColor.black

@@ -19,14 +19,16 @@ class User {
     
     let femaleAvatars : [String] = [ "user_ava_female1", "user_ava_female2", "user_ava_female3", "user_ava_female4" ]
     let maleAvatars : [String] = [ "user_ava_male1", "user_ava_male2", "user_ava_male3", "user_ava_male4" ]
-    let unisexAvatars : [String] = ["user_ava_unisex1", "user_ava_unisex1" ]
+    let unisexAvatars : [String] = ["user_ava_unisex1", "user_ava_unisex2" ]
     
     var isFriend : Bool = true
     var firstName : String?
     var familyName : String?
     var fullName : String = "-"
-    var gender : GenderType = GenderType.Unknown
-    var avatar : UIImage?
+    let gender : GenderType = GenderType.Unknown
+//    var avatar : UIImage?
+    var avatar : String = ""
+    var isOnline : Bool?
     
     init(firstName : String, familyName : String) {
         self.firstName = firstName
@@ -50,14 +52,14 @@ class User {
         self.avatar = getRandomAvatar(gender: gender)
     }
     
-    private func getRandomAvatar(gender: GenderType) -> UIImage {
+    private func getRandomAvatar(gender: GenderType) -> String {
         switch gender {
         case .Male:
-            return UIImage(named: maleAvatars[Int.random(in: 0..<maleAvatars.count)])!
+            return maleAvatars[Int.random(in: 0..<maleAvatars.count)]
         case .Female:
-            return UIImage(named: femaleAvatars[Int.random(in: 0..<femaleAvatars.count)])!
+            return femaleAvatars[Int.random(in: 0..<femaleAvatars.count)]
         default:
-            return UIImage(named: unisexAvatars[Int.random(in: 0..<unisexAvatars.count)])!
+            return unisexAvatars[Int.random(in: 0..<unisexAvatars.count)]
         }
     }
 }

@@ -143,7 +143,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="69.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Isr-pQ-c76" customClass="AvatarView" customModule="iOS_UI_practice1" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Isr-pQ-c76" customClass="ImageWithShadowView" customModule="iOS_UI_practice1" customModuleProvider="target">
                                             <rect key="frame" x="13.999999999999996" y="9.9999999999999964" width="49.666666666666657" height="49.666666666666657"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kmi-KS-0nz" userLabel="Shadow">
@@ -221,7 +221,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="79.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tLf-uL-sgE" customClass="AvatarView" customModule="iOS_UI_practice1" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tLf-uL-sgE" customClass="ImageWithShadowView" customModule="iOS_UI_practice1" customModuleProvider="target">
                                             <rect key="frame" x="15" y="14" width="52" height="52"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xMZ-om-knJ" userLabel="Shadow">
