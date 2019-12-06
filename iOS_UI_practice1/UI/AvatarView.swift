@@ -23,11 +23,12 @@ import UIKit
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
+        let newLayer = CALayer()
         
         layer.cornerRadius = cornerRadius
-        layer.shadowRadius = shadowRadius;
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.1
+        newLayer.shadowRadius = shadowRadius;
+        newLayer.shadowColor = UIColor.black.cgColor
+        newLayer.shadowOpacity = 0.1
         setNeedsDisplay()
     }
 }

@@ -144,33 +144,33 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Isr-pQ-c76" customClass="AvatarView" customModule="iOS_UI_practice1" customModuleProvider="target">
-                                            <rect key="frame" x="14" y="10" width="50" height="50"/>
+                                            <rect key="frame" x="13.999999999999996" y="9.9999999999999964" width="49.666666666666657" height="49.666666666666657"/>
                                             <subviews>
-                                                <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Nv-Hv-f1e" userLabel="Shadow">
-                                                    <rect key="frame" x="0.0" y="0.0" width="347" height="52"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="user_ava_female1" translatesAutoresizingMaskIntoConstraints="NO" id="ONz-zk-BQp">
-                                                    <rect key="frame" x="1" y="0.99999999999999112" width="50" height="50"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_ava_female1" translatesAutoresizingMaskIntoConstraints="NO" id="ONz-zk-BQp">
+                                                    <rect key="frame" x="-1" y="-1" width="52" height="52"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="8Oo-3M-pVv"/>
+                                                        <constraint firstAttribute="width" constant="52" id="NMh-vO-Igc"/>
+                                                        <constraint firstAttribute="width" secondItem="ONz-zk-BQp" secondAttribute="height" multiplier="1:1" id="zIb-e4-QOy"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="1" blue="0.57309144300000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstItem="ONz-zk-BQp" firstAttribute="centerX" secondItem="Isr-pQ-c76" secondAttribute="centerX" id="GKe-1s-8lH"/>
+                                                <constraint firstItem="ONz-zk-BQp" firstAttribute="centerY" secondItem="Isr-pQ-c76" secondAttribute="centerY" id="Q5P-Nf-G6t"/>
                                                 <constraint firstAttribute="width" secondItem="Isr-pQ-c76" secondAttribute="height" multiplier="1:1" id="YbW-xk-Z7f"/>
-                                                <constraint firstAttribute="trailing" secondItem="8Nv-Hv-f1e" secondAttribute="trailing" constant="-297" id="dC9-2o-zAJ"/>
-                                                <constraint firstItem="8Nv-Hv-f1e" firstAttribute="leading" secondItem="Isr-pQ-c76" secondAttribute="leading" id="wQf-kq-IhJ"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="30"/>
+                                                    <real key="value" value="26"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                    <real key="value" value="10"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Василий Комаров" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQl-Zj-FQk">
-                                            <rect key="frame" x="155.33333333333337" y="24.333333333333329" width="143.66666666666663" height="21"/>
+                                            <rect key="frame" x="79.999999999999986" y="24.333333333333329" width="143.66666666666663" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -187,13 +187,13 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Isr-pQ-c76" firstAttribute="centerY" secondItem="v0a-2z-lWt" secondAttribute="centerY" id="BOH-in-WgM"/>
-                                        <constraint firstAttribute="trailing" secondItem="JQl-Zj-FQk" secondAttribute="trailing" constant="76" id="Ddj-8P-dKA"/>
                                         <constraint firstAttribute="trailing" secondItem="8ud-qX-Dds" secondAttribute="trailing" constant="16" id="GdB-uz-wRA"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JQl-Zj-FQk" secondAttribute="trailing" constant="15" id="I0C-jT-uBR"/>
-                                        <constraint firstItem="8Nv-Hv-f1e" firstAttribute="centerX" secondItem="v0a-2z-lWt" secondAttribute="centerX" id="PJE-kG-RxM"/>
+                                        <constraint firstItem="JQl-Zj-FQk" firstAttribute="leading" secondItem="ONz-zk-BQp" secondAttribute="trailing" constant="15" id="R2z-6X-qhy"/>
+                                        <constraint firstItem="Isr-pQ-c76" firstAttribute="top" secondItem="v0a-2z-lWt" secondAttribute="top" constant="10" id="SeO-he-HZU"/>
                                         <constraint firstItem="Isr-pQ-c76" firstAttribute="leading" secondItem="v0a-2z-lWt" secondAttribute="leading" constant="14" id="UsG-rr-bMf"/>
-                                        <constraint firstItem="8ud-qX-Dds" firstAttribute="leading" secondItem="JQl-Zj-FQk" secondAttribute="trailing" constant="30" id="V0v-in-xeg"/>
-                                        <constraint firstAttribute="trailing" secondItem="Isr-pQ-c76" secondAttribute="trailing" constant="311" id="wLh-il-SLQ"/>
+                                        <constraint firstItem="8ud-qX-Dds" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JQl-Zj-FQk" secondAttribute="trailing" constant="30" id="V0v-in-xeg"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Isr-pQ-c76" secondAttribute="trailing" constant="15" id="wLh-il-SLQ"/>
                                         <constraint firstItem="JQl-Zj-FQk" firstAttribute="centerY" secondItem="v0a-2z-lWt" secondAttribute="centerY" id="xf9-LK-v1F"/>
                                         <constraint firstItem="8ud-qX-Dds" firstAttribute="centerY" secondItem="v0a-2z-lWt" secondAttribute="centerY" id="y0L-jR-Cav"/>
                                     </constraints>
