@@ -52,7 +52,9 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="admin" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g4F-4s-ywS">
                                         <rect key="frame" x="87.666666666666686" y="281.66666666666669" width="200" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="HAn-1D-edN"/>
+                                            <constraint firstAttribute="width" constant="200" id="HAn-1D-edN">
+                                                <variation key="heightClass=compact-widthClass=compact" constant="300"/>
+                                            </constraint>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -67,7 +69,9 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="12345678" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ORZ-1Q-Llo">
                                         <rect key="frame" x="87.666666666666686" y="363.66666666666669" width="200" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="Qtn-IW-mk8"/>
+                                            <constraint firstAttribute="width" constant="200" id="Qtn-IW-mk8">
+                                                <variation key="heightClass=compact-widthClass=compact" constant="300"/>
+                                            </constraint>
                                         </constraints>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -85,6 +89,10 @@
                                             <segue destination="NCd-90-2Zo" kind="presentation" identifier="MainTabbar" modalPresentationStyle="fullScreen" id="sbU-x4-wsl"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAC-JU-yGL" customClass="LikeButtonController" customModule="iOS_UI_practice1" customModuleProvider="target">
+                                        <rect key="frame" x="164" y="673" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
@@ -92,8 +100,10 @@
                                     <constraint firstItem="g4F-4s-ywS" firstAttribute="top" secondItem="tAX-HV-idc" secondAttribute="bottom" constant="10" id="Ix6-5g-gpm"/>
                                     <constraint firstItem="Epg-yd-nyP" firstAttribute="top" secondItem="ORZ-1Q-Llo" secondAttribute="bottom" constant="30" id="LCB-0a-KY1"/>
                                     <constraint firstItem="Xz0-63-GKY" firstAttribute="top" secondItem="Rqx-Lt-LWL" secondAttribute="top" constant="50" id="OKk-ad-e7x"/>
+                                    <constraint firstItem="iAC-JU-yGL" firstAttribute="centerX" secondItem="Rqx-Lt-LWL" secondAttribute="centerX" id="coK-tH-ew8"/>
                                     <constraint firstItem="ORZ-1Q-Llo" firstAttribute="top" secondItem="MYQ-E4-Zqg" secondAttribute="bottom" constant="10" id="gY1-pd-g7C"/>
                                     <constraint firstAttribute="bottom" secondItem="Epg-yd-nyP" secondAttribute="bottom" constant="10" id="kea-of-xbf"/>
+                                    <constraint firstAttribute="bottom" secondItem="iAC-JU-yGL" secondAttribute="bottom" constant="30" id="moJ-8f-3OT"/>
                                     <constraint firstItem="MYQ-E4-Zqg" firstAttribute="top" secondItem="g4F-4s-ywS" secondAttribute="bottom" constant="20" id="qWC-l8-Lgr"/>
                                 </constraints>
                             </scrollView>
@@ -221,30 +231,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="79.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tLf-uL-sgE" customClass="ImageWithShadowView" customModule="iOS_UI_practice1" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tLf-uL-sgE" customClass="CircleShadowImage" customModule="iOS_UI_practice1" customModuleProvider="target">
                                             <rect key="frame" x="15" y="14" width="52" height="52"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xMZ-om-knJ" userLabel="Shadow">
-                                                    <rect key="frame" x="0.0" y="0.0" width="52" height="52"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_ava_male1" translatesAutoresizingMaskIntoConstraints="NO" id="Mk1-mv-USi">
-                                                    <rect key="frame" x="0.0" y="0.0" width="52" height="52"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="52" id="170-Ow-7CM"/>
-                                                        <constraint firstAttribute="width" secondItem="Mk1-mv-USi" secondAttribute="height" multiplier="1:1" id="yDG-Om-5D1"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
                                             <constraints>
-                                                <constraint firstItem="xMZ-om-knJ" firstAttribute="width" secondItem="tLf-uL-sgE" secondAttribute="width" id="6YZ-1e-48I"/>
-                                                <constraint firstItem="Mk1-mv-USi" firstAttribute="centerX" secondItem="tLf-uL-sgE" secondAttribute="centerX" id="Bl0-kQ-nMC"/>
-                                                <constraint firstItem="xMZ-om-knJ" firstAttribute="height" secondItem="tLf-uL-sgE" secondAttribute="height" id="BvD-ua-Koi"/>
                                                 <constraint firstAttribute="height" constant="52" id="QDS-7f-qdU"/>
-                                                <constraint firstItem="xMZ-om-knJ" firstAttribute="centerX" secondItem="tLf-uL-sgE" secondAttribute="centerX" id="QMh-QC-u15"/>
-                                                <constraint firstItem="Mk1-mv-USi" firstAttribute="centerY" secondItem="tLf-uL-sgE" secondAttribute="centerY" id="WOW-cs-zzc"/>
                                                 <constraint firstAttribute="width" constant="52" id="gyS-Iu-QIB"/>
-                                                <constraint firstItem="xMZ-om-knJ" firstAttribute="centerY" secondItem="tLf-uL-sgE" secondAttribute="centerY" id="ptn-qZ-ldV"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -252,6 +243,9 @@
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                                                     <real key="value" value="4"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
@@ -273,7 +267,6 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="avatar" destination="Mk1-mv-USi" id="neT-ZG-mQf"/>
                                     <outlet property="userName" destination="1aW-nf-I90" id="kbU-ti-zCV"/>
                                 </connections>
                             </tableViewCell>
@@ -571,6 +564,5 @@
         <image name="VK_Blue_Logo_transparent" width="1024" height="1024"/>
         <image name="photo1" width="190" height="176"/>
         <image name="user_ava_female1" width="200" height="200"/>
-        <image name="user_ava_male1" width="604" height="604"/>
     </resources>
 </document>

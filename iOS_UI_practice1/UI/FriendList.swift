@@ -8,10 +8,15 @@
 
 import UIKit
 
+struct Section<T> {
+    var title: String
+    var items: [T]
+}
+
 class FriendList: UITableViewController {
     
     // Список тестовых юзеров
-    let testUsersList : [User] = [
+    let testUsersList = [
         User(firstName: "Василий", familyName: "Комаров", isFriend: false, gender: GenderType.Male),
         User(firstName: "Евгений", familyName: "Григорьев", isFriend: false, gender: GenderType.Male),
         User(firstName: "Ирина", familyName: "Лаврентьева", isFriend: true, gender: GenderType.Female),
@@ -27,12 +32,20 @@ class FriendList: UITableViewController {
     // Названия секций
     let sectionsCaption = ["Заявки в друзья", "Важные"]
     
+    var friendsSection = [Section<User>]()
+    
     var friendList = [User]()
     var requestList = [User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let friendsDictionary = Dictionary.init(grouping: testUsersList) {
+            $0.firstName!.prefix(1)
+        }
+        
+//        friendsSection = friendsDictionary.map { Section -> friendsDictionary }
+        
         for nextUser in testUsersList {
             if nextUser.isFriend {
                 friendList.append(nextUser)
@@ -84,6 +97,7 @@ class FriendList: UITableViewController {
             
             cell.userName.text = user.fullName
             cell.avatar.image = UIImage(named: user.avatar)
+            
             
             return cell
         }

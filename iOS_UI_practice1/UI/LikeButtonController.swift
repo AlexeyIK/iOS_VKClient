@@ -12,8 +12,34 @@ import UIKit
     
     @IBInspectable var likeColor : UIColor = UIColor.red
     
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
+    var liked: Bool = false {
+        didSet {
+            if liked {
+                setLike()
+            } else {
+                unsetLike()
+            }
+        }
+    }
+    
+    var likeCount = 0
+    
+    private func setLike() {
+        likeCount += 1
+        setImage(UIImage(named: "like"), for: .normal)
+        setTitle(String(describing: likeCount), for: .normal)
+    }
+    
+    private func unsetLike() {
+        likeCount -= 1
+        setImage(UIImage(named: "dislike"), for: .normal)
+        setTitle(String(describing: likeCount), for: .normal)
+    }
+    
+    private func like() {
+        liked = !liked
+    }
+    
     override func draw(_ rect: CGRect) {
         // Drawing code
         super.draw(rect)
