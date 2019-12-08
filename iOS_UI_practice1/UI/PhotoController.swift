@@ -12,30 +12,26 @@ private let reuseIdentifier = "Cell"
 
 class PhotoController: UICollectionViewController {
 
+    @IBAction func onClick(_ sender: Any) {
+        guard let button = (sender as? LikeButtonController) else { return }
+        button.Like()
+    }
+    
     var photoCollection = [1,2,3,4,5,6,7,8]
     var user: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-//        self.collectionView!.register(PhotoCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return photoCollection.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photo", for: indexPath) as! PhotoCell
-    
-        // Configure the cell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photo", for: indexPath) as? PhotoCell else {
+            return UICollectionViewCell()
+        }
     
         return cell
     }

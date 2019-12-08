@@ -6,7 +6,6 @@
 //  Copyright © 2019 Alexey Kuznetsov. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 // Типы групп, что могут быть

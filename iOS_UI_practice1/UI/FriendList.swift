@@ -28,9 +28,6 @@ class FriendList: UITableViewController {
         User(firstName: "Ольга", familyName: "Ковальчук", isFriend: true, gender: GenderType.Female),
         User(firstName: "Максим", familyName: "Сухой", isFriend: true, gender: GenderType.Male)
     ]
-
-    // Названия секций
-    let sectionsCaption = ["Заявки в друзья", "Важные"]
     
     var friendsSection = [Section<User>]()
     
@@ -44,7 +41,8 @@ class FriendList: UITableViewController {
             $0.firstName!.prefix(1)
         }
         
-//        friendsSection = friendsDictionary.map { Section -> friendsDictionary }
+        friendsSection = friendsDictionary.map { Section(title: String($0.key), items: $0.value) }
+        friendsSection.sort(by: { $0.title < $1.title })
         
         for nextUser in testUsersList {
             if nextUser.isFriend {
@@ -57,21 +55,28 @@ class FriendList: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return friendsSection.count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionsCaption[section]
+        switch section {
+        case 0:
+            return "Заявки в друзья"
+        default:
+            return String(friendsSection[section - 1].title.prefix(1))
+        }
+    }
+    
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return friendsSection.map( {$0.title} )
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 1
-        case 1:
-            return friendList.count
         default:
-            return 1
+            return friendsSection[section - 1].items.count
         }
     }
 
@@ -82,22 +87,21 @@ class FriendList: UITableViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "RequestTemplate", for: indexPath) as? RequestCell else {
                 return UITableViewCell()
             }
-            let user = requestList[indexPath.row]
+            let user = requestList[indexPath.section]
             
             cell.userName.text = user.fullName
             cell.num.text = String(requestList.count)
-            cell.avatar.image = UIImage(named: user.avatar)
+            cell.shadowAvatar.image.image = UIImage(named: user.avatarPath)
             
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTemplate", for: indexPath) as? FriendCell else {
                 return UITableViewCell()
             }
-            let user = friendList[indexPath.row]
+            let user = friendsSection[indexPath.section - 1].items[indexPath.row]
             
             cell.userName.text = user.fullName
-            cell.avatar.image = UIImage(named: user.avatar)
-            
+            cell.shadowAvatar.image.image = UIImage(named: user.avatarPath)
             
             return cell
         }

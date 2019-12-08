@@ -8,12 +8,12 @@
 
 import UIKit
 
-@IBDesignable class CircleShadowImage : UIView {
+class CircleShadowImage : UIView {
     
     var image: UIImageView!
     @IBInspectable let shadowColor : UIColor = UIColor.black
-    @IBInspectable let shadowOpacity : Float = 1.0
-    @IBInspectable let shadowRadius : CGFloat = 5
+    @IBInspectable let shadowOpacity : Float = 0.4
+    @IBInspectable let shadowRadius : CGFloat = 4.0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,7 +25,7 @@ import UIKit
         addImage()
     }
     
-    func addImage() {
+    private func addImage() {
         image = UIImageView(frame: frame)
         addSubview(image)
     }
@@ -40,5 +40,6 @@ import UIKit
         layer.shadowOffset = CGSize.zero
         
         image.layer.cornerRadius = bounds.size.height / 2
+        image.layer.masksToBounds = true
     }
 }
