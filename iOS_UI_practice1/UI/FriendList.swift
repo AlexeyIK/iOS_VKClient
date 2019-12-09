@@ -109,10 +109,12 @@ class FriendList: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-        if editingStyle == .delete {
-            // удалить друга
-            friendList.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+        if (indexPath.section != 0) {
+            if editingStyle == .delete {
+                // удалить друга, если он в списке друзей, а не заявок
+                friendsSection[indexPath.section - 1].items.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
         }
     }
     
