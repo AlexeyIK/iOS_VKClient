@@ -28,12 +28,9 @@ class FriendList: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let friendsDictionary = Dictionary.init(grouping: testUsersList) {
-            $0.firstName!.prefix(1)
-        }
+        searchBar.delegate = self
         
-        friendsSection = friendsDictionary.map { Section(title: String($0.key), items: $0.value) }
-        friendsSection.sort(by: { $0.title < $1.title })
+        mapToSections()
         
         for nextUser in testUsersList {
             if nextUser.isFriend {
@@ -45,7 +42,14 @@ class FriendList: UITableViewController {
         }
     }
     
-    
+    private func mapToSections() {
+        let friendsDictionary = Dictionary.init(grouping: testUsersList) {
+            $0.familyName!.prefix(1)
+        }
+        
+        friendsSection = friendsDictionary.map { Section(title: String($0.key), items: $0.value) }
+        friendsSection.sort(by: { $0.title < $1.title })
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return friendsSection.count
@@ -139,14 +143,24 @@ class FriendList: UITableViewController {
 
 extension FriendList: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        let friendsDictionary = Dictionary.init(grouping: friendList.filter{ (user) -> Bool in return searchText.isEmpty) }
-//        friendsSection = friendsDictionary.map { Section(title: String($0.key), items: $0.value) }
-//        friendsSection.sort(by: { $0.title < $1.title })
+        
+        let friendsDictionary = Dictionary.init(grouping: friendList.filter { (user) -> Bool in
+            return searchText.isEmpty ? true : user.fullName.lowercased().contains(searchText.lowercased())
+        }) { $0.familyName!.prefix(1) }
+
+        friendsSection = friendsDictionary.map { Section(title: String($0.key), items: $0.value) }
+        friendsSection.sort(by: { $0.title < $1.title })
+        
+        tableView.reloadData()
         
         print(searchText)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
     }
 }

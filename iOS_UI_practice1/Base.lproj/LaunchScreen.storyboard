@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VK_Blue_Logo_transparent" translatesAutoresizingMaskIntoConstraints="NO" id="HkP-Oc-FdG">
-                                <rect key="frame" x="137.5" y="293.5" width="100" height="100"/>
+                                <rect key="frame" x="112.5" y="268.5" width="150" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="0an-5x-TeV"/>
-                                    <constraint firstAttribute="height" constant="100" id="h3I-7A-Rpk"/>
+                                    <constraint firstAttribute="height" constant="150" id="h3I-7A-Rpk"/>
+                                    <constraint firstAttribute="width" secondItem="HkP-Oc-FdG" secondAttribute="height" multiplier="1:1" id="kgo-ax-Iti"/>
                                 </constraints>
                             </imageView>
                         </subviews>
