@@ -41,7 +41,7 @@ class MyGroupsList: UITableViewController {
         
         cell.caption.text = GroupsData.myGroups[indexPath.row].groupName
         cell.subTitle.text = GroupsData.myGroups[indexPath.row].groupSubstring
-        cell.groupImage.image = GroupsData.myGroups[indexPath.row].image
+        cell.groupImage.image = UIImage(named: GroupsData.myGroups[indexPath.row].imagePath!)
         cell.numOfMembers.text = "" // пустой текст, чтобы не отображать количество людей в группах, в которых мы состоим
 
         return cell

@@ -25,7 +25,8 @@ class Group {
     lazy var groupSubstring : String = GroupTypeToText(groupType: groupType)
     var numOfMembers : Int?
     var isMeInGroup : Bool
-    var image : UIImage?
+//    var image : UIImage?
+    var imagePath : String?
     
     init(name: String, type: GroupType, membersCount: Int?, isAMember: Bool) {
         self.groupName = name
@@ -34,11 +35,11 @@ class Group {
         self.numOfMembers = membersCount
     }
     
-    init(name: String, type: GroupType, membersCount: Int?, isAMember: Bool, image: UIImage) {
+    init(name: String, type: GroupType, membersCount: Int?, isAMember: Bool, imagePath: String) {
         self.groupName = name
         self.groupType = type
         self.isMeInGroup = isAMember
-        self.image = image
+        self.imagePath = imagePath
         self.numOfMembers = membersCount
     }
     

@@ -41,7 +41,7 @@ class AllGroupsList: UITableViewController {
         
         cell.caption.text = GroupsData.otherGroups[indexPath.row].groupName
         cell.subTitle.text = GroupsData.otherGroups[indexPath.row].groupSubstring
-        cell.groupImage.image = GroupsData.otherGroups[indexPath.row].image
+        cell.groupImage.image = UIImage(named: GroupsData.otherGroups[indexPath.row].imagePath!)
         
         let membersCount = GroupsData.otherGroups[indexPath.row].numOfMembers
         if membersCount != nil {

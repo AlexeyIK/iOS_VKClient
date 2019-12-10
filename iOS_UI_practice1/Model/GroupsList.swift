@@ -13,12 +13,12 @@ struct GroupsData {
     // Тестовые группы для отображения в таблице
     static var testList : [Group] =
     [
-        Group(name: "Музыка на каждый день", type: GroupType.Music, membersCount: 10521, isAMember: true, image: UIImage(named: "group_ava_music")!),
-        Group(name: "Мемасики", type: GroupType.Humor, membersCount: 152438, isAMember: true, image: UIImage(named: "group_ava_memes")!),
-        Group(name: "Все о фотографии", type: GroupType.Photography, membersCount: 2598, isAMember: true, image: UIImage(named: "group_ava_photo")!),
-        Group(name: "Фильмотека", type: GroupType.Movies, membersCount: 21103, isAMember: true, image: UIImage(named: "group_ava_movies")!),
-        Group(name: "Гифки на любой случай", type: GroupType.Humor, membersCount: 43328, isAMember: false, image: UIImage(named: "group_ava_gifs")!),
-        Group(name: "Все об играх", type: GroupType.Games, membersCount: 52409, isAMember: false, image: UIImage(named: "group_ava_games")!)
+        Group(name: "Музыка на каждый день", type: GroupType.Music, membersCount: 10521, isAMember: true, imagePath: "group_ava_music"),
+        Group(name: "Мемасики", type: GroupType.Humor, membersCount: 152438, isAMember: true, imagePath: "group_ava_memes"),
+        Group(name: "Все о фотографии", type: GroupType.Photography, membersCount: 2598, isAMember: true, imagePath: "group_ava_photo"),
+        Group(name: "Фильмотека", type: GroupType.Movies, membersCount: 21103, isAMember: true, imagePath: "group_ava_movies"),
+        Group(name: "Гифки на любой случай", type: GroupType.Humor, membersCount: 43328, isAMember: false, imagePath: "group_ava_gifs"),
+        Group(name: "Все об играх", type: GroupType.Games, membersCount: 52409, isAMember: false, imagePath: "group_ava_games")
     ]
     
     static var myGroups : [Group] = []
