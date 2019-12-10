@@ -56,9 +56,9 @@ class AllGroupsList: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let targetGroup = GroupsData.otherGroups[indexPath.row]
-        let index = GroupsData.testList.firstIndex(where: {$0 === targetGroup})
+        let index = GroupsData.getGroups().firstIndex(where: {$0 === targetGroup})
         if index != nil {
-            GroupsData.testList[index!].isMeInGroup = true
+            GroupsData.getGroups()[index!].isMeInGroup = true
             GroupsData.updateList()
             tableView.deleteRows(at: [indexPath], with: .left)
         }

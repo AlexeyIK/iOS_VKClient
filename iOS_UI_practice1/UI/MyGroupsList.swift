@@ -10,6 +10,8 @@ import UIKit
 
 class MyGroupsList: UITableViewController {
     
+    var customRefreshControl = UIRefreshControl()
+    
     override func loadView() {
         super.loadView()
         
@@ -19,12 +21,27 @@ class MyGroupsList: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addRefreshControl()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
     }
-    // MARK: - Table view data source
+    
+    func addRefreshControl() {
+        customRefreshControl.attributedTitle = NSAttributedString(string: "Обновление списка...")
+        tableView.addSubview(customRefreshControl)
+        customRefreshControl.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
+    }
+    
+    @objc func refreshTable() {
+        print("Start refreshing")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+            self.customRefreshControl.endRefreshing()
+        })
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -50,10 +67,10 @@ class MyGroupsList: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         let targetGroup = GroupsData.myGroups[indexPath.row]
-        let index = GroupsData.testList.firstIndex(where: {$0 === targetGroup})
+        let index = GroupsData.getGroups().firstIndex(where: {$0 === targetGroup})
         
         if editingStyle == .delete && index != nil {
-            GroupsData.testList[index!].isMeInGroup = false
+            GroupsData.getGroups()[index!].isMeInGroup = false
             GroupsData.updateList()
             tableView.deleteRows(at: [indexPath], with: .fade)
         }

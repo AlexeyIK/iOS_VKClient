@@ -131,6 +131,28 @@
             </objects>
             <point key="canvasLocation" x="-938" y="-98"/>
         </scene>
+        <!--Message View Controller-->
+        <scene sceneID="XOH-SD-9RA">
+            <objects>
+                <tableViewController id="UgM-wu-Ies" userLabel="Message View Controller" customClass="MessageViewController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="70" estimatedRowHeight="83" sectionHeaderHeight="18" sectionFooterHeight="18" id="fee-IN-aRH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="UgM-wu-Ies" id="vYA-lM-RMS"/>
+                            <outlet property="delegate" destination="UgM-wu-Ies" id="e8O-WA-OIB"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" systemItem="contacts" id="HDe-vH-mah"/>
+                    <navigationItem key="navigationItem" title="Друзья" id="rtb-fG-pRe"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I1e-IN-kUE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1716" y="-1196"/>
+        </scene>
         <!--Friends View Controller-->
         <scene sceneID="MxC-S8-oSY">
             <objects>
@@ -139,9 +161,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" id="tWB-OD-n7Y">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="RequestTemplate" rowHeight="70" id="upY-qH-Lwf" userLabel="RequestsTemplate" customClass="RequestCell" customModule="iOS_UI_practice1" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.333333333333343" width="375" height="70"/>
+                                <rect key="frame" x="0.0" y="99.333333333333343" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="upY-qH-Lwf" id="v0a-2z-lWt">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="69.666666666666671"/>
@@ -194,7 +221,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationWidth="10" reuseIdentifier="FriendTemplate" rowHeight="80" id="zad-TE-mBP" customClass="FriendCell" customModule="iOS_UI_practice1" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="125.33333333333334" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="169.33333333333334" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zad-TE-mBP" id="vsw-YS-SK5">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="79.666666666666671"/>
@@ -250,6 +277,9 @@
                     <tabBarItem key="tabBarItem" systemItem="contacts" id="ATA-oA-Ajo"/>
                     <navigationItem key="navigationItem" title="Друзья" id="WgN-ik-0as"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchBar" destination="tWB-OD-n7Y" id="R8e-km-cBO"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QJz-7g-G93" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -263,18 +293,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="6" sectionInsetReference="layoutMargins" id="zhe-4f-dUW">
-                            <size key="itemSize" width="110" height="130"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="8" minY="5" maxX="8" maxY="5"/>
-                        </collectionViewFlowLayout>
+                        <collectionViewLayout key="collectionViewLayout" id="hPc-fa-ZX1" customClass="CustomCollectionUILayout" customModule="iOS_UI_practice1" customModuleProvider="target"/>
                         <cells>
                             <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photo" id="A2j-Rb-gib" customClass="PhotoCell" customModule="iOS_UI_practice1" customModuleProvider="target">
-                                <rect key="frame" x="16" y="13" width="110" height="130"/>
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="110" height="130"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo-icon" translatesAutoresizingMaskIntoConstraints="NO" id="F3J-di-4xz">

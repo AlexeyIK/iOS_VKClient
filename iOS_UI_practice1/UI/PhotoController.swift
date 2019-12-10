@@ -22,6 +22,14 @@ class PhotoController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        updateNavigationItem()
+    }
+    
+    func updateNavigationItem() {
+        let backItem = UIBarButtonItem()
+        backItem.title = "Назад"
+        navigationController?.navigationBar.topItem?.backBarButtonItem = backItem
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -15,19 +15,10 @@ struct Section<T> {
 
 class FriendList: UITableViewController {
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     // Список тестовых юзеров
-    let testUsersList = [
-        User(firstName: "Василий", familyName: "Комаров", isFriend: false, gender: GenderType.Male),
-        User(firstName: "Евгений", familyName: "Григорьев", isFriend: false, gender: GenderType.Male),
-        User(firstName: "Ирина", familyName: "Лаврентьева", isFriend: true, gender: GenderType.Female),
-        User(firstName: "Анна", familyName: "Кузнецова", isFriend: true, gender: GenderType.Female),
-        User(firstName: "Михаил", familyName: "Пирогов", isFriend: true, gender: GenderType.Male),
-        User(firstName: "Олег", familyName: "Смирнов", isFriend: true, gender: GenderType.Male),
-        User(firstName: "Анонимус", familyName: "Анонимович", isFriend: true),
-        User(firstName: "Кара", familyName: "Небесная", isFriend: true),
-        User(firstName: "Ольга", familyName: "Ковальчук", isFriend: true, gender: GenderType.Female),
-        User(firstName: "Максим", familyName: "Сухой", isFriend: true, gender: GenderType.Male)
-    ]
+    let testUsersList = UsersData.getFriends()
     
     var friendsSection = [Section<User>]()
     
@@ -53,6 +44,8 @@ class FriendList: UITableViewController {
             }
         }
     }
+    
+    
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return friendsSection.count
@@ -129,5 +122,31 @@ class FriendList: UITableViewController {
         viewController.user = username
         
         self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let shareAction = UITableViewRowAction(style: .default, title: "Поделиться") { (action, index) in
+            print("Share information by \(index.section) \(index.row)")
+        }
+        shareAction.backgroundColor = UIColor.blue
+        
+        let forwardAction = UITableViewRowAction(style: .default, title: "Переслать") { (action, index) in
+            print("Forward information by \(index.section) \(index.row)")
+        }
+        return [shareAction, forwardAction]
+    }
+}
+
+extension FriendList: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        let friendsDictionary = Dictionary.init(grouping: friendList.filter{ (user) -> Bool in return searchText.isEmpty) }
+//        friendsSection = friendsDictionary.map { Section(title: String($0.key), items: $0.value) }
+//        friendsSection.sort(by: { $0.title < $1.title })
+        
+        print(searchText)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
     }
 }

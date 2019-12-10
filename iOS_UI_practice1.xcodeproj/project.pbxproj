@@ -17,13 +17,17 @@
 		5A3640392389DE7400945E79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A3640372389DE7400945E79 /* Main.storyboard */; };
 		5A36403B2389DE7600945E79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A36403A2389DE7600945E79 /* Assets.xcassets */; };
 		5A36403E2389DE7600945E79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A36403C2389DE7600945E79 /* LaunchScreen.storyboard */; };
-		5A3FE592239997B5002F286D /* ImageWithShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3FE591239997B5002F286D /* ImageWithShadowView.swift */; };
 		5A776BEB2392B8B400200AED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A776BEA2392B8B400200AED /* User.swift */; };
 		5AAC414723947AF900BA698A /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAC414623947AF900BA698A /* Group.swift */; };
 		5AAC414B23947EE300BA698A /* MyGroupsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAC414A23947EE300BA698A /* MyGroupsList.swift */; };
 		5ACDE7DD239196CB00A9672F /* PhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACDE7DC239196CB00A9672F /* PhotoController.swift */; };
 		F14DAF3A239ABB3100D21230 /* LikeButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14DAF39239ABB3100D21230 /* LikeButtonController.swift */; };
 		F16F1302239ACBF800BA8CE6 /* CircleShadowImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16F1301239ACBF800BA8CE6 /* CircleShadowImage.swift */; };
+		F1D2EBC223A0109400F73236 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC023A0109400F73236 /* MessageCell.swift */; };
+		F1D2EBC323A0109400F73236 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D2EBC123A0109400F73236 /* MessageCell.xib */; };
+		F1D2EBC523A0122E00F73236 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC423A0122E00F73236 /* MessageViewController.swift */; };
+		F1D2EBC723A0162300F73236 /* UsersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC623A0162300F73236 /* UsersData.swift */; };
+		F1D2EBC923A018F000F73236 /* CustomCollectionUILayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC823A018F000F73236 /* CustomCollectionUILayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,13 +43,17 @@
 		5A36403A2389DE7600945E79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A36403D2389DE7600945E79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5A36403F2389DE7600945E79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5A3FE591239997B5002F286D /* ImageWithShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWithShadowView.swift; sourceTree = "<group>"; };
 		5A776BEA2392B8B400200AED /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5AAC414623947AF900BA698A /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		5AAC414A23947EE300BA698A /* MyGroupsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsList.swift; sourceTree = "<group>"; };
 		5ACDE7DC239196CB00A9672F /* PhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoController.swift; sourceTree = "<group>"; };
 		F14DAF39239ABB3100D21230 /* LikeButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButtonController.swift; sourceTree = "<group>"; };
 		F16F1301239ACBF800BA8CE6 /* CircleShadowImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShadowImage.swift; sourceTree = "<group>"; };
+		F1D2EBC023A0109400F73236 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		F1D2EBC123A0109400F73236 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		F1D2EBC423A0122E00F73236 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		F1D2EBC623A0162300F73236 /* UsersData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersData.swift; sourceTree = "<group>"; };
+		F1D2EBC823A018F000F73236 /* CustomCollectionUILayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionUILayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +86,7 @@
 		5A3640322389DE7400945E79 /* iOS_UI_practice1 */ = {
 			isa = PBXGroup;
 			children = (
+				F1D2EBBE23A0105000F73236 /* MessageScreen */,
 				5ACDE7DF23919DAE00A9672F /* UI */,
 				5ACDE7DE23919D5200A9672F /* Model */,
 				5A3640332389DE7400945E79 /* AppDelegate.swift */,
@@ -96,6 +105,7 @@
 				5A776BEA2392B8B400200AED /* User.swift */,
 				5AAC414623947AF900BA698A /* Group.swift */,
 				5A3573982395B77800D3D6AC /* GroupsList.swift */,
+				F1D2EBC623A0162300F73236 /* UsersData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -109,11 +119,29 @@
 				5A1A64BF239192B900AB76EB /* FriendCell.swift */,
 				5A35739C2395CDE000D3D6AC /* GroupCell.swift */,
 				5A35739A2395CC2600D3D6AC /* AllGroupsList.swift */,
-				5A3FE591239997B5002F286D /* ImageWithShadowView.swift */,
 				F14DAF39239ABB3100D21230 /* LikeButtonController.swift */,
 				F16F1301239ACBF800BA8CE6 /* CircleShadowImage.swift */,
+				F1D2EBC823A018F000F73236 /* CustomCollectionUILayout.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		F1D2EBBE23A0105000F73236 /* MessageScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F1D2EBBF23A0106400F73236 /* Cells */,
+				F1D2EBC423A0122E00F73236 /* MessageViewController.swift */,
+			);
+			path = MessageScreen;
+			sourceTree = "<group>";
+		};
+		F1D2EBBF23A0106400F73236 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F1D2EBC023A0109400F73236 /* MessageCell.swift */,
+				F1D2EBC123A0109400F73236 /* MessageCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A36403E2389DE7600945E79 /* LaunchScreen.storyboard in Resources */,
+				F1D2EBC323A0109400F73236 /* MessageCell.xib in Resources */,
 				5A36403B2389DE7600945E79 /* Assets.xcassets in Resources */,
 				5A3640392389DE7400945E79 /* Main.storyboard in Resources */,
 			);
@@ -188,17 +217,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				F14DAF3A239ABB3100D21230 /* LikeButtonController.swift in Sources */,
+				F1D2EBC923A018F000F73236 /* CustomCollectionUILayout.swift in Sources */,
 				F16F1302239ACBF800BA8CE6 /* CircleShadowImage.swift in Sources */,
 				5ACDE7DD239196CB00A9672F /* PhotoController.swift in Sources */,
 				5A3640362389DE7400945E79 /* ViewController.swift in Sources */,
+				F1D2EBC523A0122E00F73236 /* MessageViewController.swift in Sources */,
 				5A3640342389DE7400945E79 /* AppDelegate.swift in Sources */,
+				F1D2EBC723A0162300F73236 /* UsersData.swift in Sources */,
 				5A35739D2395CDE000D3D6AC /* GroupCell.swift in Sources */,
 				5AAC414723947AF900BA698A /* Group.swift in Sources */,
 				5A1A64BE23918E5700AB76EB /* FriendList.swift in Sources */,
 				5A1A64C0239192B900AB76EB /* FriendCell.swift in Sources */,
 				5A3573992395B77800D3D6AC /* GroupsList.swift in Sources */,
 				5A35739B2395CC2600D3D6AC /* AllGroupsList.swift in Sources */,
-				5A3FE592239997B5002F286D /* ImageWithShadowView.swift in Sources */,
+				F1D2EBC223A0109400F73236 /* MessageCell.swift in Sources */,
 				5A776BEB2392B8B400200AED /* User.swift in Sources */,
 				5AAC414B23947EE300BA698A /* MyGroupsList.swift in Sources */,
 			);
