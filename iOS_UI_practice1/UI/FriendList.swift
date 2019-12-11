@@ -52,7 +52,7 @@ class FriendList: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return friendsSection.count
+        return friendsSection.count + 1
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -144,16 +144,7 @@ class FriendList: UITableViewController {
 extension FriendList: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        let friendsDictionary = Dictionary.init(grouping: friendList.filter { (user) -> Bool in
-            return searchText.isEmpty ? true : user.fullName.lowercased().contains(searchText.lowercased())
-        }) { $0.familyName!.prefix(1) }
-
-        friendsSection = friendsDictionary.map { Section(title: String($0.key), items: $0.value) }
-        friendsSection.sort(by: { $0.title < $1.title })
-        
-        tableView.reloadData()
-        
-        print(searchText)
+        searchInFriends(searchText: searchText)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -161,6 +152,19 @@ extension FriendList: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = nil
         
+        searchInFriends(searchText: "")
+    }
+    
+    private func searchInFriends(searchText: String) {
+        let friendsDictionary = Dictionary.init(grouping: friendList.filter( { (user: User) -> Bool in
+            return searchText.isEmpty ? true : user.fullName.lowercased().contains(searchText.lowercased())
+        }), by: { $0.familyName!.prefix(1) })
+        
+        friendsSection = friendsDictionary.map { Section(title: String($0.key), items: $0.value) }
+        friendsSection.sort(by: { $0.title < $1.title })
+        
+        tableView.reloadData()
     }
 }
