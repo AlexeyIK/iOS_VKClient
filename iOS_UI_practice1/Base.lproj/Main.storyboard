@@ -288,23 +288,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewLayout key="collectionViewLayout" id="hPc-fa-ZX1" customClass="CustomCollectionUILayout" customModule="iOS_UI_practice1" customModuleProvider="target"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Lkd-mB-kty">
+                            <size key="itemSize" width="110" height="130"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                        </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photo" id="A2j-Rb-gib" customClass="PhotoCell" customModule="iOS_UI_practice1" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="10" y="10" width="110" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="110" height="130"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo-icon" translatesAutoresizingMaskIntoConstraints="NO" id="F3J-di-4xz">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" image="photo-icon" translatesAutoresizingMaskIntoConstraints="NO" id="F3J-di-4xz">
+                                            <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="F3J-di-4xz" secondAttribute="height" multiplier="1:1" id="ikq-oy-5MV"/>
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAA-lp-iW8" userLabel="Like" customClass="LikeButtonController" customModule="iOS_UI_practice1" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="32" width="50" height="16"/>
+                                            <rect key="frame" x="0.0" y="112" width="110" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="16" id="hxA-gP-V7p"/>
                                             </constraints>
@@ -420,7 +425,7 @@
                             <outlet property="delegate" destination="Hj5-Zc-uth" id="xFd-1d-jO1"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" badgeValue="Groups" systemItem="featured" id="6wW-pk-Bae"/>
+                    <tabBarItem key="tabBarItem" systemItem="featured" id="6wW-pk-Bae"/>
                     <navigationItem key="navigationItem" title="Группы" id="cm8-UQ-gZn">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="mxb-9t-gdP">
                             <connections>
@@ -529,6 +534,42 @@
             </objects>
             <point key="canvasLocation" x="812" y="214"/>
         </scene>
+        <!--Root View Controller-->
+        <scene sceneID="6dG-5w-zUi">
+            <objects>
+                <tableViewController id="H7b-fK-YYT" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="hcz-jL-dXv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="H7b-fK-YYT" id="0AW-F6-utO"/>
+                            <outlet property="delegate" destination="H7b-fK-YYT" id="Skh-5e-zur"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="dNF-E3-72C"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mmP-wK-ZWs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="812" y="934.72906403940885"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zBe-xj-sLw">
+            <objects>
+                <navigationController id="Ar7-Xc-bpl" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="Ze0-XJ-vrW"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PKy-c2-PgF">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="H7b-fK-YYT" kind="relationship" relationship="rootViewController" id="hOg-lU-3KG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y2a-uu-GeB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-138" y="649"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="1Ch-j2-gGF">
             <objects>
@@ -558,6 +599,7 @@
                     <connections>
                         <segue destination="DXl-cd-v5N" kind="relationship" relationship="viewControllers" id="ruu-bU-uKh"/>
                         <segue destination="QtJ-e2-Q4f" kind="relationship" relationship="viewControllers" id="t9u-Ks-Vrt"/>
+                        <segue destination="Ar7-Xc-bpl" kind="relationship" relationship="viewControllers" id="tau-j9-583"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="19g-Qv-TxG" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LikeButtonController: UIButton {
+@IBDesignable class LikeButtonController: UIButton {
     
     @IBInspectable var likeColor : UIColor = UIColor.red
     @IBInspectable var leftLabelMargin: CGFloat = 4

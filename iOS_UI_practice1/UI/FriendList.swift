@@ -18,7 +18,7 @@ class FriendList: UITableViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     // Список тестовых юзеров
-    let testUsersList = UsersData.getFriends()
+    let testUsersList = UsersData.getAllUsers()
     
     var friendsSection = [Section<User>]()
     
