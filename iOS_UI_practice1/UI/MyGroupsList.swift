@@ -66,17 +66,18 @@ class MyGroupsList: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-        let targetGroup = GroupsData.myGroups[indexPath.row]
-        let index = GroupsData.getGroups().firstIndex(where: {$0 === targetGroup})
+        var targetGroup = GroupsData.myGroups[indexPath.row]
+        let index = GroupsData.getGroups().firstIndex(where: {$0.id == targetGroup.id} )
+        print("editing style is \(editingStyle) and index is \(index)")
         
         if editingStyle == .delete && index != nil {
-            GroupsData.getGroups()[index!].isMeInGroup = false
+            targetGroup.isMeInGroup = false
             GroupsData.updateList()
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
-    override func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
-        
-    }
+//    override func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
+//
+//    }
 }

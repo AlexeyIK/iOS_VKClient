@@ -19,7 +19,9 @@ enum GroupType {
     case Public
 }
 
-class Group {
+struct Group {
+    
+    var id : Int
     var groupName : String?
     var groupType : GroupType
     lazy var groupSubstring : String = GroupTypeToText(groupType: groupType)
@@ -28,14 +30,16 @@ class Group {
 //    var image : UIImage?
     var imagePath : String?
     
-    init(name: String, type: GroupType, membersCount: Int?, isAMember: Bool) {
+    init(id: Int, name: String, type: GroupType, membersCount: Int?, isAMember: Bool) {
+        self.id = id
         self.groupName = name
         self.groupType = type
         self.isMeInGroup = isAMember
         self.numOfMembers = membersCount
     }
     
-    init(name: String, type: GroupType, membersCount: Int?, isAMember: Bool, imagePath: String) {
+    init(id: Int, name: String, type: GroupType, membersCount: Int?, isAMember: Bool, imagePath: String) {
+        self.id = id
         self.groupName = name
         self.groupType = type
         self.isMeInGroup = isAMember

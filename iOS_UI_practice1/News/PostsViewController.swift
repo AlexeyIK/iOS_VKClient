@@ -10,16 +10,24 @@ import UIKit
 
 class PostsViewController: UITableViewController {
 
-    let usersList = UsersData.getAllUsers()
+//    let usersList = UsersData.getAllUsers()
     
     let postsArray : [Post] = [
-        Post(author: User(firstName: "Анна", familyName: "Сорокина"),
-                  timestamp: "сегодня в 12:01",
-                  postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget.",
+        Post(author: UsersData.getAllUsers()[0],
+             timestamp: DateTimeHelper.getDateTimeString(dateTime: Calendar.current.date(byAdding: .day, value: -1, to: Date()), format: "dd.MM в HH:mm"),
+                  postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget.",
                   photos: [String](),
                   likes: 10,
                   comments: 2,
-                  views: 15)
+                  views: 15),
+        
+        Post(author: UsersData.getAllUsers()[1],
+             timestamp: DateTimeHelper.getDateTimeString(dateTime: Calendar.current.date(byAdding: .hour, value: -12, to: Date()), format: "dd.MM в HH:mm"),
+             postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+             photos: [String](),
+             likes: 22,
+             comments: 4,
+             views: 40)
     ]
     
     override func viewDidLoad() {
@@ -39,7 +47,6 @@ class PostsViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return postsArray.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -48,6 +55,14 @@ class PostsViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostWithoutPictures", for: indexPath) as! PostCell
             cell.avatar.image.image = UIImage(named: postsArray[indexPath.row].author.avatarPath)
             cell.username.text = postsArray[indexPath.row].author.fullName
+            cell.timestamp.text = postsArray[indexPath.row].timestamp
+            cell.postBodyText.text = postsArray[indexPath.row].postText
+            
+            cell.likesCount.likeCount = postsArray[indexPath.row].likes
+            cell.commentsLabel.text = "\(postsArray[indexPath.row].comments) comments"
+            cell.viewsLabel.text = "\(postsArray[indexPath.row].likes) views"
+            
+            cell.layoutMargins.bottom = 15
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostWithoutPictures", for: indexPath) as! PostCell

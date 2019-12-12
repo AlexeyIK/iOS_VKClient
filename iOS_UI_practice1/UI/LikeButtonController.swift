@@ -11,9 +11,15 @@ import UIKit
 @IBDesignable class LikeButtonController: UIButton {
     
     @IBInspectable var likeColor : UIColor = UIColor.red
+    @IBInspectable var standardColor : UIColor = UIColor.gray
     @IBInspectable var leftLabelMargin: CGFloat = 4
     
-    var likeCount = Int.random(in: 0..<1000)
+    var likeCount : Int = Int.random(in: 0..<1000) {
+        didSet {
+            needUpdate()
+        }
+    }
+    
     var likeImageSize : CGFloat = 16.0
     
     var liked: Bool = false {
@@ -42,6 +48,7 @@ import UIKit
         super.init(frame: frame)
         // Отступ на размер сердечка для выведения количества лайков
         likeImageSize = frame.height
+        contentHorizontalAlignment = .left
         titleEdgeInsets.left = likeImageSize + leftLabelMargin
         needUpdate()
     }
@@ -49,6 +56,7 @@ import UIKit
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         likeImageSize = frame.height
+        contentHorizontalAlignment = .left
         titleEdgeInsets.left = likeImageSize + leftLabelMargin
         needUpdate()
     }
@@ -57,9 +65,6 @@ import UIKit
         super.draw(rect)
         
         guard let context = UIGraphicsGetCurrentContext() else { return }
-        
-        context.setStrokeColor(likeColor.cgColor)
-        context.setFillColor(likeColor.cgColor)
         
         let startX : CGFloat = 0
         let startY : CGFloat = likeImageSize/3
@@ -74,9 +79,11 @@ import UIKit
         context.closePath()
         
         if liked {
+            context.setFillColor(likeColor.cgColor)
             context.fillPath()
         }
         else {
+            context.setStrokeColor(standardColor.cgColor)
             context.strokePath()
         }
     }

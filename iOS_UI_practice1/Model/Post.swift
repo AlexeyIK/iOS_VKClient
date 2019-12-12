@@ -13,7 +13,7 @@ struct Post {
     var timestamp : String
     var postText : String = ""
     var photos : [String]
-    var likes : Int?
-    var comments : Int?
-    var views : Int?
+    var likes : Int
+    var comments : Int
+    var views : Int
 }
