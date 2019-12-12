@@ -12,6 +12,14 @@ class PostsViewController: UITableViewController {
     
     let postsArray : [Post] = [
         Post(author: UsersData.getAllUsers()[Int.random(in: 0..<UsersData.getAllUsers().count)],
+             timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .day, value: -3, to: Date())!),
+             postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. ",
+             photos: [String](),
+             likes: 3,
+             comments: 0,
+             views: 15),
+        
+        Post(author: UsersData.getAllUsers()[Int.random(in: 0..<UsersData.getAllUsers().count)],
              timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .day, value: -1, to: Date())!),
                   postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget.",
                   photos: [String](),
@@ -26,7 +34,6 @@ class PostsViewController: UITableViewController {
              likes: 22,
              comments: 4,
              views: 40),
-        
         
         Post(author: UsersData.getAllUsers()[Int.random(in: 0..<UsersData.getAllUsers().count)],
              timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .hour, value: -1, to: Date())!),

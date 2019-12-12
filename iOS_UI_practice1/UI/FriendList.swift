@@ -153,8 +153,8 @@ extension FriendList: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = nil
-        
         searchInFriends(searchText: "")
+        view.endEditing(true)
     }
     
     private func searchInFriends(searchText: String) {
