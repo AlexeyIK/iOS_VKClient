@@ -9,31 +9,38 @@
 import UIKit
 
 class PostsViewController: UITableViewController {
-
-//    let usersList = UsersData.getAllUsers()
     
     let postsArray : [Post] = [
-        Post(author: UsersData.getAllUsers()[0],
-             timestamp: DateTimeHelper.getDateTimeString(dateTime: Calendar.current.date(byAdding: .day, value: -1, to: Date()), format: "dd.MM в HH:mm"),
+        Post(author: UsersData.getAllUsers()[Int.random(in: 0..<UsersData.getAllUsers().count)],
+             timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .day, value: -1, to: Date())!),
                   postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget.",
                   photos: [String](),
                   likes: 10,
                   comments: 2,
                   views: 15),
         
-        Post(author: UsersData.getAllUsers()[1],
-             timestamp: DateTimeHelper.getDateTimeString(dateTime: Calendar.current.date(byAdding: .hour, value: -12, to: Date()), format: "dd.MM в HH:mm"),
+        Post(author: UsersData.getAllUsers()[Int.random(in: 0..<UsersData.getAllUsers().count)],
+             timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .hour, value: -12, to: Date())!),
              postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
              photos: [String](),
              likes: 22,
              comments: 4,
-             views: 40)
+             views: 40),
+        
+        
+        Post(author: UsersData.getAllUsers()[Int.random(in: 0..<UsersData.getAllUsers().count)],
+             timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .hour, value: -1, to: Date())!),
+             postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+             photos: ["photo1"],
+             likes: 14,
+             comments: 1,
+             views: 26)
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(UINib(nibName: "PostCell", bundle: nil), forCellReuseIdentifier: "PostWithoutPictures")
+        tableView.register(UINib(nibName: "PostCell", bundle: nil), forCellReuseIdentifier: "PostTemplate")
         
         tableView.estimatedRowHeight = 200.0
         tableView.rowHeight = UITableView.automaticDimension
@@ -50,27 +57,26 @@ class PostsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch postsArray[indexPath.row].photos.count {
-        case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "PostWithoutPictures", for: indexPath) as! PostCell
-            cell.avatar.image.image = UIImage(named: postsArray[indexPath.row].author.avatarPath)
-            cell.username.text = postsArray[indexPath.row].author.fullName
-            cell.timestamp.text = postsArray[indexPath.row].timestamp
-            cell.postBodyText.text = postsArray[indexPath.row].postText
-            
-            cell.likesCount.likeCount = postsArray[indexPath.row].likes
-            cell.commentsLabel.text = "\(postsArray[indexPath.row].comments) comments"
-            cell.viewsLabel.text = "\(postsArray[indexPath.row].likes) views"
-            
-            cell.layoutMargins.bottom = 15
-            return cell
-        default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "PostWithoutPictures", for: indexPath) as! PostCell
-            cell.avatar.image.image = UIImage(named: postsArray[indexPath.row].author.avatarPath)
-            cell.username.text = postsArray[indexPath.row].author.fullName
-            
-            return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostTemplate", for: indexPath) as! PostCell
+        cell.avatar.image.image = UIImage(named: postsArray[indexPath.row].author.avatarPath)
+        cell.username.text = postsArray[indexPath.row].author.fullName
+        cell.timestamp.text = postsArray[indexPath.row].timestamp
+        cell.postBodyText.text = postsArray[indexPath.row].postText
+        
+        let postPhoto = postsArray[indexPath.row].photos.count > 0 ? postsArray[indexPath.row].photos[0] : nil
+        if postPhoto != nil {
+            cell.picture.image = UIImage(named: postPhoto!)
         }
+        else {
+            cell.picture.isHidden = true
+        }
+        
+        cell.likesCount.likeCount = postsArray[indexPath.row].likes
+        cell.commentsLabel.text = String(postsArray[indexPath.row].comments)
+        cell.viewsLabel.text = String(postsArray[indexPath.row].likes)
+        
+        cell.layoutMargins.bottom = 15
+        return cell
     }
     
 

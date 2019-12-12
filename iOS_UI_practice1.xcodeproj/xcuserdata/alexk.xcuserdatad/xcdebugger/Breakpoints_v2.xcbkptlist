@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iOS_UI_practice1/Model/GroupsList.swift"
-            timestampString = "597364396.397305"
+            filePath = "iOS_UI_practice1/UI/AllGroupsList.swift"
+            timestampString = "597878553.405566"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "updateList()"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iOS_UI_practice1/UI/AllGroupsList.swift"
-            timestampString = "597064532.682755"
+            filePath = "iOS_UI_practice1/Model/GroupsList.swift"
+            timestampString = "597878553.4056441"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "viewWillAppear(_:)"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "updateList()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

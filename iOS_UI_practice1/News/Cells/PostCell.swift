@@ -17,6 +17,7 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var likesCount: LikeButtonController!
     @IBOutlet weak var commentsLabel: UILabel!
     @IBOutlet weak var viewsLabel: UILabel!
+    @IBOutlet weak var picture: UIImageView!
     
     @IBAction func likeOnClick(_ sender: Any) {
         guard let likeButton = (sender as? LikeButtonController) else { return }
@@ -27,7 +28,5 @@ class PostCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    
-    
     
 }
