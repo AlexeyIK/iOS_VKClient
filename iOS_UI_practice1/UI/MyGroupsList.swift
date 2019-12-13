@@ -16,7 +16,7 @@ class MyGroupsList: UITableViewController {
         super.loadView()
         
         // Инициализируем списки групп
-        GroupsData.updateList()
+        GroupsFactory.updateList()
     }
     
     override func viewDidLoad() {
@@ -50,15 +50,15 @@ class MyGroupsList: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return GroupsData.myGroups.count
+        return GroupsFactory.myGroups.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupTemplate", for: indexPath) as! GroupCell
         
-        cell.caption.text = GroupsData.myGroups[indexPath.row].groupName
-        cell.subTitle.text = GroupsData.myGroups[indexPath.row].groupSubstring
-        cell.groupImage.image = UIImage(named: GroupsData.myGroups[indexPath.row].imagePath!)
+        cell.caption.text = GroupsFactory.myGroups[indexPath.row].groupName
+        cell.subTitle.text = GroupsFactory.myGroups[indexPath.row].groupSubstring
+        cell.groupImage.image = UIImage(named: GroupsFactory.myGroups[indexPath.row].imagePath!)
         cell.numOfMembers.text = "" // пустой текст, чтобы не отображать количество людей в группах, в которых мы состоим
 
         return cell
@@ -66,12 +66,12 @@ class MyGroupsList: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-        let targetGroup = GroupsData.myGroups[indexPath.row]
-        let index = GroupsData.allGroupsList.firstIndex(where: {$0.id == targetGroup.id} )
+        let targetGroup = GroupsFactory.myGroups[indexPath.row]
+        let index = GroupsFactory.allGroupsList.firstIndex(where: {$0.id == targetGroup.id} )
         
         if editingStyle == .delete && index != nil {
-            GroupsData.allGroupsList[index!].isMeInGroup = false
-            GroupsData.updateList()
+            GroupsFactory.allGroupsList[index!].isMeInGroup = false
+            GroupsFactory.updateList()
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }

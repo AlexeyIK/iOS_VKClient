@@ -11,7 +11,7 @@ import UIKit
 class PostsViewController: UITableViewController {
     
     let postsArray : [Post] = [
-        Post(author: UsersData.getAllUsers()[Int.random(in: 0..<UsersData.getAllUsers().count)],
+        Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
              timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .day, value: -3, to: Date())!),
              postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. ",
              photos: [String](),
@@ -19,15 +19,15 @@ class PostsViewController: UITableViewController {
              comments: 0,
              views: 15),
         
-        Post(author: UsersData.getAllUsers()[Int.random(in: 0..<UsersData.getAllUsers().count)],
+        Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
              timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .day, value: -1, to: Date())!),
                   postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget.",
-                  photos: [String](),
+                  photos: ["photo1"],
                   likes: 10,
                   comments: 2,
                   views: 15),
         
-        Post(author: UsersData.getAllUsers()[Int.random(in: 0..<UsersData.getAllUsers().count)],
+        Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
              timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .hour, value: -12, to: Date())!),
              postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
              photos: [String](),
@@ -35,10 +35,10 @@ class PostsViewController: UITableViewController {
              comments: 4,
              views: 40),
         
-        Post(author: UsersData.getAllUsers()[Int.random(in: 0..<UsersData.getAllUsers().count)],
+        Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
              timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .hour, value: -1, to: Date())!),
              postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-             photos: ["photo1"],
+             photos: [String](),
              likes: 14,
              comments: 1,
              views: 26)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GroupsData {
+class GroupsFactory {
 
     // Тестовые группы для отображения в таблице
     static var allGroupsList = [
@@ -27,12 +27,12 @@ class GroupsData {
         myGroups = []
         otherGroups = []
         
-        for group in GroupsData.allGroupsList {
+        for group in GroupsFactory.allGroupsList {
             if group.isMeInGroup {
-                GroupsData.myGroups.append(group)
+                GroupsFactory.myGroups.append(group)
             }
             else {
-                GroupsData.otherGroups.append(group)
+                GroupsFactory.otherGroups.append(group)
             }
         }
     }
