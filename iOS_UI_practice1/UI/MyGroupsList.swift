@@ -10,17 +10,24 @@ import UIKit
 
 class MyGroupsList: UITableViewController {
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     var customRefreshControl = UIRefreshControl()
+    
+    var groupsToShow = [Group]()
     
     override func loadView() {
         super.loadView()
         
         // Инициализируем списки групп
         GroupsFactory.updateList()
+        groupsToShow = GroupsFactory.myGroups
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchBar.delegate = self
         
         addRefreshControl()
     }
@@ -44,21 +51,19 @@ class MyGroupsList: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return GroupsFactory.myGroups.count
+        return groupsToShow.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupTemplate", for: indexPath) as! GroupCell
         
-        cell.caption.text = GroupsFactory.myGroups[indexPath.row].groupName
-        cell.subTitle.text = GroupsFactory.myGroups[indexPath.row].groupSubstring
-        cell.groupImage.image = UIImage(named: GroupsFactory.myGroups[indexPath.row].imagePath!)
+        cell.caption.text = groupsToShow[indexPath.row].groupName
+        cell.subTitle.text = groupsToShow[indexPath.row].groupSubstring
+        cell.groupImage.image = UIImage(named: groupsToShow[indexPath.row].imagePath!)
         cell.numOfMembers.text = "" // пустой текст, чтобы не отображать количество людей в группах, в которых мы состоим
 
         return cell
@@ -66,7 +71,7 @@ class MyGroupsList: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-        let targetGroup = GroupsFactory.myGroups[indexPath.row]
+        let targetGroup = groupsToShow[indexPath.row]
         let index = GroupsFactory.allGroupsList.firstIndex(where: {$0.id == targetGroup.id} )
         
         if editingStyle == .delete && index != nil {
@@ -78,5 +83,25 @@ class MyGroupsList: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
 
+    }
+}
+
+extension MyGroupsList : UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        searchInGroups(searchText: searchText)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+    }
+    
+    private func searchInGroups(searchText: String) {
+        groupsToShow = GroupsFactory.myGroups.filter( { (group) in
+            searchText.count > 0 ? group.groupName!.contains(searchText) : true
+        })
+        
+        tableView.reloadData()
     }
 }

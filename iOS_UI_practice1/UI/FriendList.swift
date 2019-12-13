@@ -151,12 +151,6 @@ extension FriendList: UISearchBarDelegate {
         view.endEditing(true)
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.text = nil
-        searchInFriends(searchText: "")
-        view.endEditing(true)
-    }
-    
     private func searchInFriends(searchText: String) {
         let friendsDictionary = Dictionary.init(grouping: friendList.filter( { (user: User) -> Bool in
             return searchText.isEmpty ? true : user.fullName.lowercased().contains(searchText.lowercased())
