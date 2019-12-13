@@ -33,6 +33,35 @@ class ViewController: UIViewController {
         
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         scrollView?.addGestureRecognizer(hideKeyboardGesture)
+        
+        testAnimation()
+    }
+    
+    func testAnimation() {
+        
+        let emitterSnow = CAEmitterCell()
+        emitterSnow.contents = UIImage(named: "user_ava_unisex1")?.cgImage
+        emitterSnow.scale = 0.5
+        emitterSnow.scaleRange = 0.3
+        emitterSnow.lifetime = 10.0
+        emitterSnow.velocity = -30
+        emitterSnow.velocityRange = -20
+        emitterSnow.yAcceleration = -30
+        emitterSnow.xAcceleration = 5
+        emitterSnow.spin = -0.5
+        emitterSnow.spinRange = 1.0
+        
+        let snowEmitterLayer = CAEmitterLayer()
+        snowEmitterLayer.emitterPosition = CGPoint(x: view.bounds.width/2, y: -50)
+        snowEmitterLayer.emitterSize = CGSize(width: view.bounds.width, height: 0)
+        snowEmitterLayer.emitterShape = .line
+        snowEmitterLayer.beginTime = CACurrentMediaTime() + 2.0
+        snowEmitterLayer.timeOffset = 10
+        snowEmitterLayer.emitterCells = [emitterSnow]
+        snowEmitterLayer.birthRate = 40
+        view.layer.addSublayer(snowEmitterLayer)
+        
+        // доделать снежинки на стартовом экране)
     }
     
     @objc func keyboardWasShown(notification: Notification) {

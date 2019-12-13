@@ -37,6 +37,16 @@ import UIKit
     func Like() {
         liked = !liked
         needUpdate()
+        
+        animation()
+    }
+    
+    func animation() {
+        UIView.animate(withDuration: 0.5, delay: 0, options: [.autoreverse], animations: {
+            self.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+        }, completion: { _ in
+            self.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        } )
     }
     
     private func needUpdate() {
