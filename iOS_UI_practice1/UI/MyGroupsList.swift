@@ -99,7 +99,7 @@ extension MyGroupsList : UISearchBarDelegate {
     
     private func searchInGroups(searchText: String) {
         groupsToShow = GroupsFactory.myGroups.filter( { (group) in
-            searchText.count > 0 ? group.groupName!.contains(searchText) : true
+            searchText.count > 0 ? group.groupName!.lowercased().contains(searchText.lowercased()) : true
         })
         
         tableView.reloadData()
