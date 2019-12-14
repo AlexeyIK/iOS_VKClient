@@ -42,20 +42,15 @@ import UIKit
     }
     
     func animation() {
-//        UIView.animate(withDuration: 0.5, delay: 0, options: [.autoreverse], animations: {
-//            self.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-//        }, completion: { _ in
-//            self.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-//        } )
-        
         UIView.transition(
-            with: self,
-            duration: 0.7,
+            with: self.titleLabel!,
+            duration: 0.5,
             options: .transitionFlipFromTop,
             animations: {
                 self.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
             }, completion: { _ in
-                UIView.transition(with: self, duration: 0.5, options: .transitionFlipFromTop, animations: {
+//                UIView.transition(with: self.titleLabel!, duration: 0.5, options: .transitionFlipFromTop, animations: {
+                UIView.animate(withDuration: 0.5, animations: {
                     self.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                 })
             })
