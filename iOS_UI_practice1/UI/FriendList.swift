@@ -100,8 +100,29 @@ class FriendList: UITableViewController {
             cell.userName.text = user.fullName
             cell.shadowAvatar.image.image = UIImage(named: user.avatarPath)
             
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(avatarTapped))
+            cell.shadowAvatar.addGestureRecognizer(tapGesture)
+            
             return cell
         }
+    }
+    
+    @objc func avatarTapped(sender: UITapGestureRecognizer) {
+        guard let imageView = sender.view else { return }
+        
+        print ("image view: \(imageView)" )
+        
+        UIView.animate(withDuration: 0.3,
+                       delay: 0,
+                       usingSpringWithDamping: 0.3,
+                       initialSpringVelocity: 0.3,
+                       options: [.autoreverse],
+                       animations: {
+                            imageView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                        },
+                       completion: { _ in
+                            imageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                        })
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -141,6 +162,7 @@ class FriendList: UITableViewController {
     }
 }
 
+// MARK: Friend search extension
 extension FriendList: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         

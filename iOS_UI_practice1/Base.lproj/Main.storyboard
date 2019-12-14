@@ -307,7 +307,7 @@
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAA-lp-iW8" userLabel="Like" customClass="LikeButtonController" customModule="iOS_UI_practice1" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="112" width="110" height="16"/>
+                                            <rect key="frame" x="0.0" y="112" width="55" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="16" id="hxA-gP-V7p"/>
                                             </constraints>
@@ -336,8 +336,8 @@
                                 <constraints>
                                     <constraint firstItem="F3J-di-4xz" firstAttribute="top" secondItem="A2j-Rb-gib" secondAttribute="top" id="Ah9-kB-Pxs"/>
                                     <constraint firstItem="F3J-di-4xz" firstAttribute="width" secondItem="A2j-Rb-gib" secondAttribute="width" id="M4R-mj-LDD"/>
-                                    <constraint firstAttribute="trailing" secondItem="gAA-lp-iW8" secondAttribute="trailing" id="XxP-cr-S7z"/>
                                     <constraint firstItem="gAA-lp-iW8" firstAttribute="leading" secondItem="A2j-Rb-gib" secondAttribute="leading" id="a0o-qz-OZu"/>
+                                    <constraint firstItem="gAA-lp-iW8" firstAttribute="width" secondItem="F3J-di-4xz" secondAttribute="width" multiplier="1:2" id="psQ-11-fyf"/>
                                     <constraint firstItem="F3J-di-4xz" firstAttribute="leading" secondItem="A2j-Rb-gib" secondAttribute="leading" id="qOH-CT-pua"/>
                                     <constraint firstAttribute="bottom" secondItem="gAA-lp-iW8" secondAttribute="bottom" constant="2" id="qT1-Uc-yRo"/>
                                 </constraints>
