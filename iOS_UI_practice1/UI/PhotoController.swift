@@ -22,7 +22,6 @@ class PhotoController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         updateNavigationItem()
     }
     
@@ -40,7 +39,15 @@ class PhotoController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photo", for: indexPath) as? PhotoCell else {
             return UICollectionViewCell()
         }
-    
+        
+        cell.alpha = 0.0
+        cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        
+        UIView.animate(withDuration: 0.5, delay: Double(indexPath.row + 1) * 0.25, options: [], animations: {
+            cell.alpha = 1.0
+            cell.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        }, completion: nil)
+        
         return cell
     }
 }
@@ -48,5 +55,4 @@ class PhotoController: UICollectionViewController {
 class PhotoCell : UICollectionViewCell {
     
     @IBOutlet weak var photo: UIImageView!
-    
 }

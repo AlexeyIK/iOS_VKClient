@@ -77,6 +77,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A0BAC8523A4E14500263D50 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5A1A64BF239192B900AB76EB /* FriendCell.swift */,
+				5A35739C2395CDE000D3D6AC /* GroupCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		5A3640272389DE7400945E79 = {
 			isa = PBXGroup;
 			children = (
@@ -129,8 +138,7 @@
 				5AAC414A23947EE300BA698A /* MyGroupsList.swift */,
 				5ACDE7DC239196CB00A9672F /* PhotoController.swift */,
 				5A1A64BD23918E5700AB76EB /* FriendList.swift */,
-				5A1A64BF239192B900AB76EB /* FriendCell.swift */,
-				5A35739C2395CDE000D3D6AC /* GroupCell.swift */,
+				5A0BAC8523A4E14500263D50 /* Cells */,
 				5A35739A2395CC2600D3D6AC /* AllGroupsList.swift */,
 				F14DAF39239ABB3100D21230 /* LikeButtonController.swift */,
 				F16F1301239ACBF800BA8CE6 /* CircleShadowImage.swift */,
