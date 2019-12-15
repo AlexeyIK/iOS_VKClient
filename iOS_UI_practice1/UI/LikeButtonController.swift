@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class LikeButtonController: UIButton {
+class LikeButtonController: UIButton {
     
     @IBInspectable var likeColor : UIColor = UIColor.red
     @IBInspectable var standardColor : UIColor = UIColor.gray
@@ -37,10 +37,10 @@ import UIKit
     func Like() {
         liked = !liked
         needUpdate()
-        
         animation()
     }
     
+    // Changing Like status animation
     func animation() {
         UIView.transition(
             with: self.titleLabel!,
@@ -49,7 +49,6 @@ import UIKit
             animations: {
                 self.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
             }, completion: { _ in
-//                UIView.transition(with: self.titleLabel!, duration: 0.5, options: .transitionFlipFromTop, animations: {
                 UIView.animate(withDuration: 0.5, animations: {
                     self.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                 })
@@ -63,8 +62,7 @@ import UIKit
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        // Отступ на размер сердечка для выведения количества лайков
-        likeImageSize = frame.height
+        likeImageSize = frame.height // margin from "heart" for button label
         contentHorizontalAlignment = .left
         titleEdgeInsets.left = likeImageSize + leftLabelMargin
         needUpdate()
@@ -80,7 +78,6 @@ import UIKit
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        
         guard let context = UIGraphicsGetCurrentContext() else { return }
         
         let startX : CGFloat = 0
@@ -92,7 +89,6 @@ import UIKit
         context.addQuadCurve(to: CGPoint(x: startX + likeImageSize, y: startY), control: CGPoint(x: startX + likeImageSize/1.25, y: startY - likeImageSize/2))
         context.addQuadCurve(to: CGPoint(x: startX + likeImageSize/2, y: likeImageSize), control: CGPoint(x: startX + likeImageSize, y: likeImageSize/1.5))
         context.addQuadCurve(to: CGPoint(x: startX, y: startY), control: CGPoint(x: startX, y: likeImageSize/1.5))
-        
         context.closePath()
         
         if liked {

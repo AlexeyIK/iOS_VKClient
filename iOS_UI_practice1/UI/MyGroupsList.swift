@@ -11,9 +11,7 @@ import UIKit
 class MyGroupsList: UITableViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
-    
     var customRefreshControl = UIRefreshControl()
-    
     var groupsToShow = [Group]()
     
     override func loadView() {
@@ -47,27 +45,6 @@ class MyGroupsList: UITableViewController {
             self.customRefreshControl.endRefreshing()
         })
     }
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groupsToShow.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupsTemplate", for: indexPath) as! GroupsCell
-        cell.caption.text = groupsToShow[indexPath.row].groupName
-        cell.groupType.text = groupsToShow[indexPath.row].groupSubstring
-        cell.imageContainer.image.image = UIImage(named: groupsToShow[indexPath.row].imagePath!)
-        cell.membersCount.isHidden = true
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
-        cell.imageContainer.addGestureRecognizer(tapGesture)
-
-        return cell
-    }
     
     @objc func imageTapped(sender: UITapGestureRecognizer) {
         guard let imageView = sender.view else { return }
@@ -84,25 +61,9 @@ class MyGroupsList: UITableViewController {
                             imageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                         })
     }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        let targetGroup = groupsToShow[indexPath.row]
-        let index = GroupsFactory.allGroupsList.firstIndex(where: {$0.id == targetGroup.id} )
-        
-        if editingStyle == .delete && index != nil {
-            GroupsFactory.allGroupsList[index!].isMeInGroup = false
-            GroupsFactory.updateList()
-            groupsToShow = GroupsFactory.myGroups
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
-
-    }
 }
 
+// MARK: - Search
 extension MyGroupsList : UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -120,5 +81,44 @@ extension MyGroupsList : UISearchBarDelegate {
         })
         
         tableView.reloadData()
+    }
+}
+
+// MARK: - Table and cell settings
+extension MyGroupsList {
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return groupsToShow.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupsTemplate", for: indexPath) as! GroupsCell
+        
+        cell.caption.text = groupsToShow[indexPath.row].groupName
+        cell.groupType.text = groupsToShow[indexPath.row].groupSubstring
+        cell.imageContainer.image.image = UIImage(named: groupsToShow[indexPath.row].imagePath!)
+        cell.membersCount.isHidden = true
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        cell.imageContainer.addGestureRecognizer(tapGesture)
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        let targetGroup = groupsToShow[indexPath.row]
+        let index = GroupsFactory.allGroupsList.firstIndex(where: {$0.id == targetGroup.id} )
+        
+        if editingStyle == .delete && index != nil {
+            GroupsFactory.allGroupsList[index!].isMeInGroup = false
+            GroupsFactory.updateList()
+            groupsToShow = GroupsFactory.myGroups
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
 }
