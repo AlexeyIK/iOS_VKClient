@@ -12,12 +12,13 @@ class AllGroupsList: UITableViewController {
 
     override func loadView() {
         super.loadView()
-        
         GroupsFactory.updateList()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(UINib(nibName: "GroupsCell", bundle: nil), forCellReuseIdentifier: "GroupsTemplate")
+        tableView.estimatedRowHeight = 75
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,18 +38,19 @@ class AllGroupsList: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupTemplate", for: indexPath) as! GroupCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupsTemplate", for: indexPath) as! GroupsCell
         
         cell.caption.text = GroupsFactory.otherGroups[indexPath.row].groupName
-        cell.subTitle.text = GroupsFactory.otherGroups[indexPath.row].groupSubstring
-        cell.groupImage.image = UIImage(named: GroupsFactory.otherGroups[indexPath.row].imagePath!)
+        cell.groupType.text = GroupsFactory.otherGroups[indexPath.row].groupSubstring
+        cell.imageContainer.image.image = UIImage(named: GroupsFactory.otherGroups[indexPath.row].imagePath!)
         
         let membersCount = GroupsFactory.otherGroups[indexPath.row].numOfMembers
         if membersCount != nil {
-            cell.numOfMembers.text = "\(membersCount!) чел"
+            cell.membersCount.text = "\(membersCount!) чел"
         }
         else {
-            cell.numOfMembers.text = ""
+            cell.membersCount.text = ""
+            cell.membersCount.isHidden = true
         }
         
         return cell

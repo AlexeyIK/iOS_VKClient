@@ -46,9 +46,7 @@ class PostsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.register(UINib(nibName: "PostCell", bundle: nil), forCellReuseIdentifier: "PostTemplate")
-        
         tableView.estimatedRowHeight = 200.0
         tableView.rowHeight = UITableView.automaticDimension
     }

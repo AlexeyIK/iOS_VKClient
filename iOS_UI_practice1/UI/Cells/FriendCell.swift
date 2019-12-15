@@ -10,7 +10,7 @@ import UIKit
 
 class FriendCell : UITableViewCell {
     @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var shadowAvatar: CircleShadowImage!
+    @IBOutlet weak var avatar: CircleShadowImage!
 }
 
 class RequestCell : UITableViewCell {

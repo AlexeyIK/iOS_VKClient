@@ -27,9 +27,7 @@ class FriendList: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         searchBar.delegate = self
-        
         mapToSections()
         
         for nextUser in testUsersList {
@@ -98,10 +96,10 @@ class FriendList: UITableViewController {
             let user = friendsSection[indexPath.section - 1].items[indexPath.row]
             
             cell.userName.text = user.fullName
-            cell.shadowAvatar.image.image = UIImage(named: user.avatarPath)
+            cell.avatar.image.image = UIImage(named: user.avatarPath)
             
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(avatarTapped))
-            cell.shadowAvatar.addGestureRecognizer(tapGesture)
+            cell.avatar.addGestureRecognizer(tapGesture)
             
             return cell
         }
@@ -109,8 +107,6 @@ class FriendList: UITableViewController {
     
     @objc func avatarTapped(sender: UITapGestureRecognizer) {
         guard let imageView = sender.view else { return }
-        
-        print ("image view: \(imageView)" )
         
         UIView.animate(withDuration: 0.3,
                        delay: 0,

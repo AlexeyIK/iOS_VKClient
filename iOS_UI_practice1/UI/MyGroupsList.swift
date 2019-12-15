@@ -18,7 +18,6 @@ class MyGroupsList: UITableViewController {
     
     override func loadView() {
         super.loadView()
-        
         // Инициализируем списки групп
         GroupsFactory.updateList()
         groupsToShow = GroupsFactory.myGroups
@@ -26,13 +25,14 @@ class MyGroupsList: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         searchBar.delegate = self
-        
+        tableView.register(UINib(nibName: "GroupsCell", bundle: nil), forCellReuseIdentifier: "GroupsTemplate")
+        tableView.estimatedRowHeight = 75
         addRefreshControl()
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        groupsToShow = GroupsFactory.myGroups
         tableView.reloadData()
     }
     
@@ -43,8 +43,6 @@ class MyGroupsList: UITableViewController {
     }
     
     @objc func refreshTable() {
-        print("Start refreshing")
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
             self.customRefreshControl.endRefreshing()
         })
@@ -59,14 +57,32 @@ class MyGroupsList: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupTemplate", for: indexPath) as! GroupCell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupsTemplate", for: indexPath) as! GroupsCell
         cell.caption.text = groupsToShow[indexPath.row].groupName
-        cell.subTitle.text = groupsToShow[indexPath.row].groupSubstring
-        cell.groupImage.image = UIImage(named: groupsToShow[indexPath.row].imagePath!)
-        cell.numOfMembers.text = "" // пустой текст, чтобы не отображать количество людей в группах, в которых мы состоим
+        cell.groupType.text = groupsToShow[indexPath.row].groupSubstring
+        cell.imageContainer.image.image = UIImage(named: groupsToShow[indexPath.row].imagePath!)
+        cell.membersCount.isHidden = true
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        cell.imageContainer.addGestureRecognizer(tapGesture)
 
         return cell
+    }
+    
+    @objc func imageTapped(sender: UITapGestureRecognizer) {
+        guard let imageView = sender.view else { return }
+        
+        UIView.animate(withDuration: 0.3,
+                       delay: 0,
+                       usingSpringWithDamping: 0.3,
+                       initialSpringVelocity: 0.3,
+                       options: [.autoreverse],
+                       animations: {
+                            imageView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                        },
+                       completion: { _ in
+                            imageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                        })
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -77,6 +93,7 @@ class MyGroupsList: UITableViewController {
         if editingStyle == .delete && index != nil {
             GroupsFactory.allGroupsList[index!].isMeInGroup = false
             GroupsFactory.updateList()
+            groupsToShow = GroupsFactory.myGroups
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }

@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var loginInput: UITextField!
     @IBOutlet weak var passInput: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
-
     @IBAction func buttonPressed(_ sender: Any) {
         let login = loginInput.text!
         let password = passInput.text!
@@ -27,41 +26,39 @@ class ViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
+    @IBAction func snowButton(_ sender: Any) {
+        snowAnimation()
+    }
+    
+    var snowEmitterLayer = CAEmitterLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         scrollView?.addGestureRecognizer(hideKeyboardGesture)
-        
-        testAnimation()
     }
     
-    func testAnimation() {
-        
+    func snowAnimation() {
         let emitterSnow = CAEmitterCell()
-        emitterSnow.contents = UIImage(named: "user_ava_unisex1")?.cgImage
-        emitterSnow.scale = 0.5
+        emitterSnow.contents = UIImage(named: "snowflake")?.cgImage
+        emitterSnow.scale = 0.06
         emitterSnow.scaleRange = 0.3
+        emitterSnow.birthRate = 25
         emitterSnow.lifetime = 10.0
         emitterSnow.velocity = -30
         emitterSnow.velocityRange = -20
-        emitterSnow.yAcceleration = -30
+        emitterSnow.yAcceleration = 30
         emitterSnow.xAcceleration = 5
         emitterSnow.spin = -0.5
         emitterSnow.spinRange = 1.0
         
-        let snowEmitterLayer = CAEmitterLayer()
         snowEmitterLayer.emitterPosition = CGPoint(x: view.bounds.width/2, y: -50)
-        snowEmitterLayer.emitterSize = CGSize(width: view.bounds.width, height: 0)
+        snowEmitterLayer.emitterSize = CGSize(width: view.bounds.width * 1.5, height: 0)
         snowEmitterLayer.emitterShape = .line
-        snowEmitterLayer.beginTime = CACurrentMediaTime() + 2.0
+        snowEmitterLayer.beginTime = CACurrentMediaTime()
         snowEmitterLayer.timeOffset = 10
         snowEmitterLayer.emitterCells = [emitterSnow]
-        snowEmitterLayer.birthRate = 40
         view.layer.addSublayer(snowEmitterLayer)
-        
-        // доделать снежинки на стартовом экране)
     }
     
     @objc func keyboardWasShown(notification: Notification) {
@@ -93,7 +90,6 @@ class ViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         // Отписываемся от событий клавиатуры
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
