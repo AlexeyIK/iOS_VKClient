@@ -73,7 +73,7 @@
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xgr-tu-dfh">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo2" translatesAutoresizingMaskIntoConstraints="NO" id="xgr-tu-dfh">
                                 <rect key="frame" x="0.0" y="99.5" width="290" height="290"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="xgr-tu-dfh" secondAttribute="height" multiplier="1:1" id="Oz6-xb-2E2"/>
@@ -207,6 +207,7 @@
     </objects>
     <resources>
         <image name="comments_ico" width="70" height="60"/>
+        <image name="photo2" width="2000" height="1500"/>
         <image name="share_ico" width="60" height="60"/>
         <image name="views_ico" width="60" height="60"/>
     </resources>

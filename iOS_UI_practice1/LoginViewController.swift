@@ -13,13 +13,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var passInput: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var shakeMeLabel: UILabel!
+    @IBOutlet weak var loader: Loader!
+    
     @IBAction func buttonPressed(_ sender: Any) {
         let login = loginInput.text!
         let password = passInput.text!
         
 //        if login == "admin" && password == "12345678" {
         if login == "" && password == "" {
-            performSegue(withIdentifier: "MainTabbar", sender: sender)
+            loader.playAnimation()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                self.performSegue(withIdentifier: "Login", sender: sender)
+            }
         }
         else {
             let alert = UIAlertController(title: "Ошибка", message: "Неверная пара логин/пароль", preferredStyle: .alert)
@@ -57,6 +62,7 @@ class ViewController: UIViewController {
         })
     }
     
+    // MARK: - snow animation
     func snowAnimation() {
         shakeMeLabel.isHidden = true
         
@@ -103,7 +109,6 @@ class ViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         // Подписываемся на события клавиатуры
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)

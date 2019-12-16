@@ -77,8 +77,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="7zR-Rc-vYh"/>
-                                                    <segue destination="NCd-90-2Zo" kind="presentation" identifier="MainTabbar" modalPresentationStyle="fullScreen" id="sbU-x4-wsl"/>
+                                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nEW-gd-D89"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Забыли пароль?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uxt-dL-a3O">
@@ -93,26 +92,49 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shake me ;)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pY2-hj-jzi">
-                                        <rect key="frame" x="142.33333333333334" y="663.66666666666663" width="90.333333333333343" height="20.333333333333371"/>
+                                        <rect key="frame" x="142.33333333333334" y="667" width="90.333333333333343" height="20.333333333333371"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.041929252770000001" green="0.18272979040000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ai3-58-rIj" customClass="Loader" customModule="iOS_UI_practice1" customModuleProvider="target">
+                                        <rect key="frame" x="156.33333333333334" y="458" width="62.333333333333343" height="40"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Rp9-WY-hnI"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="rectsSizeProportion">
+                                                <real key="value" value="0.20000000000000001"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="boxesCount">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="animationTime">
+                                                <real key="value" value="1.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="ai3-58-rIj" firstAttribute="top" secondItem="oLm-Fe-aps" secondAttribute="bottom" constant="16" id="BAU-bh-U15"/>
+                                    <constraint firstItem="pY2-hj-jzi" firstAttribute="top" secondItem="oLm-Fe-aps" secondAttribute="bottom" priority="750" constant="225" id="Cu8-c4-WCi"/>
+                                    <constraint firstItem="ai3-58-rIj" firstAttribute="width" secondItem="oLm-Fe-aps" secondAttribute="width" multiplier="0.25" id="ErN-Jv-1mP"/>
                                     <constraint firstItem="Xz0-63-GKY" firstAttribute="top" secondItem="Rqx-Lt-LWL" secondAttribute="top" constant="50" id="OKk-ad-e7x"/>
                                     <constraint firstItem="oLm-Fe-aps" firstAttribute="top" secondItem="Xz0-63-GKY" secondAttribute="bottom" constant="100" id="Q9Y-wn-94i"/>
+                                    <constraint firstAttribute="bottom" secondItem="pY2-hj-jzi" secondAttribute="bottom" constant="30" id="z3E-4W-DMx"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Xz0-63-GKY" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="3wo-fI-JMR"/>
+                            <constraint firstItem="Rqx-Lt-LWL" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="5Wy-6F-BYJ"/>
                             <constraint firstItem="pY2-hj-jzi" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="HJm-Rf-wUc"/>
                             <constraint firstItem="oLm-Fe-aps" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="LJA-vI-AT2"/>
                             <constraint firstItem="Rqx-Lt-LWL" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="LpT-td-gCm"/>
                             <constraint firstAttribute="top" secondItem="Rqx-Lt-LWL" secondAttribute="top" id="Qbs-Wj-SIM"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="pY2-hj-jzi" secondAttribute="bottom" constant="50" id="To4-65-P3R"/>
+                            <constraint firstItem="ai3-58-rIj" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="hYH-rR-A81"/>
                             <constraint firstItem="Rqx-Lt-LWL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="v1B-bc-e1z"/>
                             <constraint firstAttribute="trailing" secondItem="Rqx-Lt-LWL" secondAttribute="trailing" id="vgr-DO-TKw"/>
                         </constraints>
@@ -121,10 +143,12 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="Yl4-0l-kiP"/>
                     <connections>
+                        <outlet property="loader" destination="ai3-58-rIj" id="Rbj-Wk-O83"/>
                         <outlet property="loginInput" destination="g4F-4s-ywS" id="Itb-hJ-Nlh"/>
                         <outlet property="passInput" destination="ORZ-1Q-Llo" id="5Yf-Ss-Fhb"/>
                         <outlet property="scrollView" destination="Rqx-Lt-LWL" id="8jE-2i-XXB"/>
                         <outlet property="shakeMeLabel" destination="pY2-hj-jzi" id="Pmg-fg-OdI"/>
+                        <segue destination="NCd-90-2Zo" kind="show" identifier="Login" id="Uc7-9K-Fw1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
