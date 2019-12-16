@@ -97,7 +97,6 @@ class FriendList: UITableViewController {
             
             cell.userName.text = user.fullName
             cell.avatar.image.image = UIImage(named: user.avatarPath)
-            
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(avatarTapped))
             cell.avatar.addGestureRecognizer(tapGesture)
             

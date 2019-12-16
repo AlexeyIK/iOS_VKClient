@@ -38,7 +38,16 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        easterEggAnimation()
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            snowAnimation()
+        }
+    }
+    
+    func easterEggAnimation() {
         UIView.animate(withDuration: 1.0, delay: 3.5, options: [], animations: {
             self.shakeMeLabel.alpha = 1.0
         })
@@ -48,13 +57,9 @@ class ViewController: UIViewController {
         })
     }
     
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            snowAnimation()
-        }
-    }
-    
     func snowAnimation() {
+        shakeMeLabel.isHidden = true
+        
         let emitterSnow = CAEmitterCell()
         emitterSnow.contents = UIImage(named: "snowflake")?.cgImage
         emitterSnow.scale = 0.06
