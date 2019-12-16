@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var loginInput: UITextField!
     @IBOutlet weak var passInput: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var shakeMeLabel: UILabel!
     @IBAction func buttonPressed(_ sender: Any) {
         let login = loginInput.text!
         let password = passInput.text!
@@ -26,16 +27,31 @@ class ViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
-    @IBAction func snowButton(_ sender: Any) {
-        snowAnimation()
-    }
     
     var snowEmitterLayer = CAEmitterLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        shakeMeLabel.alpha = 0.0
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         scrollView?.addGestureRecognizer(hideKeyboardGesture)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        UIView.animate(withDuration: 1.0, delay: 3.5, options: [], animations: {
+            self.shakeMeLabel.alpha = 1.0
+        })
+        
+        UIView.animate(withDuration: 0.75, delay: 4.0, usingSpringWithDamping: 0.25, initialSpringVelocity: 0.5, options: [.repeat, .autoreverse], animations: {
+            self.shakeMeLabel.transform = CGAffineTransform(translationX: 6.0, y: 3.0)
+        })
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            snowAnimation()
+        }
     }
     
     func snowAnimation() {

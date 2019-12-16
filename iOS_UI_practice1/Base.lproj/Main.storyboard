@@ -92,35 +92,29 @@
                                             <constraint firstAttribute="width" constant="250" id="7T1-Wb-08a"/>
                                         </constraints>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1rH-C0-zfc" userLabel="Snowflake">
-                                        <rect key="frame" x="160" y="632" width="55" height="60"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="55" id="1ec-Vf-2rn"/>
-                                            <constraint firstAttribute="height" constant="60" id="faj-tD-6tO"/>
-                                        </constraints>
-                                        <state key="normal" image="snowflake"/>
-                                        <connections>
-                                            <action selector="snowButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jvc-fu-gKC"/>
-                                        </connections>
-                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shake me ;)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pY2-hj-jzi">
+                                        <rect key="frame" x="142.33333333333334" y="663.66666666666663" width="90.333333333333343" height="20.333333333333371"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.041929252770000001" green="0.18272979040000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="1rH-C0-zfc" secondAttribute="bottom" constant="30" id="I42-T5-ISk"/>
                                     <constraint firstItem="Xz0-63-GKY" firstAttribute="top" secondItem="Rqx-Lt-LWL" secondAttribute="top" constant="50" id="OKk-ad-e7x"/>
                                     <constraint firstItem="oLm-Fe-aps" firstAttribute="top" secondItem="Xz0-63-GKY" secondAttribute="bottom" constant="100" id="Q9Y-wn-94i"/>
-                                    <constraint firstItem="1rH-C0-zfc" firstAttribute="top" secondItem="oLm-Fe-aps" secondAttribute="bottom" constant="190" id="X1o-m1-Xe3"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Xz0-63-GKY" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="3wo-fI-JMR"/>
+                            <constraint firstItem="pY2-hj-jzi" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="HJm-Rf-wUc"/>
                             <constraint firstItem="oLm-Fe-aps" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="LJA-vI-AT2"/>
                             <constraint firstItem="Rqx-Lt-LWL" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="LpT-td-gCm"/>
                             <constraint firstAttribute="top" secondItem="Rqx-Lt-LWL" secondAttribute="top" id="Qbs-Wj-SIM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="pY2-hj-jzi" secondAttribute="bottom" constant="50" id="To4-65-P3R"/>
                             <constraint firstItem="Rqx-Lt-LWL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="v1B-bc-e1z"/>
                             <constraint firstAttribute="trailing" secondItem="Rqx-Lt-LWL" secondAttribute="trailing" id="vgr-DO-TKw"/>
-                            <constraint firstItem="1rH-C0-zfc" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="xyD-lD-K03"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -130,6 +124,7 @@
                         <outlet property="loginInput" destination="g4F-4s-ywS" id="Itb-hJ-Nlh"/>
                         <outlet property="passInput" destination="ORZ-1Q-Llo" id="5Yf-Ss-Fhb"/>
                         <outlet property="scrollView" destination="Rqx-Lt-LWL" id="8jE-2i-XXB"/>
+                        <outlet property="shakeMeLabel" destination="pY2-hj-jzi" id="Pmg-fg-OdI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -598,6 +593,5 @@
     <resources>
         <image name="VK_Blue_Logo_transparent" width="1024" height="1024"/>
         <image name="photo-icon" width="225" height="225"/>
-        <image name="snowflake" width="120" height="133"/>
     </resources>
 </document>
