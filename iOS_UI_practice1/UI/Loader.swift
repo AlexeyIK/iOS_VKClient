@@ -45,6 +45,7 @@ class Loader: UIView {
             let subView = UIView(frame: frame(forAlignmentRect: CGRect(x: rect.width/(CGFloat(boxesCount) - 1) * CGFloat(i), y: rect.height/2, width: rectSize, height: rectSize)))
             subView.backgroundColor = loaderColor
             subView.alpha = 0
+            subView.layer.cornerRadius = rectSize / 2
             addSubview(subView)
         }
         isHidden = true

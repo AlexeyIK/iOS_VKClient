@@ -98,10 +98,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ai3-58-rIj" customClass="Loader" customModule="iOS_UI_practice1" customModuleProvider="target">
-                                        <rect key="frame" x="156.33333333333334" y="458" width="62.333333333333343" height="40"/>
+                                        <rect key="frame" x="156.33333333333334" y="450" width="62.333333333333343" height="30"/>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="Rp9-WY-hnI"/>
+                                            <constraint firstAttribute="height" constant="30" id="Rp9-WY-hnI"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="rectsSizeProportion">
@@ -117,7 +117,7 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="ai3-58-rIj" firstAttribute="top" secondItem="oLm-Fe-aps" secondAttribute="bottom" constant="16" id="BAU-bh-U15"/>
+                                    <constraint firstItem="ai3-58-rIj" firstAttribute="top" secondItem="oLm-Fe-aps" secondAttribute="bottom" constant="8" id="BAU-bh-U15"/>
                                     <constraint firstItem="pY2-hj-jzi" firstAttribute="top" secondItem="oLm-Fe-aps" secondAttribute="bottom" priority="750" constant="225" id="Cu8-c4-WCi"/>
                                     <constraint firstItem="ai3-58-rIj" firstAttribute="width" secondItem="oLm-Fe-aps" secondAttribute="width" multiplier="0.25" id="ErN-Jv-1mP"/>
                                     <constraint firstItem="Xz0-63-GKY" firstAttribute="top" secondItem="Rqx-Lt-LWL" secondAttribute="top" constant="50" id="OKk-ad-e7x"/>
