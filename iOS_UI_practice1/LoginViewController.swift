@@ -68,9 +68,9 @@ class ViewController: UIViewController {
         
         let emitterSnow = CAEmitterCell()
         emitterSnow.contents = UIImage(named: "snowflake")?.cgImage
-        emitterSnow.scale = 0.06
+        emitterSnow.scale = 0.1
         emitterSnow.scaleRange = 0.3
-        emitterSnow.birthRate = 25
+        emitterSnow.birthRate = 10
         emitterSnow.lifetime = 10.0
         emitterSnow.velocity = -30
         emitterSnow.velocityRange = -20
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
         snowEmitterLayer.emitterSize = CGSize(width: view.bounds.width * 1.5, height: 0)
         snowEmitterLayer.emitterShape = .line
         snowEmitterLayer.beginTime = CACurrentMediaTime()
-        snowEmitterLayer.timeOffset = 10
+        snowEmitterLayer.timeOffset = 2.0
         snowEmitterLayer.emitterCells = [emitterSnow]
         view.layer.addSublayer(snowEmitterLayer)
     }
