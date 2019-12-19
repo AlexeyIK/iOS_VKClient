@@ -10,8 +10,8 @@ import UIKit
 
 class Loader: UIView {
 
-    @IBInspectable let loaderColor : UIColor = UIColor.gray
-    @IBInspectable let rectsSizeProportion : CGFloat = 0.25
+    @IBInspectable let loaderColor : UIColor = UIColor.lightGray
+    @IBInspectable let rectsSizeProportion : CGFloat = 0.5
     @IBInspectable let animationTime : Double = 1.5
     @IBInspectable let boxesCount : Int = 3
     

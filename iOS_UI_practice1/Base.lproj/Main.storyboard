@@ -113,11 +113,15 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="animationTime">
                                                 <real key="value" value="1.5"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="loaderColor">
+                                                <color key="value" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="oLm-Fe-aps" firstAttribute="top" secondItem="Xz0-63-GKY" secondAttribute="top" id="0bo-Ku-4d3"/>
+                                    <constraint firstAttribute="bottom" secondItem="pY2-hj-jzi" secondAttribute="bottom" constant="40" id="76d-v5-gXA"/>
                                     <constraint firstItem="ai3-58-rIj" firstAttribute="top" secondItem="oLm-Fe-aps" secondAttribute="bottom" constant="8" id="BAU-bh-U15"/>
                                     <constraint firstItem="pY2-hj-jzi" firstAttribute="top" secondItem="oLm-Fe-aps" secondAttribute="bottom" constant="60" id="Cu8-c4-WCi"/>
                                     <constraint firstItem="ai3-58-rIj" firstAttribute="width" secondItem="oLm-Fe-aps" secondAttribute="width" multiplier="0.25" id="ErN-Jv-1mP"/>
@@ -129,7 +133,6 @@
                                     <constraint firstItem="Xz0-63-GKY" firstAttribute="centerY" secondItem="Rqx-Lt-LWL" secondAttribute="centerY" id="h60-4Z-aEX">
                                         <variation key="heightClass=compact-widthClass=compact" constant="-25"/>
                                     </constraint>
-                                    <constraint firstAttribute="bottom" secondItem="pY2-hj-jzi" secondAttribute="bottom" constant="70" id="rch-bm-ptD"/>
                                     <constraint firstItem="oLm-Fe-aps" firstAttribute="centerX" secondItem="Rqx-Lt-LWL" secondAttribute="centerX" id="u4l-j5-yEg">
                                         <variation key="heightClass=compact-widthClass=compact" constant="120"/>
                                     </constraint>
@@ -183,9 +186,13 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="Yl4-0l-kiP"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="UIAnimations" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="loader" destination="ai3-58-rIj" id="Rbj-Wk-O83"/>
                         <outlet property="loginInput" destination="g4F-4s-ywS" id="Itb-hJ-Nlh"/>
+                        <outlet property="logo" destination="Xz0-63-GKY" id="dB0-ln-5Et"/>
                         <outlet property="passInput" destination="ORZ-1Q-Llo" id="5Yf-Ss-Fhb"/>
                         <outlet property="scrollView" destination="Rqx-Lt-LWL" id="8jE-2i-XXB"/>
                         <outlet property="shakeMeLabel" destination="pY2-hj-jzi" id="Pmg-fg-OdI"/>

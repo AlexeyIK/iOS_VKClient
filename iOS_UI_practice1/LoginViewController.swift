@@ -9,11 +9,14 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var loginInput: UITextField!
     @IBOutlet weak var passInput: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var shakeMeLabel: UILabel!
     @IBOutlet weak var loader: Loader!
+    
+    @IBInspectable let UIAnimations : Bool = true
     
     @IBAction func buttonPressed(_ sender: Any) {
         let login = loginInput.text!
@@ -37,7 +40,13 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        shakeMeLabel.alpha = 0.0
+        
+        if UIAnimations {
+            shakeMeLabel.alpha = 0.0
+            logo.transform = CGAffineTransform(translationX: 0, y: -220)
+            loginInput.transform = CGAffineTransform(translationX: -view.frame.width/2 - loginInput.frame.width, y: 0)
+            passInput.transform = CGAffineTransform(translationX: view.frame.width/2 + passInput.frame.width, y: 0)
+        }
         
         // Подписываемся на события клавиатуры
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -48,13 +57,27 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        easterEggAnimation()
+        if UIAnimations {
+            easterEggAnimation()
+            startAnimations()
+        }
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             snowAnimation()
         }
+    }
+    
+    func startAnimations() {
+        UIView.animate(withDuration: 1.5, delay: 0.5, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: [], animations: {
+            self.logo.transform = CGAffineTransform(translationX: 0, y: 0)
+        })
+        
+        UIView.animate(withDuration: 1.5, delay: 1.2, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.25, options: [], animations: {
+            self.loginInput.transform = CGAffineTransform(translationX: 0, y: 0)
+            self.passInput.transform = CGAffineTransform(translationX: 0, y: 0)
+        })
     }
     
     func easterEggAnimation() {
@@ -103,12 +126,12 @@ class ViewController: UIViewController {
         
         print("newContentInsets: \(newContentInsets)")
         
-        self.scrollView?.contentInset.bottom = keyboardViewEndFrame.height - view.safeAreaInsets.bottom
-//        self.scrollView?.scrollIndicatorInsets = newContentInsets
+        self.scrollView?.contentInset = newContentInsets
+        self.scrollView?.scrollIndicatorInsets = newContentInsets
     }
     
     @objc func keyboardWillBeHidden(notification: Notification) {
-        self.scrollView?.contentOffset.y = 0
+        self.scrollView?.contentInset = .zero
         print("Клавиатура исчезает")
     }
     
