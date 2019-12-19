@@ -129,7 +129,7 @@
                                     <constraint firstItem="Xz0-63-GKY" firstAttribute="centerY" secondItem="Rqx-Lt-LWL" secondAttribute="centerY" id="h60-4Z-aEX">
                                         <variation key="heightClass=compact-widthClass=compact" constant="-25"/>
                                     </constraint>
-                                    <constraint firstAttribute="bottom" secondItem="pY2-hj-jzi" secondAttribute="bottom" constant="245" id="rch-bm-ptD"/>
+                                    <constraint firstAttribute="bottom" secondItem="pY2-hj-jzi" secondAttribute="bottom" constant="70" id="rch-bm-ptD"/>
                                     <constraint firstItem="oLm-Fe-aps" firstAttribute="centerX" secondItem="Rqx-Lt-LWL" secondAttribute="centerX" id="u4l-j5-yEg">
                                         <variation key="heightClass=compact-widthClass=compact" constant="120"/>
                                     </constraint>
