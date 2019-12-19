@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var shakeMeLabel: UILabel!
     @IBOutlet weak var loader: Loader!
     
-    @IBInspectable let UIAnimations : Bool = true
+    @IBInspectable let useUIAnimations : Bool = true
     
     @IBAction func buttonPressed(_ sender: Any) {
         let login = loginInput.text!
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if UIAnimations {
+        if useUIAnimations {
             shakeMeLabel.alpha = 0.0
             logo.transform = CGAffineTransform(translationX: 0, y: -220)
             loginInput.transform = CGAffineTransform(translationX: -view.frame.width/2 - loginInput.frame.width, y: 0)
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if UIAnimations {
+        if useUIAnimations {
             easterEggAnimation()
             startAnimations()
         }
