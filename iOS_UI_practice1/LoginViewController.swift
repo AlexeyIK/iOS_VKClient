@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var shakeMeLabel: UILabel!
     @IBOutlet weak var loader: Loader!
-    @IBInspectable let useUIAnimations : Bool = true
+    @IBInspectable let useUIAnimations : Bool = false
     
     @IBAction func buttonPressed(_ sender: Any) {
         login()
@@ -25,9 +25,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        shakeMeLabel.alpha = 0.0
         
         if useUIAnimations {
-            shakeMeLabel.alpha = 0.0
+            // Если анимаиции разрешены, то выставляем стартовые положения для анимируемых объектов
             logo.transform = CGAffineTransform(translationX: 0, y: -220)
             loginInput.transform = CGAffineTransform(translationX: -view.frame.width/2 - loginInput.frame.width, y: 0)
             passInput.transform = CGAffineTransform(translationX: view.frame.width/2 + passInput.frame.width, y: 0)
@@ -39,6 +40,9 @@ class ViewController: UIViewController {
         
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         scrollView?.addGestureRecognizer(hideKeyboardGesture)
+        let logoPanGesture = UIPanGestureRecognizer(target: self, action: #selector(onPanLogo))
+        logo.isUserInteractionEnabled = true
+        logo.addGestureRecognizer(logoPanGesture)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -50,12 +54,40 @@ class ViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         snowEmitterLayer.removeAllAnimations()
-        print("Логин исчез, убиваем анимацию снежинок")
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
+        if useUIAnimations && motion == .motionShake {
             snowAnimation()
+        }
+    }
+    
+    var logoPanAnimator = UIViewPropertyAnimator()
+    
+    @objc func onPanLogo(_ recognizer: UIPanGestureRecognizer) {
+        guard recognizer.view != nil else { return }
+        let translation = recognizer.translation(in: recognizer.view)
+        
+        switch recognizer.state {
+        case .began:
+            break
+        case .changed:
+            logoPanAnimator = UIViewPropertyAnimator(duration: 1.2, dampingRatio: 0.25, animations: {
+                self.logo.transform = CGAffineTransform(translationX: translation.x * 0.25, y: translation.y * 0.25)
+//                self.logo.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+            })
+            logoPanAnimator.fractionComplete = sqrt(pow(translation.x,2) + pow(translation.y,2)) / 100
+            break
+        case .ended:
+            logoPanAnimator.stopAnimation(true)
+            logoPanAnimator.continueAnimation(withTimingParameters: nil, durationFactor: 0.5)
+            logoPanAnimator.addAnimations {
+                self.logo.transform = .identity
+            }
+            logoPanAnimator.startAnimation()
+            break
+        default:
+            return
         }
     }
     
@@ -79,12 +111,13 @@ class ViewController: UIViewController {
     
     func startAnimations() {
         UIView.animate(withDuration: 1.5, delay: 0.5, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: [], animations: {
-            self.logo.transform = CGAffineTransform(translationX: 0, y: 0)
+            self.logo.transform = .identity
+            self.logo.didMoveToWindow()
         })
         
         UIView.animate(withDuration: 1.5, delay: 1.2, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.25, options: [], animations: {
-            self.loginInput.transform = CGAffineTransform(translationX: 0, y: 0)
-            self.passInput.transform = CGAffineTransform(translationX: 0, y: 0)
+            self.loginInput.transform = .identity
+            self.passInput.transform = .identity
         })
     }
     

@@ -188,6 +188,7 @@
                     <navigationItem key="navigationItem" id="Yl4-0l-kiP"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="UIAnimations" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="useUIAnimations" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="loader" destination="ai3-58-rIj" id="Rbj-Wk-O83"/>
@@ -348,7 +349,13 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" systemItem="contacts" id="ATA-oA-Ajo"/>
-                    <navigationItem key="navigationItem" title="Друзья" id="WgN-ik-0as"/>
+                    <navigationItem key="navigationItem" title="Друзья" id="WgN-ik-0as">
+                        <barButtonItem key="rightBarButtonItem" title="Выйти" id="rnb-yu-6Om">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="presentation" modalTransitionStyle="crossDissolve" id="uxr-hF-TaV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchBar" destination="tWB-OD-n7Y" id="R8e-km-cBO"/>
@@ -666,4 +673,7 @@
         <image name="VK_Blue_Logo_transparent" width="1024" height="1024"/>
         <image name="photo-icon" width="225" height="225"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="uxr-hF-TaV"/>
+    </inferredMetricsTieBreakers>
 </document>
