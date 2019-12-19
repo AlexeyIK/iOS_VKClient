@@ -15,25 +15,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var shakeMeLabel: UILabel!
     @IBOutlet weak var loader: Loader!
-    
     @IBInspectable let useUIAnimations : Bool = true
     
     @IBAction func buttonPressed(_ sender: Any) {
-        let login = loginInput.text!
-        let password = passInput.text!
-        
-//        if login == "admin" && password == "12345678" {
-        if login == "" && password == "" {
-            loader.playAnimation()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                self.performSegue(withIdentifier: "Login", sender: sender)
-            }
-        }
-        else {
-            let alert = UIAlertController(title: "Ошибка", message: "Неверная пара логин/пароль", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
+        login()
     }
     
     var snowEmitterLayer = CAEmitterLayer()
@@ -63,9 +48,32 @@ class ViewController: UIViewController {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        snowEmitterLayer.removeAllAnimations()
+        print("Логин исчез, убиваем анимацию снежинок")
+    }
+    
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             snowAnimation()
+        }
+    }
+    
+    func login() {
+        let login = loginInput.text ?? ""
+        let password = passInput.text ?? ""
+        
+        //        if login == "admin" && password == "12345678" {
+        if login == "" && password == "" {
+            loader.playAnimation()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                self.performSegue(withIdentifier: "Login", sender: nil)
+            }
+        }
+        else {
+            let alert = UIAlertController(title: "Ошибка", message: "Неверная пара логин/пароль", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
