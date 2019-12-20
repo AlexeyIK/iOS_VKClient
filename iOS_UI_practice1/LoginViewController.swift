@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var shakeMeLabel: UILabel!
     @IBOutlet weak var loader: Loader!
-    @IBInspectable let useUIAnimations : Bool = false
+    @IBInspectable let useUIAnimations : Bool = true
     
     @IBAction func buttonPressed(_ sender: Any) {
         login()
