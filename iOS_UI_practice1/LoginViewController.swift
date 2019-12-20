@@ -62,6 +62,7 @@ class ViewController: UIViewController {
         }
     }
     
+    // MARK: - Анимация таскания логотипа
     var logoPanAnimator = UIViewPropertyAnimator()
     
     @objc func onPanLogo(_ recognizer: UIPanGestureRecognizer) {
@@ -73,18 +74,15 @@ class ViewController: UIViewController {
             break
         case .changed:
             logoPanAnimator = UIViewPropertyAnimator(duration: 1.2, dampingRatio: 0.25, animations: {
-                self.logo.transform = CGAffineTransform(translationX: translation.x * 0.25, y: translation.y * 0.25)
-//                self.logo.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+                self.logo.transform = CGAffineTransform(translationX: translation.x * 0.15, y: translation.y * 0.15)
             })
-            logoPanAnimator.fractionComplete = sqrt(pow(translation.x,2) + pow(translation.y,2)) / 100
+            logoPanAnimator.startAnimation()
             break
         case .ended:
-            logoPanAnimator.stopAnimation(true)
             logoPanAnimator.continueAnimation(withTimingParameters: nil, durationFactor: 0.5)
             logoPanAnimator.addAnimations {
                 self.logo.transform = .identity
             }
-            logoPanAnimator.startAnimation()
             break
         default:
             return
