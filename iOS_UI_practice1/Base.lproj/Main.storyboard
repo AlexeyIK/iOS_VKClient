@@ -121,7 +121,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="oLm-Fe-aps" firstAttribute="top" secondItem="Xz0-63-GKY" secondAttribute="top" id="0bo-Ku-4d3"/>
-                                    <constraint firstAttribute="bottom" secondItem="pY2-hj-jzi" secondAttribute="bottom" constant="40" id="76d-v5-gXA"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pY2-hj-jzi" secondAttribute="bottom" constant="40" id="76d-v5-gXA"/>
                                     <constraint firstItem="ai3-58-rIj" firstAttribute="top" secondItem="oLm-Fe-aps" secondAttribute="bottom" constant="8" id="BAU-bh-U15"/>
                                     <constraint firstItem="pY2-hj-jzi" firstAttribute="top" secondItem="oLm-Fe-aps" secondAttribute="bottom" constant="60" id="Cu8-c4-WCi"/>
                                     <constraint firstItem="ai3-58-rIj" firstAttribute="width" secondItem="oLm-Fe-aps" secondAttribute="width" multiplier="0.25" id="ErN-Jv-1mP"/>
