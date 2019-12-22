@@ -16,12 +16,14 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var shakeMeLabel: UILabel!
     @IBOutlet weak var loader: Loader!
     @IBInspectable let useUIAnimations : Bool = true
+    @IBOutlet weak var loginButton: UIButton!
     
     @IBAction func buttonPressed(_ sender: Any) {
         login()
     }
     
-    let standartAnimator = AnimatorTransition()
+//    let standartAnimator = AnimatorTransition()
+    let navigationAnimator = CustomNavigationControllerAnimation()
     var snowEmitterLayer = CAEmitterLayer()
     
     override func viewDidLoad() {
@@ -46,6 +48,9 @@ class LoginViewController: UIViewController {
         let logoPanGesture = UIPanGestureRecognizer(target: self, action: #selector(onPanLogo))
         logo.isUserInteractionEnabled = true
         logo.addGestureRecognizer(logoPanGesture)
+        
+//        navigationController?.delegate = navigationAnimator
+        transitioningDelegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -101,6 +106,7 @@ class LoginViewController: UIViewController {
             loader.playAnimation()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let nextViewController = storyboard.instantiateViewController(withIdentifier: "MainTab")
+//            navigationController?.pushViewController(nextViewController, animated: true)
             nextViewController.modalPresentationStyle = .custom
             nextViewController.modalPresentationCapturesStatusBarAppearance = true
             nextViewController.transitioningDelegate = self
@@ -217,41 +223,105 @@ extension UITextField {
     }
 }
 
-class AnimatorTransition: NSObject, UIViewControllerAnimatedTransitioning {
+class CustomNavigationControllerAnimation: NSObject, UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController,
+                              animationControllerFor operation: UINavigationController.Operation,
+                              from fromVC: UIViewController,
+                              to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        switch operation {
+            case .pop:
+                return FadePopAnimation()
+            case .push:
+                return FadePushAnimation()
+            case .none:
+                return nil
+        }
+    }
+}
+
+class FadePushAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 1.0
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let source = transitionContext.viewController(forKey: .from),
-            let to = transitionContext.viewController(forKey: .to) else {
+        guard let toVC = transitionContext.viewController(forKey: .to) else {
             return
         }
         
-        transitionContext.containerView.addSubview(to.view)
-        
-        to.view.frame = CGRect(x: 0,
-                               y: transitionContext.containerView.frame.height,
-                               width: source.view.frame.width,
-                               height: source.view.frame.height)
+        transitionContext.containerView.addSubview(toVC.view)
+        toVC.view.alpha = 0
         
         UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
-            source.view.frame = CGRect(x: 0,
-                                       y: -source.view.frame.height,
-                                       width: source.view.frame.width,
-                                       height: source.view.frame.height)
-            to.view.frame = CGRect(x: 0,
-                                   y: 0,
-                                   width: source.view.frame.width,
-                                   height: source.view.frame.height)
-        }, completion: { isCompleted in
-            transitionContext.completeTransition(isCompleted)
-        })
+            toVC.view.alpha = 1.0
+        }) { completion in
+            transitionContext.completeTransition(completion)
+        }
     }
 }
 
-extension LoginViewController: UIViewControllerTransitioningDelegate {
+class FadePopAnimation: NSObject, UIViewControllerAnimatedTransitioning {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return 1.0
+    }
+    
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        guard let toVC = transitionContext.viewController(forKey: .to) else {
+            return
+        }
+        
+        transitionContext.containerView.addSubview(toVC.view)
+        toVC.view.alpha = 1.0
+        
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
+            toVC.view.alpha = 0
+        }) { completion in
+            transitionContext.completeTransition(completion)
+        }
+    }
+}
+
+//class AnimatorTransition: NSObject, UIViewControllerAnimatedTransitioning {
+//    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+//        return 1.0
+//    }
+//
+//    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+//        guard let source = transitionContext.viewController(forKey: .from),
+//            let to = transitionContext.viewController(forKey: .to) else {
+//            return
+//        }
+//
+//        transitionContext.containerView.addSubview(to.view)
+//
+//        to.view.frame = CGRect(x: 0,
+//                               y: transitionContext.containerView.frame.height,
+//                               width: source.view.frame.width,
+//                               height: source.view.frame.height)
+//
+//        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
+//            source.view.frame = CGRect(x: 0,
+//                                       y: -source.view.frame.height,
+//                                       width: source.view.frame.width,
+//                                       height: source.view.frame.height)
+//            to.view.frame = CGRect(x: 0,
+//                                   y: 0,
+//                                   width: source.view.frame.width,
+//                                   height: source.view.frame.height)
+//        }, completion: { isCompleted in
+//            transitionContext.completeTransition(isCompleted)
+//        })
+//    }
+//}
+//
+//extension LoginViewController: UIViewControllerTransitioningDelegate {
+//    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        return standartAnimator
+//    }
+//}
+
+extension LoginViewController : UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return standartAnimator
+        return CircularTransition()
     }
 }
