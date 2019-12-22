@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
     @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var loginInput: UITextField!
     @IBOutlet weak var passInput: UITextField!
@@ -21,6 +21,7 @@ class ViewController: UIViewController {
         login()
     }
     
+    let standartAnimator = AnimatorTransition()
     var snowEmitterLayer = CAEmitterLayer()
     
     override func viewDidLoad() {
@@ -98,9 +99,19 @@ class ViewController: UIViewController {
         //        if login == "admin" && password == "12345678" {
         if login == "" && password == "" {
             loader.playAnimation()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                self.performSegue(withIdentifier: "Login", sender: nil)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let nextViewController = storyboard.instantiateViewController(withIdentifier: "MainTab")
+            nextViewController.modalPresentationStyle = .custom
+            nextViewController.modalPresentationCapturesStatusBarAppearance = true
+            nextViewController.transitioningDelegate = self
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                self.present(nextViewController, animated: true, completion: nil)
             }
+            
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+//                self.performSegue(withIdentifier: "Login", sender: nil)
+//            }
         }
         else {
             let alert = UIAlertController(title: "Ошибка", message: "Неверная пара логин/пароль", preferredStyle: .alert)
@@ -203,5 +214,44 @@ extension UITextField {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
         self.rightView = paddingView
         self.rightViewMode = .always
+    }
+}
+
+class AnimatorTransition: NSObject, UIViewControllerAnimatedTransitioning {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return 1.0
+    }
+    
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        guard let source = transitionContext.viewController(forKey: .from),
+            let to = transitionContext.viewController(forKey: .to) else {
+            return
+        }
+        
+        transitionContext.containerView.addSubview(to.view)
+        
+        to.view.frame = CGRect(x: 0,
+                               y: transitionContext.containerView.frame.height,
+                               width: source.view.frame.width,
+                               height: source.view.frame.height)
+        
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
+            source.view.frame = CGRect(x: 0,
+                                       y: -source.view.frame.height,
+                                       width: source.view.frame.width,
+                                       height: source.view.frame.height)
+            to.view.frame = CGRect(x: 0,
+                                   y: 0,
+                                   width: source.view.frame.width,
+                                   height: source.view.frame.height)
+        }, completion: { isCompleted in
+            transitionContext.completeTransition(isCompleted)
+        })
+    }
+}
+
+extension LoginViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return standartAnimator
     }
 }

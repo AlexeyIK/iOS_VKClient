@@ -25,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="-1804" y="-98"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -652,7 +652,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="aUB-z0-run">
             <objects>
-                <tabBarController id="NCd-90-2Zo" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTab" id="NCd-90-2Zo" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YqT-LN-LuH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -674,6 +674,7 @@
         <image name="photo-icon" width="225" height="225"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="ruu-bU-uKh"/>
         <segue reference="uxr-hF-TaV"/>
     </inferredMetricsTieBreakers>
 </document>
