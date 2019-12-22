@@ -9,21 +9,97 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var loginInput: UITextField!
     @IBOutlet weak var passInput: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var shakeMeLabel: UILabel!
     @IBOutlet weak var loader: Loader!
+    @IBInspectable let useUIAnimations : Bool = true
     
     @IBAction func buttonPressed(_ sender: Any) {
-        let login = loginInput.text!
-        let password = passInput.text!
+        login()
+    }
+    
+    var snowEmitterLayer = CAEmitterLayer()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        shakeMeLabel.alpha = 0.0
+        loginInput.setLeftPaddingPoints(8); loginInput.setRightPaddingPoints(8)
+        passInput.setLeftPaddingPoints(8); passInput.setRightPaddingPoints(8)
         
-//        if login == "admin" && password == "12345678" {
+        if useUIAnimations {
+            // Если анимаиции разрешены, то выставляем стартовые положения для анимируемых объектов
+            logo.transform = CGAffineTransform(translationX: 0, y: -220)
+            loginInput.transform = CGAffineTransform(translationX: -view.frame.width/2 - loginInput.frame.width, y: 0)
+            passInput.transform = CGAffineTransform(translationX: view.frame.width/2 + passInput.frame.width, y: 0)
+        }
+        
+        // Подписываемся на события клавиатуры
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        scrollView?.addGestureRecognizer(hideKeyboardGesture)
+        let logoPanGesture = UIPanGestureRecognizer(target: self, action: #selector(onPanLogo))
+        logo.isUserInteractionEnabled = true
+        logo.addGestureRecognizer(logoPanGesture)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if useUIAnimations {
+            easterEggAnimation()
+            startAnimations()
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        snowEmitterLayer.removeAllAnimations()
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if useUIAnimations && motion == .motionShake {
+            snowAnimation()
+        }
+    }
+    
+    // MARK: - Анимация таскания логотипа
+    var logoPanAnimator = UIViewPropertyAnimator()
+    
+    @objc func onPanLogo(_ recognizer: UIPanGestureRecognizer) {
+        guard recognizer.view != nil else { return }
+        let translation = recognizer.translation(in: recognizer.view)
+        
+        switch recognizer.state {
+        case .began:
+            break
+        case .changed:
+            logoPanAnimator = UIViewPropertyAnimator(duration: 1.2, dampingRatio: 0.25, animations: {
+                self.logo.transform = CGAffineTransform(translationX: translation.x * 0.15, y: translation.y * 0.15)
+            })
+            logoPanAnimator.startAnimation()
+            break
+        case .ended:
+            logoPanAnimator.continueAnimation(withTimingParameters: nil, durationFactor: 0.5)
+            logoPanAnimator.addAnimations {
+                self.logo.transform = .identity
+            }
+            break
+        default:
+            return
+        }
+    }
+    
+    func login() {
+        let login = loginInput.text ?? ""
+        let password = passInput.text ?? ""
+        
+        //        if login == "admin" && password == "12345678" {
         if login == "" && password == "" {
             loader.playAnimation()
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                self.performSegue(withIdentifier: "Login", sender: sender)
+                self.performSegue(withIdentifier: "Login", sender: nil)
             }
         }
         else {
@@ -33,23 +109,16 @@ class ViewController: UIViewController {
         }
     }
     
-    var snowEmitterLayer = CAEmitterLayer()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        shakeMeLabel.alpha = 0.0
-        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        scrollView?.addGestureRecognizer(hideKeyboardGesture)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        easterEggAnimation()
-    }
-    
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            snowAnimation()
-        }
+    func startAnimations() {
+        UIView.animate(withDuration: 1.5, delay: 0.5, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: [], animations: {
+            self.logo.transform = .identity
+            self.logo.didMoveToWindow()
+        })
+        
+        UIView.animate(withDuration: 1.5, delay: 1.2, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.25, options: [], animations: {
+            self.loginInput.transform = .identity
+            self.passInput.transform = .identity
+        })
     }
     
     func easterEggAnimation() {
@@ -89,18 +158,22 @@ class ViewController: UIViewController {
     }
     
     @objc func keyboardWasShown(notification: Notification) {
+        guard let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        print("Клавиатура появилась")
         
-        let info = notification.userInfo! as Dictionary
-        let kbSize = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size
-        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: kbSize.height, right: 0)
+        let keyboardScreenEndFrame = value.cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+        let newContentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
         
-        self.scrollView?.contentInset = contentInsets
-        self.scrollView?.scrollIndicatorInsets = contentInsets
+        print("newContentInsets: \(newContentInsets)")
+        
+        self.scrollView?.contentInset = newContentInsets
+        self.scrollView?.scrollIndicatorInsets = newContentInsets
     }
     
     @objc func keyboardWillBeHidden(notification: Notification) {
-        let contentInsets = UIEdgeInsets.zero
-        scrollView?.contentInset = contentInsets
+        self.scrollView?.contentInset = .zero
+        print("Клавиатура исчезает")
     }
     
     @objc func hideKeyboard() {
@@ -109,16 +182,26 @@ class ViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // Подписываемся на события клавиатуры
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        // Отписываемся от событий клавиатуры
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        // Отписываемся от событий клавиатуры
+//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+//    }
 }
 
+extension UITextField {
+    func setLeftPaddingPoints(_ amount:CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+    
+    func setRightPaddingPoints(_ amount:CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.rightView = paddingView
+        self.rightViewMode = .always
+    }
+}
