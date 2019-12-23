@@ -17,18 +17,17 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loader: Loader!
     @IBInspectable let useUIAnimations : Bool = true
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var forgotPass: UILabel!
     
     @IBAction func buttonPressed(_ sender: Any) {
         login()
     }
     
-//    let standartAnimator = AnimatorTransition()
     let navigationAnimator = CustomNavigationControllerAnimation()
     var snowEmitterLayer = CAEmitterLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        shakeMeLabel.alpha = 0.0
         loginInput.setLeftPaddingPoints(8); loginInput.setRightPaddingPoints(8)
         passInput.setLeftPaddingPoints(8); passInput.setRightPaddingPoints(8)
         
@@ -37,6 +36,8 @@ class LoginViewController: UIViewController {
             logo.transform = CGAffineTransform(translationX: 0, y: -220)
             loginInput.transform = CGAffineTransform(translationX: -view.frame.width/2 - loginInput.frame.width, y: 0)
             passInput.transform = CGAffineTransform(translationX: view.frame.width/2 + passInput.frame.width, y: 0)
+            loginButton.alpha = 0
+            forgotPass.alpha = 0
         }
         
         // Подписываемся на события клавиатуры
@@ -48,20 +49,30 @@ class LoginViewController: UIViewController {
         let logoPanGesture = UIPanGestureRecognizer(target: self, action: #selector(onPanLogo))
         logo.isUserInteractionEnabled = true
         logo.addGestureRecognizer(logoPanGesture)
-        
-//        navigationController?.delegate = navigationAnimator
         transitioningDelegate = self
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if useUIAnimations {
-            easterEggAnimation()
-            startAnimations()
-        }
+        
+        startAnimations()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         snowEmitterLayer.removeAllAnimations()
+        loader.stopAnimation()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)  
+        shakeMeLabel.alpha = 0.0
+        
+        if useUIAnimations {
+            easterEggAnimation()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Отписываемся от событий клавиатуры
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
@@ -107,17 +118,13 @@ class LoginViewController: UIViewController {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let nextViewController = storyboard.instantiateViewController(withIdentifier: "MainTab")
 //            navigationController?.pushViewController(nextViewController, animated: true)
-            nextViewController.modalPresentationStyle = .custom
-            nextViewController.modalPresentationCapturesStatusBarAppearance = true
+//            nextViewController.modalPresentationStyle = .custom
+//            nextViewController.modalPresentationCapturesStatusBarAppearance = true
             nextViewController.transitioningDelegate = self
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                 self.present(nextViewController, animated: true, completion: nil)
             }
-            
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-//                self.performSegue(withIdentifier: "Login", sender: nil)
-//            }
         }
         else {
             let alert = UIAlertController(title: "Ошибка", message: "Неверная пара логин/пароль", preferredStyle: .alert)
@@ -132,14 +139,22 @@ class LoginViewController: UIViewController {
             self.logo.didMoveToWindow()
         })
         
-        UIView.animate(withDuration: 1.5, delay: 1.2, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.25, options: [], animations: {
+        UIView.animate(withDuration: 1.5, delay: 1.25, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.25, options: [], animations: {
             self.loginInput.transform = .identity
             self.passInput.transform = .identity
+        })
+        
+        UIView.animate(withDuration: 1.0, delay: 1.5, options: [], animations: {
+            self.loginButton.alpha = 1.0
+        })
+        
+        UIView.animate(withDuration: 1.0, delay: 1.75, options: [], animations: {
+            self.forgotPass.alpha = 1.0
         })
     }
     
     func easterEggAnimation() {
-        UIView.animate(withDuration: 1.0, delay: 3.5, options: [], animations: {
+        UIView.animate(withDuration: 1.0, delay: 10.0, options: [], animations: {
             self.shakeMeLabel.alpha = 1.0
         })
         
@@ -148,7 +163,7 @@ class LoginViewController: UIViewController {
         })
     }
     
-    // MARK: - snow animation
+    // MARK: - Snow animation
     func snowAnimation() {
         shakeMeLabel.isHidden = true
         
@@ -196,17 +211,6 @@ class LoginViewController: UIViewController {
     @objc func hideKeyboard() {
         self.scrollView?.endEditing(true)
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        // Отписываемся от событий клавиатуры
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-//    }
 }
 
 extension UITextField {
@@ -322,6 +326,7 @@ class FadePopAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
 extension LoginViewController : UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CircularTransition()
+//        return CircularTransition()
+        return CardRotateTransition()
     }
 }

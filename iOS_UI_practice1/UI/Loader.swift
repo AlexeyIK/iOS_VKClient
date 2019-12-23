@@ -26,6 +26,11 @@ class Loader: UIView {
         }
     }
     
+    public func stopAnimation() {
+        self.layer.removeAllAnimations()
+        isHidden = true
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         makeSubviews()

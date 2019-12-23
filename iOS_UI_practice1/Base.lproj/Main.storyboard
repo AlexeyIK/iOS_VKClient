@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GIU-hD-U85">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -28,7 +28,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginScreen" id="BYZ-38-t0r" customClass="LoginViewController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -77,7 +77,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nEW-gd-D89"/>
+                                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vhw-pc-tOY"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Забыли пароль?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uxt-dL-a3O">
@@ -118,30 +118,9 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rcU-jd-X3K">
-                                        <rect key="frame" x="157.66666666666666" y="728" width="60" height="60"/>
-                                        <color key="backgroundColor" red="0.29803921570000003" green="0.50588235290000005" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="feJ-HX-tFt"/>
-                                            <constraint firstAttribute="width" secondItem="rcU-jd-X3K" secondAttribute="height" multiplier="1:1" id="rY6-N7-SET"/>
-                                        </constraints>
-                                        <state key="normal" title="+">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="30"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CK0-6l-pFI"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="oLm-Fe-aps" firstAttribute="top" secondItem="Xz0-63-GKY" secondAttribute="top" id="0bo-Ku-4d3"/>
-                                    <constraint firstAttribute="bottom" secondItem="rcU-jd-X3K" secondAttribute="bottom" constant="70" id="6lh-u2-Wmq"/>
-                                    <constraint firstItem="rcU-jd-X3K" firstAttribute="top" secondItem="oLm-Fe-aps" secondAttribute="bottom" constant="286" id="71q-KZ-vPR"/>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pY2-hj-jzi" secondAttribute="bottom" constant="40" id="76d-v5-gXA"/>
                                     <constraint firstItem="ai3-58-rIj" firstAttribute="top" secondItem="oLm-Fe-aps" secondAttribute="bottom" constant="8" id="BAU-bh-U15"/>
                                     <constraint firstItem="pY2-hj-jzi" firstAttribute="top" secondItem="oLm-Fe-aps" secondAttribute="bottom" constant="60" id="Cu8-c4-WCi"/>
@@ -194,7 +173,6 @@
                             <constraint firstItem="ai3-58-rIj" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="hYH-rR-A81">
                                 <variation key="heightClass=compact-widthClass=compact" constant="120"/>
                             </constraint>
-                            <constraint firstItem="rcU-jd-X3K" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="loJ-jF-6zx"/>
                             <constraint firstItem="Rqx-Lt-LWL" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="tYO-iN-0p3"/>
                             <constraint firstItem="Rqx-Lt-LWL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="v1B-bc-e1z"/>
                         </constraints>
@@ -213,8 +191,9 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="useUIAnimations" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
+                        <outlet property="forgotPass" destination="Uxt-dL-a3O" id="NqT-ss-sfJ"/>
                         <outlet property="loader" destination="ai3-58-rIj" id="Rbj-Wk-O83"/>
-                        <outlet property="loginButton" destination="rcU-jd-X3K" id="CRH-JJ-ZZ2"/>
+                        <outlet property="loginButton" destination="Epg-yd-nyP" id="U8B-bh-9u9"/>
                         <outlet property="loginInput" destination="g4F-4s-ywS" id="Itb-hJ-Nlh"/>
                         <outlet property="logo" destination="Xz0-63-GKY" id="dB0-ln-5Et"/>
                         <outlet property="passInput" destination="ORZ-1Q-Llo" id="5Yf-Ss-Fhb"/>
@@ -374,7 +353,7 @@
                     <navigationItem key="navigationItem" title="Друзья" id="WgN-ik-0as">
                         <barButtonItem key="rightBarButtonItem" title="Выйти" id="rnb-yu-6Om">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="presentation" modalTransitionStyle="crossDissolve" id="uxr-hF-TaV"/>
+                                <action selector="Logout:" destination="8Wt-0b-aBn" id="S2G-2J-3zK"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -697,7 +676,4 @@
         <image name="VK_Blue_Logo_transparent" width="1024" height="1024"/>
         <image name="photo-icon" width="225" height="225"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="uxr-hF-TaV"/>
-    </inferredMetricsTieBreakers>
 </document>
