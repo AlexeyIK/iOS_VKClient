@@ -11,7 +11,7 @@ import UIKit
 // Inverted variation of card rotate transition
 class CardRotateTransitionInverted: NSObject, UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 1.0
+        return 1.2
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -21,11 +21,12 @@ class CardRotateTransitionInverted: NSObject, UIViewControllerAnimatedTransition
         }
         
         transitionContext.containerView.addSubview(destinationVC.view)
-        destinationVC.view.layer.anchorPoint = CGPoint(x: 1, y: 0)
+        destinationVC.view.layer.anchorPoint = CGPoint(x: 0, y: 0)
         destinationVC.view.frame = source.view.frame
+        destinationVC.view.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         
         UIView.animate(withDuration: 1.2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [], animations: {
-            destinationVC.view.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
+            destinationVC.view.transform = CGAffineTransform(rotationAngle: 0)
         }) { animationFinished in
             if animationFinished && !transitionContext.transitionWasCancelled {
                 transitionContext.completeTransition(true)
