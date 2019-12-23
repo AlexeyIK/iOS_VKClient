@@ -634,10 +634,10 @@
             </objects>
             <point key="canvasLocation" x="-138" y="649"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Custom Navigation Controller-->
         <scene sceneID="1Ch-j2-gGF">
             <objects>
-                <navigationController id="DXl-cd-v5N" sceneMemberID="viewController">
+                <navigationController id="DXl-cd-v5N" customClass="CustomNavigationController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="contacts" id="zA2-Ih-ePm"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uQ6-ZY-Mss">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
