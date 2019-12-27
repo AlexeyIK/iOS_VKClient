@@ -16,6 +16,9 @@ struct Section<T> {
 class FriendList: UITableViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBAction func Logout(_ sender: Any) {
+        logout()
+    }
     
     // Список тестовых юзеров
     let testUsersList = UsersFactory.getAllUsers()
@@ -38,6 +41,14 @@ class FriendList: UITableViewController {
                 requestList.append(nextUser)
             }
         }
+    }
+    
+    private func logout() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginScreen")
+        loginVC.transitioningDelegate = self
+//        loginVC.modalPresentationStyle = .custom
+        present(loginVC, animated: true, completion: nil)
     }
     
     private func mapToSections() {
@@ -177,5 +188,11 @@ extension FriendList: UISearchBarDelegate {
         friendsSection.sort(by: { $0.title < $1.title })
         
         tableView.reloadData()
+    }
+}
+
+extension FriendList: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CardRotateTransitionInverted()
     }
 }

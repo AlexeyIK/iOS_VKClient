@@ -17,6 +17,12 @@
 		5A3640392389DE7400945E79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A3640372389DE7400945E79 /* Main.storyboard */; };
 		5A36403B2389DE7600945E79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A36403A2389DE7600945E79 /* Assets.xcassets */; };
 		5A36403E2389DE7600945E79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A36403C2389DE7600945E79 /* LaunchScreen.storyboard */; };
+		5A36906823B13E600061A5A6 /* CardRotateTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A36906723B13E600061A5A6 /* CardRotateTransition.swift */; };
+		5A36906A23B148F60061A5A6 /* CardRotateTransitionInverted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A36906923B148F60061A5A6 /* CardRotateTransitionInverted.swift */; };
+		5A36906C23B154770061A5A6 /* SwipeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A36906B23B154770061A5A6 /* SwipeTransition.swift */; };
+		5A36906E23B16D3A0061A5A6 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A36906D23B16D3A0061A5A6 /* CustomNavigationController.swift */; };
+		5A57E61923AFEFFF00E62316 /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A57E61823AFEFFF00E62316 /* CustomSegue.swift */; };
+		5A57E61C23B000AB00E62316 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A57E61B23B000AB00E62316 /* CircularTransition.swift */; };
 		5A776BEB2392B8B400200AED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A776BEA2392B8B400200AED /* User.swift */; };
 		5AAC414723947AF900BA698A /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAC414623947AF900BA698A /* Group.swift */; };
 		5AAC414B23947EE300BA698A /* MyGroupsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAC414A23947EE300BA698A /* MyGroupsList.swift */; };
@@ -51,6 +57,12 @@
 		5A36403A2389DE7600945E79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A36403D2389DE7600945E79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5A36403F2389DE7600945E79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5A36906723B13E600061A5A6 /* CardRotateTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRotateTransition.swift; sourceTree = "<group>"; };
+		5A36906923B148F60061A5A6 /* CardRotateTransitionInverted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRotateTransitionInverted.swift; sourceTree = "<group>"; };
+		5A36906B23B154770061A5A6 /* SwipeTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTransition.swift; sourceTree = "<group>"; };
+		5A36906D23B16D3A0061A5A6 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
+		5A57E61823AFEFFF00E62316 /* CustomSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
+		5A57E61B23B000AB00E62316 /* CircularTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
 		5A776BEA2392B8B400200AED /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5AAC414623947AF900BA698A /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		5AAC414A23947EE300BA698A /* MyGroupsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsList.swift; sourceTree = "<group>"; };
@@ -123,8 +135,21 @@
 				5A36403A2389DE7600945E79 /* Assets.xcassets */,
 				5A36403C2389DE7600945E79 /* LaunchScreen.storyboard */,
 				5A36403F2389DE7600945E79 /* Info.plist */,
+				5A57E61A23AFF01F00E62316 /* Transitions */,
 			);
 			path = iOS_UI_practice1;
+			sourceTree = "<group>";
+		};
+		5A57E61A23AFF01F00E62316 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				5A57E61823AFEFFF00E62316 /* CustomSegue.swift */,
+				5A57E61B23B000AB00E62316 /* CircularTransition.swift */,
+				5A36906723B13E600061A5A6 /* CardRotateTransition.swift */,
+				5A36906923B148F60061A5A6 /* CardRotateTransitionInverted.swift */,
+				5A36906B23B154770061A5A6 /* SwipeTransition.swift */,
+			);
+			path = Transitions;
 			sourceTree = "<group>";
 		};
 		5ACDE7DE23919D5200A9672F /* Model */ = {
@@ -145,6 +170,7 @@
 			children = (
 				5AAC414A23947EE300BA698A /* MyGroupsList.swift */,
 				5ACDE7DC239196CB00A9672F /* PhotoController.swift */,
+				5A36906D23B16D3A0061A5A6 /* CustomNavigationController.swift */,
 				5A1A64BD23918E5700AB76EB /* FriendList.swift */,
 				5A0BAC8523A4E14500263D50 /* Cells */,
 				5A35739A2395CC2600D3D6AC /* AllGroupsList.swift */,
@@ -267,24 +293,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				F14DAF3A239ABB3100D21230 /* LikeButtonController.swift in Sources */,
+				5A36906823B13E600061A5A6 /* CardRotateTransition.swift in Sources */,
 				F1D2EBC923A018F000F73236 /* CustomCollectionUILayout.swift in Sources */,
 				F16F1302239ACBF800BA8CE6 /* CircleShadowImage.swift in Sources */,
 				5AB12D8323A80BA800610167 /* Loader.swift in Sources */,
 				5ACDE7DD239196CB00A9672F /* PhotoController.swift in Sources */,
 				5A3640362389DE7400945E79 /* LoginViewController.swift in Sources */,
 				5AD3B0E823A1869E00204692 /* PostCell.swift in Sources */,
+				5A36906E23B16D3A0061A5A6 /* CustomNavigationController.swift in Sources */,
 				5AD3B0EC23A18D9B00204692 /* PostsViewController.swift in Sources */,
 				F1D2EBC523A0122E00F73236 /* MessageViewController.swift in Sources */,
+				5A36906A23B148F60061A5A6 /* CardRotateTransitionInverted.swift in Sources */,
 				5A3640342389DE7400945E79 /* AppDelegate.swift in Sources */,
+				5A57E61C23B000AB00E62316 /* CircularTransition.swift in Sources */,
 				F1D2EBC723A0162300F73236 /* UsersFactory.swift in Sources */,
 				F13729C223A2467C00731CF6 /* DateTimeHelper.swift in Sources */,
 				5A35739D2395CDE000D3D6AC /* GroupCell.swift in Sources */,
 				5AAC414723947AF900BA698A /* Group.swift in Sources */,
 				5A1A64BE23918E5700AB76EB /* FriendList.swift in Sources */,
 				5A1A64C0239192B900AB76EB /* FriendCell.swift in Sources */,
+				5A57E61923AFEFFF00E62316 /* CustomSegue.swift in Sources */,
 				5AC8597523A659C400103D51 /* GroupsCell.swift in Sources */,
 				5A3573992395B77800D3D6AC /* GroupsFactory.swift in Sources */,
 				5A35739B2395CC2600D3D6AC /* AllGroupsList.swift in Sources */,
+				5A36906C23B154770061A5A6 /* SwipeTransition.swift in Sources */,
 				F1D2EBC223A0109400F73236 /* MessageCell.swift in Sources */,
 				5A776BEB2392B8B400200AED /* User.swift in Sources */,
 				5AAC414B23947EE300BA698A /* MyGroupsList.swift in Sources */,
