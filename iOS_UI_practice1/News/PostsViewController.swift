@@ -46,7 +46,8 @@ class PostsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "PostCell", bundle: nil), forCellReuseIdentifier: "PostTemplate")
+//        tableView.register(UINib(nibName: "PostCell", bundle: nil), forCellReuseIdentifier: "PostTemplate")
+        tableView.register(UINib(nibName: "MultiphotoPostCell", bundle: nil), forCellReuseIdentifier: "PostTemplate")
         tableView.estimatedRowHeight = 200.0
         tableView.rowHeight = UITableView.automaticDimension
     }
@@ -62,18 +63,26 @@ class PostsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PostTemplate", for: indexPath) as! PostCell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "PostTemplate", for: indexPath) as! PostCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostTemplate", for: indexPath) as! MultiphotoPostCell
         cell.avatar.image.image = UIImage(named: postsArray[indexPath.row].author.avatarPath)
         cell.username.text = postsArray[indexPath.row].author.fullName
         cell.timestamp.text = postsArray[indexPath.row].timestamp
         cell.postBodyText.text = postsArray[indexPath.row].postText
         
-        let postPhoto = postsArray[indexPath.row].photos.count > 0 ? postsArray[indexPath.row].photos[0] : nil
-        if postPhoto != nil {
-            cell.picture.image = UIImage(named: postPhoto!)
+//        let postPhoto = postsArray[indexPath.row].photos.count > 0 ? postsArray[indexPath.row].photos[0] : nil
+//        if postPhoto != nil {
+//            cell.picture.image = UIImage(named: postPhoto!)
+//        }
+//        else {
+//            cell.picture.isHidden = true
+//        }
+        if postsArray[indexPath.row].photos.count > 0 {
+//            cell.photosCollection.insertItems(at: ) = postsArray[indexPath.row].photos
+            cell.photosCollection.dataSource = postsArray[indexPath.row].photos as? UICollectionViewDataSource
         }
         else {
-            cell.picture.isHidden = true
+            cell.photosCollection.isHidden = true
         }
         
         cell.likesCount.likeCount = postsArray[indexPath.row].likes
@@ -130,4 +139,91 @@ class PostsViewController: UITableViewController {
     }
     */
 
+}
+
+class MultiPhotoCollectionLayout: UICollectionViewLayout {
+    var cacheAttributes = [IndexPath: UICollectionViewLayoutAttributes]()
+    
+    let maxNumOfRows = 3
+    var numOfColumns = 3
+    var cellHeight: CGFloat = 100
+    
+    private var totalCellsHeight: CGFloat = 0
+    
+    override func prepare() {
+        self.cacheAttributes = [:]
+        
+        guard let collectionView = self.collectionView else { return }
+        
+        let photosCount = collectionView.numberOfItems(inSection: 0)
+        guard photosCount > 0 else { return }
+        
+        if (photosCount <= numOfColumns) {
+            cellHeight = collectionView.frame.height
+        }
+        else if (photosCount > numOfColumns && photosCount <= numOfColumns * 2) {
+            cellHeight = collectionView.frame.height / 2
+        }
+        else if (photosCount > numOfColumns * 2) {
+            cellHeight = collectionView.frame.height / 3
+        }
+        
+        print("Остаток от деления: \(photosCount % numOfColumns)")
+        
+//        numOfRows = Float(photosCount / numOfColumns).rounded(_:)
+        var lastX: CGFloat = 0
+        var lastY: CGFloat = 0
+        
+        for i in 0..<photosCount {
+            var cellWidth: CGFloat = 0
+            let indexPath = IndexPath(item: i, section: 0)
+            let attributeForIndex = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+            
+            let remainValue = photosCount % numOfColumns
+            
+            if (photosCount - i) >= numOfColumns {
+                cellWidth = collectionView.frame.width / CGFloat(numOfColumns)
+                attributeForIndex.frame = CGRect(
+                    x: lastX,
+                    y: lastY,
+                    width: cellWidth,
+                    height: cellHeight)
+                
+                if ((i + 1) % (numOfColumns + 1)) == 0 {
+                    lastY += cellHeight
+                    lastX = 0
+                }
+                else {
+                   lastX += cellWidth
+                }
+            }
+            else {
+                cellWidth = collectionView.frame.width / CGFloat(remainValue)
+                
+                attributeForIndex.frame = CGRect(
+                    x: lastX,
+                    y: lastY,
+                    width: cellWidth,
+                    height: cellHeight)
+                
+                lastX += cellWidth
+            }
+            
+            cacheAttributes[indexPath] = attributeForIndex
+        }
+    }
+    
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        return cacheAttributes[indexPath]
+    }
+    
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        return cacheAttributes.values.filter {
+            rect.intersects($0.frame)
+        }
+    }
+    
+    override var collectionViewContentSize: CGSize {
+        return CGSize(width: collectionView!.frame.width, height: collectionView!.frame.height)
+    }
 }

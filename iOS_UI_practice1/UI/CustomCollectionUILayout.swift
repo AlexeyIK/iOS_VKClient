@@ -60,7 +60,6 @@ class CustomCollectionUILayout : UICollectionViewLayout {
                 break;
             }
             
-            
             cacheAttributes[indexPath] = attributeForIndex
         }
         
