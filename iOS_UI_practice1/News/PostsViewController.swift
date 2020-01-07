@@ -14,7 +14,7 @@ class PostsViewController: UITableViewController {
         Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
              timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .day, value: -3, to: Date())!),
              postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. ",
-             photos: [String](),
+             photos: ["photo2"],
              likes: 3,
              comments: 0,
              views: 15),
@@ -22,7 +22,7 @@ class PostsViewController: UITableViewController {
         Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
              timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .day, value: -1, to: Date())!),
                   postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget.",
-                  photos: ["photo2"],
+                  photos: ["photo2", "photo2"],
                   likes: 10,
                   comments: 2,
                   views: 15),
@@ -70,19 +70,18 @@ class PostsViewController: UITableViewController {
         cell.timestamp.text = postsArray[indexPath.row].timestamp
         cell.postBodyText.text = postsArray[indexPath.row].postText
         
-//        let postPhoto = postsArray[indexPath.row].photos.count > 0 ? postsArray[indexPath.row].photos[0] : nil
-//        if postPhoto != nil {
-//            cell.picture.image = UIImage(named: postPhoto!)
-//        }
-//        else {
-//            cell.picture.isHidden = true
-//        }
         if postsArray[indexPath.row].photos.count > 0 {
-//            cell.photosCollection.insertItems(at: ) = postsArray[indexPath.row].photos
-            cell.photosCollection.dataSource = postsArray[indexPath.row].photos as? UICollectionViewDataSource
+//            cell.photoCollection = postsArray[indexPath.row].photos
+//            cell.photos.dataSource = postsArray[indexPath.row].photos as? UICollectionViewDataSource
+//            cell.photosCollection.performBatchUpdates({
+//                let collectionIndexPath = IndexPath(item: 0, section: 0)
+//               cell.photosCollection.dataSource = postsArray[indexPath.row].photos as? UICollectionViewDataSource
+//                cell.photosCollection.insertItems(at: [collectionIndexPath])
+//
+//            }, completion: nil)
         }
         else {
-            cell.photosCollection.isHidden = true
+            cell.collectionView.isHidden = true
         }
         
         cell.likesCount.likeCount = postsArray[indexPath.row].likes
@@ -93,137 +92,34 @@ class PostsViewController: UITableViewController {
         return cell
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let tableViewCell = cell as? MultiphotoPostCell else { return }
+        
+        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
-class MultiPhotoCollectionLayout: UICollectionViewLayout {
-    var cacheAttributes = [IndexPath: UICollectionViewLayoutAttributes]()
-    
-    let maxNumOfRows = 3
-    var numOfColumns = 3
-    var cellHeight: CGFloat = 100
-    
-    private var totalCellsHeight: CGFloat = 0
-    
-    override func prepare() {
-        self.cacheAttributes = [:]
-        
-        guard let collectionView = self.collectionView else { return }
-        
-        let photosCount = collectionView.numberOfItems(inSection: 0)
-        guard photosCount > 0 else { return }
-        
-        if (photosCount <= numOfColumns) {
-            cellHeight = collectionView.frame.height
-        }
-        else if (photosCount > numOfColumns && photosCount <= numOfColumns * 2) {
-            cellHeight = collectionView.frame.height / 2
-        }
-        else if (photosCount > numOfColumns * 2) {
-            cellHeight = collectionView.frame.height / 3
-        }
-        
-        print("Остаток от деления: \(photosCount % numOfColumns)")
-        
-//        numOfRows = Float(photosCount / numOfColumns).rounded(_:)
-        var lastX: CGFloat = 0
-        var lastY: CGFloat = 0
-        
-        for i in 0..<photosCount {
-            var cellWidth: CGFloat = 0
-            let indexPath = IndexPath(item: i, section: 0)
-            let attributeForIndex = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-            
-            let remainValue = photosCount % numOfColumns
-            
-            if (photosCount - i) >= numOfColumns {
-                cellWidth = collectionView.frame.width / CGFloat(numOfColumns)
-                attributeForIndex.frame = CGRect(
-                    x: lastX,
-                    y: lastY,
-                    width: cellWidth,
-                    height: cellHeight)
-                
-                if ((i + 1) % (numOfColumns + 1)) == 0 {
-                    lastY += cellHeight
-                    lastX = 0
-                }
-                else {
-                   lastX += cellWidth
-                }
-            }
-            else {
-                cellWidth = collectionView.frame.width / CGFloat(remainValue)
-                
-                attributeForIndex.frame = CGRect(
-                    x: lastX,
-                    y: lastY,
-                    width: cellWidth,
-                    height: cellHeight)
-                
-                lastX += cellWidth
-            }
-            
-            cacheAttributes[indexPath] = attributeForIndex
-        }
+extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
     
-    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        return cacheAttributes[indexPath]
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return postsArray[collectionView.tag].photos.count
+//        return 9
     }
     
-    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        return cacheAttributes.values.filter {
-            rect.intersects($0.frame)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postPhotoCell", for: indexPath) as? PostPhotoCell else {
+            return PostPhotoCell()
         }
-    }
-    
-    override var collectionViewContentSize: CGSize {
-        return CGSize(width: collectionView!.frame.width, height: collectionView!.frame.height)
+        
+        let photosForPost = postsArray[collectionView.tag].photos
+        
+        if (photosForPost.count > 0) {
+            cell.photo.image = UIImage(named: photosForPost[indexPath.item])
+        }
+        
+        return cell
     }
 }

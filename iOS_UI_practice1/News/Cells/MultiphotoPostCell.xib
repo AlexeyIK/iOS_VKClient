@@ -73,13 +73,13 @@
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="UZt-1k-EzD">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="UZt-1k-EzD">
                                 <rect key="frame" x="0.0" y="61.5" width="322" height="322"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="UZt-1k-EzD" secondAttribute="height" multiplier="1:1" id="nz5-zA-9Uo"/>
                                 </constraints>
-                                <collectionViewLayout key="collectionViewLayout" id="Bx2-T8-kqk" customClass="MultiPhotoCollectionLayout" customModule="iOS_UI_practice1" customModuleProvider="target"/>
+                                <collectionViewLayout key="collectionViewLayout" id="8Km-jf-mk3" customClass="MultiPhotoCollectionLayout" customModule="iOS_UI_practice1" customModuleProvider="target"/>
                             </collectionView>
                         </subviews>
                     </stackView>
@@ -195,9 +195,9 @@
             <viewLayoutGuide key="safeArea" id="6WX-fa-E4e"/>
             <connections>
                 <outlet property="avatar" destination="FtM-3L-SAM" id="jS3-P9-aHm"/>
+                <outlet property="collectionView" destination="UZt-1k-EzD" id="fyK-nQ-dzV"/>
                 <outlet property="commentsLabel" destination="LIw-FB-skA" id="yUN-KF-2LQ"/>
                 <outlet property="likesCount" destination="Nd0-XV-dHW" id="vpR-RT-5VR"/>
-                <outlet property="photosCollection" destination="UZt-1k-EzD" id="fyK-nQ-dzV"/>
                 <outlet property="postBodyText" destination="1NG-7b-tOt" id="gzl-pf-6yy"/>
                 <outlet property="timestamp" destination="b9j-2h-FNA" id="bK1-aJ-owZ"/>
                 <outlet property="username" destination="Ka0-Dk-uGW" id="lDy-9H-hBg"/>
