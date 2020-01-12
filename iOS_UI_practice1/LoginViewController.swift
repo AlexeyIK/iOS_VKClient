@@ -8,6 +8,16 @@
 
 import UIKit
 
+// Класс веб-сессии
+class Session {
+    static let instance = Session()
+    
+    private init() {}
+    
+    var token: String = ""
+    var userId: Int?
+}
+
 class LoginViewController: UIViewController {
     @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var loginInput: UITextField!
@@ -26,6 +36,9 @@ class LoginViewController: UIViewController {
     
     let navigationAnimator = CustomNavigationControllerAnimation()
     var snowEmitterLayer = CAEmitterLayer()
+    
+    // Создаем глобальный класс для сессии
+    let session = Session.instance
     
     override func viewDidLoad() {
         super.viewDidLoad()
