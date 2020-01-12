@@ -38,59 +38,36 @@ class MultiphotoPostCell: UITableViewCell {
     
     func setCollectionViewDataSourceDelegate(dataSourceDelegate: UICollectionViewDataSource & UICollectionViewDelegate, forRow row: Int) {
         
-        collectionView.register(PostPhotoCell.self, forCellWithReuseIdentifier: "postPhotoCell")
+//        collectionView.register(PostPhotoCell.self, forCellWithReuseIdentifier: "postPhotoCell")
+        collectionView.register(UINib(nibName: "PostPhotoCell", bundle: nil), forCellWithReuseIdentifier: "postPhotoCell")
         collectionView.delegate = dataSourceDelegate
         collectionView.dataSource = dataSourceDelegate
         collectionView.tag = row
         collectionView.reloadData()
     }
-    
-    /*
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photoCollection.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as? PhotoCell
-        else {
-            return UICollectionViewCell()
-        }
-        
-//        photos.performBatchUpdates({
-//            let collectionIndexPath = IndexPath(item: 0, section: 0)
-//            photos.dataSource =
-//            photos.insertItems(at: [collectionIndexPath])
-//
-//        }, completion: nil)
-        
-        cell.photo.image = UIImage(named: "photo2")
-        
-        return cell
-    }*/
 }
 
-class PostPhotoCell: UICollectionViewCell {
-    let photo: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.black
-        return imageView
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        customInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        customInit()
-    }
-    
-    func customInit() {
-        photo.frame = self.frame
-        let boundsOffset = CGPoint(x: -frame.width/2, y: -frame.height/2)
-        photo.bounds = CGRect(origin: boundsOffset, size: CGSize(width: frame.width, height: frame.height))
-        photo.contentMode = .scaleAspectFill
-        addSubview(photo)
-    }
-}
+//class PostPhotoCell: UICollectionViewCell {
+//    let photo: UIImageView = {
+//        let imageView = UIImageView()
+//        imageView.backgroundColor = UIColor.black
+//        return imageView
+//    }()
+//
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        customInit()
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//        customInit()
+//    }
+//
+//    func customInit() {
+//        photo.frame = self.frame
+//        photo.bounds = self.frame
+//        photo.contentMode = .scaleAspectFill
+//        addSubview(photo)
+//    }
+//}

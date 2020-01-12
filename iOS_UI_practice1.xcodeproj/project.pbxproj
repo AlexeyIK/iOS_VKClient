@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A0E791623CB500300EDFBAD /* PostPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A0E791523CB500300EDFBAD /* PostPhotoCell.xib */; };
+		5A0E791A23CB53F800EDFBAD /* PostPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0E791923CB53F800EDFBAD /* PostPhotoCell.swift */; };
 		5A1A64BE23918E5700AB76EB /* FriendList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1A64BD23918E5700AB76EB /* FriendList.swift */; };
 		5A1A64C0239192B900AB76EB /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1A64BF239192B900AB76EB /* FriendCell.swift */; };
 		5A298A4F23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A298A4E23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift */; };
@@ -51,6 +53,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5A0E791523CB500300EDFBAD /* PostPhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostPhotoCell.xib; sourceTree = "<group>"; };
+		5A0E791923CB53F800EDFBAD /* PostPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPhotoCell.swift; sourceTree = "<group>"; };
 		5A1A64BD23918E5700AB76EB /* FriendList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendList.swift; sourceTree = "<group>"; };
 		5A1A64BF239192B900AB76EB /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		5A298A4E23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiphotoCollectionFlow.swift; sourceTree = "<group>"; };
@@ -141,14 +145,14 @@
 				5AD3B0E523A1866C00204692 /* News */,
 				5ACDE7DF23919DAE00A9672F /* UI */,
 				5ACDE7DE23919D5200A9672F /* Model */,
-				5A3640332389DE7400945E79 /* AppDelegate.swift */,
 				5AEF0B9523B27C6500294A37 /* AnimatorPop */,
+				5A57E61A23AFF01F00E62316 /* Transitions */,
+				5A3640332389DE7400945E79 /* AppDelegate.swift */,
 				5A3640352389DE7400945E79 /* LoginViewController.swift */,
 				5A3640372389DE7400945E79 /* Main.storyboard */,
 				5A36403A2389DE7600945E79 /* Assets.xcassets */,
 				5A36403C2389DE7600945E79 /* LaunchScreen.storyboard */,
 				5A36403F2389DE7600945E79 /* Info.plist */,
-				5A57E61A23AFF01F00E62316 /* Transitions */,
 			);
 			path = iOS_UI_practice1;
 			sourceTree = "<group>";
@@ -212,6 +216,8 @@
 				5AD3B0E723A1869E00204692 /* PostCell.xib */,
 				5A5B518123B4047800A28E2D /* MultiphotoPostCell.swift */,
 				5A5B518223B4047800A28E2D /* MultiphotoPostCell.xib */,
+				5A0E791923CB53F800EDFBAD /* PostPhotoCell.swift */,
+				5A0E791523CB500300EDFBAD /* PostPhotoCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -302,6 +308,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A0E791623CB500300EDFBAD /* PostPhotoCell.xib in Resources */,
 				5A36403E2389DE7600945E79 /* LaunchScreen.storyboard in Resources */,
 				F1D2EBC323A0109400F73236 /* MessageCell.xib in Resources */,
 				5AD3B0E923A1869E00204692 /* PostCell.xib in Resources */,
@@ -340,6 +347,7 @@
 				5A298A4F23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift in Sources */,
 				5A35739D2395CDE000D3D6AC /* GroupCell.swift in Sources */,
 				5AAC414723947AF900BA698A /* Group.swift in Sources */,
+				5A0E791A23CB53F800EDFBAD /* PostPhotoCell.swift in Sources */,
 				5A1A64BE23918E5700AB76EB /* FriendList.swift in Sources */,
 				5A1A64C0239192B900AB76EB /* FriendCell.swift in Sources */,
 				5A57E61923AFEFFF00E62316 /* CustomSegue.swift in Sources */,

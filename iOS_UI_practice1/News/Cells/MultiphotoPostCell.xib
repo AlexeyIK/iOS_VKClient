@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="352" height="506"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H4B-Xd-f6M" id="Kyx-SE-cTL">
-                <rect key="frame" x="0.0" y="0.0" width="352" height="505.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="352" height="506"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Tsd-1B-yPM">
@@ -56,10 +54,10 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="ffA-lV-ryd">
-                        <rect key="frame" x="15" y="70" width="322" height="383.5"/>
+                        <rect key="frame" x="15" y="70" width="322" height="384"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1NG-7b-tOt">
-                                <rect key="frame" x="0.0" y="0.0" width="322" height="55.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="322" height="56"/>
                                 <attributedString key="attributedText">
                                     <fragment>
                                         <string key="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Feugiat vivamus at augue eget.</string>
@@ -74,17 +72,17 @@
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="UZt-1k-EzD">
-                                <rect key="frame" x="0.0" y="61.5" width="322" height="322"/>
+                                <rect key="frame" x="0.0" y="62" width="322" height="322"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="UZt-1k-EzD" secondAttribute="height" multiplier="1:1" id="nz5-zA-9Uo"/>
+                                    <constraint firstAttribute="width" secondItem="UZt-1k-EzD" secondAttribute="height" multiplier="1:1" id="dnE-mb-3WD"/>
                                 </constraints>
                                 <collectionViewLayout key="collectionViewLayout" id="8Km-jf-mk3" customClass="MultiPhotoCollectionLayout" customModule="iOS_UI_practice1" customModuleProvider="target"/>
                             </collectionView>
                         </subviews>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ppV-Pr-S21" userLabel="Footer">
-                        <rect key="frame" x="16" y="463.5" width="180" height="22"/>
+                        <rect key="frame" x="16" y="464" width="180" height="22"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nd0-XV-dHW" userLabel="Likes" customClass="LikeButtonController" customModule="iOS_UI_practice1" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="55" height="22"/>
@@ -144,14 +142,14 @@
                         </constraints>
                     </stackView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="juz-GH-EHp">
-                        <rect key="frame" x="0.0" y="495.5" width="352" height="10"/>
+                        <rect key="frame" x="0.0" y="496" width="352" height="10"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="Ge3-9s-J28"/>
                         </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Qj5-6o-hRq" userLabel="Views">
-                        <rect key="frame" x="283" y="463.5" width="54" height="22"/>
+                        <rect key="frame" x="283" y="464" width="54" height="22"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="views_ico" translatesAutoresizingMaskIntoConstraints="NO" id="XjJ-0n-ecz">
                                 <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>

@@ -11,8 +11,9 @@ import UIKit
 class MultiPhotoCollectionLayout: UICollectionViewLayout {
     var cacheAttributes = [IndexPath: UICollectionViewLayoutAttributes]()
     
-    let maxNumOfRows = 3
-    var numOfColumns = 3
+    @IBInspectable var cellsMarginX: CGFloat = 2.0
+    @IBInspectable var cellsMarginY: CGFloat = 2.0
+    var maxNumOfColumns = 3
     var cellHeight: CGFloat = 100
     var containerHeight: CGFloat = 0
     
@@ -26,58 +27,52 @@ class MultiPhotoCollectionLayout: UICollectionViewLayout {
         let photosCount = collectionView.numberOfItems(inSection: 0)
         guard photosCount > 0 else { return }
         
-        if (photosCount <= numOfColumns) {
+        if (photosCount <= maxNumOfColumns) {
             cellHeight = collectionView.frame.width
-//            cellHeight = collectionView.frame.width / CGFloat(photosCount)
         }
-        else if (photosCount > numOfColumns && photosCount <= numOfColumns * 2) {
+        else if (photosCount > maxNumOfColumns && photosCount <= maxNumOfColumns * 2) {
             cellHeight = collectionView.frame.height / 2
         }
-        else if (photosCount > numOfColumns * 2) {
+        else if (photosCount > maxNumOfColumns * 2) {
             cellHeight = collectionView.frame.height / 3
         }
         
         var lastX: CGFloat = 0
         var lastY: CGFloat = 0
-        let remainValue = photosCount % numOfColumns
-        print("remainValue: \(remainValue), photos count: \(photosCount)")
         
         for i in 0..<photosCount {
             var cellWidth: CGFloat = 0
             let indexPath = IndexPath(item: i, section: 0)
             let attributeForIndex = UICollectionViewLayoutAttributes(forCellWith: indexPath)
             
-            if (photosCount - i) >= numOfColumns {
-                cellWidth = collectionView.frame.width / CGFloat(numOfColumns)
+            if (photosCount - i) >= maxNumOfColumns {
+                cellWidth = collectionView.frame.width / CGFloat(maxNumOfColumns)
                 attributeForIndex.frame = CGRect(
                     x: lastX,
                     y: lastY,
                     width: cellWidth,
                     height: cellHeight)
-                
-                if ((i + 1) % (numOfColumns + 1)) == 0 {
-                    lastY += cellHeight
+
+                if ((i + 1) % maxNumOfColumns) == 0 {
+                    lastY += cellHeight + cellsMarginY
                     lastX = 0
                 }
                 else {
-                    lastX += cellWidth
+                    lastX += cellWidth + cellsMarginX
                 }
             }
             else {
-                cellWidth = collectionView.frame.width / CGFloat(remainValue)
-                
+                cellWidth = collectionView.frame.width / CGFloat((photosCount + 2) % maxNumOfColumns + 1)
                 attributeForIndex.frame = CGRect(
                     x: lastX,
                     y: lastY,
                     width: cellWidth,
                     height: cellHeight)
                 
-                lastX += cellWidth
+                lastX += cellWidth + cellsMarginX
             }
-            
             cacheAttributes[indexPath] = attributeForIndex
         }
-        
         containerHeight = lastY
     }
     
@@ -94,5 +89,6 @@ class MultiPhotoCollectionLayout: UICollectionViewLayout {
     override var collectionViewContentSize: CGSize {
         return CGSize(width: collectionView?.frame.width ?? 0,
                       height: containerHeight)
+        
     }
 }

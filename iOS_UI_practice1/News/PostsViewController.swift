@@ -14,7 +14,7 @@ class PostsViewController: UITableViewController {
         Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
              timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .day, value: -3, to: Date())!),
              postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. ",
-             photos: ["photo2"],
+             photos: ["photo1"],
              likes: 3,
              comments: 0,
              views: 15),
@@ -22,7 +22,7 @@ class PostsViewController: UITableViewController {
         Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
              timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .day, value: -1, to: Date())!),
                   postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget.",
-                  photos: ["photo2", "photo2"],
+                  photos: ["photo3", "photo2"],
                   likes: 10,
                   comments: 2,
                   views: 15),
@@ -38,7 +38,7 @@ class PostsViewController: UITableViewController {
         Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
              timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .hour, value: -1, to: Date())!),
              postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-             photos: [String](),
+             photos: ["photo2", "photo5", "photo3", "photo6", "photo4"],
              likes: 14,
              comments: 1,
              views: 26)
@@ -70,17 +70,7 @@ class PostsViewController: UITableViewController {
         cell.timestamp.text = postsArray[indexPath.row].timestamp
         cell.postBodyText.text = postsArray[indexPath.row].postText
         
-        if postsArray[indexPath.row].photos.count > 0 {
-//            cell.photoCollection = postsArray[indexPath.row].photos
-//            cell.photos.dataSource = postsArray[indexPath.row].photos as? UICollectionViewDataSource
-//            cell.photosCollection.performBatchUpdates({
-//                let collectionIndexPath = IndexPath(item: 0, section: 0)
-//               cell.photosCollection.dataSource = postsArray[indexPath.row].photos as? UICollectionViewDataSource
-//                cell.photosCollection.insertItems(at: [collectionIndexPath])
-//
-//            }, completion: nil)
-        }
-        else {
+        if postsArray[indexPath.row].photos.count == 0 {
             cell.collectionView.isHidden = true
         }
         
