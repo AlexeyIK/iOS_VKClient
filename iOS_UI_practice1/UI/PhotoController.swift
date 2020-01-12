@@ -36,9 +36,12 @@ class PhotoController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photo", for: indexPath) as? PhotoCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photo", for: indexPath) as? PhotoCell
+        else {
             return UICollectionViewCell()
         }
+        
+        cell.photo.image = UIImage(named: "photo\(Int.random(in: 1...6))")
         
         cell.alpha = 0.0
         cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)

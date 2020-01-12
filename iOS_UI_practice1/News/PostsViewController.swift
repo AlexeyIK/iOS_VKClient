@@ -14,7 +14,7 @@ class PostsViewController: UITableViewController {
         Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
              timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .day, value: -3, to: Date())!),
              postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. ",
-             photos: [String](),
+             photos: ["photo1"],
              likes: 3,
              comments: 0,
              views: 15),
@@ -22,7 +22,7 @@ class PostsViewController: UITableViewController {
         Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
              timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .day, value: -1, to: Date())!),
                   postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget.",
-                  photos: ["photo2"],
+                  photos: ["photo3", "photo2"],
                   likes: 10,
                   comments: 2,
                   views: 15),
@@ -38,7 +38,7 @@ class PostsViewController: UITableViewController {
         Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
              timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .hour, value: -1, to: Date())!),
              postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-             photos: [String](),
+             photos: ["photo2", "photo5", "photo3", "photo6", "photo4"],
              likes: 14,
              comments: 1,
              views: 26)
@@ -46,7 +46,8 @@ class PostsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "PostCell", bundle: nil), forCellReuseIdentifier: "PostTemplate")
+//        tableView.register(UINib(nibName: "PostCell", bundle: nil), forCellReuseIdentifier: "PostTemplate")
+        tableView.register(UINib(nibName: "MultiphotoPostCell", bundle: nil), forCellReuseIdentifier: "PostTemplate")
         tableView.estimatedRowHeight = 200.0
         tableView.rowHeight = UITableView.automaticDimension
     }
@@ -62,18 +63,15 @@ class PostsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PostTemplate", for: indexPath) as! PostCell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "PostTemplate", for: indexPath) as! PostCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostTemplate", for: indexPath) as! MultiphotoPostCell
         cell.avatar.image.image = UIImage(named: postsArray[indexPath.row].author.avatarPath)
         cell.username.text = postsArray[indexPath.row].author.fullName
         cell.timestamp.text = postsArray[indexPath.row].timestamp
         cell.postBodyText.text = postsArray[indexPath.row].postText
         
-        let postPhoto = postsArray[indexPath.row].photos.count > 0 ? postsArray[indexPath.row].photos[0] : nil
-        if postPhoto != nil {
-            cell.picture.image = UIImage(named: postPhoto!)
-        }
-        else {
-            cell.picture.isHidden = true
+        if postsArray[indexPath.row].photos.count == 0 {
+            cell.collectionView.isHidden = true
         }
         
         cell.likesCount.likeCount = postsArray[indexPath.row].likes
@@ -84,50 +82,34 @@ class PostsViewController: UITableViewController {
         return cell
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let tableViewCell = cell as? MultiphotoPostCell else { return }
+        
+        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
     }
-    */
+}
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return postsArray[collectionView.tag].photos.count
+//        return 9
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postPhotoCell", for: indexPath) as? PostPhotoCell else {
+            return PostPhotoCell()
+        }
+        
+        let photosForPost = postsArray[collectionView.tag].photos
+        
+        if (photosForPost.count > 0) {
+            cell.photo.image = UIImage(named: photosForPost[indexPath.item])
+        }
+        
+        return cell
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

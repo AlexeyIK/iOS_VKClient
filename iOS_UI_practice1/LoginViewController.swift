@@ -18,6 +18,7 @@ class LoginViewController: UIViewController {
     @IBInspectable let useUIAnimations : Bool = true
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var forgotPass: UILabel!
+    @IBOutlet weak var scrollBottom: NSLayoutConstraint!
     
     @IBAction func buttonPressed(_ sender: Any) {
         login()
@@ -41,8 +42,10 @@ class LoginViewController: UIViewController {
         }
         
         // Подписываемся на события клавиатуры
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
+        let notification = NotificationCenter.default
+        notification.addObserver(self, selector: #selector(self.keyboardChanged), name: UIResponder.keyboardWillShowNotification, object: nil)
+        notification.addObserver(self, selector: #selector(self.keyboardChanged), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        notification.addObserver(self, selector: #selector(self.keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         scrollView?.addGestureRecognizer(hideKeyboardGesture)
@@ -189,18 +192,27 @@ class LoginViewController: UIViewController {
         view.layer.addSublayer(snowEmitterLayer)
     }
     
-    @objc func keyboardWasShown(notification: Notification) {
-        guard let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        print("Клавиатура появилась")
+    @objc func keyboardChanged(notification: Notification) {
+        guard let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+            return
+        }
         
         let keyboardScreenEndFrame = value.cgRectValue
         let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-        let newContentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
+//        let newContentInsets = UIEdgeInsets(top: 0,
+//                                            left: 0,
+//                                            bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom,
+//                                            right: 0)
         
-        print("newContentInsets: \(newContentInsets)")
-        
-        self.scrollView?.contentInset = newContentInsets
-        self.scrollView?.scrollIndicatorInsets = newContentInsets
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            scrollBottom.constant = 0
+        } else {
+            scrollBottom.constant = keyboardViewEndFrame.height - view.safeAreaInsets.bottom
+        }
+        view.layoutIfNeeded()
+//        
+//        self.scrollView?.contentInset = newContentInsets
+//        self.scrollView?.scrollIndicatorInsets = newContentInsets
     }
     
     @objc func keyboardWillBeHidden(notification: Notification) {

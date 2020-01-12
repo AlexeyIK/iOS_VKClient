@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A0E791623CB500300EDFBAD /* PostPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A0E791523CB500300EDFBAD /* PostPhotoCell.xib */; };
+		5A0E791A23CB53F800EDFBAD /* PostPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0E791923CB53F800EDFBAD /* PostPhotoCell.swift */; };
 		5A1A64BE23918E5700AB76EB /* FriendList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1A64BD23918E5700AB76EB /* FriendList.swift */; };
 		5A1A64C0239192B900AB76EB /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1A64BF239192B900AB76EB /* FriendCell.swift */; };
+		5A298A4F23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A298A4E23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift */; };
 		5A3573992395B77800D3D6AC /* GroupsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3573982395B77800D3D6AC /* GroupsFactory.swift */; };
 		5A35739B2395CC2600D3D6AC /* AllGroupsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A35739A2395CC2600D3D6AC /* AllGroupsList.swift */; };
 		5A35739D2395CDE000D3D6AC /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A35739C2395CDE000D3D6AC /* GroupCell.swift */; };
@@ -23,6 +26,8 @@
 		5A36906E23B16D3A0061A5A6 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A36906D23B16D3A0061A5A6 /* CustomNavigationController.swift */; };
 		5A57E61923AFEFFF00E62316 /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A57E61823AFEFFF00E62316 /* CustomSegue.swift */; };
 		5A57E61C23B000AB00E62316 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A57E61B23B000AB00E62316 /* CircularTransition.swift */; };
+		5A5B518323B4047800A28E2D /* MultiphotoPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5B518123B4047800A28E2D /* MultiphotoPostCell.swift */; };
+		5A5B518423B4047800A28E2D /* MultiphotoPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A5B518223B4047800A28E2D /* MultiphotoPostCell.xib */; };
 		5A776BEB2392B8B400200AED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A776BEA2392B8B400200AED /* User.swift */; };
 		5AAC414723947AF900BA698A /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAC414623947AF900BA698A /* Group.swift */; };
 		5AAC414B23947EE300BA698A /* MyGroupsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAC414A23947EE300BA698A /* MyGroupsList.swift */; };
@@ -34,6 +39,9 @@
 		5AD3B0E923A1869E00204692 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD3B0E723A1869E00204692 /* PostCell.xib */; };
 		5AD3B0EC23A18D9B00204692 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3B0EB23A18D9B00204692 /* PostsViewController.swift */; };
 		5AD3B0EE23A18ED100204692 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3B0ED23A18ED100204692 /* Post.swift */; };
+		5AEF0B9723B27C7E00294A37 /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEF0B9623B27C7E00294A37 /* PopAnimator.swift */; };
+		5AEF0B9923B27EE100294A37 /* ImageViewerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEF0B9823B27EE100294A37 /* ImageViewerPresenter.swift */; };
+		5AEF0B9B23B280D100294A37 /* UIApplication+Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEF0B9A23B280D100294A37 /* UIApplication+Controller.swift */; };
 		F13729C223A2467C00731CF6 /* DateTimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13729C123A2467C00731CF6 /* DateTimeHelper.swift */; };
 		F14DAF3A239ABB3100D21230 /* LikeButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14DAF39239ABB3100D21230 /* LikeButtonController.swift */; };
 		F16F1302239ACBF800BA8CE6 /* CircleShadowImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16F1301239ACBF800BA8CE6 /* CircleShadowImage.swift */; };
@@ -45,8 +53,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5A0E791523CB500300EDFBAD /* PostPhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostPhotoCell.xib; sourceTree = "<group>"; };
+		5A0E791923CB53F800EDFBAD /* PostPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPhotoCell.swift; sourceTree = "<group>"; };
 		5A1A64BD23918E5700AB76EB /* FriendList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendList.swift; sourceTree = "<group>"; };
 		5A1A64BF239192B900AB76EB /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		5A298A4E23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiphotoCollectionFlow.swift; sourceTree = "<group>"; };
 		5A3573982395B77800D3D6AC /* GroupsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsFactory.swift; sourceTree = "<group>"; };
 		5A35739A2395CC2600D3D6AC /* AllGroupsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsList.swift; sourceTree = "<group>"; };
 		5A35739C2395CDE000D3D6AC /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
@@ -63,6 +74,8 @@
 		5A36906D23B16D3A0061A5A6 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		5A57E61823AFEFFF00E62316 /* CustomSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
 		5A57E61B23B000AB00E62316 /* CircularTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
+		5A5B518123B4047800A28E2D /* MultiphotoPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiphotoPostCell.swift; sourceTree = "<group>"; };
+		5A5B518223B4047800A28E2D /* MultiphotoPostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultiphotoPostCell.xib; sourceTree = "<group>"; };
 		5A776BEA2392B8B400200AED /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5AAC414623947AF900BA698A /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		5AAC414A23947EE300BA698A /* MyGroupsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsList.swift; sourceTree = "<group>"; };
@@ -74,6 +87,9 @@
 		5AD3B0E723A1869E00204692 /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		5AD3B0EB23A18D9B00204692 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
 		5AD3B0ED23A18ED100204692 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		5AEF0B9623B27C7E00294A37 /* PopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopAnimator.swift; sourceTree = "<group>"; };
+		5AEF0B9823B27EE100294A37 /* ImageViewerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerPresenter.swift; sourceTree = "<group>"; };
+		5AEF0B9A23B280D100294A37 /* UIApplication+Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Controller.swift"; sourceTree = "<group>"; };
 		F13729C123A2467C00731CF6 /* DateTimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeHelper.swift; sourceTree = "<group>"; };
 		F14DAF39239ABB3100D21230 /* LikeButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButtonController.swift; sourceTree = "<group>"; };
 		F16F1301239ACBF800BA8CE6 /* CircleShadowImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShadowImage.swift; sourceTree = "<group>"; };
@@ -129,13 +145,14 @@
 				5AD3B0E523A1866C00204692 /* News */,
 				5ACDE7DF23919DAE00A9672F /* UI */,
 				5ACDE7DE23919D5200A9672F /* Model */,
+				5AEF0B9523B27C6500294A37 /* AnimatorPop */,
+				5A57E61A23AFF01F00E62316 /* Transitions */,
 				5A3640332389DE7400945E79 /* AppDelegate.swift */,
 				5A3640352389DE7400945E79 /* LoginViewController.swift */,
 				5A3640372389DE7400945E79 /* Main.storyboard */,
 				5A36403A2389DE7600945E79 /* Assets.xcassets */,
 				5A36403C2389DE7600945E79 /* LaunchScreen.storyboard */,
 				5A36403F2389DE7600945E79 /* Info.plist */,
-				5A57E61A23AFF01F00E62316 /* Transitions */,
 			);
 			path = iOS_UI_practice1;
 			sourceTree = "<group>";
@@ -187,6 +204,7 @@
 			children = (
 				5AD3B0EA23A18D6100204692 /* Cells */,
 				5AD3B0EB23A18D9B00204692 /* PostsViewController.swift */,
+				5A298A4E23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -196,8 +214,22 @@
 			children = (
 				5AD3B0E623A1869E00204692 /* PostCell.swift */,
 				5AD3B0E723A1869E00204692 /* PostCell.xib */,
+				5A5B518123B4047800A28E2D /* MultiphotoPostCell.swift */,
+				5A5B518223B4047800A28E2D /* MultiphotoPostCell.xib */,
+				5A0E791923CB53F800EDFBAD /* PostPhotoCell.swift */,
+				5A0E791523CB500300EDFBAD /* PostPhotoCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		5AEF0B9523B27C6500294A37 /* AnimatorPop */ = {
+			isa = PBXGroup;
+			children = (
+				5AEF0B9623B27C7E00294A37 /* PopAnimator.swift */,
+				5AEF0B9823B27EE100294A37 /* ImageViewerPresenter.swift */,
+				5AEF0B9A23B280D100294A37 /* UIApplication+Controller.swift */,
+			);
+			path = AnimatorPop;
 			sourceTree = "<group>";
 		};
 		F1D2EBBE23A0105000F73236 /* MessageScreen */ = {
@@ -276,10 +308,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A0E791623CB500300EDFBAD /* PostPhotoCell.xib in Resources */,
 				5A36403E2389DE7600945E79 /* LaunchScreen.storyboard in Resources */,
 				F1D2EBC323A0109400F73236 /* MessageCell.xib in Resources */,
 				5AD3B0E923A1869E00204692 /* PostCell.xib in Resources */,
 				5AC8597623A659C400103D51 /* GroupsCell.xib in Resources */,
+				5A5B518423B4047800A28E2D /* MultiphotoPostCell.xib in Resources */,
 				5A36403B2389DE7600945E79 /* Assets.xcassets in Resources */,
 				5A3640392389DE7400945E79 /* Main.storyboard in Resources */,
 			);
@@ -296,9 +330,11 @@
 				5A36906823B13E600061A5A6 /* CardRotateTransition.swift in Sources */,
 				F1D2EBC923A018F000F73236 /* CustomCollectionUILayout.swift in Sources */,
 				F16F1302239ACBF800BA8CE6 /* CircleShadowImage.swift in Sources */,
+				5AEF0B9723B27C7E00294A37 /* PopAnimator.swift in Sources */,
 				5AB12D8323A80BA800610167 /* Loader.swift in Sources */,
 				5ACDE7DD239196CB00A9672F /* PhotoController.swift in Sources */,
 				5A3640362389DE7400945E79 /* LoginViewController.swift in Sources */,
+				5A5B518323B4047800A28E2D /* MultiphotoPostCell.swift in Sources */,
 				5AD3B0E823A1869E00204692 /* PostCell.swift in Sources */,
 				5A36906E23B16D3A0061A5A6 /* CustomNavigationController.swift in Sources */,
 				5AD3B0EC23A18D9B00204692 /* PostsViewController.swift in Sources */,
@@ -308,8 +344,10 @@
 				5A57E61C23B000AB00E62316 /* CircularTransition.swift in Sources */,
 				F1D2EBC723A0162300F73236 /* UsersFactory.swift in Sources */,
 				F13729C223A2467C00731CF6 /* DateTimeHelper.swift in Sources */,
+				5A298A4F23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift in Sources */,
 				5A35739D2395CDE000D3D6AC /* GroupCell.swift in Sources */,
 				5AAC414723947AF900BA698A /* Group.swift in Sources */,
+				5A0E791A23CB53F800EDFBAD /* PostPhotoCell.swift in Sources */,
 				5A1A64BE23918E5700AB76EB /* FriendList.swift in Sources */,
 				5A1A64C0239192B900AB76EB /* FriendCell.swift in Sources */,
 				5A57E61923AFEFFF00E62316 /* CustomSegue.swift in Sources */,
@@ -317,8 +355,10 @@
 				5A3573992395B77800D3D6AC /* GroupsFactory.swift in Sources */,
 				5A35739B2395CC2600D3D6AC /* AllGroupsList.swift in Sources */,
 				5A36906C23B154770061A5A6 /* SwipeTransition.swift in Sources */,
+				5AEF0B9B23B280D100294A37 /* UIApplication+Controller.swift in Sources */,
 				F1D2EBC223A0109400F73236 /* MessageCell.swift in Sources */,
 				5A776BEB2392B8B400200AED /* User.swift in Sources */,
+				5AEF0B9923B27EE100294A37 /* ImageViewerPresenter.swift in Sources */,
 				5AAC414B23947EE300BA698A /* MyGroupsList.swift in Sources */,
 				5AD3B0EE23A18ED100204692 /* Post.swift in Sources */,
 			);
