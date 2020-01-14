@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 import WebKit
 
 class LoginWKViewController: UIViewController {
