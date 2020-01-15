@@ -30,28 +30,11 @@
                     <view key="view" contentMode="scaleToFill" id="GiK-F4-kl7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cmT-3A-7HZ">
-                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="zDs-wh-bMO" firstAttribute="bottom" secondItem="cmT-3A-7HZ" secondAttribute="bottom" id="67g-I4-JJF"/>
-                            <constraint firstItem="zDs-wh-bMO" firstAttribute="trailing" secondItem="cmT-3A-7HZ" secondAttribute="trailing" id="6la-yc-TzX"/>
-                            <constraint firstItem="cmT-3A-7HZ" firstAttribute="leading" secondItem="zDs-wh-bMO" secondAttribute="leading" id="Vkp-Ka-E13"/>
-                            <constraint firstItem="cmT-3A-7HZ" firstAttribute="top" secondItem="zDs-wh-bMO" secondAttribute="top" id="eco-OY-4Ye"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="zDs-wh-bMO"/>
                     </view>
                     <navigationItem key="navigationItem" id="B58-1J-2BU"/>
                     <connections>
-                        <outlet property="webView" destination="cmT-3A-7HZ" id="JJm-5i-Sws"/>
                         <segue destination="NCd-90-2Zo" kind="custom" customClass="CustomSegue" customModule="iOS_UI_practice1" customModuleProvider="target" id="Wat-8l-FXq"/>
                     </connections>
                 </viewController>
