@@ -43,6 +43,16 @@ class LoginWKViewController: UIViewController {
         webView.load(request)
     }
     
+    
+    func login() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: "MainTab")
+        nextViewController.transitioningDelegate = self
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.present(nextViewController, animated: true, completion: nil)
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -79,12 +89,21 @@ extension LoginWKViewController: WKNavigationDelegate {
         Session.shared.token = params["access_token"] ?? ""
         Session.shared.userId = params["user_id"] ?? ""
         
-        vkAPI.getFriendList(apiVersion: actualAPIVersion, token: Session.shared.token)
-        vkAPI.getUsersGroups(apiVersion: actualAPIVersion, token: Session.shared.token)
-        vkAPI.getUsersPhotos(apiVersion: actualAPIVersion, token: Session.shared.token)
         
-        vkAPI.findGroupBySearch(apiVersion: actualAPIVersion, token: Session.shared.token, searchText: "Музык")
+//        vkAPI.getFriendList(apiVersion: actualAPIVersion, token: Session.shared.token)
+//        vkAPI.getUsersGroups(apiVersion: actualAPIVersion, token: Session.shared.token)
+//        vkAPI.getUsersPhotos(apiVersion: actualAPIVersion, token: Session.shared.token)
+        
+//        vkAPI.findGroupBySearch(apiVersion: actualAPIVersion, token: Session.shared.token, searchText: "Музык")
         
         decisionHandler(.cancel)
+        
+        login()
+    }
+}
+
+extension LoginWKViewController : UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CardRotateTransition()
     }
 }

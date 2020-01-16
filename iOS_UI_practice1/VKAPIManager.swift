@@ -9,6 +9,30 @@
 import Foundation
 import Alamofire
 
+struct VKGroup: Decodable {
+    var id: Int
+    var name: String
+    var isMember: Int
+    var photo: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case isMember = "is_admin"
+        case photo = "photo_50"
+    }
+}
+
+struct ResponseData: Decodable {
+    var count: Int
+    var items: [VKGroup]
+}
+
+struct Response: Decodable {
+    var response: ResponseData
+    
+}
+
 class VKApi {
     let vkURL = "https://api.vk.com/method/"
     
@@ -33,8 +57,19 @@ class VKApi {
                       "count": "3",
                       "extended": "1"] // чтобы узнать больше информации
         
-        Alamofire.request(requestURL, method: .post, parameters: params).responseJSON(completionHandler: { (response) in
-            print("Группы: \n \(response)")
+        Alamofire.request(requestURL, method: .post, parameters: params)
+            .responseData(completionHandler: { (response) in
+//            print("Группы: \n \(response)")
+//                print(String(bytes: response.valыue!, encoding: .utf8))
+                
+                guard let data = response.value else { return }
+                do {
+                    let response = try JSONDecoder().decode(Response.self, from: data)
+                    print(response)
+                } catch {
+                    print(error)
+                }
+                
         })
     }
     
