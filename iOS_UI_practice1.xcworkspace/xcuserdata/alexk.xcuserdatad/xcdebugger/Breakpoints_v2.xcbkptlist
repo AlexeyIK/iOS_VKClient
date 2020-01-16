@@ -14,9 +14,89 @@
             filePath = "iOS_UI_practice1/LoginWKViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "webView(_:decidePolicyFor:decisionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "46649612-C5F2-49D1-B487-BF3C2B6480CB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOS_UI_practice1/UI/FriendList.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "46649612-C5F2-49D1-B487-BF3C2B6480CB - d7b770b84763ef24"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;iOS_UI_practice1.VKFriend&gt;) -&gt; () in iOS_UI_practice1.FriendList.viewDidLoad() -&gt; ()"
+                  moduleName = "iOS_UI_practice1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexk/Swift/Geekbrains_SwiftUI/iOS_UI_practice1/UI/FriendList.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "59">
+               </Location>
+               <Location
+                  uuid = "46649612-C5F2-49D1-B487-BF3C2B6480CB - ce5290d4ff7e70fc"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (iOS_UI_practice1.VKFriend) -&gt; Swift.Bool in closure #1 (Swift.Array&lt;iOS_UI_practice1.VKFriend&gt;) -&gt; () in iOS_UI_practice1.FriendList.viewDidLoad() -&gt; ()"
+                  moduleName = "iOS_UI_practice1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexk/Swift/Geekbrains_SwiftUI/iOS_UI_practice1/UI/FriendList.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "39">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1BD690CB-3B48-4A34-88C0-D084A34F5267"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOS_UI_practice1/VKAPIManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "getFriendList(apiVersion:token:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A8445A0A-B04A-4335-89A3-475B577B61B5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOS_UI_practice1/VKAPIManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "getFriendList(apiVersion:token:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

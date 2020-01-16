@@ -14,6 +14,8 @@ class Session {
     
     private init() {}
     
+    let actualAPIVersion = "5.103"
+    
     var token: String = ""
     var userId: String = ""
 }

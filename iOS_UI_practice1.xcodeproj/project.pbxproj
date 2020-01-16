@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A0A0DA923D1007C002C718D /* VKGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A0DA823D1007C002C718D /* VKGroup.swift */; };
+		5A0A0DAB23D10087002C718D /* VKFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A0DAA23D10087002C718D /* VKFriend.swift */; };
+		5A0A0DAD23D1008E002C718D /* VKPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A0DAC23D1008E002C718D /* VKPhoto.swift */; };
 		5A0E791623CB500300EDFBAD /* PostPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A0E791523CB500300EDFBAD /* PostPhotoCell.xib */; };
 		5A0E791A23CB53F800EDFBAD /* PostPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0E791923CB53F800EDFBAD /* PostPhotoCell.swift */; };
 		5A1A64BE23918E5700AB76EB /* FriendList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1A64BD23918E5700AB76EB /* FriendList.swift */; };
@@ -58,6 +61,9 @@
 
 /* Begin PBXFileReference section */
 		2FCE1E8905C783AE2F62592D /* Pods-iOS_UI_practice1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_UI_practice1.release.xcconfig"; path = "Target Support Files/Pods-iOS_UI_practice1/Pods-iOS_UI_practice1.release.xcconfig"; sourceTree = "<group>"; };
+		5A0A0DA823D1007C002C718D /* VKGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKGroup.swift; sourceTree = "<group>"; };
+		5A0A0DAA23D10087002C718D /* VKFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFriend.swift; sourceTree = "<group>"; };
+		5A0A0DAC23D1008E002C718D /* VKPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKPhoto.swift; sourceTree = "<group>"; };
 		5A0E791523CB500300EDFBAD /* PostPhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostPhotoCell.xib; sourceTree = "<group>"; };
 		5A0E791923CB53F800EDFBAD /* PostPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPhotoCell.swift; sourceTree = "<group>"; };
 		5A1A64BD23918E5700AB76EB /* FriendList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendList.swift; sourceTree = "<group>"; };
@@ -194,6 +200,9 @@
 				F1D2EBC623A0162300F73236 /* UsersFactory.swift */,
 				5AD3B0ED23A18ED100204692 /* Post.swift */,
 				F13729C123A2467C00731CF6 /* DateTimeHelper.swift */,
+				5A0A0DA823D1007C002C718D /* VKGroup.swift */,
+				5A0A0DAA23D10087002C718D /* VKFriend.swift */,
+				5A0A0DAC23D1008E002C718D /* VKPhoto.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -431,11 +440,14 @@
 				5A1A64C0239192B900AB76EB /* FriendCell.swift in Sources */,
 				5A24DD9923CD0CC90067ABC3 /* LoginWKViewController.swift in Sources */,
 				5A57E61923AFEFFF00E62316 /* CustomSegue.swift in Sources */,
+				5A0A0DA923D1007C002C718D /* VKGroup.swift in Sources */,
 				5AC8597523A659C400103D51 /* GroupsCell.swift in Sources */,
 				5A3573992395B77800D3D6AC /* GroupsFactory.swift in Sources */,
+				5A0A0DAD23D1008E002C718D /* VKPhoto.swift in Sources */,
 				5A35739B2395CC2600D3D6AC /* AllGroupsList.swift in Sources */,
 				5A36906C23B154770061A5A6 /* SwipeTransition.swift in Sources */,
 				5AEF0B9B23B280D100294A37 /* UIApplication+Controller.swift in Sources */,
+				5A0A0DAB23D10087002C718D /* VKFriend.swift in Sources */,
 				F1D2EBC223A0109400F73236 /* MessageCell.swift in Sources */,
 				5A776BEB2392B8B400200AED /* User.swift in Sources */,
 				5AEF0B9923B27EE100294A37 /* ImageViewerPresenter.swift in Sources */,

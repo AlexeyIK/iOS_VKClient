@@ -9,44 +9,29 @@
 import Foundation
 import Alamofire
 
-struct VKGroup: Decodable {
-    var id: Int
-    var name: String
-    var isMember: Int
-    var photo: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case isMember = "is_admin"
-        case photo = "photo_50"
-    }
-}
-
-struct ResponseData: Decodable {
-    var count: Int
-    var items: [VKGroup]
-}
-
-struct Response: Decodable {
-    var response: ResponseData
-    
-}
-
 class VKApi {
     let vkURL = "https://api.vk.com/method/"
     
-    func getFriendList(apiVersion: String, token: String) {
+    func getFriendList(apiVersion: String, token: String, completion: @escaping ([VKFriend]) -> Void) {
         let requestURL = vkURL + "friends.get"
         let params = ["access_token": token,
                       "order": "name",
-                      "count": "3",
+                      "count": "20",
                       "fields": "photo_50",
                       "v": apiVersion]
         
-        Alamofire.request(requestURL, method: .post, parameters: params).responseJSON(completionHandler: { (response) in
-            print("Друзья: \n \(response)")
-        })
+        Alamofire.request(requestURL, method: .post, parameters: params)
+            .responseData { (result) in
+                guard let data = result.value else { return }
+                
+                do {
+                    let result = try JSONDecoder().decode(ResponseFriends.self, from: data)
+                    print("Друзья: \n \(result)")
+                    completion(result.response.items)
+                } catch {
+                    print(error)
+                }
+        }
     }
     
     func getUsersGroups(apiVersion: String, token: String, userID: String = Session.shared.userId) {
@@ -63,13 +48,14 @@ class VKApi {
 //                print(String(bytes: response.valыue!, encoding: .utf8))
                 
                 guard let data = response.value else { return }
+//                guard let dataResponse = data["response"] else { return }
                 do {
-                    let response = try JSONDecoder().decode(Response.self, from: data)
+                    let response = try JSONDecoder().decode([ResponseGroups].self,
+                                                            from: data )
                     print(response)
                 } catch {
                     print(error)
                 }
-                
         })
     }
     

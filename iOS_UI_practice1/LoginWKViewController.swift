@@ -15,7 +15,6 @@ class LoginWKViewController: UIViewController {
     let apiID = "7280637"
     let session = URLSession(configuration: URLSessionConfiguration.default)
     let firstPage = "/blank.html"
-    let actualAPIVersion = "5.103"
     
     var webView: WKWebView!
     var vkAPI = VKApi()
@@ -36,7 +35,7 @@ class LoginWKViewController: UIViewController {
                               URLQueryItem(name: "redirect_uri", value: urlComponents.host! + firstPage),
                               URLQueryItem(name: "scope", value: "262150"),
                               URLQueryItem(name: "response_type", value: "token"),
-                              URLQueryItem(name: "v", value: actualAPIVersion)]
+                              URLQueryItem(name: "v", value: Session.shared.actualAPIVersion)]
         
         let request = URLRequest(url: urlComponents.url!)
         
@@ -93,7 +92,6 @@ extension LoginWKViewController: WKNavigationDelegate {
 //        vkAPI.getFriendList(apiVersion: actualAPIVersion, token: Session.shared.token)
 //        vkAPI.getUsersGroups(apiVersion: actualAPIVersion, token: Session.shared.token)
 //        vkAPI.getUsersPhotos(apiVersion: actualAPIVersion, token: Session.shared.token)
-        
 //        vkAPI.findGroupBySearch(apiVersion: actualAPIVersion, token: Session.shared.token, searchText: "Музык")
         
         decisionHandler(.cancel)

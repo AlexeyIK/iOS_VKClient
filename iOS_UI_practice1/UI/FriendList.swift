@@ -20,27 +20,36 @@ class FriendList: UITableViewController {
         logout()
     }
     
+    var vkAPI = VKApi()
+    
     // Список тестовых юзеров
-    let testUsersList = UsersFactory.getAllUsers()
-    
-    var friendsSection = [Section<User>]()
-    
-    var friendList = [User]()
-    var requestList = [User]()
+//    let testUsersList = UsersFactory.getAllUsers()
+    var allFriends = [VKFriend]()
+    var friendsSection = [Section<VKFriend>]()
+    var friendList = [VKFriend]()
+//    var requestList = [User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        mapToSections()
         
-        for nextUser in testUsersList {
-            if nextUser.isFriend {
-                friendList.append(nextUser)
-            }
-            else {
-                requestList.append(nextUser)
-            }
+        vkAPI.getFriendList(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token)
+        { (friends) in
+            self.allFriends = friends.filter { $0.deactivated == nil }
+            self.mapToSections()
+            self.tableView.reloadData()
         }
+        
+        mapToSections()
+//
+//        for nextUser in testUsersList {
+//            if nextUser.isFriend {
+//                friendList.append(nextUser)
+//            }
+//            else {
+//                requestList.append(nextUser)
+//            }
+//        }
     }
     
     private func logout() {
@@ -52,12 +61,14 @@ class FriendList: UITableViewController {
     }
     
     private func mapToSections() {
-        let friendsDictionary = Dictionary.init(grouping: testUsersList) {
-            $0.familyName!.prefix(1)
+        if allFriends.count > 0 {
+            let friendsDictionary = Dictionary.init(grouping: allFriends) {
+                $0.lastName.prefix(1)
+            }
+            
+            friendsSection = friendsDictionary.map { Section(title: String($0.key), items: $0.value) }
+            friendsSection.sort(by: { $0.title < $1.title })
         }
-        
-        friendsSection = friendsDictionary.map { Section(title: String($0.key), items: $0.value) }
-        friendsSection.sort(by: { $0.title < $1.title })
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -93,12 +104,12 @@ class FriendList: UITableViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "RequestTemplate", for: indexPath) as? RequestCell else {
                 return UITableViewCell()
             }
-            let user = requestList[indexPath.section]
+            /*let user = requestList[indexPath.section]
             
             cell.userName.text = user.fullName
             cell.num.text = String(requestList.count)
             cell.shadowAvatar.image.image = UIImage(named: user.avatarPath)
-            
+            */
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTemplate", for: indexPath) as? FriendCell else {
@@ -106,8 +117,17 @@ class FriendList: UITableViewController {
             }
             let user = friendsSection[indexPath.section - 1].items[indexPath.row]
             
-            cell.userName.text = user.fullName
-            cell.avatar.image.image = UIImage(named: user.avatarPath)
+//            cell.userName.text = user.fullName
+            cell.userName.text = user.firstName + " " + user.lastName
+            
+            DispatchQueue.main.async {
+                guard let imageURL = URL(string: user.avatarPath ?? "") else { return }
+                guard let imageData = try? Data(contentsOf: imageURL) else { return }
+                
+                cell.avatar.image.image = UIImage(data: imageData)
+            }
+            
+//             = UIImage(named: user.avatarPath)
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(avatarTapped))
             cell.avatar.addGestureRecognizer(tapGesture)
             
@@ -147,7 +167,7 @@ class FriendList: UITableViewController {
             return
         }
         
-        let username = friendList[indexPath.row].fullName
+        let username = friendList[indexPath.row].firstName + " " + friendList[indexPath.row].lastName
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "PhotoController") as! PhotoController
         viewController.user = username
@@ -180,12 +200,12 @@ extension FriendList: UISearchBarDelegate {
     }
     
     private func searchInFriends(searchText: String) {
-        let friendsDictionary = Dictionary.init(grouping: friendList.filter( { (user: User) -> Bool in
+        /*let friendsDictionary = Dictionary.init(grouping: friendList.filter( { (user: User) -> Bool in
             return searchText.isEmpty ? true : user.fullName.lowercased().contains(searchText.lowercased())
         }), by: { $0.familyName!.prefix(1) })
         
         friendsSection = friendsDictionary.map { Section(title: String($0.key), items: $0.value) }
-        friendsSection.sort(by: { $0.title < $1.title })
+        friendsSection.sort(by: { $0.title < $1.title })*/
         
         tableView.reloadData()
     }
