@@ -21,21 +21,13 @@ class MultiPhotoCollectionLayout: UICollectionViewLayout {
     
     override func prepare() {
         self.cacheAttributes = [:]
-        
         guard let collectionView = self.collectionView else { return }
-        
         let photosCount = collectionView.numberOfItems(inSection: 0)
         guard photosCount > 0 else { return }
         
-        if (photosCount <= maxNumOfColumns) {
-            cellHeight = collectionView.frame.width
-        }
-        else if (photosCount > maxNumOfColumns && photosCount <= maxNumOfColumns * 2) {
-            cellHeight = collectionView.frame.height / 2
-        }
-        else if (photosCount > maxNumOfColumns * 2) {
-            cellHeight = collectionView.frame.height / 3
-        }
+        // получаем необходимое количество строк при известном максимальном значении колонок
+        let numOfRows = ceil(CGFloat(photosCount) / CGFloat(maxNumOfColumns))
+        cellHeight = collectionView.frame.height / numOfRows
         
         var lastX: CGFloat = 0
         var lastY: CGFloat = 0
@@ -45,32 +37,28 @@ class MultiPhotoCollectionLayout: UICollectionViewLayout {
             let indexPath = IndexPath(item: i, section: 0)
             let attributeForIndex = UICollectionViewLayoutAttributes(forCellWith: indexPath)
             
-            if (photosCount - i) >= maxNumOfColumns {
+            // еслим строка еще не последняя, то делим на количество столбцов, если последняя, то на оставшиеся количество фотографий
+            if ceil(CGFloat(i + 1) / CGFloat(maxNumOfColumns)) < numOfRows || photosCount % maxNumOfColumns == 0 {
                 cellWidth = collectionView.frame.width / CGFloat(maxNumOfColumns)
-                attributeForIndex.frame = CGRect(
-                    x: lastX,
-                    y: lastY,
-                    width: cellWidth,
-                    height: cellHeight)
-
-                if ((i + 1) % maxNumOfColumns) == 0 {
-                    lastY += cellHeight + cellsMarginY
-                    lastX = 0
-                }
-                else {
-                    lastX += cellWidth + cellsMarginX
-                }
             }
             else {
-                cellWidth = collectionView.frame.width / CGFloat((photosCount + 2) % maxNumOfColumns + 1)
-                attributeForIndex.frame = CGRect(
-                    x: lastX,
-                    y: lastY,
-                    width: cellWidth,
-                    height: cellHeight)
-                
+                cellWidth = collectionView.frame.width / CGFloat(photosCount % maxNumOfColumns)
+            }
+            
+            attributeForIndex.frame = CGRect(
+                x: lastX,
+                y: lastY,
+                width: cellWidth,
+                height: cellHeight)
+            
+            if ((i + 1) % maxNumOfColumns) == 0 {
+                lastY += cellHeight + cellsMarginY
+                lastX = 0
+            }
+            else {
                 lastX += cellWidth + cellsMarginX
             }
+            
             cacheAttributes[indexPath] = attributeForIndex
         }
         containerHeight = lastY

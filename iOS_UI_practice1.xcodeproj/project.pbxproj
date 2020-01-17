@@ -48,7 +48,8 @@
 		5AEF0B9723B27C7E00294A37 /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEF0B9623B27C7E00294A37 /* PopAnimator.swift */; };
 		5AEF0B9923B27EE100294A37 /* ImageViewerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEF0B9823B27EE100294A37 /* ImageViewerPresenter.swift */; };
 		5AEF0B9B23B280D100294A37 /* UIApplication+Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEF0B9A23B280D100294A37 /* UIApplication+Controller.swift */; };
-		B792FB8BD04312D2D0E1F9D5 /* Pods_iOS_UI_practice1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1848661CA9EA49D22B4A445 /* Pods_iOS_UI_practice1.framework */; };
+		F111A46023D1EB1900270AAD /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F111A45F23D1EB1900270AAD /* ExternalAccessory.framework */; };
+		F111A46123D1EB4000270AAD /* Pods_iOS_UI_practice1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1848661CA9EA49D22B4A445 /* Pods_iOS_UI_practice1.framework */; };
 		F13729C223A2467C00731CF6 /* DateTimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13729C123A2467C00731CF6 /* DateTimeHelper.swift */; };
 		F14DAF3A239ABB3100D21230 /* LikeButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14DAF39239ABB3100D21230 /* LikeButtonController.swift */; };
 		F16F1302239ACBF800BA8CE6 /* CircleShadowImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16F1301239ACBF800BA8CE6 /* CircleShadowImage.swift */; };
@@ -106,6 +107,8 @@
 		5AEF0B9A23B280D100294A37 /* UIApplication+Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Controller.swift"; sourceTree = "<group>"; };
 		8082AE99FEE2D4E2C1B480C1 /* Pods-iOS_UI_practice1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_UI_practice1.debug.xcconfig"; path = "Target Support Files/Pods-iOS_UI_practice1/Pods-iOS_UI_practice1.debug.xcconfig"; sourceTree = "<group>"; };
 		A1848661CA9EA49D22B4A445 /* Pods_iOS_UI_practice1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_UI_practice1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F111A45E23D1EB1800270AAD /* iOS_UI_practice1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOS_UI_practice1.entitlements; sourceTree = "<group>"; };
+		F111A45F23D1EB1900270AAD /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		F13729C123A2467C00731CF6 /* DateTimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeHelper.swift; sourceTree = "<group>"; };
 		F14DAF39239ABB3100D21230 /* LikeButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButtonController.swift; sourceTree = "<group>"; };
 		F16F1301239ACBF800BA8CE6 /* CircleShadowImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShadowImage.swift; sourceTree = "<group>"; };
@@ -121,7 +124,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B792FB8BD04312D2D0E1F9D5 /* Pods_iOS_UI_practice1.framework in Frameworks */,
+				F111A46023D1EB1900270AAD /* ExternalAccessory.framework in Frameworks */,
+				F111A46123D1EB4000270AAD /* Pods_iOS_UI_practice1.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,6 +164,7 @@
 		5A3640322389DE7400945E79 /* iOS_UI_practice1 */ = {
 			isa = PBXGroup;
 			children = (
+				F111A45E23D1EB1800270AAD /* iOS_UI_practice1.entitlements */,
 				F1D2EBBE23A0105000F73236 /* MessageScreen */,
 				5AD3B0E523A1866C00204692 /* News */,
 				5ACDE7DF23919DAE00A9672F /* UI */,
@@ -269,6 +274,7 @@
 		EAA6C8A77B6D86AE0FFEE01F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F111A45F23D1EB1900270AAD /* ExternalAccessory.framework */,
 				A1848661CA9EA49D22B4A445 /* Pods_iOS_UI_practice1.framework */,
 			);
 			name = Frameworks;
@@ -599,6 +605,7 @@
 			baseConfigurationReference = 8082AE99FEE2D4E2C1B480C1 /* Pods-iOS_UI_practice1.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iOS_UI_practice1/iOS_UI_practice1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9942MC6727;
 				INFOPLIST_FILE = iOS_UI_practice1/Info.plist;
@@ -609,7 +616,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.alexeyikuznetsov.iOS-UI-practice1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -619,6 +626,7 @@
 			baseConfigurationReference = 2FCE1E8905C783AE2F62592D /* Pods-iOS_UI_practice1.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iOS_UI_practice1/iOS_UI_practice1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9942MC6727;
 				INFOPLIST_FILE = iOS_UI_practice1/Info.plist;
@@ -629,7 +637,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.alexeyikuznetsov.iOS-UI-practice1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

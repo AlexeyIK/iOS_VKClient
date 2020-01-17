@@ -16,7 +16,7 @@ class VKApi {
         let requestURL = vkURL + "friends.get"
         let params = ["access_token": token,
                       "order": "name",
-                      "count": "20",
+//                      "count": "20",
                       "fields": "photo_50",
                       "v": apiVersion]
         
