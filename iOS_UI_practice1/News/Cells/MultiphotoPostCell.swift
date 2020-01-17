@@ -38,7 +38,6 @@ class MultiphotoPostCell: UITableViewCell {
     
     func setCollectionViewDataSourceDelegate(dataSourceDelegate: UICollectionViewDataSource & UICollectionViewDelegate, forRow row: Int) {
         
-//        collectionView.register(PostPhotoCell.self, forCellWithReuseIdentifier: "postPhotoCell")
         collectionView.register(UINib(nibName: "PostPhotoCell", bundle: nil), forCellWithReuseIdentifier: "postPhotoCell")
         collectionView.delegate = dataSourceDelegate
         collectionView.dataSource = dataSourceDelegate
