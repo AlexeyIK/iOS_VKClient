@@ -19,7 +19,7 @@ struct VKFriend: Decodable {
         case id
         case firstName = "first_name"
         case lastName = "last_name"
-        case avatarPath = "photo_50"
+        case avatarPath = "photo_100"
         case deactivated
     }
 }

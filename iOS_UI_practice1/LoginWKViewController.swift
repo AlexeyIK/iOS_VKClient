@@ -15,6 +15,8 @@ class LoginWKViewController: UIViewController {
     let session = URLSession(configuration: URLSessionConfiguration.default)
     let firstPage = "/blank.html"
     
+    @IBOutlet weak var loader: UIActivityIndicatorView!
+    
     var webView: WKWebView!
     var vkAPI = VKApi()
     
@@ -24,7 +26,9 @@ class LoginWKViewController: UIViewController {
         let webViewConfig = WKWebViewConfiguration()
         webView = WKWebView(frame: view.frame, configuration: webViewConfig)
         webView.navigationDelegate = self
-
+        view.addSubview(webView)
+        view.bringSubviewToFront(loader)
+        
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "oauth.vk.com"
@@ -38,9 +42,9 @@ class LoginWKViewController: UIViewController {
         
         let request = URLRequest(url: urlComponents.url!)
         
+        loader.startAnimating()
         webView.load(request)
     }
-    
     
     func login() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -51,17 +55,6 @@ class LoginWKViewController: UIViewController {
             self.present(nextViewController, animated: true, completion: nil)
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension LoginWKViewController: WKNavigationDelegate {

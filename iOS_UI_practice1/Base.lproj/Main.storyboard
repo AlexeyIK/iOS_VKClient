@@ -30,11 +30,25 @@
                     <view key="view" contentMode="scaleToFill" id="GiK-F4-kl7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="tK3-We-mkL">
+                                <rect key="frame" x="162.66666666666666" y="386" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tK3-We-mkL" secondAttribute="height" multiplier="1:1" id="dac-BP-lSG"/>
+                                    <constraint firstAttribute="width" constant="50" id="lIU-6R-X84"/>
+                                </constraints>
+                            </activityIndicatorView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="tK3-We-mkL" firstAttribute="centerY" secondItem="zDs-wh-bMO" secondAttribute="centerY" id="1vI-jX-It1"/>
+                            <constraint firstItem="tK3-We-mkL" firstAttribute="centerX" secondItem="zDs-wh-bMO" secondAttribute="centerX" id="id4-RZ-0m6"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="zDs-wh-bMO"/>
                     </view>
                     <navigationItem key="navigationItem" id="B58-1J-2BU"/>
                     <connections>
+                        <outlet property="loader" destination="tK3-We-mkL" id="ViO-ak-dEN"/>
                         <segue destination="NCd-90-2Zo" kind="custom" customClass="CustomSegue" customModule="iOS_UI_practice1" customModuleProvider="target" id="Wat-8l-FXq"/>
                     </connections>
                 </viewController>

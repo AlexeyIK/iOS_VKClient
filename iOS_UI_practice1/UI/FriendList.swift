@@ -120,14 +120,19 @@ class FriendList: UITableViewController {
 //            cell.userName.text = user.fullName
             cell.userName.text = user.firstName + " " + user.lastName
             
-            DispatchQueue.main.async {
+            DispatchQueue.global().async {
                 guard let imageURL = URL(string: user.avatarPath ?? "") else { return }
                 guard let imageData = try? Data(contentsOf: imageURL) else { return }
                 
-                cell.avatar.image.image = UIImage(data: imageData)
+                DispatchQueue.main.async {
+                    cell.avatar.image.image = UIImage(data: imageData)
+                    cell.avatar.image.alpha = 0.0
+                    UIView.animate(withDuration: 0.3) {
+                        cell.avatar.image.alpha = 1.0
+                    }
+                }
             }
             
-//             = UIImage(named: user.avatarPath)
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(avatarTapped))
             cell.avatar.addGestureRecognizer(tapGesture)
             

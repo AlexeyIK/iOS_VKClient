@@ -17,7 +17,7 @@ class VKApi {
         let params = ["access_token": token,
                       "order": "name",
 //                      "count": "20",
-                      "fields": "photo_50",
+                      "fields": "photo_50, photo_100",
                       "v": apiVersion]
         
         Alamofire.request(requestURL, method: .post, parameters: params)
