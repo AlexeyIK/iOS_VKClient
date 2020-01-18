@@ -38,7 +38,6 @@ class FriendList: UITableViewController {
             self.allFriends = friends.filter { $0.deactivated == nil }
             self.friendsToShow = self.allFriends
             self.mapToSections()
-            self.tableView.reloadData()
         }
         
         mapToSections()
@@ -70,6 +69,8 @@ class FriendList: UITableViewController {
             friendsSection = friendsDictionary.map { Section(title: String($0.key), items: $0.value) }
             friendsSection.sort(by: { $0.title < $1.title })
         }
+        
+        tableView.reloadData()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -98,16 +99,14 @@ class FriendList: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let tableViewCell = cell as? FriendCell else { return }
-        
-//        tableViewCell.avatar.image.image = nil
-    }
+//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        guard let tableViewCell = cell as? FriendCell else { return }
+//    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.section {
-        case 0:
+        case 0: // Секция "заявки в друзья". ToDo: попробовать сделать с реальными данными
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "RequestTemplate", for: indexPath) as? RequestCell else {
                 return UITableViewCell()
             }
@@ -178,10 +177,14 @@ class FriendList: UITableViewController {
             return
         }
         
+        let targetRow = friendsSection[indexPath.section - 1].items[indexPath.row]
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "PhotoController") as! PhotoController
-        viewController.username = friendsToShow[indexPath.row].firstName + " " + friendsToShow[indexPath.row].lastName
-        viewController.userID = String(friendsToShow[indexPath.row].id)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "PhotoAlbumController") as! PhotoAlbumController
+        
+        viewController.username = targetRow.firstName + " " + targetRow.lastName
+        viewController.userID = String(targetRow.id)
+        print("userID: \(targetRow.id)")
         
         self.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -202,7 +205,14 @@ class FriendList: UITableViewController {
 // MARK: Friend search extension
 extension FriendList: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchInFriends(searchText: searchText)
+        if searchText != "" {
+            searchInFriends(searchText: searchText)
+        }
+        else {
+            friendsToShow = allFriends
+            view.endEditing(true)
+            mapToSections()
+        }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -210,14 +220,16 @@ extension FriendList: UISearchBarDelegate {
     }
     
     private func searchInFriends(searchText: String) {
-        /*let friendsDictionary = Dictionary.init(grouping: friendList.filter( { (user: User) -> Bool in
-            return searchText.isEmpty ? true : user.fullName.lowercased().contains(searchText.lowercased())
-        }), by: { $0.familyName!.prefix(1) })
-        
-        friendsSection = friendsDictionary.map { Section(title: String($0.key), items: $0.value) }
-        friendsSection.sort(by: { $0.title < $1.title })*/
-        
-        tableView.reloadData()
+        friendsToShow = allFriends.filter {
+            $0.firstName.lowercased().contains(searchText.lowercased()) ||
+                $0.lastName.lowercased().contains(searchText.lowercased())
+        }
+        mapToSections()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.searchTextField.text = ""
+        view.endEditing(true)
     }
 }
 

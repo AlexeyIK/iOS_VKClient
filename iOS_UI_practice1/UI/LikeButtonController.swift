@@ -14,7 +14,7 @@ class LikeButtonController: UIButton {
     @IBInspectable var standardColor : UIColor = UIColor.gray
     @IBInspectable var leftLabelMargin: CGFloat = 4
     
-    var likeCount : Int = Int.random(in: 0..<1000) {
+    var likeCount : Int = 0 {
         didSet {
             needUpdate()
         }
@@ -22,20 +22,17 @@ class LikeButtonController: UIButton {
     
     var likeImageSize : CGFloat = 16.0
     
-    var liked: Bool = false {
-        didSet {
-            if liked {
-                likeCount += 1
-                needUpdate()
-            } else {
-                likeCount -= 1
-                needUpdate()
-            }
-        }
-    }
+    var isLiked: Bool = false
     
     func Like() {
-        liked = !liked
+        isLiked = !isLiked
+        
+        if isLiked {
+            likeCount += 1
+        } else {
+            likeCount -= 1
+        }
+        
         needUpdate()
         animation()
     }
@@ -91,7 +88,7 @@ class LikeButtonController: UIButton {
         context.addQuadCurve(to: CGPoint(x: startX, y: startY), control: CGPoint(x: startX, y: likeImageSize/1.5))
         context.closePath()
         
-        if liked {
+        if isLiked {
             context.setFillColor(likeColor.cgColor)
             context.fillPath()
         }

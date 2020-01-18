@@ -391,6 +391,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchBar" destination="tWB-OD-n7Y" id="R8e-km-cBO"/>
+                        <segue destination="ezR-W1-bZE" kind="show" id="9vH-9H-g6F"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QJz-7g-G93" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -400,7 +401,7 @@
         <!--Photo Controller-->
         <scene sceneID="uNX-RK-byo">
             <objects>
-                <collectionViewController storyboardIdentifier="PhotoController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ezR-W1-bZE" userLabel="Photo Controller" customClass="PhotoController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="PhotoAlbumController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ezR-W1-bZE" userLabel="Photo Controller" customClass="PhotoAlbumController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="uak-i4-vOa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -419,14 +420,31 @@
                                     <rect key="frame" x="0.0" y="0.0" width="110" height="130"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" image="photo-icon" translatesAutoresizingMaskIntoConstraints="NO" id="F3J-di-4xz">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XxH-NI-mI6">
                                             <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
+                                            <subviews>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Ve3-9A-BB6">
+                                                    <rect key="frame" x="45" y="45" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F3J-di-4xz">
+                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="F3J-di-4xz" secondAttribute="height" multiplier="1:1" id="ikq-oy-5MV"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="F3J-di-4xz" secondAttribute="height" multiplier="1:1" id="ikq-oy-5MV"/>
+                                                <constraint firstAttribute="bottom" secondItem="F3J-di-4xz" secondAttribute="bottom" id="8yw-iD-uUf"/>
+                                                <constraint firstItem="Ve3-9A-BB6" firstAttribute="centerY" secondItem="XxH-NI-mI6" secondAttribute="centerY" id="Bf3-O8-FDE"/>
+                                                <constraint firstItem="F3J-di-4xz" firstAttribute="leading" secondItem="XxH-NI-mI6" secondAttribute="leading" id="Ju6-DP-xVd"/>
+                                                <constraint firstItem="F3J-di-4xz" firstAttribute="top" secondItem="XxH-NI-mI6" secondAttribute="top" id="Vmq-6U-abz"/>
+                                                <constraint firstItem="Ve3-9A-BB6" firstAttribute="centerX" secondItem="XxH-NI-mI6" secondAttribute="centerX" id="mE6-69-F4U"/>
+                                                <constraint firstAttribute="trailing" secondItem="F3J-di-4xz" secondAttribute="trailing" id="xEy-yQ-o5z"/>
                                             </constraints>
-                                        </imageView>
+                                        </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAA-lp-iW8" userLabel="Like" customClass="LikeButtonController" customModule="iOS_UI_practice1" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="112" width="55" height="16"/>
+                                            <rect key="frame" x="0.0" y="112" width="110" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="16" id="hxA-gP-V7p"/>
                                             </constraints>
@@ -453,14 +471,17 @@
                                     </subviews>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="F3J-di-4xz" firstAttribute="top" secondItem="A2j-Rb-gib" secondAttribute="top" id="Ah9-kB-Pxs"/>
-                                    <constraint firstItem="F3J-di-4xz" firstAttribute="width" secondItem="A2j-Rb-gib" secondAttribute="width" id="M4R-mj-LDD"/>
+                                    <constraint firstItem="gAA-lp-iW8" firstAttribute="width" secondItem="XxH-NI-mI6" secondAttribute="width" id="3Qi-Kx-7p4"/>
+                                    <constraint firstAttribute="bottom" secondItem="XxH-NI-mI6" secondAttribute="bottom" constant="20" id="CQt-7c-4e3"/>
+                                    <constraint firstItem="XxH-NI-mI6" firstAttribute="top" secondItem="A2j-Rb-gib" secondAttribute="top" id="F0j-PW-tQI"/>
+                                    <constraint firstItem="XxH-NI-mI6" firstAttribute="leading" secondItem="A2j-Rb-gib" secondAttribute="leading" id="OMc-h4-YzG"/>
+                                    <constraint firstAttribute="trailing" secondItem="XxH-NI-mI6" secondAttribute="trailing" id="ZyS-eL-hBj"/>
                                     <constraint firstItem="gAA-lp-iW8" firstAttribute="leading" secondItem="A2j-Rb-gib" secondAttribute="leading" id="a0o-qz-OZu"/>
-                                    <constraint firstItem="gAA-lp-iW8" firstAttribute="width" secondItem="F3J-di-4xz" secondAttribute="width" multiplier="1:2" id="psQ-11-fyf"/>
-                                    <constraint firstItem="F3J-di-4xz" firstAttribute="leading" secondItem="A2j-Rb-gib" secondAttribute="leading" id="qOH-CT-pua"/>
                                     <constraint firstAttribute="bottom" secondItem="gAA-lp-iW8" secondAttribute="bottom" constant="2" id="qT1-Uc-yRo"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="likes" destination="gAA-lp-iW8" id="Alz-C8-4ok"/>
+                                    <outlet property="loader" destination="Ve3-9A-BB6" id="tXP-3D-tLS"/>
                                     <outlet property="photo" destination="F3J-di-4xz" id="h0z-qD-KVm"/>
                                 </connections>
                             </collectionViewCell>
@@ -470,6 +491,7 @@
                             <outlet property="delegate" destination="ezR-W1-bZE" id="Jqo-M9-51E"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" title="User Name" id="HkI-nP-1rz"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6GB-N6-aZK" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Dnj-GQ-Lte" userLabel="Exit" sceneMemberID="exit"/>
@@ -711,6 +733,5 @@
         <image name="person.2.fill" catalog="system" width="64" height="40"/>
         <image name="person.3" catalog="system" width="72" height="35"/>
         <image name="person.3.fill" catalog="system" width="71" height="34"/>
-        <image name="photo-icon" width="225" height="225"/>
     </resources>
 </document>

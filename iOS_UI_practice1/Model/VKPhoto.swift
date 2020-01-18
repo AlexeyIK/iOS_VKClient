@@ -21,11 +21,11 @@ struct VKImageVariations: Decodable {
 
 struct VKLike: Decodable {
     var myLike: Int
-    var likesCount: Int
+    var count: Int
     
     enum CodingKeys: String, CodingKey {
         case myLike = "user_likes"
-        case likesCount = "count"
+        case count
     }
 }
 

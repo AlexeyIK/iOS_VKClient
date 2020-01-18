@@ -59,14 +59,14 @@ class VKApi {
     
 //    typealias Completion = (Result<VKPhoto, Error>) -> Void
     
-    func getUsersPhotos(apiVersion: String, token: String, userID: String = Session.shared.userId, when completed: @escaping ([VKPhoto]) -> Void) {
+    func getUsersPhotos(apiVersion: String, token: String, userID: String, when completed: @escaping ([VKPhoto]) -> Void) {
         let requestURL = vkURL + "photos.get"
         let params = ["access_token": token,
                       "user_id": userID,
                       "v": apiVersion,
-                      "album_id": "wall",
-                      "count": "5",
-                      "rev": "0",
+                      "album_id": "profile",
+//                      "count": "50",
+                      "rev": "1",
                       "owner_id": userID,
                       "extended": "1"] // чтобы узнать количество лайков
         
