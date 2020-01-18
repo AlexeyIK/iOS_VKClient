@@ -6,7 +6,7 @@
 //  Copyright © 2020 Alexey Kuznetsov. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 // Класс веб-сессии
 class Session {

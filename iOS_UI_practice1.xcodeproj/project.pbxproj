@@ -186,7 +186,6 @@
 		5A46ECF623D265BB008BE069 /* DataRequests */ = {
 			isa = PBXGroup;
 			children = (
-				5A24DD9A23CD0DEA0067ABC3 /* SessionObject.swift */,
 				5AB6777323CFBE1700AB5520 /* VKAPIManager.swift */,
 			);
 			path = DataRequests;
@@ -207,6 +206,7 @@
 		5ACDE7DE23919D5200A9672F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5A24DD9A23CD0DEA0067ABC3 /* SessionObject.swift */,
 				5A776BEA2392B8B400200AED /* User.swift */,
 				5AAC414623947AF900BA698A /* Group.swift */,
 				5A3573982395B77800D3D6AC /* GroupsFactory.swift */,
