@@ -576,7 +576,7 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" systemItem="featured" id="6wW-pk-Bae"/>
                     <navigationItem key="navigationItem" title="Группы" id="cm8-UQ-gZn">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="mxb-9t-gdP">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="mxb-9t-gdP">
                             <connections>
                                 <action selector="gotoSearch:" destination="u1x-MU-q2d" id="GcE-6j-yaO"/>
                                 <segue destination="zOh-LV-05e" kind="show" id="z1W-pc-UJR"/>
