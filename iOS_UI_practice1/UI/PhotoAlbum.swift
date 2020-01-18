@@ -62,7 +62,7 @@ class PhotoAlbumController: UICollectionViewController {
         }
         
         // Нам нужен Size типа "m" для красивого корректного превью
-        let imageSizeType = "m"
+        let imageSizeType = "p"
         
         cell.likes.likeCount = photoCollection[indexPath.item].likes.count
 //        cell.likes.isLiked = photoCollection[indexPath.item].likes.isLiked ?? false
