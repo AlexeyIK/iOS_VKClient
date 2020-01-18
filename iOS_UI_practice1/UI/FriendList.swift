@@ -26,7 +26,7 @@ class FriendList: UITableViewController {
 //    let testUsersList = UsersFactory.getAllUsers()
     var allFriends = [VKFriend]()
     var friendsSection = [Section<VKFriend>]()
-    var friendList = [VKFriend]()
+    var friendsToShow = [VKFriend]()
 //    var requestList = [User]()
     
     override func viewDidLoad() {
@@ -36,6 +36,7 @@ class FriendList: UITableViewController {
         vkAPI.getFriendList(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token)
         { (friends) in
             self.allFriends = friends.filter { $0.deactivated == nil }
+            self.friendsToShow = self.allFriends
             self.mapToSections()
             self.tableView.reloadData()
         }
@@ -61,8 +62,8 @@ class FriendList: UITableViewController {
     }
     
     private func mapToSections() {
-        if allFriends.count > 0 {
-            let friendsDictionary = Dictionary.init(grouping: allFriends) {
+        if friendsToShow.count > 0 {
+            let friendsDictionary = Dictionary.init(grouping: friendsToShow) {
                 $0.lastName.prefix(1)
             }
             
@@ -96,6 +97,12 @@ class FriendList: UITableViewController {
             return friendsSection[section - 1].items.count
         }
     }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let tableViewCell = cell as? FriendCell else { return }
+        
+//        tableViewCell.avatar.image.image = nil
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -116,8 +123,7 @@ class FriendList: UITableViewController {
                 return UITableViewCell()
             }
             let user = friendsSection[indexPath.section - 1].items[indexPath.row]
-            
-//            cell.userName.text = user.fullName
+
             cell.userName.text = user.firstName + " " + user.lastName
             
             DispatchQueue.global().async {
@@ -172,10 +178,10 @@ class FriendList: UITableViewController {
             return
         }
         
-        let username = friendList[indexPath.row].firstName + " " + friendList[indexPath.row].lastName
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "PhotoController") as! PhotoController
-        viewController.user = username
+        viewController.username = friendsToShow[indexPath.row].firstName + " " + friendsToShow[indexPath.row].lastName
+        viewController.userID = String(friendsToShow[indexPath.row].id)
         
         self.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -196,7 +202,6 @@ class FriendList: UITableViewController {
 // MARK: Friend search extension
 extension FriendList: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
         searchInFriends(searchText: searchText)
     }
     

@@ -51,9 +51,7 @@ class LoginWKViewController: UIViewController {
         let nextViewController = storyboard.instantiateViewController(withIdentifier: "MainTab")
         nextViewController.transitioningDelegate = self
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.present(nextViewController, animated: true, completion: nil)
-        }
+        self.present(nextViewController, animated: true, completion: nil)
     }
 }
 

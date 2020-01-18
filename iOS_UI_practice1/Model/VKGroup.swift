@@ -11,18 +11,24 @@ import Foundation
 struct VKGroup: Decodable {
     var id: Int
     var name: String
+    var theme: String
     var isMember: Int
-    var photo: String
+    var logo: String?
     
     enum CodingKeys: String, CodingKey {
         case id
         case name
+        case theme = "activity"
         case isMember = "is_admin"
-        case photo = "photo_50"
+        case logo = "photo_100"
     }
 }
 
-struct ResponseGroups: Decodable {
+struct GroupsArray: Decodable {
     var count: Int
     var items: [VKGroup]
+}
+
+struct ResponseGroups : Decodable {
+    var response: GroupsArray
 }

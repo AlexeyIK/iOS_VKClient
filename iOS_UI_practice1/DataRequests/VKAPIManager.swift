@@ -16,7 +16,7 @@ class VKApi {
         let requestURL = vkURL + "friends.get"
         let params = ["access_token": token,
                       "order": "name",
-//                      "count": "20",
+//                      "count": "50",
                       "fields": "photo_50, photo_100",
                       "v": apiVersion]
         
@@ -26,7 +26,7 @@ class VKApi {
                 
                 do {
                     let result = try JSONDecoder().decode(ResponseFriends.self, from: data)
-                    print("Друзья: \n \(result)")
+//                    print("Друзья: \n \(result)")
                     completion(result.response.items)
                 } catch {
                     print(error)
@@ -34,32 +34,32 @@ class VKApi {
         }
     }
     
-    func getUsersGroups(apiVersion: String, token: String, userID: String = Session.shared.userId) {
+    func getUsersGroups(apiVersion: String, token: String, userID: String = Session.shared.userId, completion: @escaping ([VKGroup]) -> Void ) {
         let requestURL = vkURL + "groups.get"
         let params = ["access_token": token,
                       "user_id": userID,
                       "v": apiVersion,
-                      "count": "3",
+                      "fields": "activity, photo_100",
+//                      "count": "30",
                       "extended": "1"] // чтобы узнать больше информации
         
         Alamofire.request(requestURL, method: .post, parameters: params)
-            .responseData(completionHandler: { (response) in
-//            print("Группы: \n \(response)")
-//                print(String(bytes: response.valыue!, encoding: .utf8))
+            .responseData(completionHandler: { (result) in
+                guard let data = result.value else { return }
                 
-                guard let data = response.value else { return }
-//                guard let dataResponse = data["response"] else { return }
                 do {
-                    let response = try JSONDecoder().decode([ResponseGroups].self,
-                                                            from: data )
-                    print(response)
+                    let result = try JSONDecoder().decode(ResponseGroups.self, from: data )
+                    print("Мои группы: \n\(result.response)")
+                    completion(result.response.items)
                 } catch {
                     print(error)
                 }
         })
     }
     
-    func getUsersPhotos(apiVersion: String, token: String, userID: String = Session.shared.userId) {
+//    typealias Completion = (Result<VKPhoto, Error>) -> Void
+    
+    func getUsersPhotos(apiVersion: String, token: String, userID: String = Session.shared.userId, when completed: @escaping ([VKPhoto]) -> Void) {
         let requestURL = vkURL + "photos.get"
         let params = ["access_token": token,
                       "user_id": userID,
@@ -70,8 +70,17 @@ class VKApi {
                       "owner_id": userID,
                       "extended": "1"] // чтобы узнать количество лайков
         
-        Alamofire.request(requestURL, method: .post, parameters: params).responseJSON(completionHandler: { (response) in
-            print("Фотографии: \n \(response)")
+        Alamofire.request(requestURL, method: .post, parameters: params)
+            .responseData(completionHandler: { (result) in
+//            print("Фотографии: \n \(response)")
+                guard let data = result.value else { return }
+                
+                do {
+                    let result = try JSONDecoder().decode(ResponsePhotos.self, from: data)
+                    completed(result.response.items)
+                } catch {
+                    print(error)
+                }
         })
     }
     

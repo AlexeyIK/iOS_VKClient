@@ -380,7 +380,7 @@
                             <outlet property="delegate" destination="8Wt-0b-aBn" id="KtB-Jk-2hN"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" systemItem="contacts" id="ATA-oA-Ajo"/>
+                    <tabBarItem key="tabBarItem" title="Friends" selectedImage="person.3.fill" catalog="system" id="ATA-oA-Ajo"/>
                     <navigationItem key="navigationItem" title="Друзья" id="WgN-ik-0as">
                         <barButtonItem key="rightBarButtonItem" title="Выйти" id="rnb-yu-6Om">
                             <connections>
@@ -609,15 +609,15 @@
             </objects>
             <point key="canvasLocation" x="2624.8000000000002" y="213.54679802955667"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Groups-->
         <scene sceneID="DhS-NB-vrg">
             <objects>
                 <navigationController id="QtJ-e2-Q4f" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="WAr-S0-4cR"/>
+                    <tabBarItem key="tabBarItem" title="Groups" image="person.3" catalog="system" selectedImage="person.3.fill" id="WAr-S0-4cR"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4gN-Gg-ldA">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.29803921570000003" green="0.50588235290000005" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.27450980392156865" green="0.50196078431372548" blue="0.76078431372549016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ejx-Id-G9N">
                         <autoresizingMask key="autoresizingMask"/>
@@ -657,7 +657,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PKy-c2-PgF">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.29803921570000003" green="0.50588235290000005" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.27450980390000002" green="0.50196078430000002" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="H7b-fK-YYT" kind="relationship" relationship="rootViewController" id="hOg-lU-3KG"/>
@@ -667,15 +667,15 @@
             </objects>
             <point key="canvasLocation" x="-138" y="649"/>
         </scene>
-        <!--Custom Navigation Controller-->
+        <!--Friends-->
         <scene sceneID="1Ch-j2-gGF">
             <objects>
                 <navigationController id="DXl-cd-v5N" customClass="CustomNavigationController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="contacts" id="zA2-Ih-ePm"/>
+                    <tabBarItem key="tabBarItem" title="Friends" image="person.2" catalog="system" selectedImage="person.2.fill" id="zA2-Ih-ePm"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uQ6-ZY-Mss">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.29803921568627451" green="0.50588235294117645" blue="0.75294117647058822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.27450980392156865" green="0.50196078431372548" blue="0.76078431372549016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="8Wt-0b-aBn" kind="relationship" relationship="rootViewController" id="Uaz-3Z-LsZ"/>
@@ -707,6 +707,10 @@
     </scenes>
     <resources>
         <image name="VK_Blue_Logo_transparent" width="1024" height="1024"/>
+        <image name="person.2" catalog="system" width="64" height="40"/>
+        <image name="person.2.fill" catalog="system" width="64" height="40"/>
+        <image name="person.3" catalog="system" width="72" height="35"/>
+        <image name="person.3.fill" catalog="system" width="71" height="34"/>
         <image name="photo-icon" width="225" height="225"/>
     </resources>
 </document>
