@@ -88,10 +88,6 @@ class FriendListController: UITableViewController {
             return friendsSection[section - 1].items.count
         }
     }
-    
-//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        guard let tableViewCell = cell as? FriendCell else { return }
-//    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -168,14 +164,11 @@ class FriendListController: UITableViewController {
         }
         
         let targetRow = friendsSection[indexPath.section - 1].items[indexPath.row]
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "PhotoAlbumController") as! PhotoAlbumController
         
         viewController.username = targetRow.firstName + " " + targetRow.lastName
         viewController.userID = String(targetRow.id)
-        print("userID: \(targetRow.id)")
-        
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
