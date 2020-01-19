@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyGroupsList: UITableViewController {
+class MyGroupsController: UITableViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     var customRefreshControl = UIRefreshControl()
@@ -78,7 +78,7 @@ class MyGroupsList: UITableViewController {
 }
 
 // MARK: - Search
-extension MyGroupsList : UISearchBarDelegate {
+extension MyGroupsController : UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -99,7 +99,7 @@ extension MyGroupsList : UISearchBarDelegate {
 }
 
 // MARK: - Table and cell settings
-extension MyGroupsList {
+extension MyGroupsController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

@@ -13,7 +13,7 @@ struct Section<T> {
     var items: [T]
 }
 
-class FriendList: UITableViewController {
+class FriendListController: UITableViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBAction func Logout(_ sender: Any) {
@@ -27,7 +27,6 @@ class FriendList: UITableViewController {
     var allFriends = [VKFriend]()
     var friendsSection = [Section<VKFriend>]()
     var friendsToShow = [VKFriend]()
-//    var requestList = [User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,15 +40,6 @@ class FriendList: UITableViewController {
         }
         
         mapToSections()
-//
-//        for nextUser in testUsersList {
-//            if nextUser.isFriend {
-//                friendList.append(nextUser)
-//            }
-//            else {
-//                requestList.append(nextUser)
-//            }
-//        }
     }
     
     private func logout() {
@@ -203,7 +193,7 @@ class FriendList: UITableViewController {
 }
 
 // MARK: Friend search extension
-extension FriendList: UISearchBarDelegate {
+extension FriendListController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText != "" {
             searchInFriends(searchText: searchText)
@@ -233,7 +223,7 @@ extension FriendList: UISearchBarDelegate {
     }
 }
 
-extension FriendList: UIViewControllerTransitioningDelegate {
+extension FriendListController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return CardRotateTransitionInverted()
     }

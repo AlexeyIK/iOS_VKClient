@@ -13,7 +13,7 @@ private let reuseIdentifier = "Cell"
 class PhotoAlbumController: UICollectionViewController {
 
     @IBAction func onClick(_ sender: Any) {
-        guard let button = (sender as? LikeButtonController) else { return }
+        guard let button = (sender as? LikeButton) else { return }
         button.Like()
     }
     
@@ -86,5 +86,5 @@ class PhotoAlbumController: UICollectionViewController {
 class PhotoCell : UICollectionViewCell {
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var loader: UIActivityIndicatorView!
-    @IBOutlet weak var likes: LikeButtonController!
+    @IBOutlet weak var likes: LikeButton!
 }

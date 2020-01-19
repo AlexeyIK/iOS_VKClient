@@ -31,7 +31,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="tK3-We-mkL">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="tK3-We-mkL">
                                 <rect key="frame" x="162.66666666666666" y="386" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="tK3-We-mkL" secondAttribute="height" multiplier="1:1" id="dac-BP-lSG"/>
@@ -56,10 +56,10 @@
             </objects>
             <point key="canvasLocation" x="-983" y="-366"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Login View Test Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LoginScreen" id="BYZ-38-t0r" customClass="LoginViewController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginScreen" id="BYZ-38-t0r" customClass="LoginViewTestController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -261,7 +261,7 @@
         <!--Friends View Controller-->
         <scene sceneID="MxC-S8-oSY">
             <objects>
-                <tableViewController id="8Wt-0b-aBn" userLabel="Friends View Controller" customClass="FriendList" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="8Wt-0b-aBn" userLabel="Friends View Controller" customClass="FriendListController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="70" estimatedRowHeight="83" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ixw-tj-vjb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -443,7 +443,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="F3J-di-4xz" secondAttribute="trailing" id="xEy-yQ-o5z"/>
                                             </constraints>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAA-lp-iW8" userLabel="Like" customClass="LikeButtonController" customModule="iOS_UI_practice1" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAA-lp-iW8" userLabel="Like" customClass="LikeButton" customModule="iOS_UI_practice1" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="112" width="110" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="16" id="hxA-gP-V7p"/>
@@ -501,7 +501,7 @@
         <!--Groups View Controller-->
         <scene sceneID="Tmm-7G-u5l">
             <objects>
-                <tableViewController id="Hj5-Zc-uth" userLabel="Groups View Controller" customClass="MyGroupsList" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Hj5-Zc-uth" userLabel="Groups View Controller" customClass="MyGroupsController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="oal-e7-X4P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -596,7 +596,7 @@
         <!--Groups Search Table View Controller-->
         <scene sceneID="Sp8-xS-UFO">
             <objects>
-                <tableViewController id="zOh-LV-05e" userLabel="Groups Search Table View Controller" customClass="AllGroupsList" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="zOh-LV-05e" userLabel="Groups Search Table View Controller" customClass="AllGroupsController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="1eC-Ur-KI8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

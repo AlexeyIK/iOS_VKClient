@@ -14,13 +14,13 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var timestamp: UILabel!
     @IBOutlet weak var postBodyText: UILabel!
-    @IBOutlet weak var likesCount: LikeButtonController!
+    @IBOutlet weak var likesCount: LikeButton!
     @IBOutlet weak var commentsLabel: UILabel!
     @IBOutlet weak var viewsLabel: UILabel!
     @IBOutlet weak var picture: UIImageView!
     
     @IBAction func likeOnClick(_ sender: Any) {
-        guard let likeButton = (sender as? LikeButtonController) else { return }
+        guard let likeButton = (sender as? LikeButton) else { return }
         likeButton.Like()
     }
     

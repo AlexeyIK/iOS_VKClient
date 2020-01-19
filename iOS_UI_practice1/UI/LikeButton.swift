@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LikeButtonController: UIButton {
+class LikeButton: UIButton {
     
     @IBInspectable var likeColor : UIColor = UIColor.red
     @IBInspectable var standardColor : UIColor = UIColor.gray

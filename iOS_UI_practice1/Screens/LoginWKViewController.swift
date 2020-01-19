@@ -61,6 +61,7 @@ extension LoginWKViewController: WKNavigationDelegate {
             let fragment = url.fragment
         else {
             decisionHandler(.allow)
+            loader.stopAnimating()
             return
         }
         
@@ -85,6 +86,7 @@ extension LoginWKViewController: WKNavigationDelegate {
 //        vkAPI.findGroupBySearch(apiVersion: actualAPIVersion, token: Session.shared.token, searchText: "Музык")
         
         decisionHandler(.cancel)
+        loader.stopAnimating()
         
         login()
     }
