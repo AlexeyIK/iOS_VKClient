@@ -8,8 +8,6 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 class PhotoAlbumController: UICollectionViewController {
 
     @IBAction func onClick(_ sender: Any) {
@@ -61,7 +59,7 @@ class PhotoAlbumController: UICollectionViewController {
             return UICollectionViewCell()
         }
         
-        // Нам нужен Size типа "m" для красивого корректного превью
+        // Нам нужен Size типа "p" для красивого корректного превью
         let imageSizeType = "p"
         
         cell.likes.likeCount = photoCollection[indexPath.item].likes.count

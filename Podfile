@@ -7,5 +7,6 @@ target 'iOS_UI_practice1' do
 
   # Pods for iOS_UI_practice1
   pod 'Alamofire'
+  pod 'Kingfisher', '~> 5.13'
 
 end
