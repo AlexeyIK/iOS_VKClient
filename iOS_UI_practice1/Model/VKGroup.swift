@@ -19,7 +19,7 @@ struct VKGroup: Decodable {
         case id
         case name
         case theme = "activity"
-        case isMember = "is_admin"
+        case isMember = "is_member"
         case logo = "photo_100"
     }
 }

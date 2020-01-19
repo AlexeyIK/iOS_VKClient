@@ -39,7 +39,7 @@ class VKApi {
         let params = ["access_token": token,
                       "user_id": userID,
                       "v": apiVersion,
-                      "fields": "activity, photo_100",
+                      "fields": "activity",
 //                      "count": "30",
                       "extended": "1"] // чтобы узнать больше информации
         

@@ -24,6 +24,7 @@ class PhotoAlbumController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = self.username
         updateNavigationItem()
     }
     
@@ -37,7 +38,6 @@ class PhotoAlbumController: UICollectionViewController {
             { (photos) in
 //                print("User photos:\n \(photos)")
                 self.photoCollection = photos
-                self.title = self.username
                 self.collectionView.reloadData()
             }
         }
