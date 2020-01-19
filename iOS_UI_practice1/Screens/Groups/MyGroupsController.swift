@@ -8,17 +8,21 @@
 
 import UIKit
 
-class MyGroupsList: UITableViewController {
+class MyGroupsController: UITableViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     var customRefreshControl = UIRefreshControl()
-    var groupsToShow = [Group]()
+//    var groupsToShow = [Group]()
+    var groupsToShow = [VKGroup]()
+    var groupsList = [VKGroup]()
+    
+    var vkAPI = VKApi()
     
     override func loadView() {
         super.loadView()
         // Инициализируем списки групп
-        GroupsFactory.updateList()
-        groupsToShow = GroupsFactory.myGroups
+//        GroupsFactory.updateList()
+//        groupsToShow = GroupsFactory.myGroups
     }
     
     override func viewDidLoad() {
@@ -26,12 +30,22 @@ class MyGroupsList: UITableViewController {
         searchBar.delegate = self
         tableView.register(UINib(nibName: "GroupsCell", bundle: nil), forCellReuseIdentifier: "GroupsTemplate")
         tableView.estimatedRowHeight = 75
+        
+        requestGroupList()
         addRefreshControl()
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        groupsToShow = GroupsFactory.myGroups
-        tableView.reloadData()
+//        groupsToShow = GroupsFactory.myGroups
+        requestGroupList()
+    }
+    
+    func requestGroupList() {
+        vkAPI.getUsersGroups(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token) { (receivedGroups) in
+            self.groupsList = receivedGroups
+            self.groupsToShow = receivedGroups
+            self.tableView.reloadData()
+        }
     }
     
     func addRefreshControl() {
@@ -41,7 +55,7 @@ class MyGroupsList: UITableViewController {
     }
     
     @objc func refreshTable() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
             self.customRefreshControl.endRefreshing()
         })
     }
@@ -64,7 +78,7 @@ class MyGroupsList: UITableViewController {
 }
 
 // MARK: - Search
-extension MyGroupsList : UISearchBarDelegate {
+extension MyGroupsController : UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -76,8 +90,8 @@ extension MyGroupsList : UISearchBarDelegate {
     }
     
     private func searchInGroups(searchText: String) {
-        groupsToShow = GroupsFactory.myGroups.filter( { (group) in
-            searchText.count > 0 ? group.groupName!.lowercased().contains(searchText.lowercased()) : true
+        groupsToShow = groupsList.filter( { (group) in
+            searchText.count > 0 ? group.name.lowercased().contains(searchText.lowercased()) : true
         })
         
         tableView.reloadData()
@@ -85,7 +99,7 @@ extension MyGroupsList : UISearchBarDelegate {
 }
 
 // MARK: - Table and cell settings
-extension MyGroupsList {
+extension MyGroupsController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -95,13 +109,32 @@ extension MyGroupsList {
         return groupsToShow.count
     }
     
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let tableViewCell = cell as? GroupsCell else { return }
+        
+//        tableViewCell.imageContainer.image.image = nil
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupsTemplate", for: indexPath) as! GroupsCell
         
-        cell.caption.text = groupsToShow[indexPath.row].groupName
-        cell.groupType.text = groupsToShow[indexPath.row].groupSubstring
-        cell.imageContainer.image.image = UIImage(named: groupsToShow[indexPath.row].imagePath!)
+        cell.caption.text = groupsToShow[indexPath.row].name
+        cell.groupType.text = groupsToShow[indexPath.row].theme
         cell.membersCount.isHidden = true
+        
+        DispatchQueue.global().async {
+            if let imageURL = URL(string: self.groupsToShow[indexPath.row].logo ?? "") {
+                if let imageData = try? Data(contentsOf: imageURL) {
+                    DispatchQueue.main.async {
+                        cell.imageContainer.image.image = UIImage(data: imageData)
+                        cell.imageContainer.image.alpha = 0.0
+                        UIView.animate(withDuration: 0.3) {
+                            cell.imageContainer.image.alpha = 1.0
+                        }
+                    }
+                }
+            }
+        }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         cell.imageContainer.addGestureRecognizer(tapGesture)
@@ -117,7 +150,7 @@ extension MyGroupsList {
         if editingStyle == .delete && index != nil {
             GroupsFactory.allGroupsList[index!].isMeInGroup = false
             GroupsFactory.updateList()
-            groupsToShow = GroupsFactory.myGroups
+            groupsToShow = groupsList
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }

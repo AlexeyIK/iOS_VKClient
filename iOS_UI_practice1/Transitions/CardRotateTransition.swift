@@ -24,7 +24,7 @@ class CardRotateTransition: NSObject, UIViewControllerAnimatedTransitioning {
         destinationVC.view.frame = source.view.frame
         destinationVC.view.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
         
-        UIView.animate(withDuration: 1.2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [], animations: {
+        UIView.animate(withDuration: 1.2, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [], animations: {
             destinationVC.view.transform = CGAffineTransform(rotationAngle: 0)
         }) { animationFinished in
             if animationFinished && !transitionContext.transitionWasCancelled {

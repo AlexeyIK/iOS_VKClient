@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AllGroupsList: UITableViewController {
+class AllGroupsController: UITableViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     var groupsToShow = [Group]()
     
@@ -48,7 +48,7 @@ class AllGroupsList: UITableViewController {
 }
 
 // MARK: - Search
-extension AllGroupsList : UISearchBarDelegate {
+extension AllGroupsController : UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchInGroups(searchText: searchText)
@@ -68,7 +68,7 @@ extension AllGroupsList : UISearchBarDelegate {
 }
 
 // MARK: - Table and cell settings
-extension AllGroupsList {
+extension AllGroupsController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

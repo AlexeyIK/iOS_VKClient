@@ -82,7 +82,7 @@
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VKE-AZ-rZl" userLabel="Footer">
                         <rect key="frame" x="16" y="464" width="180" height="22"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="voC-LQ-Ku6" userLabel="Likes" customClass="LikeButtonController" customModule="iOS_UI_practice1" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="voC-LQ-Ku6" userLabel="Likes" customClass="LikeButton" customModule="iOS_UI_practice1" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="55" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="h4o-ZE-bUb"/>
@@ -204,7 +204,7 @@
     </objects>
     <resources>
         <image name="comments_ico" width="70" height="60"/>
-        <image name="photo2" width="2000" height="1500"/>
+        <image name="photo2" width="1067" height="800"/>
         <image name="share_ico" width="60" height="60"/>
         <image name="views_ico" width="60" height="60"/>
     </resources>

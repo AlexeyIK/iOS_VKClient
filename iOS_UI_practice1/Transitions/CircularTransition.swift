@@ -19,7 +19,7 @@ class CircularTransition: NSObject, UIViewControllerAnimatedTransitioning {
             return
         }
         
-        let buttonFrom = (from as! LoginViewController).loginButton!
+        let buttonFrom = (from as! LoginViewTestController).loginButton!
         let backView = UIView()
         backView.frame = to.view.frame
         backView.backgroundColor = buttonFrom.backgroundColor

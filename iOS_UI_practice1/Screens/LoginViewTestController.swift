@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewTestController: UIViewController {
     @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var loginInput: UITextField!
     @IBOutlet weak var passInput: UITextField!
@@ -336,7 +336,7 @@ class FadePopAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 //    }
 //}
 
-extension LoginViewController : UIViewControllerTransitioningDelegate {
+extension LoginViewTestController : UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 //        return CircularTransition()
         return CardRotateTransition()

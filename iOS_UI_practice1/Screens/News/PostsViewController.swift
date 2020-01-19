@@ -14,7 +14,7 @@ class PostsViewController: UITableViewController {
         Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
              timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .day, value: -3, to: Date())!),
              postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. ",
-             photos: ["photo1"],
+             photos: ["photo1", "photo2", "photo3", "photo4", "photo5", "photo6", "photo2", "photo3"],
              likes: 3,
              comments: 0,
              views: 15),
@@ -22,7 +22,7 @@ class PostsViewController: UITableViewController {
         Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
              timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .day, value: -1, to: Date())!),
                   postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget.",
-                  photos: ["photo3", "photo2"],
+                  photos: ["photo3", "photo2", "photo5", "photo6"],
                   likes: 10,
                   comments: 2,
                   views: 15),
@@ -30,7 +30,7 @@ class PostsViewController: UITableViewController {
         Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
              timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .hour, value: -12, to: Date())!),
              postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-             photos: [String](),
+             photos: ["photo5"],
              likes: 22,
              comments: 4,
              views: 40),
@@ -38,7 +38,7 @@ class PostsViewController: UITableViewController {
         Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
              timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .hour, value: -1, to: Date())!),
              postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-             photos: ["photo2", "photo5", "photo3", "photo6", "photo4"],
+             photos: ["photo2", "photo5", "photo3"],
              likes: 14,
              comments: 1,
              views: 26)
@@ -46,7 +46,6 @@ class PostsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        tableView.register(UINib(nibName: "PostCell", bundle: nil), forCellReuseIdentifier: "PostTemplate")
         tableView.register(UINib(nibName: "MultiphotoPostCell", bundle: nil), forCellReuseIdentifier: "PostTemplate")
         tableView.estimatedRowHeight = 200.0
         tableView.rowHeight = UITableView.automaticDimension
@@ -57,13 +56,11 @@ class PostsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return postsArray.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "PostTemplate", for: indexPath) as! PostCell
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostTemplate", for: indexPath) as! MultiphotoPostCell
         cell.avatar.image.image = UIImage(named: postsArray[indexPath.row].author.avatarPath)
         cell.username.text = postsArray[indexPath.row].author.fullName
@@ -96,7 +93,6 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return postsArray[collectionView.tag].photos.count
-//        return 9
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -13,34 +13,33 @@ struct Section<T> {
     var items: [T]
 }
 
-class FriendList: UITableViewController {
+class FriendListController: UITableViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBAction func Logout(_ sender: Any) {
         logout()
     }
     
+    var vkAPI = VKApi()
+    
     // Список тестовых юзеров
-    let testUsersList = UsersFactory.getAllUsers()
-    
-    var friendsSection = [Section<User>]()
-    
-    var friendList = [User]()
-    var requestList = [User]()
+//    let testUsersList = UsersFactory.getAllUsers()
+    var allFriends = [VKFriend]()
+    var friendsSection = [Section<VKFriend>]()
+    var friendsToShow = [VKFriend]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        mapToSections()
         
-        for nextUser in testUsersList {
-            if nextUser.isFriend {
-                friendList.append(nextUser)
-            }
-            else {
-                requestList.append(nextUser)
-            }
+        vkAPI.getFriendList(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token)
+        { (friends) in
+            self.allFriends = friends.filter { $0.deactivated == nil }
+            self.friendsToShow = self.allFriends
+            self.mapToSections()
         }
+        
+        mapToSections()
     }
     
     private func logout() {
@@ -52,12 +51,16 @@ class FriendList: UITableViewController {
     }
     
     private func mapToSections() {
-        let friendsDictionary = Dictionary.init(grouping: testUsersList) {
-            $0.familyName!.prefix(1)
+        if friendsToShow.count > 0 {
+            let friendsDictionary = Dictionary.init(grouping: friendsToShow) {
+                $0.lastName.prefix(1)
+            }
+            
+            friendsSection = friendsDictionary.map { Section(title: String($0.key), items: $0.value) }
+            friendsSection.sort(by: { $0.title < $1.title })
         }
         
-        friendsSection = friendsDictionary.map { Section(title: String($0.key), items: $0.value) }
-        friendsSection.sort(by: { $0.title < $1.title })
+        tableView.reloadData()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -85,29 +88,46 @@ class FriendList: UITableViewController {
             return friendsSection[section - 1].items.count
         }
     }
+    
+//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        guard let tableViewCell = cell as? FriendCell else { return }
+//    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.section {
-        case 0:
+        case 0: // Секция "заявки в друзья". ToDo: попробовать сделать с реальными данными
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "RequestTemplate", for: indexPath) as? RequestCell else {
                 return UITableViewCell()
             }
-            let user = requestList[indexPath.section]
+            /*let user = requestList[indexPath.section]
             
             cell.userName.text = user.fullName
             cell.num.text = String(requestList.count)
             cell.shadowAvatar.image.image = UIImage(named: user.avatarPath)
-            
+            */
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTemplate", for: indexPath) as? FriendCell else {
                 return UITableViewCell()
             }
             let user = friendsSection[indexPath.section - 1].items[indexPath.row]
+
+            cell.userName.text = user.firstName + " " + user.lastName
             
-            cell.userName.text = user.fullName
-            cell.avatar.image.image = UIImage(named: user.avatarPath)
+            DispatchQueue.global().async {
+                guard let imageURL = URL(string: user.avatarPath ?? "") else { return }
+                guard let imageData = try? Data(contentsOf: imageURL) else { return }
+                
+                DispatchQueue.main.async {
+                    cell.avatar.image.image = UIImage(data: imageData)
+                    cell.avatar.image.alpha = 0.0
+                    UIView.animate(withDuration: 0.3) {
+                        cell.avatar.image.alpha = 1.0
+                    }
+                }
+            }
+            
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(avatarTapped))
             cell.avatar.addGestureRecognizer(tapGesture)
             
@@ -147,10 +167,14 @@ class FriendList: UITableViewController {
             return
         }
         
-        let username = friendList[indexPath.row].fullName
+        let targetRow = friendsSection[indexPath.section - 1].items[indexPath.row]
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "PhotoController") as! PhotoController
-        viewController.user = username
+        let viewController = storyboard.instantiateViewController(withIdentifier: "PhotoAlbumController") as! PhotoAlbumController
+        
+        viewController.username = targetRow.firstName + " " + targetRow.lastName
+        viewController.userID = String(targetRow.id)
+        print("userID: \(targetRow.id)")
         
         self.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -169,10 +193,16 @@ class FriendList: UITableViewController {
 }
 
 // MARK: Friend search extension
-extension FriendList: UISearchBarDelegate {
+extension FriendListController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        searchInFriends(searchText: searchText)
+        if searchText != "" {
+            searchInFriends(searchText: searchText)
+        }
+        else {
+            friendsToShow = allFriends
+            view.endEditing(true)
+            mapToSections()
+        }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -180,18 +210,20 @@ extension FriendList: UISearchBarDelegate {
     }
     
     private func searchInFriends(searchText: String) {
-        let friendsDictionary = Dictionary.init(grouping: friendList.filter( { (user: User) -> Bool in
-            return searchText.isEmpty ? true : user.fullName.lowercased().contains(searchText.lowercased())
-        }), by: { $0.familyName!.prefix(1) })
-        
-        friendsSection = friendsDictionary.map { Section(title: String($0.key), items: $0.value) }
-        friendsSection.sort(by: { $0.title < $1.title })
-        
-        tableView.reloadData()
+        friendsToShow = allFriends.filter {
+            $0.firstName.lowercased().contains(searchText.lowercased()) ||
+                $0.lastName.lowercased().contains(searchText.lowercased())
+        }
+        mapToSections()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.searchTextField.text = ""
+        view.endEditing(true)
     }
 }
 
-extension FriendList: UIViewControllerTransitioningDelegate {
+extension FriendListController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return CardRotateTransitionInverted()
     }

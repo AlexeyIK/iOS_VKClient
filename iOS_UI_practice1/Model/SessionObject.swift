@@ -6,13 +6,15 @@
 //  Copyright © 2020 Alexey Kuznetsov. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 // Класс веб-сессии
 class Session {
     public static let shared = Session()
     
     private init() {}
+    
+    let actualAPIVersion = "5.103"
     
     var token: String = ""
     var userId: String = ""

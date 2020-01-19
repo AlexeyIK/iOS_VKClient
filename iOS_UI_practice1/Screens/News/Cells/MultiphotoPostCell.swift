@@ -15,14 +15,14 @@ class MultiphotoPostCell: UITableViewCell {
     @IBOutlet weak var timestamp: UILabel!
     @IBOutlet weak var postBodyText: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var likesCount: LikeButtonController!
+    @IBOutlet weak var likesCount: LikeButton!
     @IBOutlet weak var commentsLabel: UILabel!
     @IBOutlet weak var viewsLabel: UILabel!
     
 //    var photoCollection : [String] = ["photo1", "photo2"]
     
     @IBAction func likeOnClick(_ sender: Any) {
-        guard let likeButton = (sender as? LikeButtonController) else { return }
+        guard let likeButton = (sender as? LikeButton) else { return }
         likeButton.Like()
     }
     
@@ -38,7 +38,6 @@ class MultiphotoPostCell: UITableViewCell {
     
     func setCollectionViewDataSourceDelegate(dataSourceDelegate: UICollectionViewDataSource & UICollectionViewDelegate, forRow row: Int) {
         
-//        collectionView.register(PostPhotoCell.self, forCellWithReuseIdentifier: "postPhotoCell")
         collectionView.register(UINib(nibName: "PostPhotoCell", bundle: nil), forCellWithReuseIdentifier: "postPhotoCell")
         collectionView.delegate = dataSourceDelegate
         collectionView.dataSource = dataSourceDelegate

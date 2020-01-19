@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 import WebKit
 
 class LoginWKViewController: UIViewController {
@@ -15,7 +14,8 @@ class LoginWKViewController: UIViewController {
     let apiID = "7280637"
     let session = URLSession(configuration: URLSessionConfiguration.default)
     let firstPage = "/blank.html"
-    let actualAPIVersion = "5.103"
+    
+    @IBOutlet weak var loader: UIActivityIndicatorView!
     
     var webView: WKWebView!
     var vkAPI = VKApi()
@@ -26,7 +26,9 @@ class LoginWKViewController: UIViewController {
         let webViewConfig = WKWebViewConfiguration()
         webView = WKWebView(frame: view.frame, configuration: webViewConfig)
         webView.navigationDelegate = self
-
+        view.addSubview(webView)
+        view.bringSubviewToFront(loader)
+        
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "oauth.vk.com"
@@ -36,24 +38,21 @@ class LoginWKViewController: UIViewController {
                               URLQueryItem(name: "redirect_uri", value: urlComponents.host! + firstPage),
                               URLQueryItem(name: "scope", value: "262150"),
                               URLQueryItem(name: "response_type", value: "token"),
-                              URLQueryItem(name: "v", value: actualAPIVersion)]
+                              URLQueryItem(name: "v", value: Session.shared.actualAPIVersion)]
         
         let request = URLRequest(url: urlComponents.url!)
         
+        loader.startAnimating()
         webView.load(request)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func login() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: "MainTab")
+        nextViewController.transitioningDelegate = self
+        
+        self.present(nextViewController, animated: true, completion: nil)
     }
-    */
-
 }
 
 extension LoginWKViewController: WKNavigationDelegate {
@@ -62,6 +61,7 @@ extension LoginWKViewController: WKNavigationDelegate {
             let fragment = url.fragment
         else {
             decisionHandler(.allow)
+            loader.stopAnimating()
             return
         }
         
@@ -79,12 +79,21 @@ extension LoginWKViewController: WKNavigationDelegate {
         Session.shared.token = params["access_token"] ?? ""
         Session.shared.userId = params["user_id"] ?? ""
         
-        vkAPI.getFriendList(apiVersion: actualAPIVersion, token: Session.shared.token)
-        vkAPI.getUsersGroups(apiVersion: actualAPIVersion, token: Session.shared.token)
-        vkAPI.getUsersPhotos(apiVersion: actualAPIVersion, token: Session.shared.token)
         
-        vkAPI.findGroupBySearch(apiVersion: actualAPIVersion, token: Session.shared.token, searchText: "Музык")
+//        vkAPI.getFriendList(apiVersion: actualAPIVersion, token: Session.shared.token)
+//        vkAPI.getUsersGroups(apiVersion: actualAPIVersion, token: Session.shared.token)
+//        vkAPI.getUsersPhotos(apiVersion: actualAPIVersion, token: Session.shared.token)
+//        vkAPI.findGroupBySearch(apiVersion: actualAPIVersion, token: Session.shared.token, searchText: "Музык")
         
         decisionHandler(.cancel)
+        loader.stopAnimating()
+        
+        login()
+    }
+}
+
+extension LoginWKViewController : UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CardRotateTransition()
     }
 }
