@@ -116,14 +116,15 @@ class FriendListController: UITableViewController {
             cell.userName.text = user.firstName + " " + user.lastName
             
             DispatchQueue.global().async {
-                guard let imageURL = URL(string: user.avatarPath ?? "") else { return }
-                guard let imageData = try? Data(contentsOf: imageURL) else { return }
-                
-                DispatchQueue.main.async {
-                    cell.avatar.image.image = UIImage(data: imageData)
-                    cell.avatar.image.alpha = 0.0
-                    UIView.animate(withDuration: 0.3) {
-                        cell.avatar.image.alpha = 1.0
+                if let imageURL = URL(string: user.avatarPath ?? "") {
+                    if let imageData = try? Data(contentsOf: imageURL) {
+                        DispatchQueue.main.async {
+                            cell.avatar.image.image = UIImage(data: imageData)
+                            cell.avatar.image.alpha = 0.0
+                            UIView.animate(withDuration: 0.3) {
+                                cell.avatar.image.alpha = 1.0
+                            }
+                        }
                     }
                 }
             }

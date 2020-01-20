@@ -36,8 +36,7 @@ class MyGroupsController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-//        groupsToShow = GroupsFactory.myGroups
-        requestGroupList()
+//        requestGroupList()
     }
     
     func requestGroupList() {
@@ -109,11 +108,9 @@ extension MyGroupsController {
         return groupsToShow.count
     }
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let tableViewCell = cell as? GroupsCell else { return }
-        
-//        tableViewCell.imageContainer.image.image = nil
-    }
+//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        guard let tableViewCell = cell as? GroupsCell else { return }
+//    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupsTemplate", for: indexPath) as! GroupsCell
