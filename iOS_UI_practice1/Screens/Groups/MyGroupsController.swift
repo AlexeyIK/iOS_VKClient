@@ -56,6 +56,7 @@ class MyGroupsController: UITableViewController {
     @objc func refreshTable() {
         DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
             self.customRefreshControl.endRefreshing()
+            self.requestGroupList()
         })
     }
     
