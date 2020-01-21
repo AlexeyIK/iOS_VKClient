@@ -41,10 +41,15 @@
 		5AC8597523A659C400103D51 /* GroupsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC8597323A659C400103D51 /* GroupsCell.swift */; };
 		5AC8597623A659C400103D51 /* GroupsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AC8597423A659C400103D51 /* GroupsCell.xib */; };
 		5ACDE7DD239196CB00A9672F /* PhotoAlbumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACDE7DC239196CB00A9672F /* PhotoAlbumController.swift */; };
+		5ACE8BD823D61E61000A257D /* FileCacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACE8BD723D61E61000A257D /* FileCacher.swift */; };
+		5ACE8BDB23D62612000A257D /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACE8BDA23D62612000A257D /* CoreData.swift */; };
+		5ACE8BDD23D626B1000A257D /* CoreDataUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACE8BDC23D626B1000A257D /* CoreDataUserRepository.swift */; };
+		5ACE8BE023D6271A000A257D /* VKClient.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5ACE8BDE23D6271A000A257D /* VKClient.xcdatamodeld */; };
 		5AD3B0E823A1869E00204692 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3B0E623A1869E00204692 /* PostCell.swift */; };
 		5AD3B0E923A1869E00204692 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD3B0E723A1869E00204692 /* PostCell.xib */; };
 		5AD3B0EC23A18D9B00204692 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3B0EB23A18D9B00204692 /* PostsViewController.swift */; };
 		5AD3B0EE23A18ED100204692 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3B0ED23A18ED100204692 /* Post.swift */; };
+		5AD5FFAB23D62BCA0093A314 /* RealmDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD5FFAA23D62BCA0093A314 /* RealmDatabase.swift */; };
 		5AEF0B9723B27C7E00294A37 /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEF0B9623B27C7E00294A37 /* PopAnimator.swift */; };
 		5AEF0B9923B27EE100294A37 /* ImageViewerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEF0B9823B27EE100294A37 /* ImageViewerPresenter.swift */; };
 		5AEF0B9B23B280D100294A37 /* UIApplication+Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEF0B9A23B280D100294A37 /* UIApplication+Controller.swift */; };
@@ -98,10 +103,15 @@
 		5AC8597323A659C400103D51 /* GroupsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsCell.swift; sourceTree = "<group>"; };
 		5AC8597423A659C400103D51 /* GroupsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupsCell.xib; sourceTree = "<group>"; };
 		5ACDE7DC239196CB00A9672F /* PhotoAlbumController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumController.swift; sourceTree = "<group>"; };
+		5ACE8BD723D61E61000A257D /* FileCacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCacher.swift; sourceTree = "<group>"; };
+		5ACE8BDA23D62612000A257D /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
+		5ACE8BDC23D626B1000A257D /* CoreDataUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUserRepository.swift; sourceTree = "<group>"; };
+		5ACE8BDF23D6271A000A257D /* VKClient.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VKClient.xcdatamodel; sourceTree = "<group>"; };
 		5AD3B0E623A1869E00204692 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		5AD3B0E723A1869E00204692 /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		5AD3B0EB23A18D9B00204692 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
 		5AD3B0ED23A18ED100204692 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		5AD5FFAA23D62BCA0093A314 /* RealmDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDatabase.swift; sourceTree = "<group>"; };
 		5AEF0B9623B27C7E00294A37 /* PopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopAnimator.swift; sourceTree = "<group>"; };
 		5AEF0B9823B27EE100294A37 /* ImageViewerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerPresenter.swift; sourceTree = "<group>"; };
 		5AEF0B9A23B280D100294A37 /* UIApplication+Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Controller.swift"; sourceTree = "<group>"; };
@@ -161,6 +171,8 @@
 		5A3640322389DE7400945E79 /* iOS_UI_practice1 */ = {
 			isa = PBXGroup;
 			children = (
+				5A46ECF623D265BB008BE069 /* API */,
+				5ACE8BD923D62601000A257D /* DataBase */,
 				F111A45E23D1EB1800270AAD /* iOS_UI_practice1.entitlements */,
 				F1D2EBBE23A0105000F73236 /* MessageScreen */,
 				5AFD0BDD23D46354002E5A5F /* Screens */,
@@ -168,22 +180,23 @@
 				5ACDE7DE23919D5200A9672F /* Model */,
 				5AEF0B9523B27C6500294A37 /* AnimatorPop */,
 				5A57E61A23AFF01F00E62316 /* Transitions */,
-				5A46ECF623D265BB008BE069 /* DataRequests */,
 				5A3640332389DE7400945E79 /* AppDelegate.swift */,
 				5A3640372389DE7400945E79 /* Main.storyboard */,
 				5A36403A2389DE7600945E79 /* Assets.xcassets */,
 				5A36403C2389DE7600945E79 /* LaunchScreen.storyboard */,
 				5A36403F2389DE7600945E79 /* Info.plist */,
+				5ACE8BDE23D6271A000A257D /* VKClient.xcdatamodeld */,
 			);
 			path = iOS_UI_practice1;
 			sourceTree = "<group>";
 		};
-		5A46ECF623D265BB008BE069 /* DataRequests */ = {
+		5A46ECF623D265BB008BE069 /* API */ = {
 			isa = PBXGroup;
 			children = (
 				5AB6777323CFBE1700AB5520 /* VKAPIManager.swift */,
+				5ACE8BD723D61E61000A257D /* FileCacher.swift */,
 			);
-			path = DataRequests;
+			path = API;
 			sourceTree = "<group>";
 		};
 		5A57E61A23AFF01F00E62316 /* Transitions */ = {
@@ -201,6 +214,7 @@
 		5ACDE7DE23919D5200A9672F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5AD5FFAA23D62BCA0093A314 /* RealmDatabase.swift */,
 				5A24DD9A23CD0DEA0067ABC3 /* SessionObject.swift */,
 				5A776BEA2392B8B400200AED /* User.swift */,
 				5AAC414623947AF900BA698A /* Group.swift */,
@@ -224,6 +238,15 @@
 				5AB12D8223A80BA800610167 /* Loader.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		5ACE8BD923D62601000A257D /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				5ACE8BDA23D62612000A257D /* CoreData.swift */,
+				5ACE8BDC23D626B1000A257D /* CoreDataUserRepository.swift */,
+			);
+			path = DataBase;
 			sourceTree = "<group>";
 		};
 		5AD3B0E523A1866C00204692 /* News */ = {
@@ -477,12 +500,14 @@
 				5A3640362389DE7400945E79 /* LoginViewTestController.swift in Sources */,
 				5A5B518323B4047800A28E2D /* MultiphotoPostCell.swift in Sources */,
 				5AD3B0E823A1869E00204692 /* PostCell.swift in Sources */,
+				5ACE8BD823D61E61000A257D /* FileCacher.swift in Sources */,
 				5A36906E23B16D3A0061A5A6 /* CustomNavigationController.swift in Sources */,
 				5AD3B0EC23A18D9B00204692 /* PostsViewController.swift in Sources */,
 				F1D2EBC523A0122E00F73236 /* MessageViewController.swift in Sources */,
 				5A36906A23B148F60061A5A6 /* CardRotateTransitionInverted.swift in Sources */,
 				5A3640342389DE7400945E79 /* AppDelegate.swift in Sources */,
 				5A57E61C23B000AB00E62316 /* CircularTransition.swift in Sources */,
+				5AD5FFAB23D62BCA0093A314 /* RealmDatabase.swift in Sources */,
 				F1D2EBC723A0162300F73236 /* UsersFactory.swift in Sources */,
 				F13729C223A2467C00731CF6 /* DateTimeHelper.swift in Sources */,
 				5A298A4F23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift in Sources */,
@@ -502,11 +527,14 @@
 				5A36906C23B154770061A5A6 /* SwipeTransition.swift in Sources */,
 				5AEF0B9B23B280D100294A37 /* UIApplication+Controller.swift in Sources */,
 				5A0A0DAB23D10087002C718D /* VKFriend.swift in Sources */,
+				5ACE8BDD23D626B1000A257D /* CoreDataUserRepository.swift in Sources */,
 				F1D2EBC223A0109400F73236 /* MessageCell.swift in Sources */,
 				5A776BEB2392B8B400200AED /* User.swift in Sources */,
 				5AEF0B9923B27EE100294A37 /* ImageViewerPresenter.swift in Sources */,
 				5AAC414B23947EE300BA698A /* MyGroupsController.swift in Sources */,
 				5AD3B0EE23A18ED100204692 /* Post.swift in Sources */,
+				5ACE8BE023D6271A000A257D /* VKClient.xcdatamodeld in Sources */,
+				5ACE8BDB23D62612000A257D /* CoreData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -714,6 +742,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5ACE8BDE23D6271A000A257D /* VKClient.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5ACE8BDF23D6271A000A257D /* VKClient.xcdatamodel */,
+			);
+			currentVersion = 5ACE8BDF23D6271A000A257D /* VKClient.xcdatamodel */;
+			path = VKClient.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5A3640282389DE7400945E79 /* Project object */;
 }
