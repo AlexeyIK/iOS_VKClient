@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-//        setenv("CFNETWORK_DIAGNOSTICS", "3", "1")
+        
+        let kfDownloader = KingfisherManager.shared.downloader
+        kfDownloader.downloadTimeout = 30
+        let kfCache = KingfisherManager.shared.cache
+        kfCache.diskStorage.config.sizeLimit = 50 * 1048576 // Max cache size is 50 MBytes
+        
+        kfCache.clearDiskCache() // очищаем кэш пока что при каждом запуске
+        
         return true
     }
 

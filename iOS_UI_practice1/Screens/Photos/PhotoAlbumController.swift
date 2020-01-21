@@ -65,18 +65,16 @@ class PhotoAlbumController: UICollectionViewController {
         cell.likes.likeCount = photoCollection[indexPath.item].likes.count
 //        cell.likes.isLiked = photoCollection[indexPath.item].likes.isLiked ?? false
         cell.likes.isLiked = photoCollection[indexPath.item].likes.myLike == 1 ? true : false
-        cell.photo.image = nil // обнуляем картинку при переиспользовании, она еще наверняка не загружена
         
-        cell.loader.startAnimating()
-        DispatchQueue.global().async {
-            if let imageUrl = URL(string: self.photoCollection[indexPath.item].imageSizes.first(where: { $0.type == imageSizeType })?.url ?? "") {
-                if let imageData = try? Data(contentsOf: imageUrl) {
-                    DispatchQueue.main.async {
-                        cell.photo.image = UIImage(data: imageData)
-                        cell.loader.stopAnimating()
-                    }
-                }
-            }
+        if let imageUrl = URL(string: self.photoCollection[indexPath.item]
+            .imageSizes.first(where: { $0.type == imageSizeType })?.url ?? "") {
+            
+            cell.loader.startAnimating()
+            cell.photo?.kf.setImage(with: imageUrl,
+                                    placeholder: nil,
+                                    completionHandler: { (_) in
+                                        cell.loader.stopAnimating()
+                                    })
         }
         
         return cell

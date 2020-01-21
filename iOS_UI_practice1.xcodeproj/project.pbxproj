@@ -42,8 +42,6 @@
 		5AC8597623A659C400103D51 /* GroupsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AC8597423A659C400103D51 /* GroupsCell.xib */; };
 		5ACDE7DD239196CB00A9672F /* PhotoAlbumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACDE7DC239196CB00A9672F /* PhotoAlbumController.swift */; };
 		5ACE8BD823D61E61000A257D /* FileCacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACE8BD723D61E61000A257D /* FileCacher.swift */; };
-		5ACE8BDB23D62612000A257D /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACE8BDA23D62612000A257D /* CoreData.swift */; };
-		5ACE8BDD23D626B1000A257D /* CoreDataUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACE8BDC23D626B1000A257D /* CoreDataUserRepository.swift */; };
 		5ACE8BE023D6271A000A257D /* VKClient.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5ACE8BDE23D6271A000A257D /* VKClient.xcdatamodeld */; };
 		5AD3B0E823A1869E00204692 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3B0E623A1869E00204692 /* PostCell.swift */; };
 		5AD3B0E923A1869E00204692 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD3B0E723A1869E00204692 /* PostCell.xib */; };
@@ -104,8 +102,6 @@
 		5AC8597423A659C400103D51 /* GroupsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupsCell.xib; sourceTree = "<group>"; };
 		5ACDE7DC239196CB00A9672F /* PhotoAlbumController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumController.swift; sourceTree = "<group>"; };
 		5ACE8BD723D61E61000A257D /* FileCacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCacher.swift; sourceTree = "<group>"; };
-		5ACE8BDA23D62612000A257D /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
-		5ACE8BDC23D626B1000A257D /* CoreDataUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUserRepository.swift; sourceTree = "<group>"; };
 		5ACE8BDF23D6271A000A257D /* VKClient.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VKClient.xcdatamodel; sourceTree = "<group>"; };
 		5AD3B0E623A1869E00204692 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		5AD3B0E723A1869E00204692 /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
@@ -214,7 +210,6 @@
 		5ACDE7DE23919D5200A9672F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5AD5FFAA23D62BCA0093A314 /* RealmDatabase.swift */,
 				5A24DD9A23CD0DEA0067ABC3 /* SessionObject.swift */,
 				5A776BEA2392B8B400200AED /* User.swift */,
 				5AAC414623947AF900BA698A /* Group.swift */,
@@ -243,8 +238,7 @@
 		5ACE8BD923D62601000A257D /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
-				5ACE8BDA23D62612000A257D /* CoreData.swift */,
-				5ACE8BDC23D626B1000A257D /* CoreDataUserRepository.swift */,
+				5AD5FFAA23D62BCA0093A314 /* RealmDatabase.swift */,
 			);
 			path = DataBase;
 			sourceTree = "<group>";
@@ -527,14 +521,12 @@
 				5A36906C23B154770061A5A6 /* SwipeTransition.swift in Sources */,
 				5AEF0B9B23B280D100294A37 /* UIApplication+Controller.swift in Sources */,
 				5A0A0DAB23D10087002C718D /* VKFriend.swift in Sources */,
-				5ACE8BDD23D626B1000A257D /* CoreDataUserRepository.swift in Sources */,
 				F1D2EBC223A0109400F73236 /* MessageCell.swift in Sources */,
 				5A776BEB2392B8B400200AED /* User.swift in Sources */,
 				5AEF0B9923B27EE100294A37 /* ImageViewerPresenter.swift in Sources */,
 				5AAC414B23947EE300BA698A /* MyGroupsController.swift in Sources */,
 				5AD3B0EE23A18ED100204692 /* Post.swift in Sources */,
 				5ACE8BE023D6271A000A257D /* VKClient.xcdatamodeld in Sources */,
-				5ACE8BDB23D62612000A257D /* CoreData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

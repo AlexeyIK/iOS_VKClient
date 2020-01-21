@@ -120,18 +120,14 @@ extension MyGroupsController {
         cell.groupType.text = groupsToShow[indexPath.row].theme
         cell.membersCount.isHidden = true
         
-        DispatchQueue.global().async {
-            if let imageURL = URL(string: self.groupsToShow[indexPath.row].logo ?? "") {
-                if let imageData = try? Data(contentsOf: imageURL) {
-                    DispatchQueue.main.async {
-                        cell.imageContainer.image.image = UIImage(data: imageData)
-                        cell.imageContainer.image.alpha = 0.0
-                        UIView.animate(withDuration: 0.3) {
-                            cell.imageContainer.image.alpha = 1.0
-                        }
-                    }
+        if let imageURL = URL(string: self.groupsToShow[indexPath.row].logo ?? "") {
+            cell.imageContainer.image.alpha = 0
+            
+            cell.imageContainer.image.kf.setImage(with: imageURL, placeholder: nil, completionHandler: { (_) in
+                UIView.animate(withDuration: 0.5) {
+                    cell.imageContainer.image.alpha = 1.0
                 }
-            }
+            })
         }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))

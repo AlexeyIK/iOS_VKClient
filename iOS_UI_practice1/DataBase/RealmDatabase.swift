@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import RealmDatabase
+//import RealmDatabase
 
 class UserRealm {
     @objc dynamic var id = 0
