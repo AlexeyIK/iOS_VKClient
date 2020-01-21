@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         kfCache.diskStorage.config.sizeLimit = 50 * 1048576 // Max cache size is 50 MBytes
         
         kfCache.clearDiskCache() // очищаем кэш пока что при каждом запуске
+        kfCache.clearMemoryCache()
         
         return true
     }

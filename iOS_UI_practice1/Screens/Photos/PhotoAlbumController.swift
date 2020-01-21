@@ -36,7 +36,6 @@ class PhotoAlbumController: UICollectionViewController {
                                  token: Session.shared.token,
                                  userID: userID!)
             { (photos) in
-//                print("User photos:\n \(photos)")
                 self.photoCollection = photos
                 self.collectionView.reloadData()
             }
@@ -63,12 +62,10 @@ class PhotoAlbumController: UICollectionViewController {
         let imageSizeType = "p"
         
         cell.likes.likeCount = photoCollection[indexPath.item].likes.count
-//        cell.likes.isLiked = photoCollection[indexPath.item].likes.isLiked ?? false
         cell.likes.isLiked = photoCollection[indexPath.item].likes.myLike == 1 ? true : false
         
         if let imageUrl = URL(string: self.photoCollection[indexPath.item]
             .imageSizes.first(where: { $0.type == imageSizeType })?.url ?? "") {
-            
             cell.loader.startAnimating()
             cell.photo?.kf.setImage(with: imageUrl,
                                     placeholder: nil,

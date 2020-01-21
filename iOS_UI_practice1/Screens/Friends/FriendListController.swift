@@ -29,18 +29,24 @@ class FriendListController: UITableViewController {
     var friendsSection = [Section<VKFriend>]()
     var friendsToShow = [VKFriend]()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        friendsRequest()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        
+        friendsRequest()
+    }
+    
+    private func friendsRequest() {
         vkAPI.getFriendList(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token)
         { (friends) in
             self.allFriends = friends.filter { $0.deactivated == nil }
             self.friendsToShow = self.allFriends
             self.mapToSections()
         }
-        
-        mapToSections()
     }
     
     private func logout() {
@@ -115,6 +121,7 @@ class FriendListController: UITableViewController {
             let user = friendsSection[indexPath.section - 1].items[indexPath.row]
 
             cell.userName.text = user.firstName + " " + user.lastName
+            cell.isOnline.isHidden = user.isOnline == 0 ? true : false
             
             if let imageURL = URL(string: user.avatarPath ?? "") {
                 cell.avatar.image.alpha = 0.0

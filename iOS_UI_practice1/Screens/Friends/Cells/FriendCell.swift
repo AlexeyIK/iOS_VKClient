@@ -11,6 +11,7 @@ import UIKit
 class FriendCell : UITableViewCell {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var avatar: CircleShadowImage!
+    @IBOutlet weak var isOnline: UILabel!
 }
 
 class RequestCell : UITableViewCell {

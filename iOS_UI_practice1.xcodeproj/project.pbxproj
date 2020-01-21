@@ -56,6 +56,7 @@
 		F13729C223A2467C00731CF6 /* DateTimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13729C123A2467C00731CF6 /* DateTimeHelper.swift */; };
 		F14DAF3A239ABB3100D21230 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14DAF39239ABB3100D21230 /* LikeButton.swift */; };
 		F16F1302239ACBF800BA8CE6 /* CircleShadowImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16F1301239ACBF800BA8CE6 /* CircleShadowImage.swift */; };
+		F1958D5123D75B0E008A5FF5 /* AlbumCollectionFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1958D5023D75B0E008A5FF5 /* AlbumCollectionFlow.swift */; };
 		F1D2EBC223A0109400F73236 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC023A0109400F73236 /* MessageCell.swift */; };
 		F1D2EBC323A0109400F73236 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D2EBC123A0109400F73236 /* MessageCell.xib */; };
 		F1D2EBC523A0122E00F73236 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC423A0122E00F73236 /* MessageViewController.swift */; };
@@ -118,6 +119,7 @@
 		F13729C123A2467C00731CF6 /* DateTimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeHelper.swift; sourceTree = "<group>"; };
 		F14DAF39239ABB3100D21230 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
 		F16F1301239ACBF800BA8CE6 /* CircleShadowImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShadowImage.swift; sourceTree = "<group>"; };
+		F1958D5023D75B0E008A5FF5 /* AlbumCollectionFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionFlow.swift; sourceTree = "<group>"; };
 		F1D2EBC023A0109400F73236 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		F1D2EBC123A0109400F73236 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		F1D2EBC423A0122E00F73236 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
@@ -170,7 +172,6 @@
 				5A46ECF623D265BB008BE069 /* API */,
 				5ACE8BD923D62601000A257D /* DataBase */,
 				F111A45E23D1EB1800270AAD /* iOS_UI_practice1.entitlements */,
-				F1D2EBBE23A0105000F73236 /* MessageScreen */,
 				5AFD0BDD23D46354002E5A5F /* Screens */,
 				5ACDE7DF23919DAE00A9672F /* UI */,
 				5ACDE7DE23919D5200A9672F /* Model */,
@@ -229,7 +230,6 @@
 			children = (
 				F14DAF39239ABB3100D21230 /* LikeButton.swift */,
 				F16F1301239ACBF800BA8CE6 /* CircleShadowImage.swift */,
-				F1D2EBC823A018F000F73236 /* CustomCollectionUILayout.swift */,
 				5AB12D8223A80BA800610167 /* Loader.swift */,
 			);
 			path = UI;
@@ -247,8 +247,9 @@
 			isa = PBXGroup;
 			children = (
 				5AD3B0EA23A18D6100204692 /* Cells */,
-				5AD3B0EB23A18D9B00204692 /* PostsViewController.swift */,
+				F1D2EBC823A018F000F73236 /* CustomCollectionUILayout.swift */,
 				5A298A4E23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift */,
+				5AD3B0EB23A18D9B00204692 /* PostsViewController.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -279,6 +280,7 @@
 		5AFD0BDD23D46354002E5A5F /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				F1D2EBBE23A0105000F73236 /* MessageScreen */,
 				5AFD0BE023D4644A002E5A5F /* Photos */,
 				5AFD0BDE23D46421002E5A5F /* Friends */,
 				5AFD0BDF23D46429002E5A5F /* Groups */,
@@ -313,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				5ACDE7DC239196CB00A9672F /* PhotoAlbumController.swift */,
+				F1958D5023D75B0E008A5FF5 /* AlbumCollectionFlow.swift */,
 			);
 			path = Photos;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 				5ACE8BD823D61E61000A257D /* FileCacher.swift in Sources */,
 				5A36906E23B16D3A0061A5A6 /* CustomNavigationController.swift in Sources */,
 				5AD3B0EC23A18D9B00204692 /* PostsViewController.swift in Sources */,
+				F1958D5123D75B0E008A5FF5 /* AlbumCollectionFlow.swift in Sources */,
 				F1D2EBC523A0122E00F73236 /* MessageViewController.swift in Sources */,
 				5A36906A23B148F60061A5A6 /* CardRotateTransitionInverted.swift in Sources */,
 				5A3640342389DE7400945E79 /* AppDelegate.swift in Sources */,

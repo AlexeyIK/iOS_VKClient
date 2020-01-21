@@ -352,9 +352,15 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Василий Комаров" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1aW-nf-I90">
-                                            <rect key="frame" x="77" y="29.666666666666671" width="144" height="21"/>
+                                            <rect key="frame" x="76.999999999999986" y="29.666666666666671" width="143.66666666666663" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="online" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVF-mM-NVb">
+                                            <rect key="frame" x="313" y="29.666666666666671" width="46" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -362,6 +368,9 @@
                                         <constraint firstItem="tLf-uL-sgE" firstAttribute="width" secondItem="tLf-uL-sgE" secondAttribute="height" multiplier="1:1" id="9ez-su-lKM"/>
                                         <constraint firstItem="tLf-uL-sgE" firstAttribute="leading" secondItem="vsw-YS-SK5" secondAttribute="leading" constant="15" id="AP6-rT-ls4"/>
                                         <constraint firstItem="1aW-nf-I90" firstAttribute="centerY" secondItem="vsw-YS-SK5" secondAttribute="centerY" id="AXA-QN-pNB"/>
+                                        <constraint firstItem="bVF-mM-NVb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1aW-nf-I90" secondAttribute="trailing" constant="30" id="EYn-Ma-anN"/>
+                                        <constraint firstAttribute="trailing" secondItem="bVF-mM-NVb" secondAttribute="trailing" constant="16" id="IcC-Vj-fns"/>
+                                        <constraint firstItem="bVF-mM-NVb" firstAttribute="centerY" secondItem="vsw-YS-SK5" secondAttribute="centerY" id="QSJ-E3-03s"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tLf-uL-sgE" secondAttribute="trailing" constant="200" id="Ugg-nn-HRC"/>
                                         <constraint firstItem="tLf-uL-sgE" firstAttribute="centerY" secondItem="vsw-YS-SK5" secondAttribute="centerY" id="b9R-yK-jCD"/>
                                         <constraint firstItem="1aW-nf-I90" firstAttribute="leading" secondItem="tLf-uL-sgE" secondAttribute="trailing" constant="12" id="e1m-eA-l3I"/>
@@ -370,6 +379,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="avatar" destination="tLf-uL-sgE" id="ETE-ON-Ltz"/>
+                                    <outlet property="isOnline" destination="bVF-mM-NVb" id="EIR-Pn-WoM"/>
                                     <outlet property="userName" destination="1aW-nf-I90" id="kbU-ti-zCV"/>
                                 </connections>
                             </tableViewCell>
@@ -406,28 +416,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Lkd-mB-kty">
-                            <size key="itemSize" width="110" height="130"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
-                        </collectionViewFlowLayout>
+                        <collectionViewLayout key="collectionViewLayout" id="EDt-Vc-fa3" customClass="AlbumCollectionFlow" customModule="iOS_UI_practice1" customModuleProvider="target"/>
                         <cells>
                             <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photo" id="A2j-Rb-gib" customClass="PhotoCell" customModule="iOS_UI_practice1" customModuleProvider="target">
-                                <rect key="frame" x="10" y="10" width="110" height="130"/>
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="110" height="130"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XxH-NI-mI6">
-                                            <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
                                             <subviews>
                                                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Ve3-9A-BB6">
-                                                    <rect key="frame" x="45" y="45" width="20" height="20"/>
+                                                    <rect key="frame" x="15" y="5" width="20" height="20"/>
                                                 </activityIndicatorView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F3J-di-4xz">
-                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="F3J-di-4xz" secondAttribute="height" multiplier="1:1" id="ikq-oy-5MV"/>
                                                     </constraints>
@@ -444,7 +449,7 @@
                                             </constraints>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAA-lp-iW8" userLabel="Like" customClass="LikeButton" customModule="iOS_UI_practice1" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="112" width="110" height="16"/>
+                                            <rect key="frame" x="0.0" y="32" width="50" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="16" id="hxA-gP-V7p"/>
                                             </constraints>

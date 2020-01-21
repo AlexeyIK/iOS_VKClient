@@ -1,23 +1,23 @@
 //
-//  MultiphotoCollectionFlow.swift
+//  AlbumCollectionFlow.swift
 //  iOS_UI_practice1
 //
-//  Created by Alex on 07.01.2020.
+//  Created by Alexey on 21/01/2020.
 //  Copyright © 2020 Alexey Kuznetsov. All rights reserved.
 //
 
 import UIKit
 
-class MultiPhotoCollectionLayout: UICollectionViewLayout {
+class AlbumCollectionFlow : UICollectionViewLayout {
     
     var cacheAttributes = [IndexPath: UICollectionViewLayoutAttributes]()
     
     @IBInspectable var cellsMarginX: CGFloat = 2.0
-    @IBInspectable var cellsMarginY: CGFloat = 2.0
+    @IBInspectable var cellsMarginY: CGFloat = 4.0
     @IBInspectable var maxNumOfColumns = 3
-    var containerHeight: CGFloat = 0
     
-    private var totalCellsHeight: CGFloat = 0
+    var containerHeight: CGFloat = 0
+    var photoCaptionHeight: CGFloat = 20.0
     
     override func prepare() {
         self.cacheAttributes = [:]
@@ -27,7 +27,7 @@ class MultiPhotoCollectionLayout: UICollectionViewLayout {
         
         // получаем необходимое количество строк при известном максимальном значении колонок
         let numOfRows = ceil(CGFloat(photosCount) / CGFloat(maxNumOfColumns))
-        let cellHeight = collectionView.frame.height / numOfRows
+        let cellHeight = collectionView.frame.width / CGFloat(maxNumOfColumns) + photoCaptionHeight
         
         var lastX: CGFloat = 0
         var lastY: CGFloat = 0
@@ -61,7 +61,7 @@ class MultiPhotoCollectionLayout: UICollectionViewLayout {
             
             cacheAttributes[indexPath] = attributeForIndex
         }
-        containerHeight = lastY
+        containerHeight = lastY + cellHeight + cellsMarginY
     }
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {

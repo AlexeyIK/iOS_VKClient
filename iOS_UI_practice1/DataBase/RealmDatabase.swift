@@ -7,12 +7,20 @@
 //
 
 import Foundation
-//import RealmDatabase
+import RealmSwift
 
-class UserRealm {
+class UserRealm : Object {
     @objc dynamic var id = 0
-    @objc dynamic var username = ""
-    @objc dynamic var lastname = ""
+    @objc dynamic var firstName = ""
+    @objc dynamic var lastName = ""
+    @objc dynamic var avatarPath: String = ""
+    @objc dynamic var deactivated: String = ""
+    @objc dynamic var isOnline: Bool = false
+}
+
+class UsersArrayRealm : Object {
+    @objc dynamic var count = 0
+    var items = List<UserRealm>()
 }
 
 class UsersRepositoryRealm {
