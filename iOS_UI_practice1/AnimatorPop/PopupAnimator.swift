@@ -1,5 +1,5 @@
 //
-//  PopAnimator.swift
+//  PopupAnimator.swift
 //  iOS_UI_practice1
 //
 //  Created by Alex on 24.12.2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+class PopupAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     let duration = 1.0
     var originFrame = CGRect.zero
     
@@ -29,7 +29,7 @@ class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         
         recipeView.transform = scaleTransform
         recipeView.center = CGPoint(x: originFrame.midX, y: originFrame.midY)
-        
+        recipeView.backgroundColor = UIColor.black.withAlphaComponent(0)
         recipeView.clipsToBounds = true
         
         container.addSubview(toView)
@@ -38,6 +38,7 @@ class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         UIView.animate(withDuration: duration, animations: {
             recipeView.transform = .identity
             recipeView.center = CGPoint(x: finalFrame.midX, y: finalFrame.midY)
+            recipeView.backgroundColor = UIColor.black.withAlphaComponent(1.0)
         }) { (isCompleted) in
             transitionContext.completeTransition(isCompleted)
         }

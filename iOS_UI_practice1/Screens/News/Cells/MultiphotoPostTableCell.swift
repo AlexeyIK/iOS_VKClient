@@ -1,5 +1,5 @@
 //
-//  MultiphotoPostCell.swift
+//  MultiphotoPostTableCell.swift
 //  iOS_UI_practice1
 //
 //  Created by Alex on 25.12.2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MultiphotoPostCell: UITableViewCell {
+class MultiphotoPostTableCell: UITableViewCell {
     
     @IBOutlet weak var avatar: CircleShadowImage!
     @IBOutlet weak var username: UILabel!
@@ -19,7 +19,7 @@ class MultiphotoPostCell: UITableViewCell {
     @IBOutlet weak var commentsLabel: UILabel!
     @IBOutlet weak var viewsLabel: UILabel!
     
-//    var photoCollection : [String] = ["photo1", "photo2"]
+    var viewClicked: ((UIView)->())? = nil
     
     @IBAction func likeOnClick(_ sender: Any) {
         guard let likeButton = (sender as? LikeButton) else { return }
@@ -37,7 +37,6 @@ class MultiphotoPostCell: UITableViewCell {
     }
     
     func setCollectionViewDataSourceDelegate(dataSourceDelegate: UICollectionViewDataSource & UICollectionViewDelegate, forRow row: Int) {
-        
         collectionView.register(UINib(nibName: "PostPhotoCell", bundle: nil), forCellWithReuseIdentifier: "postPhotoCell")
         collectionView.delegate = dataSourceDelegate
         collectionView.dataSource = dataSourceDelegate

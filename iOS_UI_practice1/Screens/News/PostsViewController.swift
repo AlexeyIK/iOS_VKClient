@@ -8,7 +8,12 @@
 
 import UIKit
 
-class PostsViewController: UITableViewController {
+class PostsViewController: UITableViewController, ImageViewPresenterSource {
+    
+    let postsBottomMargin: CGFloat = 15.0
+    var source: UIView?
+    var viewClicked: ((UIView)->())? = nil
+    var imageToShow: UIImage?
     
     let postsArray : [Post] = [
         Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
@@ -46,7 +51,7 @@ class PostsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "MultiphotoPostCell", bundle: nil), forCellReuseIdentifier: "PostTemplate")
+        tableView.register(UINib(nibName: "MultiphotoPostTableCell", bundle: nil), forCellReuseIdentifier: "PostTemplate")
         tableView.estimatedRowHeight = 200.0
         tableView.rowHeight = UITableView.automaticDimension
     }
@@ -61,7 +66,7 @@ class PostsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PostTemplate", for: indexPath) as! MultiphotoPostCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostTemplate", for: indexPath) as! MultiphotoPostTableCell
         cell.avatar.image.image = UIImage(named: postsArray[indexPath.row].author.avatarPath)
         cell.username.text = postsArray[indexPath.row].author.fullName
         cell.timestamp.text = postsArray[indexPath.row].timestamp
@@ -75,12 +80,22 @@ class PostsViewController: UITableViewController {
         cell.commentsLabel.text = String(postsArray[indexPath.row].comments)
         cell.viewsLabel.text = String(postsArray[indexPath.row].likes)
         
-        cell.layoutMargins.bottom = 15
+        viewClicked = { view in
+            self.source = view
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "FullScreenPopup") as! FullScreenPhoto
+            vc.imageToShow = self.imageToShow
+            let delegate = ImageViewerPresenter(delegate: self)
+            self.navigationController?.delegate = delegate
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        cell.layoutMargins.bottom = postsBottomMargin
         return cell
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let tableViewCell = cell as? MultiphotoPostCell else { return }
+        guard let tableViewCell = cell as? MultiphotoPostTableCell else { return }
         
         tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
     }
@@ -101,9 +116,13 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
         }
         
         let photosForPost = postsArray[collectionView.tag].photos
-        
         if (photosForPost.count > 0) {
-            cell.photo.image = UIImage(named: photosForPost[indexPath.item])
+            cell.postPhoto.image = UIImage(named: photosForPost[indexPath.item])
+        }
+        
+        cell.imageClicked = { image in
+            self.viewClicked?(image)
+            self.imageToShow = cell.postPhoto.image
         }
         
         return cell
