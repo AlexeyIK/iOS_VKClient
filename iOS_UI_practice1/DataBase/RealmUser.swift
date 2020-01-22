@@ -1,5 +1,5 @@
 //
-//  RealmDatabase.swift
+//  RealmUser.swift
 //  iOS_UI_practice1
 //
 //  Created by Alex on 20/01/2020.
@@ -15,14 +15,18 @@ class UserRealm : Object {
     @objc dynamic var lastName = ""
     @objc dynamic var avatarPath: String = ""
     @objc dynamic var deactivated: String = ""
-    @objc dynamic var isOnline: Bool = false
-}
-
-class UsersArrayRealm : Object {
-    @objc dynamic var count = 0
-    var items = List<UserRealm>()
 }
 
 class UsersRepositoryRealm {
-    
+    func addUser(id: Int, firstname: String, lastname: String, imageURL: String) {
+        let realm = try! Realm()
+        let newUser = UserRealm()
+        newUser.id = id
+        newUser.firstName = firstname
+        newUser.lastName = lastname
+        
+        try! realm.write {
+            realm.add(newUser)
+        }
+    }
 }

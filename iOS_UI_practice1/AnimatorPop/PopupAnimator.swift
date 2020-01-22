@@ -9,7 +9,7 @@
 import UIKit
 
 class PopupAnimator: NSObject, UIViewControllerAnimatedTransitioning {
-    let duration = 1.0
+    let duration = 0.5
     var originFrame = CGRect.zero
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {

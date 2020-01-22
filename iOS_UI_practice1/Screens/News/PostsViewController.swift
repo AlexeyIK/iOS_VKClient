@@ -14,6 +14,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
     var source: UIView?
     var viewClicked: ((UIView)->())? = nil
     var imageToShow: UIImage?
+    var fullImageURL: String?
     
     let postsArray : [Post] = [
         Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
@@ -83,11 +84,12 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
         viewClicked = { view in
             self.source = view
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "FullScreenPopup") as! FullScreenPhoto
-            vc.imageToShow = self.imageToShow
+            let fullScreenVC = storyboard.instantiateViewController(withIdentifier: "FullScreenPopup") as! FullScreenPhoto
+            fullScreenVC.imageToShow = self.imageToShow
+            fullScreenVC.imageURL = self.fullImageURL
             let delegate = ImageViewerPresenter(delegate: self)
             self.navigationController?.delegate = delegate
-            self.navigationController?.pushViewController(vc, animated: true)
+            self.navigationController?.pushViewController(fullScreenVC, animated: true)
         }
         
         cell.layoutMargins.bottom = postsBottomMargin
@@ -121,8 +123,8 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
         }
         
         cell.imageClicked = { image in
-            self.viewClicked?(image)
             self.imageToShow = cell.postPhoto.image
+            self.viewClicked?(image)
         }
         
         return cell
