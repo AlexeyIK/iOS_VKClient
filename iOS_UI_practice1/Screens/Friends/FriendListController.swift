@@ -14,6 +14,25 @@ struct Section<T> {
     var items: [T]
 }
 
+protocol FriendListPresenter {
+    func getFriendList()
+}
+
+class FriendListPresenterImplementation<T: Repository>: FriendListPresenter {
+    
+    let vkAPI: VKApi
+    let database: T
+    
+    init(database: T, api: VKApi) {
+        self.vkAPI = api
+        self.database = database
+    }
+    
+    func getFriendList() {
+        <#code#>
+    }
+}
+
 class FriendListController: UITableViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
