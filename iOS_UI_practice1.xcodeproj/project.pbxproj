@@ -63,6 +63,7 @@
 		F1D2EBC523A0122E00F73236 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC423A0122E00F73236 /* MessageViewController.swift */; };
 		F1D2EBC723A0162300F73236 /* UsersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC623A0162300F73236 /* UsersFactory.swift */; };
 		F1D2EBC923A018F000F73236 /* CustomCollectionUILayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC823A018F000F73236 /* CustomCollectionUILayout.swift */; };
+		F1F34F1423DC56BF007A496F /* CommonResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F34F1323DC56BF007A496F /* CommonResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,6 +128,7 @@
 		F1D2EBC423A0122E00F73236 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		F1D2EBC623A0162300F73236 /* UsersFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersFactory.swift; sourceTree = "<group>"; };
 		F1D2EBC823A018F000F73236 /* CustomCollectionUILayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionUILayout.swift; sourceTree = "<group>"; };
+		F1F34F1323DC56BF007A496F /* CommonResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 				5AD3B0ED23A18ED100204692 /* Post.swift */,
 				F13729C123A2467C00731CF6 /* DateTimeHelper.swift */,
 				5A0A0DA823D1007C002C718D /* VKGroup.swift */,
+				F1F34F1323DC56BF007A496F /* CommonResponse.swift */,
 				5A0A0DAA23D10087002C718D /* VKFriend.swift */,
 				5A0A0DAC23D1008E002C718D /* VKPhoto.swift */,
 			);
@@ -489,6 +492,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F14DAF3A239ABB3100D21230 /* LikeButton.swift in Sources */,
+				F1F34F1423DC56BF007A496F /* CommonResponse.swift in Sources */,
 				5A36906823B13E600061A5A6 /* CardRotateTransition.swift in Sources */,
 				F1D2EBC923A018F000F73236 /* CustomCollectionUILayout.swift in Sources */,
 				F187C4F223D89C500024DF02 /* RealmPhoto.swift in Sources */,

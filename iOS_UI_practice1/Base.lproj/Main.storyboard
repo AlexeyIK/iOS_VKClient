@@ -261,29 +261,15 @@
         <!--Full Screen Photo-->
         <scene sceneID="ckc-tQ-seH">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MDz-mA-AWP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="FullScreenPopup" modalPresentationStyle="fullScreen" id="XvQ-mO-uTg" customClass="FullScreenPhoto" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x9m-gB-hxz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Bm0-XR-3F6">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="Bm0-XR-3F6" firstAttribute="top" secondItem="x9m-gB-hxz" secondAttribute="top" id="3Gb-J6-Eex"/>
-                            <constraint firstItem="oP2-Hx-8KQ" firstAttribute="trailing" secondItem="Bm0-XR-3F6" secondAttribute="trailing" id="B74-SR-nLl"/>
-                            <constraint firstItem="Bm0-XR-3F6" firstAttribute="leading" secondItem="oP2-Hx-8KQ" secondAttribute="leading" id="hAj-Ia-PuP"/>
-                            <constraint firstAttribute="bottom" secondItem="Bm0-XR-3F6" secondAttribute="bottom" id="uR4-vl-sAf"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="oP2-Hx-8KQ"/>
                     </view>
-                    <connections>
-                        <outlet property="imageView" destination="Bm0-XR-3F6" id="dtQ-VC-VS7"/>
-                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MDz-mA-AWP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2625" y="-1196"/>
         </scene>
@@ -767,6 +753,5 @@
         <image name="person.2.fill" catalog="system" width="64" height="40"/>
         <image name="person.3" catalog="system" width="72" height="35"/>
         <image name="person.3.fill" catalog="system" width="71" height="34"/>
-        <image name="photo-icon" width="225" height="225"/>
     </resources>
 </document>
