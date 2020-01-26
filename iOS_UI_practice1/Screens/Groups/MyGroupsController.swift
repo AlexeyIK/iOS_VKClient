@@ -40,10 +40,16 @@ class MyGroupsController: UITableViewController {
     }
     
     func requestGroupList() {
-        vkAPI.getUsersGroups(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token) { (receivedGroups) in
-            self.groupsList = receivedGroups
-            self.groupsToShow = receivedGroups
-            self.tableView.reloadData()
+        vkAPI.getUsersGroups(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token)
+        { (result) in
+            switch result {
+            case .success(let groups):
+                self.groupsList = groups
+                self.groupsToShow = groups
+                self.tableView.reloadData()
+            case .failure(let error):
+                print("Error requesting user groups: \(error)")
+            }
         }
     }
     

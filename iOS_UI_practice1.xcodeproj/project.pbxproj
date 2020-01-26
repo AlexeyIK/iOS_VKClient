@@ -222,8 +222,8 @@
 				F1D2EBC623A0162300F73236 /* UsersFactory.swift */,
 				5AD3B0ED23A18ED100204692 /* Post.swift */,
 				F13729C123A2467C00731CF6 /* DateTimeHelper.swift */,
-				5A0A0DA823D1007C002C718D /* VKGroup.swift */,
 				F1F34F1323DC56BF007A496F /* CommonResponse.swift */,
+				5A0A0DA823D1007C002C718D /* VKGroup.swift */,
 				5A0A0DAA23D10087002C718D /* VKFriend.swift */,
 				5A0A0DAC23D1008E002C718D /* VKPhoto.swift */,
 			);

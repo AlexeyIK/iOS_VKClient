@@ -42,10 +42,16 @@ class FriendListController: UITableViewController {
     
     private func friendsRequest() {
         vkAPI.getFriendList(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token)
-        { (friends) in
-            self.allFriends = friends.filter { $0.deactivated == nil }
-            self.friendsToShow = self.allFriends
-            self.mapToSections()
+        { (result) in
+            switch result {
+            case.success(let friends):
+                self.allFriends = friends.filter { $0.deactivated == nil }
+                self.friendsToShow = self.allFriends
+                self.mapToSections()
+            case .failure(let error):
+                print ("Error requesting friends: \(error)")
+            }
+            
         }
     }
     

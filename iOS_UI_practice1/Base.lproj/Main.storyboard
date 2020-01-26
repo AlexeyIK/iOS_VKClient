@@ -261,7 +261,6 @@
         <!--Full Screen Photo-->
         <scene sceneID="ckc-tQ-seH">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MDz-mA-AWP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="FullScreenPopup" modalPresentationStyle="fullScreen" id="XvQ-mO-uTg" customClass="FullScreenPhoto" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x9m-gB-hxz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
@@ -270,6 +269,7 @@
                         <viewLayoutGuide key="safeArea" id="oP2-Hx-8KQ"/>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MDz-mA-AWP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2625" y="-1196"/>
         </scene>
@@ -302,11 +302,6 @@
                                                 <constraint firstAttribute="width" secondItem="Kmi-KS-0nz" secondAttribute="height" multiplier="1:1" id="D1w-jC-Uwg"/>
                                                 <constraint firstAttribute="width" constant="50" id="oZS-fY-rx9"/>
                                             </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                    <real key="value" value="4"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Анастасия Петрова" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQl-Zj-FQk">
                                             <rect key="frame" x="77" y="24.666666666666671" width="156" height="21"/>
@@ -354,17 +349,6 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="gyS-Iu-QIB"/>
                                             </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="26"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                    <real key="value" value="5"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Василий Комаров" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1aW-nf-I90">
                                             <rect key="frame" x="76.999999999999986" y="29.666666666666671" width="143.66666666666663" height="21"/>
