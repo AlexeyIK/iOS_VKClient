@@ -14,7 +14,7 @@ struct VKFriend: Decodable {
     var lastName: String
     var avatarPath: String?
     var deactivated: String?
-    var isOnline: Int
+    var isOnline: Int?
     
     enum CodingKeys: String, CodingKey {
         case id

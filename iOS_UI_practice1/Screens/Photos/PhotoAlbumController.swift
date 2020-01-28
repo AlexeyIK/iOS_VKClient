@@ -35,9 +35,16 @@ class PhotoAlbumController: UICollectionViewController {
             vkAPI.getUsersPhotos(apiVersion: Session.shared.actualAPIVersion,
                                  token: Session.shared.token,
                                  userID: userID!)
-            { (photos) in
-                self.photoCollection = photos
-                self.collectionView.reloadData()
+            { (result) in
+                switch result {
+                case .success(let photos):
+                    self.photoCollection = photos
+                    self.collectionView.reloadData()
+                case.failure(let error):
+                    print("Error requesting photos of the user \(self.userID): \(error)")
+                }
+                
+                
             }
         }
     }

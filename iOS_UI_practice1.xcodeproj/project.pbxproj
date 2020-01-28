@@ -29,6 +29,8 @@
 		5A36906A23B148F60061A5A6 /* CardRotateTransitionInverted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A36906923B148F60061A5A6 /* CardRotateTransitionInverted.swift */; };
 		5A36906C23B154770061A5A6 /* SwipeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A36906B23B154770061A5A6 /* SwipeTransition.swift */; };
 		5A36906E23B16D3A0061A5A6 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A36906D23B16D3A0061A5A6 /* CustomNavigationController.swift */; };
+		5A5049E723DF651400CEE9B2 /* FriendsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5049E623DF651400CEE9B2 /* FriendsPresenter.swift */; };
+		5A5049E923DF665100CEE9B2 /* FriendsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5049E823DF665100CEE9B2 /* FriendsConfigurator.swift */; };
 		5A57E61923AFEFFF00E62316 /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A57E61823AFEFFF00E62316 /* CustomSegue.swift */; };
 		5A57E61C23B000AB00E62316 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A57E61B23B000AB00E62316 /* CircularTransition.swift */; };
 		5A5B518323B4047800A28E2D /* MultiphotoPostTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5B518123B4047800A28E2D /* MultiphotoPostTableCell.swift */; };
@@ -63,6 +65,7 @@
 		F1D2EBC523A0122E00F73236 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC423A0122E00F73236 /* MessageViewController.swift */; };
 		F1D2EBC723A0162300F73236 /* UsersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC623A0162300F73236 /* UsersFactory.swift */; };
 		F1D2EBC923A018F000F73236 /* CustomCollectionUILayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC823A018F000F73236 /* CustomCollectionUILayout.swift */; };
+		F1F34F1423DC56BF007A496F /* CommonResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F34F1323DC56BF007A496F /* CommonResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +94,8 @@
 		5A36906923B148F60061A5A6 /* CardRotateTransitionInverted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRotateTransitionInverted.swift; sourceTree = "<group>"; };
 		5A36906B23B154770061A5A6 /* SwipeTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTransition.swift; sourceTree = "<group>"; };
 		5A36906D23B16D3A0061A5A6 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
+		5A5049E623DF651400CEE9B2 /* FriendsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsPresenter.swift; sourceTree = "<group>"; };
+		5A5049E823DF665100CEE9B2 /* FriendsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsConfigurator.swift; sourceTree = "<group>"; };
 		5A57E61823AFEFFF00E62316 /* CustomSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
 		5A57E61B23B000AB00E62316 /* CircularTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
 		5A5B518123B4047800A28E2D /* MultiphotoPostTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiphotoPostTableCell.swift; sourceTree = "<group>"; };
@@ -127,6 +132,7 @@
 		F1D2EBC423A0122E00F73236 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		F1D2EBC623A0162300F73236 /* UsersFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersFactory.swift; sourceTree = "<group>"; };
 		F1D2EBC823A018F000F73236 /* CustomCollectionUILayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionUILayout.swift; sourceTree = "<group>"; };
+		F1F34F1323DC56BF007A496F /* CommonResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +226,7 @@
 				F1D2EBC623A0162300F73236 /* UsersFactory.swift */,
 				5AD3B0ED23A18ED100204692 /* Post.swift */,
 				F13729C123A2467C00731CF6 /* DateTimeHelper.swift */,
+				F1F34F1323DC56BF007A496F /* CommonResponse.swift */,
 				5A0A0DA823D1007C002C718D /* VKGroup.swift */,
 				5A0A0DAA23D10087002C718D /* VKFriend.swift */,
 				5A0A0DAC23D1008E002C718D /* VKPhoto.swift */,
@@ -240,9 +247,7 @@
 		5ACE8BD923D62601000A257D /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
-				5AD5FFAA23D62BCA0093A314 /* RealmUser.swift */,
-				F15EBB2223D86B2200E876CC /* RealmGroup.swift */,
-				F187C4F123D89C500024DF02 /* RealmPhoto.swift */,
+				5AE1ABA523DF51EA00115479 /* RealmRepository */,
 			);
 			path = DataBase;
 			sourceTree = "<group>";
@@ -267,6 +272,16 @@
 				5A0E791523CB500300EDFBAD /* PostPhotoCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		5AE1ABA523DF51EA00115479 /* RealmRepository */ = {
+			isa = PBXGroup;
+			children = (
+				5AD5FFAA23D62BCA0093A314 /* RealmUser.swift */,
+				F15EBB2223D86B2200E876CC /* RealmGroup.swift */,
+				F187C4F123D89C500024DF02 /* RealmPhoto.swift */,
+			);
+			path = RealmRepository;
 			sourceTree = "<group>";
 		};
 		5AEF0B9523B27C6500294A37 /* AnimatorPop */ = {
@@ -299,6 +314,8 @@
 			children = (
 				5A0BAC8523A4E14500263D50 /* Cells */,
 				5A1A64BD23918E5700AB76EB /* FriendListController.swift */,
+				5A5049E623DF651400CEE9B2 /* FriendsPresenter.swift */,
+				5A5049E823DF665100CEE9B2 /* FriendsConfigurator.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -488,7 +505,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A5049E923DF665100CEE9B2 /* FriendsConfigurator.swift in Sources */,
 				F14DAF3A239ABB3100D21230 /* LikeButton.swift in Sources */,
+				F1F34F1423DC56BF007A496F /* CommonResponse.swift in Sources */,
 				5A36906823B13E600061A5A6 /* CardRotateTransition.swift in Sources */,
 				F1D2EBC923A018F000F73236 /* CustomCollectionUILayout.swift in Sources */,
 				F187C4F223D89C500024DF02 /* RealmPhoto.swift in Sources */,
@@ -497,6 +516,7 @@
 				5AEF0B9723B27C7E00294A37 /* PopupAnimator.swift in Sources */,
 				5AB12D8323A80BA800610167 /* Loader.swift in Sources */,
 				5ACDE7DD239196CB00A9672F /* PhotoAlbumController.swift in Sources */,
+				5A5049E723DF651400CEE9B2 /* FriendsPresenter.swift in Sources */,
 				5AC930ED23D7AE4700DC1AF1 /* FullScreenPhoto.swift in Sources */,
 				5A3640362389DE7400945E79 /* LoginViewTestController.swift in Sources */,
 				5A5B518323B4047800A28E2D /* MultiphotoPostTableCell.swift in Sources */,

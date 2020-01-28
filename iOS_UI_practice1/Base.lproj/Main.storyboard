@@ -265,23 +265,9 @@
                     <view key="view" contentMode="scaleToFill" id="x9m-gB-hxz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Bm0-XR-3F6">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="Bm0-XR-3F6" firstAttribute="top" secondItem="x9m-gB-hxz" secondAttribute="top" id="3Gb-J6-Eex"/>
-                            <constraint firstItem="oP2-Hx-8KQ" firstAttribute="trailing" secondItem="Bm0-XR-3F6" secondAttribute="trailing" id="B74-SR-nLl"/>
-                            <constraint firstItem="Bm0-XR-3F6" firstAttribute="leading" secondItem="oP2-Hx-8KQ" secondAttribute="leading" id="hAj-Ia-PuP"/>
-                            <constraint firstAttribute="bottom" secondItem="Bm0-XR-3F6" secondAttribute="bottom" id="uR4-vl-sAf"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="oP2-Hx-8KQ"/>
                     </view>
-                    <connections>
-                        <outlet property="imageView" destination="Bm0-XR-3F6" id="dtQ-VC-VS7"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MDz-mA-AWP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -316,11 +302,6 @@
                                                 <constraint firstAttribute="width" secondItem="Kmi-KS-0nz" secondAttribute="height" multiplier="1:1" id="D1w-jC-Uwg"/>
                                                 <constraint firstAttribute="width" constant="50" id="oZS-fY-rx9"/>
                                             </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                    <real key="value" value="4"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Анастасия Петрова" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQl-Zj-FQk">
                                             <rect key="frame" x="77" y="24.666666666666671" width="156" height="21"/>
@@ -368,17 +349,6 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="gyS-Iu-QIB"/>
                                             </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="26"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                    <real key="value" value="5"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Василий Комаров" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1aW-nf-I90">
                                             <rect key="frame" x="76.999999999999986" y="29.666666666666671" width="143.66666666666663" height="21"/>
@@ -767,6 +737,5 @@
         <image name="person.2.fill" catalog="system" width="64" height="40"/>
         <image name="person.3" catalog="system" width="72" height="35"/>
         <image name="person.3.fill" catalog="system" width="71" height="34"/>
-        <image name="photo-icon" width="225" height="225"/>
     </resources>
 </document>

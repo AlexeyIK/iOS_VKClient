@@ -8,6 +8,9 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
+
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         kfCache.clearDiskCache() // очищаем кэш пока что при каждом запуске
         kfCache.clearMemoryCache()
+        
+        let config = Realm.Configuration(schemaVersion: 1)
+        Realm.Configuration.defaultConfiguration = config
         
         return true
     }
