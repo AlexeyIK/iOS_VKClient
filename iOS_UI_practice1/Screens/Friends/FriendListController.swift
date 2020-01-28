@@ -22,6 +22,9 @@ class FriendListController: UITableViewController {
     }
     
     var vkAPI = VKApi()
+    var database = UsersRepositoryRealm()
+    
+    var presenter: FriendsPresenter?
     
     // Список тестовых юзеров
 //    let testUsersList = UsersFactory.getAllUsers()
@@ -36,8 +39,20 @@ class FriendListController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        presenter = FriendsPresenterImplementation()
+//        presenter?.viewDidLoad()
+        
         searchBar.delegate = self
         friendsRequest()
+        loadFriendsFromDB()
+    }
+    
+    private func loadFriendsFromDB() {
+        do {
+            
+        } catch {
+            
+        }
     }
     
     private func friendsRequest() {
@@ -46,6 +61,7 @@ class FriendListController: UITableViewController {
             switch result {
             case.success(let friends):
                 self.allFriends = friends.filter { $0.deactivated == nil }
+                self.database.addUsers(users: friends)
                 self.friendsToShow = self.allFriends
                 self.mapToSections()
             case .failure(let error):
@@ -206,11 +222,18 @@ class FriendListController: UITableViewController {
 // MARK: Friend search extension
 extension FriendListController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText != "" {
-            searchInFriends(searchText: searchText)
+        if !searchText.isEmpty {
+//            searchInFriends(searchText: searchText)
+            do {
+                self.friendsToShow = Array(try database.searchUsers(name: searchText)).map { $0.toModel() }
+                mapToSections()
+            }
+            catch {
+                print(error)
+            }
         }
         else {
-            friendsToShow = allFriends
+//            friendsToShow = allFriends
             view.endEditing(true)
             mapToSections()
         }
