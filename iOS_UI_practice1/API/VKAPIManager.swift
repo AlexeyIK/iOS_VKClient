@@ -66,13 +66,14 @@ class VKApi {
         sendRequest(requestURL: requestURL, method: .post, params: params) { completion($0) }
     }
     
-    func findGroupBySearch(apiVersion: String, token: String, searchText: String, userID: String = Session.shared.userId, completion: @escaping (Out<[VKGroup], Error>)  -> Void) {
+    func searchGroups(apiVersion: String, token: String, searchText: String, userID: String = Session.shared.userId, completion: @escaping (Out<[VKGroup], Error>)  -> Void) {
         let requestURL = vkURL + "groups.search"
         let params = ["access_token": token,
                       "user_id": userID,
                       "v": apiVersion,
-                      "q": searchText,
-                      "count": "5"]
+                      "fields": "activity",
+                      "extended": "1",
+                      "q": searchText]
         
         sendRequest(requestURL: requestURL, method: .post, params: params) { completion($0) }
     }

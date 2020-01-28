@@ -17,6 +17,7 @@ class MyGroupsController: UITableViewController {
     var groupsList = [VKGroup]()
     
     var vkAPI = VKApi()
+    var database = RealmGroupRepository()
     
     override func loadView() {
         super.loadView()
@@ -31,6 +32,7 @@ class MyGroupsController: UITableViewController {
         tableView.register(UINib(nibName: "GroupsCell", bundle: nil), forCellReuseIdentifier: "GroupsTemplate")
         tableView.estimatedRowHeight = 75
         
+        loadGroupsFromDB()
         requestGroupList()
         addRefreshControl()
     }
@@ -39,16 +41,27 @@ class MyGroupsController: UITableViewController {
 //        requestGroupList()
     }
     
+    private func loadGroupsFromDB() {
+        do {
+            self.groupsToShow = Array(try database.getAllGroups().map { $0.toModel() })
+            self.tableView.reloadData()
+        }
+        catch {
+            print("Error getting user's groups from DB: \(error)")
+        }
+    }
+    
     func requestGroupList() {
         vkAPI.getUsersGroups(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token)
         { (result) in
             switch result {
             case .success(let groups):
                 self.groupsList = groups
+                self.database.addGroups(groups: groups)
                 self.groupsToShow = groups
                 self.tableView.reloadData()
             case .failure(let error):
-                print("Error requesting user groups: \(error)")
+                print("Error requesting user's groups: \(error)")
             }
         }
     }
@@ -106,7 +119,7 @@ extension MyGroupsController {
         cell.groupType.text = groupsToShow[indexPath.row].theme
         cell.membersCount.isHidden = true
         
-        if let imageURL = URL(string: self.groupsToShow[indexPath.row].logo ?? "") {
+        if let imageURL = URL(string: self.groupsToShow[indexPath.row].logo) {
             cell.imageContainer.image.alpha = 0
             
             cell.imageContainer.image.kf.setImage(with: imageURL, placeholder: nil, completionHandler: { (_) in

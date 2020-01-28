@@ -12,7 +12,7 @@ struct VKFriend: Decodable {
     var id: Int
     var firstName: String
     var lastName: String
-    var avatarPath: String?
+    var avatarPath: String
     var deactivated: String?
     var isOnline: Int?
     

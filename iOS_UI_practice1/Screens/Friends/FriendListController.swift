@@ -120,10 +120,6 @@ class FriendListController: UITableViewController {
             return friendsSection[section - 1].items.count
         }
     }
-    
-//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        guard let tableViewCell = cell as? FriendCell else { return }
-//    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -148,7 +144,7 @@ class FriendListController: UITableViewController {
             cell.userName.text = user.firstName + " " + user.lastName
             cell.isOnline.isHidden = user.isOnline == 0 ? true : false
             
-            if let imageURL = URL(string: user.avatarPath ?? "") {
+            if let imageURL = URL(string: user.avatarPath) {
                 cell.avatar.image.alpha = 0.0
                 
                 cell.avatar.image.kf.setImage(with: imageURL, placeholder: nil, completionHandler: { (_) in
