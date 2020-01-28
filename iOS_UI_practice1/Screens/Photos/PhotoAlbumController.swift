@@ -41,7 +41,7 @@ class PhotoAlbumController: UICollectionViewController {
                     self.photoCollection = photos
                     self.collectionView.reloadData()
                 case.failure(let error):
-                    print("Error requesting photos of the user \(self.userID): \(error)")
+                    print("Error requesting photos of the user_id \(self.userID ?? "-"): \(error)")
                 }
                 
                 

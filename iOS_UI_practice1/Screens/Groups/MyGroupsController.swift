@@ -65,22 +65,6 @@ class MyGroupsController: UITableViewController {
             self.requestGroupList()
         })
     }
-    
-    @objc func imageTapped(sender: UITapGestureRecognizer) {
-        guard let imageView = sender.view else { return }
-        
-        UIView.animate(withDuration: 0.3,
-                       delay: 0,
-                       usingSpringWithDamping: 0.3,
-                       initialSpringVelocity: 0.3,
-                       options: [.autoreverse],
-                       animations: {
-                            imageView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-                        },
-                       completion: { _ in
-                            imageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                        })
-    }
 }
 
 // MARK: - Search
@@ -115,10 +99,6 @@ extension MyGroupsController {
         return groupsToShow.count
     }
     
-//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        guard let tableViewCell = cell as? GroupsCell else { return }
-//    }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupsTemplate", for: indexPath) as! GroupsCell
         
@@ -135,9 +115,6 @@ extension MyGroupsController {
                 }
             })
         }
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
-        cell.imageContainer.addGestureRecognizer(tapGesture)
         
         return cell
     }

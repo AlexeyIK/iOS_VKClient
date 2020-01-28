@@ -28,23 +28,6 @@ class AllGroupsController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
     }
-
-    // MARK: - Functions
-    @objc func imageTapped(sender: UITapGestureRecognizer) {
-        guard let imageView = sender.view else { return }
-        
-        UIView.animate(withDuration: 0.3,
-                       delay: 0,
-                       usingSpringWithDamping: 0.3,
-                       initialSpringVelocity: 0.3,
-                       options: [.autoreverse],
-                       animations: {
-                        imageView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-        },
-                       completion: { _ in
-                        imageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-        })
-    }
 }
 
 // MARK: - Search
@@ -92,9 +75,6 @@ extension AllGroupsController {
             cell.membersCount.text = ""
             cell.membersCount.isHidden = true
         }
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
-        cell.imageContainer.addGestureRecognizer(tapGesture)
         
         return cell
     }

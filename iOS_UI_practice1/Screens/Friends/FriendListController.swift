@@ -22,7 +22,7 @@ class FriendListController: UITableViewController {
     }
     
     var vkAPI = VKApi()
-    var database = UsersRepositoryRealm()
+    var database = RealmUserRepository()
     
     var presenter: FriendsPresenter?
     
@@ -43,15 +43,18 @@ class FriendListController: UITableViewController {
 //        presenter?.viewDidLoad()
         
         searchBar.delegate = self
-        friendsRequest()
+        
         loadFriendsFromDB()
+        friendsRequest()
     }
     
     private func loadFriendsFromDB() {
         do {
-            
+            self.allFriends = Array(try database.getAllUsers()).filter({ $0.deactivated == nil }).map{ $0.toModel() }
+            self.friendsToShow = self.allFriends
+            self.mapToSections()
         } catch {
-            
+            print(error)
         }
     }
     
@@ -155,27 +158,8 @@ class FriendListController: UITableViewController {
                 })
             }
             
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(avatarTapped))
-            cell.avatar.addGestureRecognizer(tapGesture)
-            
             return cell
         }
-    }
-    
-    @objc func avatarTapped(sender: UITapGestureRecognizer) {
-        guard let imageView = sender.view else { return }
-        
-        UIView.animate(withDuration: 0.3,
-                       delay: 0,
-                       usingSpringWithDamping: 0.3,
-                       initialSpringVelocity: 0.3,
-                       options: [.autoreverse],
-                       animations: {
-                            imageView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-                        },
-                       completion: { _ in
-                            imageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                        })
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
