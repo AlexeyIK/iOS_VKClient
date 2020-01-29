@@ -17,5 +17,5 @@ class Session {
     let actualAPIVersion = "5.103"
     
     var token: String = ""
-    var userId: String = ""
+    var userId: Int = 0
 }

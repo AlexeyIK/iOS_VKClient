@@ -31,7 +31,6 @@ class RealmGroupRepository {
             newGroup.theme = group.theme
             realm.add(newGroup)
         }
-        print(realm.objects(GroupRealm.self))
     }
     
     func addGroups(groups: [VKGroup]) {
@@ -48,16 +47,14 @@ class RealmGroupRepository {
                 newGroup.theme = group.theme
                 groupsToAdd.append(newGroup)
             }
-            
             realm.add(groupsToAdd, update: .modified)
         }
-        print(realm.objects(GroupRealm.self))
     }
     
     func searchGroups(name: String) throws -> Results<GroupRealm> {
         do {
             let realm = try Realm()
-            return realm.objects(GroupRealm.self).filter("name CONTAINS[c] $@", name)
+            return realm.objects(GroupRealm.self).filter("name CONTAINS[c] %@", name)
         }
         catch {
             throw error

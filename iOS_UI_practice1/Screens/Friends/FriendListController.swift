@@ -180,7 +180,7 @@ class FriendListController: UITableViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "PhotoAlbumController") as! PhotoAlbumController
         
         viewController.username = targetRow.firstName + " " + targetRow.lastName
-        viewController.userID = String(targetRow.id)
+        viewController.userID = targetRow.id
         print("userID: \(targetRow.id)")
         
         self.navigationController?.pushViewController(viewController, animated: true)
