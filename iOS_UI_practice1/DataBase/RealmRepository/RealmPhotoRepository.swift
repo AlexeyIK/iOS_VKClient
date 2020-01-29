@@ -35,7 +35,8 @@ class RealmPhotoRepository {
                 
                 let photoLikes = PhotoLikesRealm()
                 photoLikes.count = photo.likes.count
-                photoLikes.myLike = Bool(photoLikes.myLike)
+                photoLikes.myLike = photo.likes.myLike == 1 ? true : false
+                newPhoto.likes = photoLikes
                 
                 photo.imageSizes.forEach { (size) in
                     let photoSize = PhotoSizeItem()

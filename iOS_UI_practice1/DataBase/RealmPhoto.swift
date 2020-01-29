@@ -54,6 +54,6 @@ class PhotoRealm : Object {
                        userID: userID,
                        imageSizes: sizes,
                        text: caption,
-                       likes: VKLike(myLike: likes?.myLike ?? false ? 1 : 0, count: likes?.count ?? 0))
+                       likes: VKLike(myLike: (likes?.myLike ?? false) ? 1 : 0, count: likes?.count ?? 0))
     }
 }
