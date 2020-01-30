@@ -14,6 +14,11 @@ struct Section<T> {
     var items: [T]
 }
 
+protocol FriendsListView: class {
+    func updateTable()
+    
+}
+
 class FriendListController: UITableViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -241,4 +246,8 @@ extension FriendListController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return CardRotateTransitionInverted()
     }
+}
+
+extension FriendsList : FriendsListView {
+    
 }
