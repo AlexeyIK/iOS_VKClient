@@ -12,7 +12,7 @@
 		5A0A0DAD23D1008E002C718D /* VKPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A0DAC23D1008E002C718D /* VKPhoto.swift */; };
 		5A0E791623CB500300EDFBAD /* PostPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A0E791523CB500300EDFBAD /* PostPhotoCell.xib */; };
 		5A0E791A23CB53F800EDFBAD /* PostPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0E791923CB53F800EDFBAD /* PostPhotoCell.swift */; };
-		5A1A64BE23918E5700AB76EB /* FriendListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1A64BD23918E5700AB76EB /* FriendListController.swift */; };
+		5A1A64BE23918E5700AB76EB /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1A64BD23918E5700AB76EB /* FriendListViewController.swift */; };
 		5A1A64C0239192B900AB76EB /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1A64BF239192B900AB76EB /* FriendCell.swift */; };
 		5A24DD9923CD0CC90067ABC3 /* LoginWKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A24DD9823CD0CC90067ABC3 /* LoginWKViewController.swift */; };
 		5A24DD9B23CD0DEA0067ABC3 /* SessionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A24DD9A23CD0DEA0067ABC3 /* SessionObject.swift */; };
@@ -78,7 +78,7 @@
 		5A0A0DAC23D1008E002C718D /* VKPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKPhoto.swift; sourceTree = "<group>"; };
 		5A0E791523CB500300EDFBAD /* PostPhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostPhotoCell.xib; sourceTree = "<group>"; };
 		5A0E791923CB53F800EDFBAD /* PostPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPhotoCell.swift; sourceTree = "<group>"; };
-		5A1A64BD23918E5700AB76EB /* FriendListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListController.swift; sourceTree = "<group>"; };
+		5A1A64BD23918E5700AB76EB /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
 		5A1A64BF239192B900AB76EB /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		5A24DD9823CD0CC90067ABC3 /* LoginWKViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWKViewController.swift; sourceTree = "<group>"; };
 		5A24DD9A23CD0DEA0067ABC3 /* SessionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionObject.swift; sourceTree = "<group>"; };
@@ -322,7 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				5A0BAC8523A4E14500263D50 /* Cells */,
-				5A1A64BD23918E5700AB76EB /* FriendListController.swift */,
+				5A1A64BD23918E5700AB76EB /* FriendListViewController.swift */,
 				5A5049E623DF651400CEE9B2 /* FriendsPresenter.swift */,
 				5A5049E823DF665100CEE9B2 /* FriendsConfigurator.swift */,
 			);
@@ -547,7 +547,7 @@
 				5AB6777423CFBE1700AB5520 /* VKAPIManager.swift in Sources */,
 				5AAC414723947AF900BA698A /* Group.swift in Sources */,
 				5A0E791A23CB53F800EDFBAD /* PostPhotoCell.swift in Sources */,
-				5A1A64BE23918E5700AB76EB /* FriendListController.swift in Sources */,
+				5A1A64BE23918E5700AB76EB /* FriendListViewController.swift in Sources */,
 				5A1A64C0239192B900AB76EB /* FriendCell.swift in Sources */,
 				5A24DD9923CD0CC90067ABC3 /* LoginWKViewController.swift in Sources */,
 				5A57E61923AFEFFF00E62316 /* CustomSegue.swift in Sources */,

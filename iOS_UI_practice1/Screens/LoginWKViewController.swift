@@ -79,6 +79,8 @@ extension LoginWKViewController: WKNavigationDelegate {
         Session.shared.token = params["access_token"] ?? ""
         Session.shared.userId = Int(params["user_id"] ?? "0")!
         
+        
+        
         decisionHandler(.cancel)
         loader.stopAnimating()
         

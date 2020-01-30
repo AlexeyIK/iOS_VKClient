@@ -8,6 +8,12 @@
 
 import Foundation
 
-class FriendsConfigurator {
-    
+protocol FriendsConfigurator {
+    func configure(view: FriendsListView)
+}
+
+class FriendsConfiguratorImpl: FriendsConfigurator {
+//    func configure(view: FriendsListView) {
+//        view.presenter =
+//    }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MyGroupsController: UITableViewController {
     
@@ -18,6 +19,9 @@ class MyGroupsController: UITableViewController {
     
     var vkAPI = VKApi()
     var database = RealmGroupRepository()
+    
+    var groupsResult: Results<GroupRealm>!
+    var token: NotificationToken?
     
     override func loadView() {
         super.loadView()
@@ -45,6 +49,19 @@ class MyGroupsController: UITableViewController {
         do {
             self.groupsToShow = Array(try database.getAllGroups().map { $0.toModel() })
             self.tableView.reloadData()
+            
+            groupsResult = try database.getAllGroups()
+            
+            token = groupsResult.observe { (results) in
+                switch results {
+                case .error(let error): break
+                case .initial(let groups): break
+                case let .update(_, deletions, insertions, modifications):
+                    print(deletions)
+                    print(insertions)
+                    print(modifications)
+                }
+            }
         }
         catch {
             print("Error getting user's groups from DB: \(error)")

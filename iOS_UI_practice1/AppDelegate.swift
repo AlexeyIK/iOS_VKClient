@@ -15,9 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tabBarVC = storyboard.instantiateViewController(withIdentifier: "MainTab")
+        window?.rootViewController = UINavigationController(rootViewController: tabBarVC)
         
         let kfDownloader = KingfisherManager.shared.downloader
         kfDownloader.downloadTimeout = 30

@@ -12,6 +12,13 @@ class FriendCell : UITableViewCell {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var avatar: CircleShadowImage!
     @IBOutlet weak var isOnline: UILabel!
+    
+    func prepareCell(model: UserRealm) {
+        let firstName = model.firstName
+        let lastName = model.lastName
+        let photo = model.avatarPath
+        
+    }
 }
 
 class RequestCell : UITableViewCell {

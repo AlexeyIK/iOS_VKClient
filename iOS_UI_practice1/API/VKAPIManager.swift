@@ -19,6 +19,10 @@ class VKApi {
             .responseData { (result) in
                 guard let data = result.value else { return }
                 
+                // TODO проверку на невалидный токен
+                // Удалить из Keychain
+                // Изменить стартовый вьюконтроллер и перейти на LoginWKViewController
+                
                 do {
                     let result = try JSONDecoder().decode(CommonResponse<T>.self, from: data)
                     completion(.success(result.response.items))

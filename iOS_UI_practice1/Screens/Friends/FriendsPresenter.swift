@@ -12,8 +12,12 @@ protocol FriendsPresenter {
     func viewDidLoad()
     
     func getUsers()
+    func getSectionIndexTitles() -> [String]?
+    func getTitleForSection(section: Int) -> String?
+    func numberOfSections() -> Int
+    func getModelAtIndex(indexPath: IndexPath) -> UserRealm?
 }
-/*
+
 class FriendsPresenterImplementation: FriendsPresenter {
     
     private var vkAPI: VKApi
@@ -21,6 +25,13 @@ class FriendsPresenterImplementation: FriendsPresenter {
     
     var sortedFriends = [Section<VKFriend>]()
     var friendList: [VKFriend] = []
+    
+    private var view: FriendsListView?
+    
+    // ToDo: дописать
+    init(database: FriendsSource, view: FriendsListView) {
+        
+    }
     
     func viewDidLoad() {
         vkAPI = VKApi()
@@ -32,18 +43,37 @@ class FriendsPresenterImplementation: FriendsPresenter {
     }
     
     private func getUsersFromApi() {
-        vkAPI.getFriendList(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token)
-        { (result) in
-            switch result {
-            case.success(let friends):
-                self.allFriends = friends.filter { $0.deactivated == nil }
-                self.database.addUsers(users: friends)
-                self.friendsToShow = self.allFriends
-                self.mapToSections()
-            case .failure(let error):
-                print ("Error requesting friends: \(error)")
-            }
-            
-        }
+//        vkAPI.getFriendList(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token)
+//        { (result) in
+//            switch result {
+//            case.success(let friends):
+//                self.allFriends = friends.filter { $0.deactivated == nil }
+//                self.database.addUsers(users: friends)
+//                self.friendsToShow = self.allFriends
+//                self.mapToSections()
+//            case .failure(let error):
+//                print ("Error requesting friends: \(error)")
+//            }
+//
+//        }
     }
-}*/
+    
+}
+
+extension FriendsPresenterImplementation {
+    func getSectionIndexTitles() -> [String]? {
+        <#code#>
+    }
+    
+    func getTitleForSection(section: Int) -> String? {
+        <#code#>
+    }
+    
+    func numberOfSections() -> Int {
+        <#code#>
+    }
+    
+    func getModelAtIndex(indexPath: IndexPath) -> UserRealm? {
+        <#code#>
+    }
+}

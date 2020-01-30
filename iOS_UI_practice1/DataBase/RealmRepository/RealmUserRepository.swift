@@ -31,7 +31,7 @@ class RealmUserRepository {
             realm.add(newUser)
         }
         
-        print(realm.objects(UserRealm.self))
+//        print(realm.objects(UserRealm.self))
     }
     
     func addUsers(users: [VKFriend]) {
@@ -48,7 +48,7 @@ class RealmUserRepository {
             
             realm.add(usersToAdd, update: .modified)
         }
-        print(realm.objects(UserRealm.self))
+//        print(realm.objects(UserRealm.self))
     }
     
     func searchUsers(name: String) throws -> Results<UserRealm> {

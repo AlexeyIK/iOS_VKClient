@@ -1,5 +1,5 @@
 //
-//  FriendList.swift
+//  FriendListViewController.swift
 //  iOS_UI_practice1
 //
 //  Created by Alex on 29.11.2019.
@@ -19,7 +19,7 @@ protocol FriendsListView: class {
     
 }
 
-class FriendListController: UITableViewController {
+class FriendListViewController: UITableViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBAction func Logout(_ sender: Any) {
@@ -30,6 +30,7 @@ class FriendListController: UITableViewController {
     var database = RealmUserRepository()
     
     var presenter: FriendsPresenter?
+    var configurator: FriendsConfigurator?
     
     // Список тестовых юзеров
 //    let testUsersList = UsersFactory.getAllUsers()
@@ -205,7 +206,7 @@ class FriendListController: UITableViewController {
 }
 
 // MARK: Friend search extension
-extension FriendListController: UISearchBarDelegate {
+extension FriendListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
 //            searchInFriends(searchText: searchText)
@@ -242,7 +243,7 @@ extension FriendListController: UISearchBarDelegate {
     }
 }
 
-extension FriendListController: UIViewControllerTransitioningDelegate {
+extension FriendListViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return CardRotateTransitionInverted()
     }
