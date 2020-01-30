@@ -20,5 +20,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "51063D9C-9365-4091-9A51-0389FCE62D98"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOS_UI_practice1/API/VKAPIManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "searchGroups(apiVersion:token:searchText:userID:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "51063D9C-9365-4091-9A51-0389FCE62D98 - 1b6690e67d363a83"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iOS_UI_practice1.VKApi.searchGroups(apiVersion: Swift.String, token: Swift.String, searchText: Swift.String, userID: Swift.String, completion: (Swift.Result&lt;Swift.Array&lt;iOS_UI_practice1.VKGroup&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "iOS_UI_practice1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexeykuznetsov/Swift/Geekbrains_SwiftUI/iOS_UI_practice1/API/VKAPIManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "941">
+               </Location>
+               <Location
+                  uuid = "51063D9C-9365-4091-9A51-0389FCE62D98 - 952ee7a8ee7c8a6e"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;iOS_UI_practice1.VKGroup&gt;, Swift.Error&gt;) -&gt; () in iOS_UI_practice1.VKApi.searchGroups(apiVersion: Swift.String, token: Swift.String, searchText: Swift.String, userID: Swift.String, completion: (Swift.Result&lt;Swift.Array&lt;iOS_UI_practice1.VKGroup&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "iOS_UI_practice1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexeykuznetsov/Swift/Geekbrains_SwiftUI/iOS_UI_practice1/API/VKAPIManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "59">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

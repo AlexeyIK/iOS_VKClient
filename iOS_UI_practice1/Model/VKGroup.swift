@@ -12,8 +12,9 @@ struct VKGroup: Decodable {
     var id: Int
     var name: String
     var theme: String
+    var logo: String
     var isMember: Int
-    var logo: String?
+    var membersCount: Int?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -21,6 +22,7 @@ struct VKGroup: Decodable {
         case theme = "activity"
         case isMember = "is_member"
         case logo = "photo_100"
+        case membersCount = "members_count"
     }
 }
 

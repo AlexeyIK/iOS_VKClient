@@ -77,13 +77,7 @@ extension LoginWKViewController: WKNavigationDelegate {
         
         print(params)
         Session.shared.token = params["access_token"] ?? ""
-        Session.shared.userId = params["user_id"] ?? ""
-        
-        
-//        vkAPI.getFriendList(apiVersion: actualAPIVersion, token: Session.shared.token)
-//        vkAPI.getUsersGroups(apiVersion: actualAPIVersion, token: Session.shared.token)
-//        vkAPI.getUsersPhotos(apiVersion: actualAPIVersion, token: Session.shared.token)
-//        vkAPI.findGroupBySearch(apiVersion: actualAPIVersion, token: Session.shared.token, searchText: "Музык")
+        Session.shared.userId = Int(params["user_id"] ?? "0")!
         
         decisionHandler(.cancel)
         loader.stopAnimating()

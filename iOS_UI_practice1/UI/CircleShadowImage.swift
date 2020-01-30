@@ -28,6 +28,9 @@ class CircleShadowImage : UIView {
     private func addImage() {
         image = UIImageView(frame: frame)
         addSubview(image)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        self.addGestureRecognizer(tapGesture)
     }
     
     override func layoutSubviews() {
@@ -41,5 +44,21 @@ class CircleShadowImage : UIView {
         
         image.layer.cornerRadius = bounds.size.height / 2
         image.layer.masksToBounds = true
+    }
+    
+    @objc func imageTapped(sender: UITapGestureRecognizer) {
+        guard let imageView = sender.view else { return }
+        
+        UIView.animate(withDuration: 0.4,
+                       delay: 0,
+                       usingSpringWithDamping: 0.05,
+                       initialSpringVelocity: 0.4,
+                       options: [.autoreverse],
+                       animations: {
+                            imageView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                        },
+                       completion: { _ in
+                            imageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                        })
     }
 }

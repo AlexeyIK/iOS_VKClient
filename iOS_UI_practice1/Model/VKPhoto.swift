@@ -15,10 +15,6 @@ struct VKImage: Decodable {
     var height: Int
 }
 
-struct VKImageVariations: Decodable {
-    var sizes: [VKImage]
-}
-
 struct VKLike: Decodable {
     var myLike: Int
     var count: Int
@@ -31,6 +27,8 @@ struct VKLike: Decodable {
 
 struct VKPhoto: Decodable {
     var id: Int
+    var albumID: Int
+    var userID: Int?
     var imageSizes: [VKImage]
     var text: String?
     var likes: VKLike
@@ -40,6 +38,8 @@ struct VKPhoto: Decodable {
         case imageSizes = "sizes"
         case text
         case likes
+        case albumID = "album_id"
+        case userID = "user_id"
     }
 }
 

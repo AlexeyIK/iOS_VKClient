@@ -40,10 +40,10 @@ class VKApi {
         sendRequest(requestURL: requestURL, method: .post, params: params) { completion($0) }
     }
     
-    func getUsersGroups(apiVersion: String, token: String, userID: String = Session.shared.userId, completion: @escaping (Out<[VKGroup], Error>)  -> Void ) {
+    func getUsersGroups(apiVersion: String, token: String, userID: Int = Session.shared.userId, completion: @escaping (Out<[VKGroup], Error>)  -> Void ) {
         let requestURL = vkURL + "groups.get"
         let params = ["access_token": token,
-                      "user_id": userID,
+                      "user_id": String(userID),
                       "v": apiVersion,
                       "fields": "activity",
 //                      "count": "30",
@@ -52,27 +52,27 @@ class VKApi {
         sendRequest(requestURL: requestURL, method: .post, params: params) { completion($0) }
     }
     
-    func getUsersPhotos(apiVersion: String, token: String, userID: String, completion: @escaping (Out<[VKPhoto], Error>)  -> Void) {
+    func getUsersPhotos(apiVersion: String, token: String, userID: Int, completion: @escaping (Out<[VKPhoto], Error>)  -> Void) {
         let requestURL = vkURL + "photos.get"
         let params = ["access_token": token,
-                      "user_id": userID,
+                      "user_id": String(userID),
                       "v": apiVersion,
                       "album_id": "profile",
-//                      "count": "50",
-            "rev": "1",
-            "owner_id": userID,
-            "extended": "1"] // чтобы узнать количество лайков
+                      "rev": "1",
+                      "owner_id": String(userID),
+                      "extended": "1"] // чтобы узнать количество лайков
         
         sendRequest(requestURL: requestURL, method: .post, params: params) { completion($0) }
     }
     
-    func findGroupBySearch(apiVersion: String, token: String, searchText: String, userID: String = Session.shared.userId, completion: @escaping (Out<[VKGroup], Error>)  -> Void) {
+    func searchGroups(apiVersion: String, token: String, searchText: String, userID: Int = Session.shared.userId, completion: @escaping (Out<[VKGroup], Error>)  -> Void) {
         let requestURL = vkURL + "groups.search"
         let params = ["access_token": token,
-                      "user_id": userID,
+                      "user_id": String(userID),
                       "v": apiVersion,
-                      "q": searchText,
-                      "count": "5"]
+                      "fields": "activity",
+                      "extended": "1",
+                      "q": searchText]
         
         sendRequest(requestURL: requestURL, method: .post, params: params) { completion($0) }
     }

@@ -57,9 +57,12 @@
 		F13729C223A2467C00731CF6 /* DateTimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13729C123A2467C00731CF6 /* DateTimeHelper.swift */; };
 		F14DAF3A239ABB3100D21230 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14DAF39239ABB3100D21230 /* LikeButton.swift */; };
 		F15EBB2323D86B2200E876CC /* RealmGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15EBB2223D86B2200E876CC /* RealmGroup.swift */; };
+		F16C3A9123E06B7E00653149 /* RealmUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16C3A9023E06B7E00653149 /* RealmUserRepository.swift */; };
+		F16C3A9323E0793800653149 /* RealmGroupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16C3A9223E0793800653149 /* RealmGroupRepository.swift */; };
 		F16F1302239ACBF800BA8CE6 /* CircleShadowImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16F1301239ACBF800BA8CE6 /* CircleShadowImage.swift */; };
 		F187C4F223D89C500024DF02 /* RealmPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F187C4F123D89C500024DF02 /* RealmPhoto.swift */; };
 		F1958D5123D75B0E008A5FF5 /* AlbumCollectionFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1958D5023D75B0E008A5FF5 /* AlbumCollectionFlow.swift */; };
+		F1A9E08A23E1764B00F0730C /* RealmPhotoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A9E08923E1764B00F0730C /* RealmPhotoRepository.swift */; };
 		F1D2EBC223A0109400F73236 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC023A0109400F73236 /* MessageCell.swift */; };
 		F1D2EBC323A0109400F73236 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D2EBC123A0109400F73236 /* MessageCell.xib */; };
 		F1D2EBC523A0122E00F73236 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC423A0122E00F73236 /* MessageViewController.swift */; };
@@ -124,9 +127,12 @@
 		F13729C123A2467C00731CF6 /* DateTimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeHelper.swift; sourceTree = "<group>"; };
 		F14DAF39239ABB3100D21230 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
 		F15EBB2223D86B2200E876CC /* RealmGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGroup.swift; sourceTree = "<group>"; };
+		F16C3A9023E06B7E00653149 /* RealmUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserRepository.swift; sourceTree = "<group>"; };
+		F16C3A9223E0793800653149 /* RealmGroupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGroupRepository.swift; sourceTree = "<group>"; };
 		F16F1301239ACBF800BA8CE6 /* CircleShadowImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShadowImage.swift; sourceTree = "<group>"; };
 		F187C4F123D89C500024DF02 /* RealmPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPhoto.swift; sourceTree = "<group>"; };
 		F1958D5023D75B0E008A5FF5 /* AlbumCollectionFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionFlow.swift; sourceTree = "<group>"; };
+		F1A9E08923E1764B00F0730C /* RealmPhotoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPhotoRepository.swift; sourceTree = "<group>"; };
 		F1D2EBC023A0109400F73236 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		F1D2EBC123A0109400F73236 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		F1D2EBC423A0122E00F73236 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
@@ -247,6 +253,9 @@
 		5ACE8BD923D62601000A257D /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
+				5AD5FFAA23D62BCA0093A314 /* RealmUser.swift */,
+				F15EBB2223D86B2200E876CC /* RealmGroup.swift */,
+				F187C4F123D89C500024DF02 /* RealmPhoto.swift */,
 				5AE1ABA523DF51EA00115479 /* RealmRepository */,
 			);
 			path = DataBase;
@@ -277,9 +286,9 @@
 		5AE1ABA523DF51EA00115479 /* RealmRepository */ = {
 			isa = PBXGroup;
 			children = (
-				5AD5FFAA23D62BCA0093A314 /* RealmUser.swift */,
-				F15EBB2223D86B2200E876CC /* RealmGroup.swift */,
-				F187C4F123D89C500024DF02 /* RealmPhoto.swift */,
+				F16C3A9023E06B7E00653149 /* RealmUserRepository.swift */,
+				F16C3A9223E0793800653149 /* RealmGroupRepository.swift */,
+				F1A9E08923E1764B00F0730C /* RealmPhotoRepository.swift */,
 			);
 			path = RealmRepository;
 			sourceTree = "<group>";
@@ -512,9 +521,11 @@
 				F1D2EBC923A018F000F73236 /* CustomCollectionUILayout.swift in Sources */,
 				F187C4F223D89C500024DF02 /* RealmPhoto.swift in Sources */,
 				F16F1302239ACBF800BA8CE6 /* CircleShadowImage.swift in Sources */,
+				F16C3A9323E0793800653149 /* RealmGroupRepository.swift in Sources */,
 				5A24DD9B23CD0DEA0067ABC3 /* SessionObject.swift in Sources */,
 				5AEF0B9723B27C7E00294A37 /* PopupAnimator.swift in Sources */,
 				5AB12D8323A80BA800610167 /* Loader.swift in Sources */,
+				F1A9E08A23E1764B00F0730C /* RealmPhotoRepository.swift in Sources */,
 				5ACDE7DD239196CB00A9672F /* PhotoAlbumController.swift in Sources */,
 				5A5049E723DF651400CEE9B2 /* FriendsPresenter.swift in Sources */,
 				5AC930ED23D7AE4700DC1AF1 /* FullScreenPhoto.swift in Sources */,
@@ -541,6 +552,7 @@
 				5A24DD9923CD0CC90067ABC3 /* LoginWKViewController.swift in Sources */,
 				5A57E61923AFEFFF00E62316 /* CustomSegue.swift in Sources */,
 				5A0A0DA923D1007C002C718D /* VKGroup.swift in Sources */,
+				F16C3A9123E06B7E00653149 /* RealmUserRepository.swift in Sources */,
 				5AC8597523A659C400103D51 /* GroupsCell.swift in Sources */,
 				5A3573992395B77800D3D6AC /* GroupsFactory.swift in Sources */,
 				5A0A0DAD23D1008E002C718D /* VKPhoto.swift in Sources */,

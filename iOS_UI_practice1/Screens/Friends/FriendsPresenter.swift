@@ -13,18 +13,18 @@ protocol FriendsPresenter {
     
     func getUsers()
 }
-
+/*
 class FriendsPresenterImplementation: FriendsPresenter {
     
     private var vkAPI: VKApi
-    private var database: UsersRepositoryRealm
+    private var database: RealmUserRepository
     
     var sortedFriends = [Section<VKFriend>]()
     var friendList: [VKFriend] = []
     
     func viewDidLoad() {
         vkAPI = VKApi()
-        database = UsersRepositoryRealm()
+        database = RealmUserRepository()
     }
     
     func getUsers() {
@@ -46,4 +46,4 @@ class FriendsPresenterImplementation: FriendsPresenter {
             
         }
     }
-}
+}*/

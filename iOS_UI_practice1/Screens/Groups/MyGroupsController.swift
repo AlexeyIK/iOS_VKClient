@@ -17,6 +17,7 @@ class MyGroupsController: UITableViewController {
     var groupsList = [VKGroup]()
     
     var vkAPI = VKApi()
+    var database = RealmGroupRepository()
     
     override func loadView() {
         super.loadView()
@@ -31,6 +32,7 @@ class MyGroupsController: UITableViewController {
         tableView.register(UINib(nibName: "GroupsCell", bundle: nil), forCellReuseIdentifier: "GroupsTemplate")
         tableView.estimatedRowHeight = 75
         
+        loadGroupsFromDB()
         requestGroupList()
         addRefreshControl()
     }
@@ -39,16 +41,27 @@ class MyGroupsController: UITableViewController {
 //        requestGroupList()
     }
     
+    private func loadGroupsFromDB() {
+        do {
+            self.groupsToShow = Array(try database.getAllGroups().map { $0.toModel() })
+            self.tableView.reloadData()
+        }
+        catch {
+            print("Error getting user's groups from DB: \(error)")
+        }
+    }
+    
     func requestGroupList() {
         vkAPI.getUsersGroups(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token)
         { (result) in
             switch result {
             case .success(let groups):
                 self.groupsList = groups
+                self.database.addGroups(groups: groups)
                 self.groupsToShow = groups
                 self.tableView.reloadData()
             case .failure(let error):
-                print("Error requesting user groups: \(error)")
+                print("Error requesting user's groups: \(error)")
             }
         }
     }
@@ -64,22 +77,6 @@ class MyGroupsController: UITableViewController {
             self.customRefreshControl.endRefreshing()
             self.requestGroupList()
         })
-    }
-    
-    @objc func imageTapped(sender: UITapGestureRecognizer) {
-        guard let imageView = sender.view else { return }
-        
-        UIView.animate(withDuration: 0.3,
-                       delay: 0,
-                       usingSpringWithDamping: 0.3,
-                       initialSpringVelocity: 0.3,
-                       options: [.autoreverse],
-                       animations: {
-                            imageView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-                        },
-                       completion: { _ in
-                            imageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                        })
     }
 }
 
@@ -115,10 +112,6 @@ extension MyGroupsController {
         return groupsToShow.count
     }
     
-//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        guard let tableViewCell = cell as? GroupsCell else { return }
-//    }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupsTemplate", for: indexPath) as! GroupsCell
         
@@ -126,7 +119,7 @@ extension MyGroupsController {
         cell.groupType.text = groupsToShow[indexPath.row].theme
         cell.membersCount.isHidden = true
         
-        if let imageURL = URL(string: self.groupsToShow[indexPath.row].logo ?? "") {
+        if let imageURL = URL(string: self.groupsToShow[indexPath.row].logo) {
             cell.imageContainer.image.alpha = 0
             
             cell.imageContainer.image.kf.setImage(with: imageURL, placeholder: nil, completionHandler: { (_) in
@@ -135,9 +128,6 @@ extension MyGroupsController {
                 }
             })
         }
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
-        cell.imageContainer.addGestureRecognizer(tapGesture)
         
         return cell
     }

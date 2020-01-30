@@ -14,6 +14,11 @@ struct Section<T> {
     var items: [T]
 }
 
+protocol FriendsListView: class {
+    func updateTable()
+    
+}
+
 class FriendListController: UITableViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -22,7 +27,7 @@ class FriendListController: UITableViewController {
     }
     
     var vkAPI = VKApi()
-    var database = UsersRepositoryRealm()
+    var database = RealmUserRepository()
     
     var presenter: FriendsPresenter?
     
@@ -43,15 +48,18 @@ class FriendListController: UITableViewController {
 //        presenter?.viewDidLoad()
         
         searchBar.delegate = self
-        friendsRequest()
+        
         loadFriendsFromDB()
+        friendsRequest()
     }
     
     private func loadFriendsFromDB() {
         do {
-            
+            self.allFriends = Array(try database.getAllUsers()).filter({ $0.deactivated == nil }).map{ $0.toModel() }
+            self.friendsToShow = self.allFriends
+            self.mapToSections()
         } catch {
-            
+            print(error)
         }
     }
     
@@ -117,10 +125,6 @@ class FriendListController: UITableViewController {
             return friendsSection[section - 1].items.count
         }
     }
-    
-//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        guard let tableViewCell = cell as? FriendCell else { return }
-//    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -145,7 +149,7 @@ class FriendListController: UITableViewController {
             cell.userName.text = user.firstName + " " + user.lastName
             cell.isOnline.isHidden = user.isOnline == 0 ? true : false
             
-            if let imageURL = URL(string: user.avatarPath ?? "") {
+            if let imageURL = URL(string: user.avatarPath) {
                 cell.avatar.image.alpha = 0.0
                 
                 cell.avatar.image.kf.setImage(with: imageURL, placeholder: nil, completionHandler: { (_) in
@@ -155,27 +159,8 @@ class FriendListController: UITableViewController {
                 })
             }
             
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(avatarTapped))
-            cell.avatar.addGestureRecognizer(tapGesture)
-            
             return cell
         }
-    }
-    
-    @objc func avatarTapped(sender: UITapGestureRecognizer) {
-        guard let imageView = sender.view else { return }
-        
-        UIView.animate(withDuration: 0.3,
-                       delay: 0,
-                       usingSpringWithDamping: 0.3,
-                       initialSpringVelocity: 0.3,
-                       options: [.autoreverse],
-                       animations: {
-                            imageView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-                        },
-                       completion: { _ in
-                            imageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                        })
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -200,7 +185,7 @@ class FriendListController: UITableViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "PhotoAlbumController") as! PhotoAlbumController
         
         viewController.username = targetRow.firstName + " " + targetRow.lastName
-        viewController.userID = String(targetRow.id)
+        viewController.userID = targetRow.id
         print("userID: \(targetRow.id)")
         
         self.navigationController?.pushViewController(viewController, animated: true)
@@ -261,4 +246,8 @@ extension FriendListController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return CardRotateTransitionInverted()
     }
+}
+
+extension FriendsList : FriendsListView {
+    
 }

@@ -18,9 +18,10 @@ class PhotoAlbumController: UICollectionViewController {
     var photoCollection = [VKPhoto]()
     var photosCount: Int = 0
     var username: String?
-    var userID: String?
+    var userID: Int = 0
     
     var vkAPI = VKApi()
+    var database = RealmPhotoRepository()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,21 +31,30 @@ class PhotoAlbumController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.photoCollection = [VKPhoto]()
-        
-         if (userID != nil) {
-            vkAPI.getUsersPhotos(apiVersion: Session.shared.actualAPIVersion,
-                                 token: Session.shared.token,
-                                 userID: userID!)
-            { (result) in
-                switch result {
-                case .success(let photos):
-                    self.photoCollection = photos
-                    self.collectionView.reloadData()
-                case.failure(let error):
-                    print("Error requesting photos of the user \(self.userID): \(error)")
-                }
-                
-                
+        restoreFromDB()
+        requestPhotos()
+    }
+    
+    private func restoreFromDB() {
+        do {
+            self.photoCollection = Array(try database.getProfilePhotosForUser(userID: Int(userID))).map { $0.toModel() }
+        } catch {
+            print(error)
+        }
+    }
+    
+    private func requestPhotos() {
+        vkAPI.getUsersPhotos(apiVersion: Session.shared.actualAPIVersion,
+                             token: Session.shared.token,
+                             userID: userID)
+        { (result) in
+            switch result {
+            case .success(let photos):
+                self.photoCollection = photos
+                self.database.addPhotos(userID: self.userID, albumID: -6, photos: photos) // не забыть избавиться здесь от хардкода, когда будет более одного альбома
+                self.collectionView.reloadData()
+            case.failure(let error):
+                print("Error requesting photos of the user_id \(self.userID): \(error)")
             }
         }
     }

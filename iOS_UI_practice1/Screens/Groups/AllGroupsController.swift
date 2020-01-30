@@ -7,17 +7,14 @@
 //
 
 import UIKit
+import Kingfisher
 
 class AllGroupsController: UITableViewController {
     @IBOutlet weak var searchBar: UISearchBar!
-    var groupsToShow = [Group]()
-    
-    override func loadView() {
-        super.loadView()
-        GroupsFactory.updateList()
-        groupsToShow = GroupsFactory.otherGroups
-    }
-    
+
+    var groupsToShow = [VKGroup]()
+    var vkAPI = VKApi()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
@@ -27,23 +24,6 @@ class AllGroupsController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
-    }
-
-    // MARK: - Functions
-    @objc func imageTapped(sender: UITapGestureRecognizer) {
-        guard let imageView = sender.view else { return }
-        
-        UIView.animate(withDuration: 0.3,
-                       delay: 0,
-                       usingSpringWithDamping: 0.3,
-                       initialSpringVelocity: 0.3,
-                       options: [.autoreverse],
-                       animations: {
-                        imageView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-        },
-                       completion: { _ in
-                        imageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-        })
     }
 }
 
@@ -59,9 +39,23 @@ extension AllGroupsController : UISearchBarDelegate {
     }
     
     private func searchInGroups(searchText: String) {
-        groupsToShow = GroupsFactory.otherGroups.filter( { (group) in
-            searchText.count > 0 ? group.groupName!.lowercased().contains(searchText.lowercased()) : true
-        })
+        if searchText != "" {
+            vkAPI.searchGroups(apiVersion: Session.shared.actualAPIVersion,
+                               token: Session.shared.token,
+                               searchText: searchText)
+            { (result) in
+                
+                switch result {
+                case .success(let groups):
+                    self.groupsToShow = groups
+                    print(groups)
+                case .failure(let error):
+                    print("Error requesting groups search: \(error)")
+                }
+            }
+        } else {
+            self.groupsToShow = [VKGroup]()
+        }
         
         tableView.reloadData()
     }
@@ -81,25 +75,31 @@ extension AllGroupsController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupsTemplate", for: indexPath) as! GroupsCell
         
-        cell.caption.text = groupsToShow[indexPath.row].groupName
-        cell.groupType.text = groupsToShow[indexPath.row].groupSubstring
-        cell.imageContainer.image.image = UIImage(named: groupsToShow[indexPath.row].imagePath!)
-        let membersCount = groupsToShow[indexPath.row].numOfMembers
+        cell.caption.text = groupsToShow[indexPath.row].name
+        cell.groupType.text = groupsToShow[indexPath.row].theme
+        let membersCount = groupsToShow[indexPath.row].membersCount
+        
+        if let imageURL = URL(string: self.groupsToShow[indexPath.row].logo) {
+            cell.imageContainer.image.alpha = 0
+            
+            cell.imageContainer.image.kf.setImage(with: imageURL, placeholder: nil, completionHandler: { (_) in
+                UIView.animate(withDuration: 0.5) {
+                    cell.imageContainer.image.alpha = 1.0
+                }
+            })
+        }
+        
         if membersCount != nil {
             cell.membersCount.text = "\(membersCount!) чел"
-        }
-        else {
+        } else {
             cell.membersCount.text = ""
             cell.membersCount.isHidden = true
         }
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
-        cell.imageContainer.addGestureRecognizer(tapGesture)
-        
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    /*override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let targetGroup = groupsToShow[indexPath.row]
         let index = GroupsFactory.allGroupsList.firstIndex(where: {$0.id == targetGroup.id})
         
@@ -109,5 +109,5 @@ extension AllGroupsController {
             groupsToShow = GroupsFactory.otherGroups
             tableView.deleteRows(at: [indexPath], with: .left)
         }
-    }
+    }*/
 }
