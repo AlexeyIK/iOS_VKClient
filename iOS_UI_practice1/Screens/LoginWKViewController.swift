@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import SwiftKeychainWrapper
 
 class LoginWKViewController: UIViewController {
     
@@ -75,11 +76,11 @@ extension LoginWKViewController: WKNavigationDelegate {
                 return dict
             }
         
-        print(params)
-        Session.shared.token = params["access_token"] ?? ""
+        if let token = params["access_token"] {
+            Session.shared.token = token
+            KeychainWrapper.standard.set(token, forKey: "access_token")
+        }
         Session.shared.userId = Int(params["user_id"] ?? "0")!
-        
-        
         
         decisionHandler(.cancel)
         loader.stopAnimating()

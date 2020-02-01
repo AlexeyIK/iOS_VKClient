@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 import RealmSwift
+import SwiftKeychainWrapper
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,10 +19,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        window = UIWindow(frame: UIScreen.main.bounds)
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let tabBarVC = storyboard.instantiateViewController(withIdentifier: "MainTab")
-        window?.rootViewController = UINavigationController(rootViewController: tabBarVC)
+        if let token = KeychainWrapper.standard.string(forKey: "access_token") {
+            Session.shared.token = token
+            window = UIWindow(frame: UIScreen.main.bounds)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let tabBarVC = storyboard.instantiateViewController(withIdentifier: "MainTab")
+            window?.rootViewController = UINavigationController(rootViewController: tabBarVC)
+            window?.makeKeyAndVisible()
+        } else {
+            print("token not saved yet")
+        }
         
         let kfDownloader = KingfisherManager.shared.downloader
         kfDownloader.downloadTimeout = 30

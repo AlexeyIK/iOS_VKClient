@@ -9,5 +9,6 @@ target 'iOS_UI_practice1' do
   pod 'Alamofire'
   pod 'Kingfisher', '~> 5.13'
   pod 'RealmSwift'
+  pod 'SwiftKeychainWrapper', '~> 3.4'
 
 end
