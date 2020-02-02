@@ -8,7 +8,14 @@
 
 import RealmSwift
 
-class RealmUserRepository {
+protocol UsersSource {
+    func getAllUsers() throws -> Results<UserRealm>
+    func addUser(user: VKFriend)
+    func addUsers(users: [VKFriend])
+    func searchUsers(name: String) throws -> Results<UserRealm>
+}
+
+class RealmUserRepository: UsersSource {
     
     func getAllUsers() throws -> Results<UserRealm> {
         do {
@@ -26,7 +33,8 @@ class RealmUserRepository {
         newUser.id = user.id
         newUser.firstName = user.firstName
         newUser.lastName = user.lastName
-        
+        newUser.isOnline = user.isOnline == 1 ? true : false
+        newUser.avatarPath = user.avatarPath
         try! realm.write {
             realm.add(newUser)
         }
@@ -43,6 +51,8 @@ class RealmUserRepository {
                 newUser.id = user.id
                 newUser.firstName = user.firstName
                 newUser.lastName = user.lastName
+                newUser.isOnline = user.isOnline == 1 ? true : false
+                newUser.avatarPath = user.avatarPath
                 usersToAdd.append(newUser)
             }
             

@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window = UIWindow(frame: UIScreen.main.bounds)
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let tabBarVC = storyboard.instantiateViewController(withIdentifier: "MainTab")
-            window?.rootViewController = UINavigationController(rootViewController: tabBarVC)
+            window?.rootViewController = tabBarVC
             window?.makeKeyAndVisible()
         } else {
             print("token not saved yet")

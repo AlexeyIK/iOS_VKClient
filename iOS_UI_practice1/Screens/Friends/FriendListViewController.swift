@@ -26,58 +26,23 @@ class FriendListViewController: UITableViewController {
         logout()
     }
     
-    var vkAPI = VKApi()
-    var database = RealmUserRepository()
-    
+    // MVP connections
     var presenter: FriendsPresenter?
     var configurator: FriendsConfigurator?
     
-    // Список тестовых юзеров
-//    let testUsersList = UsersFactory.getAllUsers()
-    var allFriends = [VKFriend]()
-    var friendsSection = [Section<VKFriend>]()
-    var friendsToShow = [VKFriend]()
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        friendsRequest()
+//        presenter?.viewDidLoad()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        presenter = FriendsPresenterImplementation()
-//        presenter?.viewDidLoad()
         
+        configurator = FriendsConfiguratorImpl()
+        configurator?.configure(view: self)
         searchBar.delegate = self
         
-        loadFriendsFromDB()
-        friendsRequest()
-    }
-    
-    private func loadFriendsFromDB() {
-        do {
-            self.allFriends = Array(try database.getAllUsers()).filter({ $0.deactivated == nil }).map{ $0.toModel() }
-            self.friendsToShow = self.allFriends
-            self.mapToSections()
-        } catch {
-            print(error)
-        }
-    }
-    
-    private func friendsRequest() {
-        vkAPI.getFriendList(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token)
-        { (result) in
-            switch result {
-            case.success(let friends):
-                self.allFriends = friends.filter { $0.deactivated == nil }
-                self.database.addUsers(users: friends)
-                self.friendsToShow = self.allFriends
-                self.mapToSections()
-            case .failure(let error):
-                print ("Error requesting friends: \(error)")
-            }
-            
-        }
+        presenter?.viewDidLoad()
     }
     
     private func logout() {
@@ -87,44 +52,21 @@ class FriendListViewController: UITableViewController {
 //        loginVC.modalPresentationStyle = .custom
         present(loginVC, animated: true, completion: nil)
     }
-    
-    private func mapToSections() {
-        if friendsToShow.count > 0 {
-            let friendsDictionary = Dictionary.init(grouping: friendsToShow) {
-                $0.lastName.prefix(1)
-            }
-            
-            friendsSection = friendsDictionary.map { Section(title: String($0.key), items: $0.value) }
-            friendsSection.sort(by: { $0.title < $1.title })
-        }
-        
-        tableView.reloadData()
-    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return friendsSection.count + 1
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return "Заявки в друзья"
-        default:
-            return String(friendsSection[section - 1].title.prefix(1))
-        }
-    }
-    
-    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return friendsSection.map( {$0.title} )
+        return presenter?.numberOfSections() ?? 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        default:
-            return friendsSection[section - 1].items.count
-        }
+        return presenter?.numberOfRowsInSection(section: section) ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return presenter?.getTitleForSection(section: section)
+    }
+    
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return presenter?.getSectionIndexTitles()
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -142,37 +84,25 @@ class FriendListViewController: UITableViewController {
             */
             return cell
         default:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTemplate", for: indexPath) as? FriendCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTemplate", for: indexPath) as? FriendCell,
+                let user = presenter?.getModelAtIndex(indexPath: indexPath)
+            else {
                 return UITableViewCell()
             }
-            let user = friendsSection[indexPath.section - 1].items[indexPath.row]
-
-            cell.userName.text = user.firstName + " " + user.lastName
-            cell.isOnline.isHidden = user.isOnline == 0 ? true : false
             
-            if let imageURL = URL(string: user.avatarPath) {
-                cell.avatar.image.alpha = 0.0
-                
-                cell.avatar.image.kf.setImage(with: imageURL, placeholder: nil, completionHandler: { (_) in
-                    UIView.animate(withDuration: 0.5) {
-                        cell.avatar.image.alpha = 1.0
-                    }
-                })
-            }
-            
+            cell.prepareCell(model: user)
             return cell
         }
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        if (indexPath.section != 0) {
-            if editingStyle == .delete {
-                // удалить друга, если он в списке друзей, а не заявок
-                friendsSection[indexPath.section - 1].items.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-        }
+//        if (indexPath.section != 0) {
+//            if editingStyle == .delete {
+//                // удалить друга, если он в списке друзей, а не заявок
+//                friendsSection[indexPath.section - 1].items.remove(at: indexPath.row)
+//                tableView.deleteRows(at: [indexPath], with: .fade)
+//            }
+//        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -180,7 +110,7 @@ class FriendListViewController: UITableViewController {
             return
         }
         
-        let targetRow = friendsSection[indexPath.section - 1].items[indexPath.row]
+        /*let targetRow = friendsSection[indexPath.section - 1].items[indexPath.row]
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "PhotoAlbumController") as! PhotoAlbumController
@@ -189,7 +119,7 @@ class FriendListViewController: UITableViewController {
         viewController.userID = targetRow.id
         print("userID: \(targetRow.id)")
         
-        self.navigationController?.pushViewController(viewController, animated: true)
+        self.navigationController?.pushViewController(viewController, animated: true)*/
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -209,33 +139,23 @@ class FriendListViewController: UITableViewController {
 extension FriendListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
-//            searchInFriends(searchText: searchText)
+            presenter?.searchInFriends(name: searchText)
+        }
+        else {
             do {
-                self.friendsToShow = Array(try database.searchUsers(name: searchText)).map { $0.toModel() }
-                mapToSections()
+//                self.friendsToShow = Array(try database.searchUsers(name: searchText)).map { $0.toModel() }
+//                presenter?.mapToSections()
             }
             catch {
                 print(error)
             }
-        }
-        else {
-//            friendsToShow = allFriends
             view.endEditing(true)
-            mapToSections()
         }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
-    }
-    
-    private func searchInFriends(searchText: String) {
-        friendsToShow = allFriends.filter {
-            $0.firstName.lowercased().contains(searchText.lowercased()) ||
-                $0.lastName.lowercased().contains(searchText.lowercased())
-        }
-        mapToSections()
-    }
+    } 
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.searchTextField.text = ""
@@ -249,6 +169,8 @@ extension FriendListViewController: UIViewControllerTransitioningDelegate {
     }
 }
 
-extension FriendsList : FriendsListView {
-    
+extension FriendListViewController : FriendsListView {
+    func updateTable() {
+        tableView.reloadData()
+    }
 }

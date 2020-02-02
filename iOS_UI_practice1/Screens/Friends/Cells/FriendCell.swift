@@ -16,8 +16,19 @@ class FriendCell : UITableViewCell {
     func prepareCell(model: UserRealm) {
         let firstName = model.firstName
         let lastName = model.lastName
-        let photo = model.avatarPath
+        userName.text = firstName + " " + lastName
+        isOnline.isHidden = !model.isOnline
+        let photoPath = model.avatarPath
         
+        if let imageURL = URL(string: photoPath) {
+            avatar.image.alpha = 0.0
+            
+            avatar.image.kf.setImage(with: imageURL, placeholder: nil, completionHandler: { (_) in
+                UIView.animate(withDuration: 0.5) {
+                    self.avatar.image.alpha = 1.0
+                }
+            })
+        }
     }
 }
 

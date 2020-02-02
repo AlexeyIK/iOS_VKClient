@@ -14,6 +14,7 @@ class UserRealm : Object {
     @objc dynamic var lastName = ""
     @objc dynamic var avatarPath: String = ""
     @objc dynamic var deactivated: String? = nil
+    @objc dynamic var isOnline = false
     
     override class func primaryKey() -> String? {
         return "id"
@@ -28,6 +29,7 @@ class UserRealm : Object {
                         firstName: firstName,
                         lastName: lastName,
                         avatarPath: avatarPath,
-                        deactivated: deactivated)
+                        deactivated: deactivated,
+                        isOnline: isOnline ? 1 : 0)
     }
 }

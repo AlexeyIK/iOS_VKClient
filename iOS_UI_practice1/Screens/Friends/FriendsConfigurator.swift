@@ -9,11 +9,11 @@
 import Foundation
 
 protocol FriendsConfigurator {
-    func configure(view: FriendsListView)
+    func configure(view: FriendListViewController)
 }
 
 class FriendsConfiguratorImpl: FriendsConfigurator {
-//    func configure(view: FriendsListView) {
-//        view.presenter =
-//    }
+    func configure(view: FriendListViewController) {
+        view.presenter = FriendsPresenterImplementation(database: RealmUserRepository(), view: view)
+    }
 }
