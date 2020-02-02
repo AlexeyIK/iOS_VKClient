@@ -22,19 +22,11 @@ protocol FriendsPresenter {
 //    func getCellForEditing(indexPath: IndexPath) -> UserRealm?
 }
 
-struct SectionRealm<T: RealmCollectionValue> {
-    var title: String
-    var items: Results<T>
-}
-
 class FriendsPresenterImplementation: FriendsPresenter {
     
     private var vkAPI: VKApi
     private var database: UsersSource
     private weak var view: FriendsListView?
-    
-//    private var sortedFriends = [Section<VKFriend>]()
-//    private var friendsToShow = [UserRealm]()
     
     private var sortedFriendsResults = [Section<UserRealm>]()
     private var friendsResults: Results<UserRealm>!
@@ -73,7 +65,7 @@ class FriendsPresenterImplementation: FriendsPresenter {
                 print ("Error requesting friends: \(error)")
                 let alert = UIAlertController(title: "Ошибка загрузки данных", message: "Не удается загрузить список друзей", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                //                self.present(alert, animated: true, completion: nil)
+//                view?.showAlert(alert: alert, view: view)
             }
         }
     }

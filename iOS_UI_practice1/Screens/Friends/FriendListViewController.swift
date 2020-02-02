@@ -16,7 +16,7 @@ struct Section<T> {
 
 protocol FriendsListView: class {
     func updateTable()
-    
+//    func showAlert(alert: UIAlertController)
 }
 
 class FriendListViewController: UITableViewController {
@@ -173,4 +173,8 @@ extension FriendListViewController : FriendsListView {
     func updateTable() {
         tableView.reloadData()
     }
+    
+//    func showAlert(alert: UIAlertController) {
+//        view.present(alert, animated: true, completion: nil)
+//    }
 }
