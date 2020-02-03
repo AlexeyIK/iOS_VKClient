@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewTestController: UIViewController {
     @IBOutlet weak var logo: UIImageView!
@@ -124,6 +125,9 @@ class LoginViewTestController: UIViewController {
 //            nextViewController.modalPresentationStyle = .custom
 //            nextViewController.modalPresentationCapturesStatusBarAppearance = true
             nextViewController.transitioningDelegate = self
+            
+            // TODO: создать регу и логин через Firebase
+//            Auth.createUser
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                 self.present(nextViewController, animated: true, completion: nil)

@@ -10,5 +10,9 @@ target 'iOS_UI_practice1' do
   pod 'Kingfisher', '~> 5.13'
   pod 'RealmSwift'
   pod 'SwiftKeychainWrapper', '~> 3.4'
+  # add the Firebase pod for Google Analytics
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Crashlytics'
 
 end

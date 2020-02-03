@@ -10,6 +10,7 @@ import UIKit
 import Kingfisher
 import RealmSwift
 import SwiftKeychainWrapper
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        FirebaseApp.configure()
         
         if let token = KeychainWrapper.standard.string(forKey: "access_token") {
             Session.shared.token = token
@@ -38,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         kfCache.clearDiskCache() // очищаем кэш пока что при каждом запуске
         kfCache.clearMemoryCache()
         
-        let config = Realm.Configuration(schemaVersion: 3)
+        let config = Realm.Configuration(schemaVersion: 1)
         Realm.Configuration.defaultConfiguration = config
         
         return true

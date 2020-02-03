@@ -61,6 +61,7 @@
 		F16C3A9323E0793800653149 /* RealmGroupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16C3A9223E0793800653149 /* RealmGroupRepository.swift */; };
 		F16F1302239ACBF800BA8CE6 /* CircleShadowImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16F1301239ACBF800BA8CE6 /* CircleShadowImage.swift */; };
 		F187C4F223D89C500024DF02 /* RealmPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F187C4F123D89C500024DF02 /* RealmPhoto.swift */; };
+		F18AEC4623E88F4E00E8BFC0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F18AEC4523E88F4E00E8BFC0 /* GoogleService-Info.plist */; };
 		F1958D5123D75B0E008A5FF5 /* AlbumCollectionFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1958D5023D75B0E008A5FF5 /* AlbumCollectionFlow.swift */; };
 		F1A9E08A23E1764B00F0730C /* RealmPhotoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A9E08923E1764B00F0730C /* RealmPhotoRepository.swift */; };
 		F1D2EBC223A0109400F73236 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC023A0109400F73236 /* MessageCell.swift */; };
@@ -131,6 +132,7 @@
 		F16C3A9223E0793800653149 /* RealmGroupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGroupRepository.swift; sourceTree = "<group>"; };
 		F16F1301239ACBF800BA8CE6 /* CircleShadowImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShadowImage.swift; sourceTree = "<group>"; };
 		F187C4F123D89C500024DF02 /* RealmPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPhoto.swift; sourceTree = "<group>"; };
+		F18AEC4523E88F4E00E8BFC0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F1958D5023D75B0E008A5FF5 /* AlbumCollectionFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionFlow.swift; sourceTree = "<group>"; };
 		F1A9E08923E1764B00F0730C /* RealmPhotoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPhotoRepository.swift; sourceTree = "<group>"; };
 		F1D2EBC023A0109400F73236 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 		5A3640322389DE7400945E79 /* iOS_UI_practice1 */ = {
 			isa = PBXGroup;
 			children = (
+				F18AEC4523E88F4E00E8BFC0 /* GoogleService-Info.plist */,
 				5A46ECF623D265BB008BE069 /* API */,
 				5ACE8BD923D62601000A257D /* DataBase */,
 				F111A45E23D1EB1800270AAD /* iOS_UI_practice1.entitlements */,
@@ -407,6 +410,7 @@
 				5A36402D2389DE7400945E79 /* Frameworks */,
 				5A36402E2389DE7400945E79 /* Resources */,
 				E377F9A3F54770CA1B00F01C /* [CP] Embed Pods Frameworks */,
+				F1B015AA23E8A016004DF5D4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -456,6 +460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A0E791623CB500300EDFBAD /* PostPhotoCell.xib in Resources */,
+				F18AEC4623E88F4E00E8BFC0 /* GoogleService-Info.plist in Resources */,
 				5A36403E2389DE7600945E79 /* LaunchScreen.storyboard in Resources */,
 				F1D2EBC323A0109400F73236 /* MessageCell.xib in Resources */,
 				5AC8597623A659C400103D51 /* GroupsCell.xib in Resources */,
@@ -506,6 +511,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iOS_UI_practice1/Pods-iOS_UI_practice1-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		F1B015AA23E8A016004DF5D4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
