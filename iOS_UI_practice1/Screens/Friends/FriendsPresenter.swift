@@ -82,18 +82,14 @@ class FriendsPresenterImplementation: FriendsPresenter {
         view?.updateTable()
     }
     
-     func searchInFriends(name: String) {
-//        do {
-//            friendsResults = try database.getAllUsers().filter {
-//                $0.firstName.lowercased().contains(name.lowercased()) ||
-//                    $0.lastName.lowercased().contains(name.lowercased())
-//            }
-//            mapToSections()
-//        } catch {
-//            print("Search: \(error)")
-//        }
+    func searchInFriends(name: String) {
+        do {
+            friendsResults = name.isEmpty ? try database.getAllUsers() : try database.searchUsers(name: name)
+            mapToSections()
+        } catch {
+            print("Search: \(error)")
+        }
     }
-    
 }
 
 extension FriendsPresenterImplementation {

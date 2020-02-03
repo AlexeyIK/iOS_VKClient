@@ -64,7 +64,7 @@ class RealmUserRepository: UsersSource {
     func searchUsers(name: String) throws -> Results<UserRealm> {
         do {
             let realm = try Realm()
-            return realm.objects(UserRealm.self).filter("name CONTAINS[c] %@", name)
+            return realm.objects(UserRealm.self).filter("firstName CONTAINS[c] %@", name) // TODO: add "or lastName"
         }
         catch {
             throw error

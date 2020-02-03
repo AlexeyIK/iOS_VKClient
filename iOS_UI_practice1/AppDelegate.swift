@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         kfCache.clearDiskCache() // очищаем кэш пока что при каждом запуске
         kfCache.clearMemoryCache()
         
-        let config = Realm.Configuration(schemaVersion: 2)
+        let config = Realm.Configuration(schemaVersion: 3)
         Realm.Configuration.defaultConfiguration = config
         
         return true

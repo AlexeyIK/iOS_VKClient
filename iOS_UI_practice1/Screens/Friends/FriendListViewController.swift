@@ -138,19 +138,7 @@ class FriendListViewController: UITableViewController {
 // MARK: Friend search extension
 extension FriendListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if !searchText.isEmpty {
-            presenter?.searchInFriends(name: searchText)
-        }
-        else {
-            do {
-//                self.friendsToShow = Array(try database.searchUsers(name: searchText)).map { $0.toModel() }
-//                presenter?.mapToSections()
-            }
-            catch {
-                print(error)
-            }
-            view.endEditing(true)
-        }
+        presenter?.searchInFriends(name: searchText)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
