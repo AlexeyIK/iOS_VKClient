@@ -110,16 +110,9 @@ class FriendListViewController: UITableViewController {
             return
         }
         
-        /*let targetRow = friendsSection[indexPath.section - 1].items[indexPath.row]
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "PhotoAlbumController") as! PhotoAlbumController
-        
-        viewController.username = targetRow.firstName + " " + targetRow.lastName
-        viewController.userID = targetRow.id
-        print("userID: \(targetRow.id)")
-        
-        self.navigationController?.pushViewController(viewController, animated: true)*/
+        if let targetVC = presenter?.findUsersAlbum(indexPath: indexPath, albumControllerName: "PhotoAlbumController") {
+            self.navigationController?.pushViewController(targetVC, animated: true)
+        }
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {

@@ -12,7 +12,7 @@ import SwiftKeychainWrapper
 
 class LoginWKViewController: UIViewController {
     
-    let apiID = "7287498"
+    let apiID = "7308268"
     let session = URLSession(configuration: URLSessionConfiguration.default)
     let firstPage = "/blank.html"
     
@@ -78,9 +78,10 @@ extension LoginWKViewController: WKNavigationDelegate {
         
         if let token = params["access_token"] {
             Session.shared.token = token
+            Session.shared.userId = Int(params["user_id"] ?? "0")!
             KeychainWrapper.standard.set(token, forKey: "access_token")
+            KeychainWrapper.standard.set(Session.shared.userId, forKey: "user_id")
         }
-        Session.shared.userId = Int(params["user_id"] ?? "0")!
         
         decisionHandler(.cancel)
         loader.stopAnimating()

@@ -12,6 +12,7 @@ import RealmSwift
 protocol FriendsPresenter {
     func viewDidLoad()
     func searchInFriends(name: String)
+    func findUsersAlbum(indexPath: IndexPath, albumControllerName: String) -> UIViewController?
     
     func getSectionIndexTitles() -> [String]?
     func getTitleForSection(section: Int) -> String?
@@ -122,6 +123,22 @@ extension FriendsPresenterImplementation {
     
     func getModelAtIndex(indexPath: IndexPath) -> UserRealm? {
         return sortedFriendsResults[indexPath.section - 1].items[indexPath.row]
+    }
+    
+    func findUsersAlbum(indexPath: IndexPath, albumControllerName: String) -> UIViewController? {
+        
+        if let selectedUser = getModelAtIndex(indexPath: indexPath) {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier: albumControllerName) as! PhotoAlbumController
+            viewController.username = selectedUser.firstName + " " + selectedUser.lastName
+            viewController.userID = selectedUser.id
+            print("userID: \(selectedUser.id)")
+            
+            return viewController
+        }
+        
+        return nil
     }
     
 //    func getCellForEditing(indexPath: IndexPath) -> UserRealm? {

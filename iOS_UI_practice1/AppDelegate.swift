@@ -19,8 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        if let token = KeychainWrapper.standard.string(forKey: "access_token") {
+        if let token = KeychainWrapper.standard.string(forKey: "access_token"),
+            let userID =  KeychainWrapper.standard.integer(forKey: "user_id") {
             Session.shared.token = token
+            Session.shared.userId = userID
             window = UIWindow(frame: UIScreen.main.bounds)
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let tabBarVC = storyboard.instantiateViewController(withIdentifier: "MainTab")
@@ -38,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         kfCache.clearDiskCache() // очищаем кэш пока что при каждом запуске
         kfCache.clearMemoryCache()
         
-        let config = Realm.Configuration(schemaVersion: 3)
+        let config = Realm.Configuration(schemaVersion: 1)
         Realm.Configuration.defaultConfiguration = config
         
         return true
