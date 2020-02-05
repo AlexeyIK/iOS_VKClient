@@ -13,9 +13,6 @@ class MyGroupsController: UITableViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     var customRefreshControl = UIRefreshControl()
-//    var groupsToShow = [Group]()
-//    var groupsToShow = [VKGroup]()
-//    var groupsList = [VKGroup]()
     
     var groupsResult: Results<GroupRealm>?
     var notificationToken: NotificationToken?
@@ -23,21 +20,12 @@ class MyGroupsController: UITableViewController {
     var vkAPI = VKApi()
     var database = RealmGroupRepository()
     
-    override func loadView() {
-        super.loadView()
-        // Инициализируем списки групп
-//        GroupsFactory.updateList()
-//        groupsToShow = GroupsFactory.myGroups
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
         tableView.register(UINib(nibName: "GroupsCell", bundle: nil), forCellReuseIdentifier: "GroupsTemplate")
         tableView.estimatedRowHeight = 75
-        
-//        loadGroupsFromDB()
-//        requestGroupList()
+    
         addRefreshControl()
     }
 
@@ -55,7 +43,7 @@ class MyGroupsController: UITableViewController {
         do {
             groupsResult = try database.getAllGroups()
             
-            notificationToken = groupsResult?.observe { [weak self] results   in
+            notificationToken = groupsResult?.observe { [weak self] results in
                 switch results {
                 case .error(let error):
                     print("Groups observer error: \(error)")

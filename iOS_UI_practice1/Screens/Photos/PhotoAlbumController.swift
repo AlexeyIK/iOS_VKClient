@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class PhotoAlbumController: UICollectionViewController {
 
@@ -15,10 +16,11 @@ class PhotoAlbumController: UICollectionViewController {
         button.Like()
     }
     
-    var photoCollection = [VKPhoto]()
-    var photosCount: Int = 0
     var username: String?
     var userID: Int = 0
+    
+    var photosResult: Results<PhotoRealm>?
+    var notificationToken: NotificationToken?
     
     var vkAPI = VKApi()
     var database = RealmPhotoRepository()
@@ -30,16 +32,36 @@ class PhotoAlbumController: UICollectionViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.photoCollection = [VKPhoto]()
         restoreFromDB()
         requestPhotos()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        notificationToken?.invalidate()
+    }
+    
     private func restoreFromDB() {
         do {
-            self.photoCollection = Array(try database.getProfilePhotosForUser(userID: Int(userID))).map { $0.toModel() }
+            self.photosResult = try database.getProfilePhotosForUser(userID: Int(userID))
+            
+            notificationToken = photosResult?.observe { [weak self] results in
+                switch results {
+                case .error(let error):
+                    print("Photo album observer error: \(error)")
+                case .initial(_):
+                    self?.collectionView.reloadData()
+                case let .update(_, deletions, insertions, modifications):
+                    self?.collectionView.performBatchUpdates({
+                        self?.collectionView.deleteItems(at: deletions.map { IndexPath(item: $0, section: 0) })
+                        self?.collectionView.insertItems(at: insertions.map { IndexPath(item: $0, section: 0) })
+                        self?.collectionView.reloadItems(at: modifications.map { IndexPath(item: $0, section: 0) })
+                    }, completion: { (_) in
+                        self?.collectionView.updateConstraintsIfNeeded()
+                    })
+                }
+            }
         } catch {
-            print(error)
+            print("Error getting user's photos from DB: \(error)")
         }
     }
     
@@ -50,9 +72,7 @@ class PhotoAlbumController: UICollectionViewController {
         { (result) in
             switch result {
             case .success(let photos):
-                self.photoCollection = photos
                 self.database.addPhotos(userID: self.userID, albumID: -6, photos: photos) // не забыть избавиться здесь от хардкода, когда будет более одного альбома
-                self.collectionView.reloadData()
             case.failure(let error):
                 print("Error requesting photos of the user_id \(self.userID): \(error)")
             }
@@ -66,7 +86,7 @@ class PhotoAlbumController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photoCollection.count
+        return photosResult?.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -78,10 +98,10 @@ class PhotoAlbumController: UICollectionViewController {
         // Нам нужен Size типа "p" для красивого корректного превью
         let imageSizeType = "p"
         
-        cell.likes.likeCount = photoCollection[indexPath.item].likes.count
-        cell.likes.isLiked = photoCollection[indexPath.item].likes.myLike == 1 ? true : false
+        cell.likes.likeCount = photosResult?[indexPath.item].likes?.count ?? 0
+        cell.likes.isLiked = photosResult?[indexPath.item].likes?.myLike ?? false
         
-        if let imageUrl = URL(string: self.photoCollection[indexPath.item]
+        if let imageUrl = URL(string: self.photosResult?[indexPath.item]
             .imageSizes.first(where: { $0.type == imageSizeType })?.url ?? "") {
             cell.loader.startAnimating()
             cell.photo?.kf.setImage(with: imageUrl,

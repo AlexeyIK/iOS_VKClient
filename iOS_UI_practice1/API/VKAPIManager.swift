@@ -8,9 +8,12 @@
 
 import Foundation
 import Alamofire
+import SwiftKeychainWrapper
 
 class VKApi {
     let vkURL = "https://api.vk.com/method/"
+    
+    var window: UIWindow?
     
     typealias Out = Swift.Result
     
@@ -28,6 +31,12 @@ class VKApi {
                     completion(.success(result.response.items))
                 } catch {
                     completion(.failure(error))
+                    KeychainWrapper.standard.removeObject(forKey: "access_token")
+                    self.window = UIWindow(frame: UIScreen.main.bounds)
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let loginVC = storyboard.instantiateViewController(withIdentifier: "APILoginScreen")
+                    self.window?.rootViewController = loginVC
+                    self.window?.makeKeyAndVisible()
                 }
         }
     }
@@ -37,9 +46,8 @@ class VKApi {
         let requestURL = vkURL + "friends.get"
         let params = ["access_token": token,
                       "order": "name",
-//                      "count": "50",
-                    "fields": "photo_50, photo_100",
-                    "v": apiVersion]
+                      "fields": "photo_50, photo_100",
+                      "v": apiVersion]
           
         sendRequest(requestURL: requestURL, method: .post, params: params) { completion($0) }
     }
@@ -50,8 +58,7 @@ class VKApi {
                       "user_id": String(userID),
                       "v": apiVersion,
                       "fields": "activity",
-//                      "count": "30",
-            "extended": "1"] // чтобы узнать больше информации
+                      "extended": "1"] // чтобы узнать больше информации
         
         sendRequest(requestURL: requestURL, method: .post, params: params) { completion($0) }
     }
