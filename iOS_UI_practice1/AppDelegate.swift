@@ -43,6 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let config = Realm.Configuration(schemaVersion: 1)
         Realm.Configuration.defaultConfiguration = config
         
+        print(config.fileURL)
+        
         return true
     }
 

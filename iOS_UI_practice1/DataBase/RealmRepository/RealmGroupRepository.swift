@@ -51,6 +51,14 @@ class RealmGroupRepository {
         }
     }
     
+    func deleteGroup(group: GroupRealm) {
+        let realm = try! Realm()
+        
+        try! realm.write {
+            realm.delete(group)
+        }
+    }
+    
     func searchGroups(name: String) throws -> Results<GroupRealm> {
         do {
             let realm = try Realm()

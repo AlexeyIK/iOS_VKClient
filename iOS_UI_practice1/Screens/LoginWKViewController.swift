@@ -76,9 +76,10 @@ extension LoginWKViewController: WKNavigationDelegate {
                 return dict
             }
         
-        if let token = params["access_token"] {
+        if let token = params["access_token"],
+            let userId = params["user_id"] {
             Session.shared.token = token
-            Session.shared.userId = Int(params["user_id"] ?? "0")!
+            Session.shared.userId = Int(userId)!
             KeychainWrapper.standard.set(token, forKey: "access_token")
             KeychainWrapper.standard.set(Session.shared.userId, forKey: "user_id")
         }

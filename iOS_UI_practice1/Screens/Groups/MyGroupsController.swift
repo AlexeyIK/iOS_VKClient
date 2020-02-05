@@ -14,14 +14,14 @@ class MyGroupsController: UITableViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     var customRefreshControl = UIRefreshControl()
 //    var groupsToShow = [Group]()
-    var groupsToShow = [VKGroup]()
-    var groupsList = [VKGroup]()
+//    var groupsToShow = [VKGroup]()
+//    var groupsList = [VKGroup]()
+    
+    var groupsResult: Results<GroupRealm>?
+    var notificationToken: NotificationToken?
     
     var vkAPI = VKApi()
     var database = RealmGroupRepository()
-    
-    var groupsResult: Results<GroupRealm>!
-    var token: NotificationToken?
     
     override func loadView() {
         super.loadView()
@@ -36,30 +36,37 @@ class MyGroupsController: UITableViewController {
         tableView.register(UINib(nibName: "GroupsCell", bundle: nil), forCellReuseIdentifier: "GroupsTemplate")
         tableView.estimatedRowHeight = 75
         
-        loadGroupsFromDB()
-        requestGroupList()
+//        loadGroupsFromDB()
+//        requestGroupList()
         addRefreshControl()
     }
 
     override func viewWillAppear(_ animated: Bool) {
-//        requestGroupList()
+        loadGroupsFromDB()
+        requestGroupList()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        notificationToken?.invalidate()
+    }
+    
+    /// Get groups from database and add observer to collection
     private func loadGroupsFromDB() {
         do {
-            self.groupsToShow = Array(try database.getAllGroups().map { $0.toModel() })
-            self.tableView.reloadData()
-            
             groupsResult = try database.getAllGroups()
             
-            token = groupsResult.observe { (results) in
+            notificationToken = groupsResult?.observe { [weak self] results   in
                 switch results {
-                case .error(let error): break
-                case .initial(let groups): break
+                case .error(let error):
+                    print("Groups observer error: \(error)")
+                case .initial(_):
+                    self?.tableView.reloadData()
                 case let .update(_, deletions, insertions, modifications):
-                    print(deletions)
-                    print(insertions)
-                    print(modifications)
+                    self?.tableView.beginUpdates()
+                    self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .left)
+                    self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .right)
+                    self?.tableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0) }, with: .none)
+                    self?.tableView.endUpdates()
                 }
             }
         }
@@ -68,15 +75,17 @@ class MyGroupsController: UITableViewController {
         }
     }
     
-    func requestGroupList() {
+    /// Request groups from API
+    func requestGroupList(completion: @escaping (Bool) -> () = { _ in }) {
         vkAPI.getUsersGroups(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token)
         { (result) in
             switch result {
             case .success(let groups):
-                self.groupsList = groups
+//                self.groupsList = groups
                 self.database.addGroups(groups: groups)
-                self.groupsToShow = groups
-                self.tableView.reloadData()
+//                self.groupsToShow = groups
+//                self.tableView.reloadData()
+                completion(true)
             case .failure(let error):
                 print("Error requesting user's groups: \(error)")
             }
@@ -85,15 +94,14 @@ class MyGroupsController: UITableViewController {
     
     func addRefreshControl() {
         customRefreshControl.attributedTitle = NSAttributedString(string: "Обновление списка...")
-        tableView.addSubview(customRefreshControl)
         customRefreshControl.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
+        tableView.addSubview(customRefreshControl)
     }
     
     @objc func refreshTable() {
-        DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+        self.requestGroupList { (isCompleted) in
             self.customRefreshControl.endRefreshing()
-            self.requestGroupList()
-        })
+        }
     }
 }
 
@@ -110,9 +118,9 @@ extension MyGroupsController : UISearchBarDelegate {
     }
     
     private func searchInGroups(searchText: String) {
-        groupsToShow = groupsList.filter( { (group) in
-            searchText.count > 0 ? group.name.lowercased().contains(searchText.lowercased()) : true
-        })
+//        groupsToShow = groupsList.filter( { (group) in
+//            searchText.count > 0 ? group.name.lowercased().contains(searchText.lowercased()) : true
+//        })
         
         tableView.reloadData()
     }
@@ -126,17 +134,20 @@ extension MyGroupsController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groupsToShow.count
+        return groupsResult?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupsTemplate", for: indexPath) as! GroupsCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "GroupsTemplate", for: indexPath) as? GroupsCell,
+            let group = groupsResult?[indexPath.row] else {
+                return UITableViewCell()
+        }
         
-        cell.caption.text = groupsToShow[indexPath.row].name
-        cell.groupType.text = groupsToShow[indexPath.row].theme
+        cell.caption.text = group.name
+        cell.groupType.text = group.theme
         cell.membersCount.isHidden = true
         
-        if let imageURL = URL(string: self.groupsToShow[indexPath.row].logo) {
+        if let imageURL = URL(string: group.logoUrl) {
             cell.imageContainer.image.alpha = 0
             
             cell.imageContainer.image.kf.setImage(with: imageURL, placeholder: nil, completionHandler: { (_) in
@@ -150,15 +161,12 @@ extension MyGroupsController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard let targetGroup = groupsResult?[indexPath.row] else {
+            return
+        }
         
-        let targetGroup = groupsToShow[indexPath.row]
-        let index = GroupsFactory.allGroupsList.firstIndex(where: {$0.id == targetGroup.id} )
-        
-        if editingStyle == .delete && index != nil {
-            GroupsFactory.allGroupsList[index!].isMeInGroup = false
-            GroupsFactory.updateList()
-            groupsToShow = groupsList
-            tableView.deleteRows(at: [indexPath], with: .fade)
+        if editingStyle == .delete {
+            database.deleteGroup(group: targetGroup)
         }
     }
 }
