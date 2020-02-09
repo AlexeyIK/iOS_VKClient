@@ -55,8 +55,6 @@ class PhotoAlbumController: UICollectionViewController {
                         self?.collectionView.deleteItems(at: deletions.map { IndexPath(item: $0, section: 0) })
                         self?.collectionView.insertItems(at: insertions.map { IndexPath(item: $0, section: 0) })
                         self?.collectionView.reloadItems(at: modifications.map { IndexPath(item: $0, section: 0) })
-                    }, completion: { (_) in
-                        self?.collectionView.updateConstraintsIfNeeded()
                     })
                 }
             }
