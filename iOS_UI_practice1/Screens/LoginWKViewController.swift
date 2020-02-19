@@ -45,6 +45,10 @@ class LoginWKViewController: UIViewController {
         
         loader.startAnimating()
         webView.load(request)
+        
+        webView.configuration.websiteDataStore.httpCookieStore.getAllCookies { [weak self] cookies in
+            cookies.forEach { self?.webView.configuration.websiteDataStore.httpCookieStore.delete($0) }
+        }
     }
     
     func login() {

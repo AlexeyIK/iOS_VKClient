@@ -10,5 +10,6 @@ target 'iOS_UI_practice1' do
   pod 'Kingfisher', '~> 5.13'
   pod 'RealmSwift'
   pod 'SwiftKeychainWrapper', '~> 3.4'
+  pod 'SwiftyJSON', '~> 5.0.0'
 
 end

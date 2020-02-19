@@ -7,14 +7,15 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct VKGroup: Decodable {
-    var id: Int
-    var name: String
-    var theme: String
-    var logo: String
-    var isMember: Int
-    var membersCount: Int?
+    let id: Int
+    let name: String
+    let theme: String
+    let logo: String
+    let isMember: Int
+    let membersCount: Int?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -24,6 +25,15 @@ struct VKGroup: Decodable {
         case logo = "photo_100"
         case membersCount = "members_count"
     }
+    
+//    init(json: JSON) {
+//        self.id = json["id"].intValue
+//        self.name = json["name"].stringValue
+//        self.logo = json["photo_100"].string ?? json["photo_50"].stringValue
+//        self.isMember = 1
+//        self.theme = ""
+//        self.membersCount = nil
+//    }
 }
 
 struct GroupsArray: Decodable {

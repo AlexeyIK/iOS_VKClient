@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftKeychainWrapper
+import SwiftyJSON
 
 class VKApi {
     let vkURL = "https://api.vk.com/method/"
@@ -86,5 +87,29 @@ class VKApi {
                       "q": searchText]
         
         sendRequest(requestURL: requestURL, method: .post, params: params) { completion($0) }
+    }
+    
+    func fetchNews(apiVersion: String, token: String, userID: Int = Session.shared.userId) {
+        let requestURL = vkURL + "newsfood.get"
+        
+        let params: Parameters = [
+            "access_token": token,
+            "user_id": String(userID),
+            "v": apiVersion,
+            "filters": "post",
+            "return_banned": 0,
+            "count": 50,
+            "fields": "nickname, photo_50"
+        ]
+        
+        Alamofire.request(requestURL, method: .post, parameters: params).responseJSON { (response) in
+            switch (response.result) {
+            case let .success(value):
+                let json = JSON(value)
+                print(json)
+            case let .failure(error):
+                print(error)
+            }
+        }
     }
 }
