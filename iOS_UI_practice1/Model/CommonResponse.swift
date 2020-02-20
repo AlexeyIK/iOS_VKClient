@@ -16,3 +16,7 @@ struct ResponseArray<T: Decodable>: Decodable {
     var count: Int
     var items: [T]
 }
+
+struct ArrayResponse<T: Decodable>: Decodable {
+    var response: [T]
+}
