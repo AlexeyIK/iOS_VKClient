@@ -44,28 +44,3 @@ class MultiphotoPostTableCell: UITableViewCell {
         collectionView.reloadData()
     }
 }
-
-//class PostPhotoCell: UICollectionViewCell {
-//    let photo: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.backgroundColor = UIColor.black
-//        return imageView
-//    }()
-//
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        customInit()
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//        customInit()
-//    }
-//
-//    func customInit() {
-//        photo.frame = self.frame
-//        photo.bounds = self.frame
-//        photo.contentMode = .scaleAspectFill
-//        addSubview(photo)
-//    }
-//}
