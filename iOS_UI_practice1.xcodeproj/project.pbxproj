@@ -65,6 +65,7 @@
 		F187C4F223D89C500024DF02 /* RealmPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F187C4F123D89C500024DF02 /* RealmPhoto.swift */; };
 		F1958D5123D75B0E008A5FF5 /* AlbumCollectionFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1958D5023D75B0E008A5FF5 /* AlbumCollectionFlow.swift */; };
 		F1A9E08A23E1764B00F0730C /* RealmPhotoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A9E08923E1764B00F0730C /* RealmPhotoRepository.swift */; };
+		F1D18C0F24056ED900F28B9B /* VKPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D18C0E24056ED900F28B9B /* VKPost.swift */; };
 		F1D2EBC223A0109400F73236 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC023A0109400F73236 /* MessageCell.swift */; };
 		F1D2EBC323A0109400F73236 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D2EBC123A0109400F73236 /* MessageCell.xib */; };
 		F1D2EBC523A0122E00F73236 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC423A0122E00F73236 /* MessageViewController.swift */; };
@@ -137,6 +138,7 @@
 		F187C4F123D89C500024DF02 /* RealmPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPhoto.swift; sourceTree = "<group>"; };
 		F1958D5023D75B0E008A5FF5 /* AlbumCollectionFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionFlow.swift; sourceTree = "<group>"; };
 		F1A9E08923E1764B00F0730C /* RealmPhotoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPhotoRepository.swift; sourceTree = "<group>"; };
+		F1D18C0E24056ED900F28B9B /* VKPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKPost.swift; sourceTree = "<group>"; };
 		F1D2EBC023A0109400F73236 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		F1D2EBC123A0109400F73236 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		F1D2EBC423A0122E00F73236 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				5A0A0DA823D1007C002C718D /* VKGroup.swift */,
 				5A0A0DAA23D10087002C718D /* VKFriend.swift */,
 				5A0A0DAC23D1008E002C718D /* VKPhoto.swift */,
+				F1D18C0E24056ED900F28B9B /* VKPost.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				5A3640342389DE7400945E79 /* AppDelegate.swift in Sources */,
 				5A57E61C23B000AB00E62316 /* CircularTransition.swift in Sources */,
 				5AD5FFAB23D62BCA0093A314 /* RealmUser.swift in Sources */,
+				F1D18C0F24056ED900F28B9B /* VKPost.swift in Sources */,
 				F1D2EBC723A0162300F73236 /* UsersFactory.swift in Sources */,
 				F13729C223A2467C00731CF6 /* DateTimeHelper.swift in Sources */,
 				5A298A4F23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift in Sources */,

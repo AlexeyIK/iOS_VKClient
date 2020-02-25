@@ -63,6 +63,7 @@ class VKApi {
         sendRequest(requestURL: requestURL, method: .post, params: params) { completion($0) }
     }
     
+    // MARK: user's photos request
     func getUsersPhotos(apiVersion: String, token: String, userID: Int, completion: @escaping (Out<[VKPhoto], Error>)  -> Void) {
         let requestURL = vkURL + "photos.get"
         let params = ["access_token": token,
@@ -76,6 +77,7 @@ class VKApi {
         sendRequest(requestURL: requestURL, method: .post, params: params) { completion($0) }
     }
     
+    // MARK: groups search request
     func searchGroups(apiVersion: String, token: String, searchText: String, userID: Int = Session.shared.userId, completion: @escaping (Out<[VKGroup], Error>)  -> Void) {
         let requestURL = vkURL + "groups.search"
         let params = ["access_token": token,
@@ -86,5 +88,10 @@ class VKApi {
                       "q": searchText]
         
         sendRequest(requestURL: requestURL, method: .post, params: params) { completion($0) }
+    }
+    
+    // MARK: newsfeed request
+    func newsFeed(apiVersion: String, token: String, completion: @escaping (Out<[VKFriend], Error>) -> Void) {
+        
     }
 }
