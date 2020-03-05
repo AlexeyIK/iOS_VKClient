@@ -16,6 +16,8 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
     var imageToShow: UIImage?
     var fullImageURL: String?
     
+    var vkAPI = VKApi()
+    
     let postsArray : [Post] = [
         Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
              timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .day, value: -3, to: Date())!),
@@ -55,6 +57,19 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
         tableView.register(UINib(nibName: "MultiphotoPostTableCell", bundle: nil), forCellReuseIdentifier: "PostTemplate")
         tableView.estimatedRowHeight = 200.0
         tableView.rowHeight = UITableView.automaticDimension
+        
+        getNewsFeed()
+    }
+    
+    private func getNewsFeed() {
+        vkAPI.getNewsFeed(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token) { result in
+            switch result {
+            case .success(let posts):
+                print(posts)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

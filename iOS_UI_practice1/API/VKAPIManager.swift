@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftKeychainWrapper
+import SwiftyJSON
 
 class VKApi {
     let vkURL = "https://api.vk.com/method/"
@@ -21,10 +22,6 @@ class VKApi {
         Alamofire.request(requestURL, method: method, parameters: params)
             .responseData { (result) in
                 guard let data = result.value else { return }
-                
-                // TODO проверку на невалидный токен
-                // Удалить из Keychain
-                // Изменить стартовый вьюконтроллер и перейти на LoginWKViewController
                 
                 do {
                     let result = try JSONDecoder().decode(CommonResponse<T>.self, from: data)
@@ -91,7 +88,50 @@ class VKApi {
     }
     
     // MARK: newsfeed request
-    func newsFeed(apiVersion: String, token: String, completion: @escaping (Out<[VKFriend], Error>) -> Void) {
+    func getNewsFeed(apiVersion: String, token: String, userID: Int = Session.shared.userId, completion: @escaping (Out<[VKPost], Error>) -> Void) {
+        let requestURL = vkURL + "newsfeed.get"
+        let params = ["access_token": token,
+                      "user_id": String(userID),
+                      "v": apiVersion,
+                      "filters": "post, photo",
+                      "count": "10"]
         
+        Alamofire.request(requestURL, method: .post, parameters: params)
+            .responseData { (result) in
+                guard let data = result.value else { return }
+                
+                do {
+                    let response = JSON(data)["response"]
+                    var result = [VKPost]()
+                    
+                    let items = response["items"].arrayValue
+                    
+                    items.forEach { item in
+//                        print("item: \(item)")
+                        if let postType = PostType(rawValue: item["type"].stringValue) {
+                            
+                            let photos = [VKPhoto]()
+                            let user: VKFriend
+                            let group: VKGroup
+                            let sourceID = item["source_id"].intValue
+                            
+                            if sourceID > 0 {
+//                                user = VKFriend(id: <#T##Int#>, firstName: <#T##String#>, lastName: <#T##String#>, avatarPath: <#T##String#>, deactivated: <#T##String?#>, isOnline: <#T##Int?#>)
+                            }
+                            else {
+//                                group = VKGroup(id: <#T##Int#>, name: <#T##String#>, theme: <#T##String#>, logo: <#T##String#>, isMember: <#T##Int#>, membersCount: <#T##Int?#>)
+                            }
+
+                            let post = VKPost(type: postType, postId: item["post_id"].intValue, sourceId: , date: Date(timeIntervalSince1970: item["date"].doubleValue), text: item["text"].stringValue, photos: photos, attachments: [VKAttachment]())
+                            result.append(post)
+                        }
+                    }
+                    
+//                    print("NewsFeed: \(response)")
+                    completion(.success(result))
+                } catch {
+                    completion(.failure(error))
+                }
+        }
     }
 }

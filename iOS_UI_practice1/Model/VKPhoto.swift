@@ -31,7 +31,7 @@ struct VKPhoto: Decodable {
     var userID: Int?
     var imageSizes: [VKImage]
     var text: String?
-    var likes: VKLike
+    var likes: VKLike?
     
     enum CodingKeys: String, CodingKey {
         case id
