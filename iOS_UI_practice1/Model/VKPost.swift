@@ -67,10 +67,10 @@ struct VKLink {
 
 // Базовый класс для аттачмента новости
 class VKAttachment {
-    let type: AttachmentType?
+    let type: AttachmentType
     
-    init(typeStr: String) {
-        self.type = AttachmentType(rawValue: typeStr)
+    init(type: AttachmentType) {
+        self.type = type
     }
 }
 
@@ -78,9 +78,9 @@ class VKAttachment {
 class VKNewsLink: VKAttachment {
     let link: VKLink
     
-    init(typeStr: String, url: String, title: String, description: String, target: String) {
+    init(type: AttachmentType, url: String, title: String, description: String, target: String) {
         self.link = VKLink(url: url, title: title, descr: description, target: target)
-        super.init(typeStr: typeStr)
+        super.init(type: type)
     }
 }
 
@@ -88,8 +88,8 @@ class VKNewsLink: VKAttachment {
 class VKNewsPhoto: VKAttachment {
     let photo: VKPhoto
     
-    init(typeStr: String, id: Int, albumID: Int, userID: Int?, imageSizes: [VKImage], text: String) {
+    init(type: AttachmentType, id: Int, albumID: Int, userID: Int?, imageSizes: [VKImage], text: String) {
         self.photo = VKPhoto(id: id, albumID: albumID, userID: userID, imageSizes: imageSizes, text: text)
-        super.init(typeStr: typeStr)
+        super.init(type: type)
     }
 }

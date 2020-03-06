@@ -77,8 +77,17 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
         
         cell.timestamp.text = DateTimeHelper.getFormattedDate(from: post.date)
         cell.postBodyText.text = post.text
-        
-        if postsArray[indexPath.row].photos.count == 0 {
+
+        switch post.type {
+        case .post:
+            if post.attachments is [VKNewsPhoto] {
+                cell.collectionView.isHidden = false
+            }
+        case .wall_photo:
+            cell.collectionView.isHidden = false
+        case .photo:
+            cell.collectionView.isHidden = false
+        default:
             cell.collectionView.isHidden = true
         }
         
@@ -115,7 +124,20 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return postsArray[collectionView.tag].photos.count
+        let post = postsArray[collectionView.tag]
+        
+        switch post.type {
+        case .post:
+            if post.attachments is [VKNewsPhoto] {
+                return post.attachments.count
+            }
+        case .wall_photo:
+            return postsArray[collectionView.tag].photos.count
+        default:
+            break
+        }
+        
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -123,15 +145,39 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
             return PostPhotoCell()
         }
         
-        let photosForPost = postsArray[collectionView.tag].photos
-        if (photosForPost.count > 0) {
-//            cell.postPhoto.image = UIImage(named: photosForPost[indexPath.item])
+        let post = postsArray[collectionView.tag]
+        var photosForPost = [VKPhoto]()
+        
+        switch post.type {
+        case .post:
+            if let attachedPhotos = post.attachments as? [VKNewsPhoto] {
+                photosForPost = attachedPhotos.map { $0.photo }
+            }
+        case .wall_photo:
+            photosForPost = post.photos
+        default:
+            return cell
         }
         
+        if (photosForPost.count > 0) {
+            if let photo = photosForPost[indexPath.item].imageSizes.first(where: { $0.type == "q" }),
+                let photoUrl = URL(string: photo.url) {
+                imageLoadQueue.async {
+                    if let imageData = try? Data(contentsOf: photoUrl) {
+                        DispatchQueue.main.async {
+                            cell.postPhoto.image = UIImage(data: imageData)
+                        }
+                    }
+                }
+            }
+        }
+
+        /*
         cell.imageClicked = { image in
             self.imageToShow = cell.postPhoto.image
             self.viewClicked?(image)
         }
+        */
         
         return cell
     }
