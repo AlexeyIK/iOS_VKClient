@@ -39,7 +39,7 @@ class VKApi {
     }
     
     // ToDo: переписать на Result-функции
-    func getFriendList(apiVersion: String, token: String, completion: @escaping (Out<[VKFriend], Error>) -> Void) {
+    func getFriendList(apiVersion: String, token: String, completion: @escaping (Out<[VKUser], Error>) -> Void) {
         let requestURL = vkURL + "friends.get"
         let params = ["access_token": token,
                       "order": "name",
@@ -94,7 +94,7 @@ class VKApi {
                       "user_id": String(userID),
                       "v": apiVersion,
                       "filters": "post, photo",
-                      "count": "10"]
+                      "count": "30"]
         
         Alamofire.request(requestURL, method: .post, parameters: params)
             .responseData { (result) in
@@ -102,33 +102,69 @@ class VKApi {
                 
                 do {
                     let response = JSON(data)["response"]
-                    var result = [VKPost]()
+                    var postsResult = [VKPost]()
+                    var usersResult = [VKUser]()
+                    var groupsResult = [VKGroup]()
                     
                     let items = response["items"].arrayValue
+                    let profiles = response["profiles"].arrayValue
+                    let groups = response["groups"].arrayValue
                     
+                    // парсим профили юзеров
+                    profiles.forEach { profileItem in
+                        print("profile: \(profileItem)")
+                        
+                        let user = VKUser(id: profileItem["id"].intValue, firstName: profileItem["first_name"].stringValue, lastName: profileItem["last_name"].stringValue, avatarPath: profileItem["photo_100"].stringValue, isOnline: profileItem["online"].intValue)
+                        usersResult.append(user)
+                    }
+                    
+                    // парсим группы
+                    groups.forEach { groupItem in
+                        print("group: \(groupItem)")
+                        
+                        let group = VKGroup(id: groupItem["id"].intValue, name: groupItem["name"].stringValue, logo: groupItem["photo_100"].stringValue, isMember: groupItem["is_member"].intValue)
+                        groupsResult.append(group)
+                    }
+                    
+                    // парсим посты и сопоставляем группы и юзеров к постам
                     items.forEach { item in
-//                        print("item: \(item)")
                         if let postType = PostType(rawValue: item["type"].stringValue) {
-                            
                             let photos = [VKPhoto]()
-                            let user: VKFriend
-                            let group: VKGroup
                             let sourceID = item["source_id"].intValue
+                            var user: VKUser? = nil
+                            var group: VKGroup? = nil
                             
                             if sourceID > 0 {
-//                                user = VKFriend(id: <#T##Int#>, firstName: <#T##String#>, lastName: <#T##String#>, avatarPath: <#T##String#>, deactivated: <#T##String?#>, isOnline: <#T##Int?#>)
+                                user = usersResult.first { $0.id == sourceID }
+                            } else {
+                                group = groupsResult.first { $0.id == abs(sourceID) }
                             }
-                            else {
-//                                group = VKGroup(id: <#T##Int#>, name: <#T##String#>, theme: <#T##String#>, logo: <#T##String#>, isMember: <#T##Int#>, membersCount: <#T##Int?#>)
-                            }
-
-                            let post = VKPost(type: postType, postId: item["post_id"].intValue, sourceId: , date: Date(timeIntervalSince1970: item["date"].doubleValue), text: item["text"].stringValue, photos: photos, attachments: [VKAttachment]())
-                            result.append(post)
+                            
+                            let likes = VKLike(myLike: item["likes"]["user_likes"].intValue, count: item["likes"]["count"].intValue)
+                            let comments = item["comments"]["count"].intValue
+                            let reposts = item["reposts"]["count"].intValue
+                            let views = item["views"]["count"].intValue
+                            
+                            let post = VKPost(type: postType,
+                                              postId: item["post_id"].intValue,
+                                              sourceId: sourceID,
+                                              date: Date(timeIntervalSince1970: item["date"].doubleValue),
+                                              text: item["text"].stringValue,
+                                              photos: photos,
+                                              attachments: [VKAttachment](),
+                                              likes: likes,
+                                              comments: comments,
+                                              reposts: reposts,
+                                              views: views,
+                                              byUser: user,
+                                              byGroup: group)
+                            
+                            postsResult.append(post)
                         }
                     }
                     
 //                    print("NewsFeed: \(response)")
-                    completion(.success(result))
+                    completion(.success(postsResult))
                 } catch {
                     completion(.failure(error))
                 }

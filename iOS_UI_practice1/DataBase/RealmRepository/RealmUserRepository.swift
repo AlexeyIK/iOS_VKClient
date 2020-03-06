@@ -10,8 +10,8 @@ import RealmSwift
 
 protocol UsersSource {
     func getAllUsers() throws -> Results<UserRealm>
-    func addUser(user: VKFriend)
-    func addUsers(users: [VKFriend])
+    func addUser(user: VKUser)
+    func addUsers(users: [VKUser])
     func searchUsers(name: String) throws -> Results<UserRealm>
 }
 
@@ -27,7 +27,7 @@ class RealmUserRepository: UsersSource {
         }
     }
     
-    func addUser(user: VKFriend) {
+    func addUser(user: VKUser) {
         let realm = try! Realm()
         let newUser = UserRealm()
         newUser.id = user.id
@@ -42,7 +42,7 @@ class RealmUserRepository: UsersSource {
 //        print(realm.objects(UserRealm.self))
     }
     
-    func addUsers(users: [VKFriend]) {
+    func addUsers(users: [VKUser]) {
         let realm = try! Realm()
         try! realm.write {
             var usersToAdd = [UserRealm]()

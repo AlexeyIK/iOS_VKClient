@@ -6,7 +6,6 @@
 //  Copyright © 2020 Alexey Kuznetsov. All rights reserved.
 //
 
-import Foundation
 import RealmSwift
 
 class PhotoSizeItem : Object {

@@ -11,7 +11,7 @@ import RealmSwift
 class GroupRealm : Object {
     @objc dynamic var id = 0
     @objc dynamic var name = ""
-    @objc dynamic var theme = ""
+    @objc dynamic var theme: String? = nil
     @objc dynamic var logoUrl = ""
     @objc dynamic var isMember = 0
     let membersCount = RealmOptional<Int>()

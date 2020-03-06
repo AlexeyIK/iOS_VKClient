@@ -38,13 +38,19 @@ struct VKPost {
     var photos: [VKPhoto]
     var attachments: [VKAttachment]
     
-    let user: VKFriend
-    let group: VKGroup
+    var likes: VKLike
+    var comments: Int
+    var reposts: Int
+    var views: Int
+    
+    // сохранять юзера или группу, которым принадлежит пост
+    let byUser: VKUser?
+    let byGroup: VKGroup?
 }
 
 struct PostsArray {
     var items: [VKPost]
-    var profiles: [VKFriend] // вероятно заменить на VKUser
+    var profiles: [VKUser] // вероятно заменить на VKUser
     var groups: [VKGroup]
 }
 
