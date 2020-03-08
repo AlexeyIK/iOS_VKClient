@@ -17,6 +17,7 @@ class MultiphotoPostTableCell: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var likesCount: LikeButton!
     @IBOutlet weak var commentsLabel: UILabel!
+    @IBOutlet weak var respostsLabel: UILabel!
     @IBOutlet weak var viewsLabel: UILabel!
     
     var viewClicked: ((UIView)->())? = nil

@@ -94,7 +94,8 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
         cell.likesCount.isLiked = post.likes.myLike == 1 ? true : false
         cell.likesCount.likeCount = post.likes.count
         cell.commentsLabel.text = String(post.comments)
-        cell.viewsLabel.text = String(post.views)
+        cell.respostsLabel.text = String(post.reposts)
+        cell.viewsLabel.text = String(post.views > 1000 ? post.views / 1000 : post.views)
         
         viewClicked = { view in
             self.source = view
@@ -160,7 +161,19 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
         }
         
         if (photosForPost.count > 0) {
-            if let photo = photosForPost[indexPath.item].imageSizes.first(where: { $0.type == "q" }),
+            var photoSize = "x"
+            
+            if photosForPost.count > 1 && photosForPost.count <= 3 {
+                photoSize = "r"
+            } else if photosForPost.count > 3 && photosForPost.count <= 6 {
+                photoSize = "q"
+            } else if photosForPost.count > 6 && photosForPost.count <= 9 {
+                photoSize = "p"
+            } else if photosForPost.count > 9 {
+                photoSize = "m"
+            }
+        
+            if let photo = photosForPost[indexPath.item].imageSizes.first(where: { $0.type == photoSize }),
                 let photoUrl = URL(string: photo.url) {
                 imageLoadQueue.async {
                     if let imageData = try? Data(contentsOf: photoUrl) {
@@ -171,7 +184,6 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
                 }
             }
         }
-
         /*
         cell.imageClicked = { image in
             self.imageToShow = cell.postPhoto.image

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,23 +18,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Tsd-1B-yPM">
-                        <rect key="frame" x="77" y="10" width="260" height="50"/>
+                        <rect key="frame" x="77" y="17" width="260" height="36"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ka0-Dk-uGW">
-                                <rect key="frame" x="0.0" y="0.0" width="260" height="25"/>
+                                <rect key="frame" x="0.0" y="0.0" width="260" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="today in 12:01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9j-2h-FNA">
-                                <rect key="frame" x="0.0" y="25" width="260" height="25"/>
+                                <rect key="frame" x="0.0" y="18" width="260" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" id="ntf-0v-6kh"/>
+                            <constraint firstAttribute="height" constant="36" id="ntf-0v-6kh"/>
                         </constraints>
                     </stackView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FtM-3L-SAM" userLabel="Avatar" customClass="CircleShadowImage" customModule="iOS_UI_practice1" customModuleProvider="target">
@@ -53,7 +55,7 @@
                                         <string key="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Feugiat vivamus at augue eget.</string>
                                         <attributes>
                                             <color key="NSColor" red="0.066972959839999999" green="0.065653735690000006" blue="0.065433064900000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -72,7 +74,7 @@
                         </subviews>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ppV-Pr-S21" userLabel="Footer">
-                        <rect key="frame" x="16" y="464" width="180" height="22"/>
+                        <rect key="frame" x="16" y="464" width="200" height="22"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nd0-XV-dHW" userLabel="Likes" customClass="LikeButton" customModule="iOS_UI_practice1" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="55" height="22"/>
@@ -98,8 +100,8 @@
                                     <action selector="likeOnClick:" destination="H4B-Xd-f6M" eventType="touchUpInside" id="BE0-sI-Gwp"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dmq-9e-wBU" userLabel="Comments">
-                                <rect key="frame" x="88.5" y="0.0" width="36.5" height="22"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dmq-9e-wBU" userLabel="Comments">
+                                <rect key="frame" x="89.5" y="0.0" width="38" height="22"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comments_ico" translatesAutoresizingMaskIntoConstraints="NO" id="EZK-as-hmR">
                                         <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
@@ -109,25 +111,41 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIw-FB-skA">
-                                        <rect key="frame" x="27" y="0.0" width="9.5" height="22"/>
+                                        <rect key="frame" x="28.5" y="0.0" width="9.5" height="22"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                            </stackView>
-                            <imageView userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="share_ico" translatesAutoresizingMaskIntoConstraints="NO" id="cfn-d9-mIU" userLabel="Share">
-                                <rect key="frame" x="158" y="0.0" width="22" height="22"/>
-                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="cfn-d9-mIU" secondAttribute="height" multiplier="1:1" id="VeP-SQ-N6X"/>
+                                    <constraint firstAttribute="width" constant="38" id="Pa6-Ca-zkS"/>
                                 </constraints>
-                            </imageView>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Ytl-Hs-2V3">
+                                <rect key="frame" x="162" y="0.0" width="38" height="22"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="share_ico" translatesAutoresizingMaskIntoConstraints="NO" id="cfn-d9-mIU" userLabel="Share">
+                                        <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
+                                        <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="cfn-d9-mIU" secondAttribute="height" multiplier="1:1" id="VeP-SQ-N6X"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ha-UE-xQU" userLabel="Reposts label">
+                                        <rect key="frame" x="30.5" y="0.0" width="7.5" height="22"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="38" id="P2t-uA-O3b"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="4dJ-Oa-juH"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="4dJ-Oa-juH"/>
                             <constraint firstItem="EZK-as-hmR" firstAttribute="height" secondItem="ppV-Pr-S21" secondAttribute="height" id="7d3-kN-bzg"/>
-                            <constraint firstItem="cfn-d9-mIU" firstAttribute="height" secondItem="ppV-Pr-S21" secondAttribute="height" id="qfm-ii-BOt"/>
                             <constraint firstAttribute="height" constant="22" id="zyg-mI-drl"/>
                         </constraints>
                     </stackView>
@@ -172,7 +190,7 @@
                     <constraint firstItem="juz-GH-EHp" firstAttribute="leading" secondItem="Kyx-SE-cTL" secondAttribute="leading" id="Pni-UG-KCG"/>
                     <constraint firstItem="ffA-lV-ryd" firstAttribute="leading" secondItem="Kyx-SE-cTL" secondAttribute="leading" constant="15" id="TF6-tg-fmg"/>
                     <constraint firstItem="Qj5-6o-hRq" firstAttribute="top" secondItem="ppV-Pr-S21" secondAttribute="top" id="bGs-Q9-IgR"/>
-                    <constraint firstItem="Tsd-1B-yPM" firstAttribute="top" secondItem="FtM-3L-SAM" secondAttribute="top" id="i6D-BF-DuW"/>
+                    <constraint firstItem="Tsd-1B-yPM" firstAttribute="centerY" secondItem="FtM-3L-SAM" secondAttribute="centerY" id="pKJ-gJ-j42"/>
                     <constraint firstItem="Tsd-1B-yPM" firstAttribute="leading" secondItem="FtM-3L-SAM" secondAttribute="trailing" constant="12" id="rBR-nY-Qfw"/>
                     <constraint firstAttribute="trailing" secondItem="juz-GH-EHp" secondAttribute="trailing" id="u48-bn-hZc"/>
                     <constraint firstAttribute="trailing" secondItem="Qj5-6o-hRq" secondAttribute="trailing" constant="15" id="uJG-z6-ZNO"/>
@@ -188,6 +206,7 @@
                 <outlet property="commentsLabel" destination="LIw-FB-skA" id="yUN-KF-2LQ"/>
                 <outlet property="likesCount" destination="Nd0-XV-dHW" id="vpR-RT-5VR"/>
                 <outlet property="postBodyText" destination="1NG-7b-tOt" id="gzl-pf-6yy"/>
+                <outlet property="respostsLabel" destination="5ha-UE-xQU" id="a20-vS-3yj"/>
                 <outlet property="timestamp" destination="b9j-2h-FNA" id="bK1-aJ-owZ"/>
                 <outlet property="viewsLabel" destination="If9-uG-A8O" id="FzU-hJ-HVZ"/>
             </connections>

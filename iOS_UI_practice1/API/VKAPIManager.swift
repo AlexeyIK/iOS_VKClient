@@ -93,7 +93,7 @@ class VKApi {
         let params = ["access_token": token,
                       "user_id": String(userID),
                       "v": apiVersion,
-                      "filters": "post,photo,wall_photo",
+                      "filters": "post,photo",
                       "count": "30"]
         
         Alamofire.request(requestURL, method: .post, parameters: params)
@@ -112,7 +112,7 @@ class VKApi {
                     
                     // парсим профили юзеров
                     profiles.forEach { profileItem in
-                        print("profile: \(profileItem)")
+//                        print("profile: \(profileItem)")
                         
                         let user = VKUser(id: profileItem["id"].intValue, firstName: profileItem["first_name"].stringValue, lastName: profileItem["last_name"].stringValue, avatarPath: profileItem["photo_100"].stringValue, isOnline: profileItem["online"].intValue)
                         usersResult.append(user)
@@ -120,7 +120,7 @@ class VKApi {
                     
                     // парсим группы
                     groups.forEach { groupItem in
-                        print("group: \(groupItem)")
+//                        print("group: \(groupItem)")
                         
                         let group = VKGroup(id: groupItem["id"].intValue, name: groupItem["name"].stringValue, logo: groupItem["photo_100"].stringValue, isMember: groupItem["is_member"].intValue)
                         groupsResult.append(group)
@@ -129,6 +129,8 @@ class VKApi {
                     // парсим посты и сопоставляем группы и юзеров к постам
                     items.forEach { item in
                         if let postType = PostType(rawValue: item["type"].stringValue) {
+                            print("post: \n\(item)")
+                            
                             let sourceID = item["source_id"].intValue
                             var bodyText: String? = nil
                             var postPhotos = [VKPhoto]()
