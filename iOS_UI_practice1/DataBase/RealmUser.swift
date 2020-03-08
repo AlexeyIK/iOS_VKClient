@@ -24,8 +24,8 @@ class UserRealm : Object {
         return ["name", "deactivated"]
     }
     
-    func toModel() -> VKFriend {
-        return VKFriend(id: id,
+    func toModel() -> VKUser {
+        return VKUser(id: id,
                         firstName: firstName,
                         lastName: lastName,
                         avatarPath: avatarPath,

@@ -11,7 +11,7 @@ import Foundation
 struct VKGroup: Decodable {
     var id: Int
     var name: String
-    var theme: String
+    var theme: String?
     var logo: String
     var isMember: Int
     var membersCount: Int?

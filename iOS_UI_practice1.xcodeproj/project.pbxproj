@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5A0A0DA923D1007C002C718D /* VKGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A0DA823D1007C002C718D /* VKGroup.swift */; };
-		5A0A0DAB23D10087002C718D /* VKFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A0DAA23D10087002C718D /* VKFriend.swift */; };
+		5A0A0DAB23D10087002C718D /* VKUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A0DAA23D10087002C718D /* VKUser.swift */; };
 		5A0A0DAD23D1008E002C718D /* VKPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A0DAC23D1008E002C718D /* VKPhoto.swift */; };
 		5A0E791623CB500300EDFBAD /* PostPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A0E791523CB500300EDFBAD /* PostPhotoCell.xib */; };
 		5A0E791A23CB53F800EDFBAD /* PostPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0E791923CB53F800EDFBAD /* PostPhotoCell.swift */; };
@@ -51,6 +51,7 @@
 		5AD3B0EC23A18D9B00204692 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3B0EB23A18D9B00204692 /* PostsViewController.swift */; };
 		5AD3B0EE23A18ED100204692 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3B0ED23A18ED100204692 /* Post.swift */; };
 		5AD5FFAB23D62BCA0093A314 /* RealmUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD5FFAA23D62BCA0093A314 /* RealmUser.swift */; };
+		5AE7FFE92411B3EF000CF4F9 /* RealmPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7FFE82411B3EF000CF4F9 /* RealmPost.swift */; };
 		5AEF0B9723B27C7E00294A37 /* PopupAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEF0B9623B27C7E00294A37 /* PopupAnimator.swift */; };
 		5AEF0B9923B27EE100294A37 /* ImageViewerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEF0B9823B27EE100294A37 /* ImageViewerPresenter.swift */; };
 		5AEF0B9B23B280D100294A37 /* UIApplication+Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEF0B9A23B280D100294A37 /* UIApplication+Controller.swift */; };
@@ -65,6 +66,7 @@
 		F187C4F223D89C500024DF02 /* RealmPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F187C4F123D89C500024DF02 /* RealmPhoto.swift */; };
 		F1958D5123D75B0E008A5FF5 /* AlbumCollectionFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1958D5023D75B0E008A5FF5 /* AlbumCollectionFlow.swift */; };
 		F1A9E08A23E1764B00F0730C /* RealmPhotoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A9E08923E1764B00F0730C /* RealmPhotoRepository.swift */; };
+		F1D18C0F24056ED900F28B9B /* VKPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D18C0E24056ED900F28B9B /* VKPost.swift */; };
 		F1D2EBC223A0109400F73236 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC023A0109400F73236 /* MessageCell.swift */; };
 		F1D2EBC323A0109400F73236 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D2EBC123A0109400F73236 /* MessageCell.xib */; };
 		F1D2EBC523A0122E00F73236 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC423A0122E00F73236 /* MessageViewController.swift */; };
@@ -76,7 +78,7 @@
 /* Begin PBXFileReference section */
 		2FCE1E8905C783AE2F62592D /* Pods-iOS_UI_practice1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_UI_practice1.release.xcconfig"; path = "Target Support Files/Pods-iOS_UI_practice1/Pods-iOS_UI_practice1.release.xcconfig"; sourceTree = "<group>"; };
 		5A0A0DA823D1007C002C718D /* VKGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKGroup.swift; sourceTree = "<group>"; };
-		5A0A0DAA23D10087002C718D /* VKFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFriend.swift; sourceTree = "<group>"; };
+		5A0A0DAA23D10087002C718D /* VKUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKUser.swift; sourceTree = "<group>"; };
 		5A0A0DAC23D1008E002C718D /* VKPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKPhoto.swift; sourceTree = "<group>"; };
 		5A0E791523CB500300EDFBAD /* PostPhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostPhotoCell.xib; sourceTree = "<group>"; };
 		5A0E791923CB53F800EDFBAD /* PostPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPhotoCell.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 		5AD3B0EB23A18D9B00204692 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
 		5AD3B0ED23A18ED100204692 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		5AD5FFAA23D62BCA0093A314 /* RealmUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUser.swift; sourceTree = "<group>"; };
+		5AE7FFE82411B3EF000CF4F9 /* RealmPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPost.swift; sourceTree = "<group>"; };
 		5AEF0B9623B27C7E00294A37 /* PopupAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupAnimator.swift; sourceTree = "<group>"; };
 		5AEF0B9823B27EE100294A37 /* ImageViewerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerPresenter.swift; sourceTree = "<group>"; };
 		5AEF0B9A23B280D100294A37 /* UIApplication+Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Controller.swift"; sourceTree = "<group>"; };
@@ -137,6 +140,7 @@
 		F187C4F123D89C500024DF02 /* RealmPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPhoto.swift; sourceTree = "<group>"; };
 		F1958D5023D75B0E008A5FF5 /* AlbumCollectionFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionFlow.swift; sourceTree = "<group>"; };
 		F1A9E08923E1764B00F0730C /* RealmPhotoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPhotoRepository.swift; sourceTree = "<group>"; };
+		F1D18C0E24056ED900F28B9B /* VKPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKPost.swift; sourceTree = "<group>"; };
 		F1D2EBC023A0109400F73236 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		F1D2EBC123A0109400F73236 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		F1D2EBC423A0122E00F73236 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
@@ -238,8 +242,9 @@
 				F13729C123A2467C00731CF6 /* DateTimeHelper.swift */,
 				F1F34F1323DC56BF007A496F /* CommonResponse.swift */,
 				5A0A0DA823D1007C002C718D /* VKGroup.swift */,
-				5A0A0DAA23D10087002C718D /* VKFriend.swift */,
+				5A0A0DAA23D10087002C718D /* VKUser.swift */,
 				5A0A0DAC23D1008E002C718D /* VKPhoto.swift */,
+				F1D18C0E24056ED900F28B9B /* VKPost.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 				5AD5FFAA23D62BCA0093A314 /* RealmUser.swift */,
 				F15EBB2223D86B2200E876CC /* RealmGroup.swift */,
 				F187C4F123D89C500024DF02 /* RealmPhoto.swift */,
+				5AE7FFE82411B3EF000CF4F9 /* RealmPost.swift */,
 				5AE1ABA523DF51EA00115479 /* RealmRepository */,
 			);
 			path = DataBase;
@@ -546,8 +552,10 @@
 				5A54C3C52401F5B300E7F66D /* SimplePostTableCell.swift in Sources */,
 				5A36906A23B148F60061A5A6 /* CardRotateTransitionInverted.swift in Sources */,
 				5A3640342389DE7400945E79 /* AppDelegate.swift in Sources */,
+				5AE7FFE92411B3EF000CF4F9 /* RealmPost.swift in Sources */,
 				5A57E61C23B000AB00E62316 /* CircularTransition.swift in Sources */,
 				5AD5FFAB23D62BCA0093A314 /* RealmUser.swift in Sources */,
+				F1D18C0F24056ED900F28B9B /* VKPost.swift in Sources */,
 				F1D2EBC723A0162300F73236 /* UsersFactory.swift in Sources */,
 				F13729C223A2467C00731CF6 /* DateTimeHelper.swift in Sources */,
 				5A298A4F23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift in Sources */,
@@ -567,7 +575,7 @@
 				5A35739B2395CC2600D3D6AC /* AllGroupsController.swift in Sources */,
 				5A36906C23B154770061A5A6 /* SwipeTransition.swift in Sources */,
 				5AEF0B9B23B280D100294A37 /* UIApplication+Controller.swift in Sources */,
-				5A0A0DAB23D10087002C718D /* VKFriend.swift in Sources */,
+				5A0A0DAB23D10087002C718D /* VKUser.swift in Sources */,
 				F1D2EBC223A0109400F73236 /* MessageCell.swift in Sources */,
 				5A776BEB2392B8B400200AED /* User.swift in Sources */,
 				F15EBB2323D86B2200E876CC /* RealmGroup.swift in Sources */,

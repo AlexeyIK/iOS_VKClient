@@ -11,7 +11,7 @@ import UIKit
 class MultiphotoPostTableCell: UITableViewCell {
     
     @IBOutlet weak var avatar: CircleShadowImage!
-    @IBOutlet weak var username: UILabel!
+    @IBOutlet weak var authorName: UILabel!
     @IBOutlet weak var timestamp: UILabel!
     @IBOutlet weak var postBodyText: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!

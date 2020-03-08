@@ -16,45 +16,30 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
     var imageToShow: UIImage?
     var fullImageURL: String?
     
-    let postsArray : [Post] = [
-        Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
-             timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .day, value: -3, to: Date())!),
-             postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. ",
-             photos: ["photo1", "photo2", "photo3", "photo4", "photo5", "photo6", "photo2", "photo3"],
-             likes: 3,
-             comments: 0,
-             views: 15),
-        
-        Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
-             timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .day, value: -1, to: Date())!),
-                  postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget.",
-                  photos: ["photo3", "photo2", "photo5", "photo6"],
-                  likes: 10,
-                  comments: 2,
-                  views: 15),
-        
-        Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
-             timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .hour, value: -12, to: Date())!),
-             postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat vivamus at augue eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-             photos: ["photo5"],
-             likes: 22,
-             comments: 4,
-             views: 40),
-        
-        Post(author: UsersFactory.getAllUsers()[Int.random(in: 0..<UsersFactory.usersList.count)],
-             timestamp: DateTimeHelper.getFormattedDate(dateTime: Calendar.current.date(byAdding: .hour, value: -1, to: Date())!),
-             postText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-             photos: ["photo2", "photo5", "photo3"],
-             likes: 14,
-             comments: 1,
-             views: 26)
-    ]
+    var imageLoadQueue = DispatchQueue(label: "ru.geekbrains.images.posts", attributes: .concurrent)
+    
+    var vkAPI = VKApi()
+    var postsArray = [VKPost]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "MultiphotoPostTableCell", bundle: nil), forCellReuseIdentifier: "PostTemplate")
         tableView.estimatedRowHeight = 200.0
         tableView.rowHeight = UITableView.automaticDimension
+        
+        getNewsFeed()
+    }
+    
+    private func getNewsFeed() {
+        vkAPI.getNewsFeed(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token) { result in
+            switch result {
+            case .success(let posts):
+                self.postsArray = posts
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -66,20 +51,50 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostTemplate", for: indexPath) as! MultiphotoPostTableCell
-        cell.avatar.image.image = UIImage(named: postsArray[indexPath.row].author.avatarPath)
-        cell.username.text = postsArray[indexPath.row].author.fullName
-        cell.timestamp.text = postsArray[indexPath.row].timestamp
-        cell.postBodyText.text = postsArray[indexPath.row].postText
         
-        if postsArray[indexPath.row].photos.count == 0 {
+        let post = postsArray[indexPath.row]
+        var imageUrl: URL?
+        
+        if post.byUser != nil {
+            cell.authorName.text = (post.byUser?.firstName ?? "") + " " + (post.byUser?.lastName ?? "")
+            imageUrl = URL(string: post.byUser?.avatarPath ?? "")
+        }
+        else if post.byGroup != nil {
+            cell.authorName.text = post.byGroup?.name ?? "-"
+            imageUrl = URL(string: post.byGroup?.logo ?? "")
+        }
+        
+        if imageUrl != nil {
+            imageLoadQueue.async {
+                if let imageData = try? Data(contentsOf: imageUrl!) {
+                    DispatchQueue.main.async {
+                        cell.avatar.image.image = UIImage(data: imageData)
+                    }
+                }
+            }
+        }
+        
+        cell.timestamp.text = DateTimeHelper.getFormattedDate(from: post.date)
+        cell.postBodyText.text = post.text
+
+        switch post.type {
+        case .post:
+            if post.attachments is [VKNewsPhoto] {
+                cell.collectionView.isHidden = false
+            }
+        case .wall_photo:
+            cell.collectionView.isHidden = false
+        case .photo:
+            cell.collectionView.isHidden = false
+        default:
             cell.collectionView.isHidden = true
         }
         
-        cell.likesCount.likeCount = postsArray[indexPath.row].likes
-        cell.commentsLabel.text = String(postsArray[indexPath.row].comments)
-        cell.viewsLabel.text = String(postsArray[indexPath.row].likes)
+        cell.likesCount.isLiked = post.likes.myLike == 1 ? true : false
+        cell.likesCount.likeCount = post.likes.count
+        cell.commentsLabel.text = String(post.comments)
+        cell.viewsLabel.text = String(post.views)
         
         viewClicked = { view in
             self.source = view
@@ -109,7 +124,20 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return postsArray[collectionView.tag].photos.count
+        let post = postsArray[collectionView.tag]
+        
+        switch post.type {
+        case .post:
+            if post.attachments is [VKNewsPhoto] {
+                return post.attachments.count
+            }
+        case .wall_photo:
+            return postsArray[collectionView.tag].photos.count
+        default:
+            break
+        }
+        
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -117,15 +145,39 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
             return PostPhotoCell()
         }
         
-        let photosForPost = postsArray[collectionView.tag].photos
-        if (photosForPost.count > 0) {
-            cell.postPhoto.image = UIImage(named: photosForPost[indexPath.item])
+        let post = postsArray[collectionView.tag]
+        var photosForPost = [VKPhoto]()
+        
+        switch post.type {
+        case .post:
+            if let attachedPhotos = post.attachments as? [VKNewsPhoto] {
+                photosForPost = attachedPhotos.map { $0.photo }
+            }
+        case .wall_photo:
+            photosForPost = post.photos
+        default:
+            return cell
         }
         
+        if (photosForPost.count > 0) {
+            if let photo = photosForPost[indexPath.item].imageSizes.first(where: { $0.type == "q" }),
+                let photoUrl = URL(string: photo.url) {
+                imageLoadQueue.async {
+                    if let imageData = try? Data(contentsOf: photoUrl) {
+                        DispatchQueue.main.async {
+                            cell.postPhoto.image = UIImage(data: imageData)
+                        }
+                    }
+                }
+            }
+        }
+
+        /*
         cell.imageClicked = { image in
             self.imageToShow = cell.postPhoto.image
             self.viewClicked?(image)
         }
+        */
         
         return cell
     }

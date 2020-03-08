@@ -17,7 +17,7 @@ class DateTimeHelper {
         return formatter.string(from: dateTime)
     }
     
-    public static func getFormattedDate(dateTime: Date) -> String {
+    public static func getFormattedDate(from dateTime: Date) -> String {
         let timeFormat = DateFormatter()
         let dateFormat = DateFormatter()
         timeFormat.dateFormat = "HH:mm"

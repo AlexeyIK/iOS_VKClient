@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct VKFriend: Decodable {
+struct VKUser: Decodable {
     var id: Int
     var firstName: String
     var lastName: String
@@ -28,7 +28,7 @@ struct VKFriend: Decodable {
 
 struct FriendsArray: Decodable {
     var count: Int
-    var items: [VKFriend]
+    var items: [VKUser]
 }
 
 struct ResponseFriends: Decodable {
