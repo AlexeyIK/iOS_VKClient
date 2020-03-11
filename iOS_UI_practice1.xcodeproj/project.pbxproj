@@ -37,6 +37,16 @@
 		5A57E61C23B000AB00E62316 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A57E61B23B000AB00E62316 /* CircularTransition.swift */; };
 		5A5B518323B4047800A28E2D /* MultiphotoPostTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5B518123B4047800A28E2D /* MultiphotoPostTableCell.swift */; };
 		5A5B518423B4047800A28E2D /* MultiphotoPostTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A5B518223B4047800A28E2D /* MultiphotoPostTableCell.xib */; };
+		5A5C59F82419946E0050CAFB /* PostHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5C59F62419946E0050CAFB /* PostHeader.swift */; };
+		5A5C59F92419946E0050CAFB /* PostHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A5C59F72419946E0050CAFB /* PostHeader.xib */; };
+		5A5C59FE241997A00050CAFB /* PostFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5C59FC241997A00050CAFB /* PostFooter.swift */; };
+		5A5C59FF241997A00050CAFB /* PostFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A5C59FD241997A00050CAFB /* PostFooter.xib */; };
+		5A5C5A0224199B940050CAFB /* PostTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5C5A0024199B940050CAFB /* PostTextCell.swift */; };
+		5A5C5A0324199B940050CAFB /* PostTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A5C5A0124199B940050CAFB /* PostTextCell.xib */; };
+		5A5C5A0624199CF20050CAFB /* PostSinglePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5C5A0424199CF20050CAFB /* PostSinglePhotoCell.swift */; };
+		5A5C5A0724199CF20050CAFB /* PostSinglePhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A5C5A0524199CF20050CAFB /* PostSinglePhotoCell.xib */; };
+		5A5C5A0A24199E070050CAFB /* PostMultiPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5C5A0824199E070050CAFB /* PostMultiPhotoCell.swift */; };
+		5A5C5A0B24199E070050CAFB /* PostMultiPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A5C5A0924199E070050CAFB /* PostMultiPhotoCell.xib */; };
 		5A776BEB2392B8B400200AED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A776BEA2392B8B400200AED /* User.swift */; };
 		5AAC414723947AF900BA698A /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAC414623947AF900BA698A /* Group.swift */; };
 		5AAC414B23947EE300BA698A /* MyGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAC414A23947EE300BA698A /* MyGroupsController.swift */; };
@@ -109,6 +119,16 @@
 		5A57E61B23B000AB00E62316 /* CircularTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
 		5A5B518123B4047800A28E2D /* MultiphotoPostTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiphotoPostTableCell.swift; sourceTree = "<group>"; };
 		5A5B518223B4047800A28E2D /* MultiphotoPostTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultiphotoPostTableCell.xib; sourceTree = "<group>"; };
+		5A5C59F62419946E0050CAFB /* PostHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostHeader.swift; sourceTree = "<group>"; };
+		5A5C59F72419946E0050CAFB /* PostHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostHeader.xib; sourceTree = "<group>"; };
+		5A5C59FC241997A00050CAFB /* PostFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFooter.swift; sourceTree = "<group>"; };
+		5A5C59FD241997A00050CAFB /* PostFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostFooter.xib; sourceTree = "<group>"; };
+		5A5C5A0024199B940050CAFB /* PostTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTextCell.swift; sourceTree = "<group>"; };
+		5A5C5A0124199B940050CAFB /* PostTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTextCell.xib; sourceTree = "<group>"; };
+		5A5C5A0424199CF20050CAFB /* PostSinglePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSinglePhotoCell.swift; sourceTree = "<group>"; };
+		5A5C5A0524199CF20050CAFB /* PostSinglePhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostSinglePhotoCell.xib; sourceTree = "<group>"; };
+		5A5C5A0824199E070050CAFB /* PostMultiPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMultiPhotoCell.swift; sourceTree = "<group>"; };
+		5A5C5A0924199E070050CAFB /* PostMultiPhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostMultiPhotoCell.xib; sourceTree = "<group>"; };
 		5A776BEA2392B8B400200AED /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5AAC414623947AF900BA698A /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		5AAC414A23947EE300BA698A /* MyGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsController.swift; sourceTree = "<group>"; };
@@ -291,6 +311,16 @@
 				5A0E791523CB500300EDFBAD /* PostPhotoCell.xib */,
 				5A54C3C32401F5B300E7F66D /* SimplePostTableCell.swift */,
 				5A54C3C42401F5B300E7F66D /* SimplePostTableCell.xib */,
+				5A5C59F62419946E0050CAFB /* PostHeader.swift */,
+				5A5C59F72419946E0050CAFB /* PostHeader.xib */,
+				5A5C59FC241997A00050CAFB /* PostFooter.swift */,
+				5A5C59FD241997A00050CAFB /* PostFooter.xib */,
+				5A5C5A0024199B940050CAFB /* PostTextCell.swift */,
+				5A5C5A0124199B940050CAFB /* PostTextCell.xib */,
+				5A5C5A0424199CF20050CAFB /* PostSinglePhotoCell.swift */,
+				5A5C5A0524199CF20050CAFB /* PostSinglePhotoCell.xib */,
+				5A5C5A0824199E070050CAFB /* PostMultiPhotoCell.swift */,
+				5A5C5A0924199E070050CAFB /* PostMultiPhotoCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -467,12 +497,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A5C59F92419946E0050CAFB /* PostHeader.xib in Resources */,
 				5A54C3C62401F5B300E7F66D /* SimplePostTableCell.xib in Resources */,
+				5A5C59FF241997A00050CAFB /* PostFooter.xib in Resources */,
 				5A0E791623CB500300EDFBAD /* PostPhotoCell.xib in Resources */,
 				5A36403E2389DE7600945E79 /* LaunchScreen.storyboard in Resources */,
 				F1D2EBC323A0109400F73236 /* MessageCell.xib in Resources */,
+				5A5C5A0B24199E070050CAFB /* PostMultiPhotoCell.xib in Resources */,
+				5A5C5A0724199CF20050CAFB /* PostSinglePhotoCell.xib in Resources */,
 				5AC8597623A659C400103D51 /* GroupsCell.xib in Resources */,
 				5A5B518423B4047800A28E2D /* MultiphotoPostTableCell.xib in Resources */,
+				5A5C5A0324199B940050CAFB /* PostTextCell.xib in Resources */,
 				5A36403B2389DE7600945E79 /* Assets.xcassets in Resources */,
 				5A3640392389DE7400945E79 /* Main.storyboard in Resources */,
 			);
@@ -529,6 +564,7 @@
 			files = (
 				5A5049E923DF665100CEE9B2 /* FriendsConfigurator.swift in Sources */,
 				F14DAF3A239ABB3100D21230 /* LikeButton.swift in Sources */,
+				5A5C5A0224199B940050CAFB /* PostTextCell.swift in Sources */,
 				F1F34F1423DC56BF007A496F /* CommonResponse.swift in Sources */,
 				5A36906823B13E600061A5A6 /* CardRotateTransition.swift in Sources */,
 				F1D2EBC923A018F000F73236 /* CustomCollectionUILayout.swift in Sources */,
@@ -538,6 +574,7 @@
 				5A24DD9B23CD0DEA0067ABC3 /* SessionObject.swift in Sources */,
 				5AEF0B9723B27C7E00294A37 /* PopupAnimator.swift in Sources */,
 				5AB12D8323A80BA800610167 /* Loader.swift in Sources */,
+				5A5C5A0A24199E070050CAFB /* PostMultiPhotoCell.swift in Sources */,
 				F1A9E08A23E1764B00F0730C /* RealmPhotoRepository.swift in Sources */,
 				5ACDE7DD239196CB00A9672F /* PhotoAlbumController.swift in Sources */,
 				5A5049E723DF651400CEE9B2 /* FriendsPresenter.swift in Sources */,
@@ -559,6 +596,7 @@
 				F1D2EBC723A0162300F73236 /* UsersFactory.swift in Sources */,
 				F13729C223A2467C00731CF6 /* DateTimeHelper.swift in Sources */,
 				5A298A4F23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift in Sources */,
+				5A5C59F82419946E0050CAFB /* PostHeader.swift in Sources */,
 				5A35739D2395CDE000D3D6AC /* GroupCell.swift in Sources */,
 				5AB6777423CFBE1700AB5520 /* VKAPIManager.swift in Sources */,
 				5AAC414723947AF900BA698A /* Group.swift in Sources */,
@@ -579,9 +617,11 @@
 				F1D2EBC223A0109400F73236 /* MessageCell.swift in Sources */,
 				5A776BEB2392B8B400200AED /* User.swift in Sources */,
 				F15EBB2323D86B2200E876CC /* RealmGroup.swift in Sources */,
+				5A5C5A0624199CF20050CAFB /* PostSinglePhotoCell.swift in Sources */,
 				5AEF0B9923B27EE100294A37 /* ImageViewerPresenter.swift in Sources */,
 				5AAC414B23947EE300BA698A /* MyGroupsController.swift in Sources */,
 				5AD3B0EE23A18ED100204692 /* Post.swift in Sources */,
+				5A5C59FE241997A00050CAFB /* PostFooter.swift in Sources */,
 				5ACE8BE023D6271A000A257D /* VKClient.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

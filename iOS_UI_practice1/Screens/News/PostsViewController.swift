@@ -16,6 +16,9 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
     var imageToShow: UIImage?
     var fullImageURL: String?
     
+    var isFetchingMoreNews = false
+    var nextFrom: String?
+    
     var imageLoadQueue = DispatchQueue(label: "ru.geekbrains.images.posts", attributes: .concurrent)
     
     var vkAPI = VKApi()
@@ -26,19 +29,24 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
         tableView.register(UINib(nibName: "MultiphotoPostTableCell", bundle: nil), forCellReuseIdentifier: "PostTemplate")
         tableView.estimatedRowHeight = 200.0
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.prefetchDataSource = self
         
         getNewsFeed()
     }
     
     private func getNewsFeed() {
-        vkAPI.getNewsFeed(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token) { result in
+        isFetchingMoreNews = true
+        
+        vkAPI.getNewsFeed(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token, nextFrom: nil) { result in
             switch result {
-            case .success(let posts):
+            case .success(let posts, let nextFrom):
                 self.postsArray = posts
+                self.nextFrom = nextFrom
                 self.tableView.reloadData()
             case .failure(let error):
                 print(error)
             }
+            self.isFetchingMoreNews = false
         }
     }
 
@@ -192,5 +200,27 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
         */
         
         return cell
+    }
+}
+
+extension PostsViewController: UITableViewDataSourcePrefetching {
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        guard !isFetchingMoreNews,
+            let maxRow = indexPaths.map({ $0.row }).max(),
+            postsArray.count <= maxRow + 2 else { return }
+        
+        isFetchingMoreNews = true
+        vkAPI.getNewsFeed(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token, nextFrom: nextFrom) { result in
+            switch result {
+            case .success(let posts, let nextFrom):
+                self.postsArray.append(contentsOf: posts)
+                self.nextFrom = nextFrom
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+            self.isFetchingMoreNews = false
+        }
     }
 }

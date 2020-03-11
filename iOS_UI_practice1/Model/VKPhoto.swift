@@ -6,13 +6,20 @@
 //  Copyright © 2020 Alexey Kuznetsov. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct VKImage: Decodable {
     var type: String
     var url: String
     var width: Int
     var height: Int
+    
+    var aspectRatio: CGFloat? {
+        guard width != 0 else { return nil }
+        return CGFloat(height)/CGFloat(width)
+    }
+    
+    var resolution: Int { width * height }
 }
 
 struct VKLike: Decodable {

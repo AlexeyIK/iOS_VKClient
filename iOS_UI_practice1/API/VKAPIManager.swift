@@ -18,6 +18,7 @@ class VKApi {
     
     typealias Out = Swift.Result
     
+    // MARK: generic request
     func sendRequest<T: Decodable>(requestURL: String, method: HTTPMethod = .get, params: Parameters, completion: @escaping (Out<[T], Error>) -> Void) {
         Alamofire.request(requestURL, method: method, parameters: params)
             .responseData { (result) in
@@ -38,7 +39,7 @@ class VKApi {
         }
     }
     
-    // ToDo: переписать на Result-функции
+    // MARK: friends list request
     func getFriendList(apiVersion: String, token: String, completion: @escaping (Out<[VKUser], Error>) -> Void) {
         let requestURL = vkURL + "friends.get"
         let params = ["access_token": token,
@@ -49,6 +50,7 @@ class VKApi {
         sendRequest(requestURL: requestURL, method: .post, params: params) { completion($0) }
     }
     
+    // MARK: groups list request
     func getUsersGroups(apiVersion: String, token: String, userID: Int = Session.shared.userId, completion: @escaping (Out<[VKGroup], Error>)  -> Void ) {
         let requestURL = vkURL + "groups.get"
         let params = ["access_token": token,
@@ -88,13 +90,20 @@ class VKApi {
     }
     
     // MARK: newsfeed request
-    func getNewsFeed(apiVersion: String, token: String, userID: Int = Session.shared.userId, completion: @escaping (Out<[VKPost], Error>) -> Void) {
+    func getNewsFeed(apiVersion: String,
+                     token: String,
+                     userID: Int = Session.shared.userId,
+                     nextFrom: String?,
+                     completion: @escaping (Out<([VKPost], String?), Error>) -> Void) {
+        
         let requestURL = vkURL + "newsfeed.get"
         let params = ["access_token": token,
                       "user_id": String(userID),
                       "v": apiVersion,
                       "filters": "post,photo",
-                      "count": "30"]
+                      "start_from": nextFrom ?? "",
+//                      "start_time", startTime ?? "",
+                      "count": "5"]
         
         Alamofire.request(requestURL, method: .post, parameters: params)
             .responseData { (result) in
@@ -186,14 +195,11 @@ class VKApi {
                                 }
                             case .wall_photo:
                                 let photosNode = item["photos"]
-                                let photosCount = photosNode["count"].intValue
-                                let photoItems = photosNode["items"].arrayValue
                                 
-                                photoItems.forEach { photoItem in
-                                    let sizesNode = photoItem["sizes"].arrayValue
+                                photosNode["items"].arrayValue.forEach { photoItem in
                                     var photoSizes = [VKImage]()
                                     
-                                    sizesNode.forEach { size in
+                                    photoItem["sizes"].arrayValue.forEach { size in
                                         photoSizes.append(VKImage(type: size["type"].stringValue,
                                                                   url: size["url"].stringValue,
                                                                   width: size["width"].intValue,
@@ -243,8 +249,9 @@ class VKApi {
                         }
                     }
                     
-//                    print("NewsFeed: \(response)")
-                    completion(.success(postsResult))
+                    let nextFrom = response["next_from"].stringValue
+                    
+                    completion(.success((postsResult, nextFrom)))
                 } catch {
                     completion(.failure(error))
                 }
