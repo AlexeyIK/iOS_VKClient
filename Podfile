@@ -6,9 +6,9 @@ target 'iOS_UI_practice1' do
   use_frameworks!
 
   # Pods for iOS_UI_practice1
-  pod 'Alamofire'
+  pod 'Alamofire', '~> 4.9.1'
   pod 'Kingfisher', '~> 5.13'
-  pod 'RealmSwift'
+  pod 'RealmSwift', '~> 4.3.1'
   pod 'SwiftKeychainWrapper', '~> 3.4'
   pod 'SwiftyJSON', '~> 5.0'
 
