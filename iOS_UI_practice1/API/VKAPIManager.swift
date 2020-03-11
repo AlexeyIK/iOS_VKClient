@@ -155,7 +155,7 @@ class VKApi {
                             
                             switch postType {
                             case .post:
-                                // Attachments parser
+                                // парсим аттачменты
                                 let attachments = item["attachments"].arrayValue
                                 bodyText = item["text"].stringValue
                                 
@@ -176,19 +176,20 @@ class VKApi {
                                                             height: size["height"].intValue))
                                             }
                                             
-                                            let newAttachment = VKNewsPhoto(type: attachmentType,
-                                                                       id: attachedData["id"].intValue,
-                                                                       albumID: attachedData["album_id"].intValue,
-                                                                       userID: attachedData["user_id"].intValue,
-                                                                       imageSizes: photoSizes,
-                                                                       text: attachedData["text"].stringValue)
+                                            let photoAttachment = VKPhoto(id: attachedData["id"].intValue,
+                                                                          albumID: attachedData["album_id"].intValue,
+                                                                          userID: attachedData["user_id"].intValue,
+                                                                          imageSizes: photoSizes,
+                                                                          text: attachedData["text"].stringValue)
                                             
-                                            postAttachments.append(newAttachment)
+                                            postPhotos.append(photoAttachment)
                                         case .link:
+                                            // ToDo: разобрать ссылки, выводить в каком-то виде
                                             break
                                         case .audio:
                                             break
                                         case .video:
+                                            // ToDo: разобрать видео-превью, сеттить в качестве фотки с дорисовкой значка видео
                                             break
                                         }
                                     }

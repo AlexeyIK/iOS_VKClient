@@ -26,7 +26,12 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "MultiphotoPostTableCell", bundle: nil), forCellReuseIdentifier: "PostTemplate")
+//        tableView.register(UINib(nibName: "MultiphotoPostTableCell", bundle: nil), forCellReuseIdentifier: "PostTemplate")
+        tableView.register(UINib(nibName: "PostHeaderCell", bundle: nil), forCellReuseIdentifier: "PostHeader")
+        tableView.register(UINib(nibName: "PostTextCell", bundle: nil), forCellReuseIdentifier: "PostBodyText")
+        tableView.register(UINib(nibName: "PostSinglePhotoCell", bundle: nil), forCellReuseIdentifier: "PostPhoto")
+        tableView.register(UINib(nibName: "PostFooterCell", bundle: nil), forCellReuseIdentifier: "PostFooter")
+        
         tableView.estimatedRowHeight = 200.0
         tableView.rowHeight = UITableView.automaticDimension
         tableView.prefetchDataSource = self
@@ -51,13 +56,63 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return postsArray.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postsArray.count
+//        return postsArray.count
+        // ToDo: if post has photos or videos or links, there is 4 rows, otherwise - 3
+        switch postsArray[section].photos.count {
+        case 0:
+            return 3
+        default:
+            return 4
+        }
     }
     
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let post = postsArray[indexPath.section]
+        
+        switch indexPath.row {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PostHeader", for: indexPath) as! PostHeaderCell
+            var avatarURL: URL?
+
+            if post.byUser != nil {
+                cell.authorName.text = (post.byUser?.firstName ?? "") + " " + (post.byUser?.lastName ?? "")
+                avatarURL = URL(string: post.byUser?.avatarPath ?? "")
+            }
+            else if post.byGroup != nil {
+                cell.authorName.text = post.byGroup?.name ?? "-"
+                avatarURL = URL(string: post.byGroup?.logo ?? "")
+            }
+            
+            imageLoadQueue.async {
+                if avatarURL != nil, let imageData = try? Data(contentsOf: avatarURL!) {
+                    DispatchQueue.main.async {
+                        cell.postAvatar.image.image = UIImage(data: imageData)
+                    }
+                }
+            }
+            
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PostBodyText", for: indexPath) as! PostTextCell
+            cell.bodyText.text = post.text
+            return cell
+        case 3:
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "PostPhoto", for: indexPath) as! PostSinglePhotoCell
+            break
+        case 4:
+            break
+        default:
+            break
+        }
+        
+        return UITableViewCell()
+    }
+    
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostTemplate", for: indexPath) as! MultiphotoPostTableCell
         
@@ -118,7 +173,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
         
         cell.layoutMargins.bottom = postsBottomMargin
         return cell
-    }
+    }*/
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let tableViewCell = cell as? MultiphotoPostTableCell else { return }
@@ -135,18 +190,7 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let post = postsArray[collectionView.tag]
         
-        switch post.type {
-        case .post:
-            if post.attachments is [VKNewsPhoto] {
-                return post.attachments.count
-            }
-        case .wall_photo:
-            return postsArray[collectionView.tag].photos.count
-        default:
-            break
-        }
-        
-        return 0
+        return postsArray[collectionView.tag].photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -155,18 +199,7 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
         }
         
         let post = postsArray[collectionView.tag]
-        var photosForPost = [VKPhoto]()
-        
-        switch post.type {
-        case .post:
-            if let attachedPhotos = post.attachments as? [VKNewsPhoto] {
-                photosForPost = attachedPhotos.map { $0.photo }
-            }
-        case .wall_photo:
-            photosForPost = post.photos
-        default:
-            return cell
-        }
+        var photosForPost = post.photos
         
         if (photosForPost.count > 0) {
             var photoSize = "x"

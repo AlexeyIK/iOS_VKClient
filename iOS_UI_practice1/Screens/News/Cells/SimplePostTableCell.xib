@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -56,7 +56,7 @@
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMQ-HV-AP5">
                                 <rect key="frame" x="0.0" y="58" width="345" height="316"/>
-                                <mutableString key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aenean et tortor at risus viverra adipiscing. Velit ut tortor pretium viverra suspendisse potenti nullam. Odio ut sem nulla pharetra diam sit. Leo integer malesuada nunc vel risus commodo. Gravida neque convallis a cras semper auctor neque vitae. Faucibus nisl tincidunt eget nullam non nisi est sit. Sapien et ligula ullamcorper malesuada proin. Suspendisse faucibus interdum posuere lorem ipsum dolor sit amet consectetur. Sapien faucibus et molestie ac feugiat sed lectus vestibulum. Est sit amet facilisis magna etiam. Sollicitudin nibh sit amet commodo. At imperdiet dui accumsan sit amet nulla facilisi morbi. Sed euismod nisi porta lorem mollis aliquam ut porttitor leo. Diam quam nulla porttitor massa id neque aliquam.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aenean et tortor at risus viverra adipiscing. Velit ut tortor pretium viverra suspendisse potenti nullam. Odio ut sem nulla pharetra diam sit. Leo integer malesuada nunc vel risus commodo. Gravida neque convallis a cras semper auctor neque vitae. Faucibus nisl tincidunt eget nullam non nisi est sit. Sapien et ligula ullamcorper malesuada proin. Suspendisse faucibus interdum posuere lorem ipsum dolor sit amet consectetur. Sapien faucibus et molestie ac feugiat sed lectus vestibulum. Est sit amet facilisis magna etiam. Sollicitudin nibh sit amet commodo. At imperdiet dui accumsan sit amet nulla facilisi morbi. Sed euismod nisi porta lorem mollis aliquam ut porttitor leo. Diam quam nulla porttitor massa id neque aliquam.</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -87,7 +87,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="jXp-dh-dox" userLabel="Comments">
-                                        <rect key="frame" x="106" y="0.0" width="36.5" height="22"/>
+                                        <rect key="frame" x="106" y="0.0" width="36.666666666666657" height="22"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comments_ico" translatesAutoresizingMaskIntoConstraints="NO" id="GMV-G6-08N">
                                                 <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
@@ -97,7 +97,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ywh-0Y-FxM">
-                                                <rect key="frame" x="27" y="0.0" width="9.5" height="22"/>
+                                                <rect key="frame" x="27" y="0.0" width="9.6666666666666643" height="22"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -105,7 +105,7 @@
                                         </subviews>
                                     </stackView>
                                     <imageView userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="share_ico" translatesAutoresizingMaskIntoConstraints="NO" id="Vv8-7B-iAm" userLabel="Share">
-                                        <rect key="frame" x="210" y="0.0" width="22" height="22"/>
+                                        <rect key="frame" x="210.33333333333334" y="0.0" width="22" height="22"/>
                                         <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Vv8-7B-iAm" secondAttribute="height" multiplier="1:1" id="DAc-Kg-oTF"/>
