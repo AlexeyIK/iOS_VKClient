@@ -10,7 +10,13 @@ import UIKit
 
 class PostsViewController: UITableViewController, ImageViewPresenterSource {
     
-    let postsBottomMargin: CGFloat = 15.0
+    let postsBottomMargin: CGFloat = 10.0
+    let maxHeightOfTextBlock: CGFloat = 200.0
+    
+    let imageSizeKeyForBig = "x"
+    let imageSizeKeyForMedium = "q"
+    let imageSizeKeyForSmall = "p"
+    
     var source: UIView?
     var viewClicked: ((UIView)->())? = nil
     var imageToShow: UIImage?
@@ -30,10 +36,11 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
         tableView.register(UINib(nibName: "PostHeaderCell", bundle: nil), forCellReuseIdentifier: "PostHeader")
         tableView.register(UINib(nibName: "PostTextCell", bundle: nil), forCellReuseIdentifier: "PostBodyText")
         tableView.register(UINib(nibName: "PostSinglePhotoCell", bundle: nil), forCellReuseIdentifier: "PostPhoto")
+        tableView.register(UINib(nibName: "PostMultiPhotoCell", bundle: nil), forCellReuseIdentifier: "PostCollection")
         tableView.register(UINib(nibName: "PostFooterCell", bundle: nil), forCellReuseIdentifier: "PostFooter")
         
         tableView.estimatedRowHeight = 200.0
-        tableView.rowHeight = UITableView.automaticDimension
+//        tableView.rowHeight = UITableView.automaticDimension
         tableView.prefetchDataSource = self
         
         getNewsFeed()
@@ -70,6 +77,48 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
         }
     }
     
+    // размер отступа между постами
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return postsBottomMargin
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let post = postsArray[indexPath.section]
+        
+        switch indexPath.row {
+        case 1:
+            if let textBlock = post.text, !textBlock.isEmpty {
+                let autoSize = UITableView.automaticDimension
+                if autoSize > maxHeightOfTextBlock {
+                    return maxHeightOfTextBlock
+                }
+                return autoSize
+            } else {
+                return 0
+            }
+        case 2:
+            if post.photos.count == 1 {
+                if let image = (post.photos.first)?.imageSizes.first(where: { $0.type == imageSizeKeyForBig }) {
+                    let aspectRatio = image.aspectRatio ?? 1
+                    return tableView.bounds.width * aspectRatio
+                } else {
+                    return tableView.bounds.width
+                }
+            } else if post.photos.count > 1 {
+                let height = UITableView.automaticDimension
+                return height
+            } else {
+                return 0
+            }
+        case 3:
+            break
+        default:
+            break
+        }
+        
+        return UITableView.automaticDimension
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let post = postsArray[indexPath.section]
         
@@ -95,16 +144,44 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
                 }
             }
             
+            cell.timestamp.text = DateTimeHelper.getFormattedDate(from: post.date)
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostBodyText", for: indexPath) as! PostTextCell
             cell.bodyText.text = post.text
             return cell
+        case 2:
+            if post.photos.count == 0 {
+                break
+            }
+            else if post.photos.count == 1 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "PostPhoto", for: indexPath) as! PostSinglePhotoCell
+                
+                if let photo = (post.photos.first)?.imageSizes.first(where: { $0.type == imageSizeKeyForBig }),
+                    let photoUrl = URL(string: photo.url) {
+                    imageLoadQueue.async {
+                        if let imageData = try? Data(contentsOf: photoUrl) {
+                            DispatchQueue.main.async {
+                                cell.photo.image = UIImage(data: imageData)
+                            }
+                        }
+                    }
+                }
+                
+                return cell
+            }
+            else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "PostCollection", for: indexPath) as! PostMultiPhotoCell
+                return cell
+            }
         case 3:
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "PostPhoto", for: indexPath) as! PostSinglePhotoCell
-            break
-        case 4:
-            break
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PostFooter", for: indexPath) as! PostFooterCell
+            cell.likeButton.isLiked = post.likes.myLike == 1 ? true : false
+            cell.likeButton.likeCount = post.likes.count
+            cell.comments.text = CountsFormatter.ToString(value: post.comments, threshold: 1000, devide: 3, format: "%.1fk")
+            cell.reposts.text = CountsFormatter.ToString(value: post.reposts, threshold: 1000, devide: 3, format: "%.1fk")
+            cell.views.text = CountsFormatter.ToString(value: post.views, threshold: 1000, devide: 3, format: "%.1fk")
+            return cell
         default:
             break
         }
@@ -176,9 +253,10 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
     }*/
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let tableViewCell = cell as? MultiphotoPostTableCell else { return }
+//        guard let tableViewCell = cell as? MultiphotoPostTableCell else { return }
+        guard let tableViewCell = cell as? PostMultiPhotoCell else { return }
         
-        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
+        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.section)
     }
 }
 
@@ -199,9 +277,9 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
         }
         
         let post = postsArray[collectionView.tag]
-        var photosForPost = post.photos
+        let photosForPost = post.photos
         
-        if (photosForPost.count > 0) {
+        if (photosForPost.count > 1) {
             var photoSize = "x"
             
             if photosForPost.count > 1 && photosForPost.count <= 3 {
@@ -216,13 +294,10 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
         
             if let photo = photosForPost[indexPath.item].imageSizes.first(where: { $0.type == photoSize }),
                 let photoUrl = URL(string: photo.url) {
-                imageLoadQueue.async {
-                    if let imageData = try? Data(contentsOf: photoUrl) {
-                        DispatchQueue.main.async {
-                            cell.postPhoto.image = UIImage(data: imageData)
-                        }
-                    }
-                }
+                cell.postPhoto.kf.setImage(with: photoUrl)
+            }
+            else {
+                return PostPhotoCell()
             }
         }
         /*
@@ -236,12 +311,13 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
 }
 
+// MARK: Infinite Scrolling
 extension PostsViewController: UITableViewDataSourcePrefetching {
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         guard !isFetchingMoreNews,
-            let maxRow = indexPaths.map({ $0.row }).max(),
-            postsArray.count <= maxRow + 2 else { return }
+            let maxSection = indexPaths.map({ $0.section }).max(),
+            postsArray.count <= maxSection + 2 else { return }
         
         isFetchingMoreNews = true
         vkAPI.getNewsFeed(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token, nextFrom: nextFrom) { result in

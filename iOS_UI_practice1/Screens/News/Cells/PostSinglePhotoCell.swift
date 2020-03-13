@@ -10,6 +10,14 @@ import UIKit
 
 class PostSinglePhotoCell: UITableViewCell {
 
+    @IBOutlet weak var photo: UIImageView! {
+        didSet {
+            calculateHeight()
+        }
+    }
+    
+    var cellHeight : Int = 200
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +29,7 @@ class PostSinglePhotoCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    private func calculateHeight() {
+        layoutIfNeeded()
+    }
 }

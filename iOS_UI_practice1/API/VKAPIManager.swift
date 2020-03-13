@@ -20,7 +20,7 @@ class VKApi {
     
     // MARK: generic request
     func sendRequest<T: Decodable>(requestURL: String, method: HTTPMethod = .get, params: Parameters, completion: @escaping (Out<[T], Error>) -> Void) {
-        Alamofire.request(requestURL, method: method, parameters: params)
+        AF.request(requestURL, method: method, parameters: params)
             .responseData { (result) in
                 guard let data = result.value else { return }
                 
@@ -105,7 +105,7 @@ class VKApi {
 //                      "start_time", startTime ?? "",
                       "count": "5"]
         
-        Alamofire.request(requestURL, method: .post, parameters: params)
+        AF.request(requestURL, method: .post, parameters: params)
             .responseData { (result) in
                 guard let data = result.value else { return }
                 
@@ -138,115 +138,118 @@ class VKApi {
                     // парсим посты и сопоставляем группы и юзеров к постам
                     items.forEach { item in
                         if let postType = PostType(rawValue: item["type"].stringValue) {
-                            print("post: \n\(item)")
+//                            print("post: \n\(item)")
                             
-                            let sourceID = item["source_id"].intValue
-                            var bodyText: String? = nil
-                            var postPhotos = [VKPhoto]()
-                            var postAttachments = [VKAttachment]()
-                            var user: VKUser? = nil
-                            var group: VKGroup? = nil
-                            
-                            if sourceID > 0 {
-                                user = usersResult.first { $0.id == sourceID }
-                            } else {
-                                group = groupsResult.first { $0.id == abs(sourceID) }
-                            }
-                            
-                            switch postType {
-                            case .post:
-                                // парсим аттачменты
-                                let attachments = item["attachments"].arrayValue
-                                bodyText = item["text"].stringValue
+                            // Пропускаем репосты пока что
+                            if item["copy_history"].array == nil {
+                                let sourceID = item["source_id"].intValue
+                                var bodyText: String? = nil
+                                var postPhotos = [VKPhoto]()
+                                var postAttachments = [VKAttachment]()
+                                var user: VKUser? = nil
+                                var group: VKGroup? = nil
                                 
-                                attachments.forEach { (attachment) in
-                                    if let attachmentType = AttachmentType(rawValue: attachment["type"].stringValue) {
-                                        let attachedData = attachment[attachment["type"].stringValue]
-                                        
-                                        switch attachmentType {
-                                        case .photo:
-                                            let sizesNode = attachedData["sizes"].arrayValue
-                                            var photoSizes = [VKImage]()
+                                if sourceID > 0 {
+                                    user = usersResult.first { $0.id == sourceID }
+                                } else {
+                                    group = groupsResult.first { $0.id == abs(sourceID) }
+                                }
+                                
+                                switch postType {
+                                case .post:
+                                    // парсим аттачменты
+                                    let attachments = item["attachments"].arrayValue
+                                    bodyText = item["text"].stringValue
+                                    
+                                    attachments.forEach { (attachment) in
+                                        if let attachmentType = AttachmentType(rawValue: attachment["type"].stringValue) {
+                                            let attachedData = attachment[attachment["type"].stringValue]
                                             
-                                            sizesNode.forEach { size in
-                                                photoSizes.append(
-                                                    VKImage(type: size["type"].stringValue,
-                                                            url: size["url"].stringValue,
-                                                            width: size["width"].intValue,
-                                                            height: size["height"].intValue))
+                                            switch attachmentType {
+                                            case .photo:
+                                                let sizesNode = attachedData["sizes"].arrayValue
+                                                var photoSizes = [VKImage]()
+                                                
+                                                sizesNode.forEach { size in
+                                                    photoSizes.append(
+                                                        VKImage(type: size["type"].stringValue,
+                                                                url: size["url"].stringValue,
+                                                                width: size["width"].intValue,
+                                                                height: size["height"].intValue))
+                                                }
+                                                
+                                                let photoAttachment = VKPhoto(id: attachedData["id"].intValue,
+                                                                              albumID: attachedData["album_id"].intValue,
+                                                                              userID: attachedData["user_id"].intValue,
+                                                                              imageSizes: photoSizes,
+                                                                              text: attachedData["text"].stringValue)
+                                                
+                                                postPhotos.append(photoAttachment)
+                                            case .link:
+                                                // ToDo: разобрать ссылки, выводить в каком-то виде
+                                                break
+                                            case .audio:
+                                                break
+                                            case .video:
+                                                // ToDo: разобрать видео-превью, сеттить в качестве фотки с дорисовкой значка видео
+                                                break
                                             }
-                                            
-                                            let photoAttachment = VKPhoto(id: attachedData["id"].intValue,
-                                                                          albumID: attachedData["album_id"].intValue,
-                                                                          userID: attachedData["user_id"].intValue,
-                                                                          imageSizes: photoSizes,
-                                                                          text: attachedData["text"].stringValue)
-                                            
-                                            postPhotos.append(photoAttachment)
-                                        case .link:
-                                            // ToDo: разобрать ссылки, выводить в каком-то виде
-                                            break
-                                        case .audio:
-                                            break
-                                        case .video:
-                                            // ToDo: разобрать видео-превью, сеттить в качестве фотки с дорисовкой значка видео
-                                            break
                                         }
                                     }
-                                }
-                            case .wall_photo:
-                                let photosNode = item["photos"]
-                                
-                                photosNode["items"].arrayValue.forEach { photoItem in
-                                    var photoSizes = [VKImage]()
+                                case .wall_photo:
+                                    let photosNode = item["photos"]
                                     
-                                    photoItem["sizes"].arrayValue.forEach { size in
-                                        photoSizes.append(VKImage(type: size["type"].stringValue,
-                                                                  url: size["url"].stringValue,
-                                                                  width: size["width"].intValue,
-                                                                  height: size["height"].intValue))
+                                    photosNode["items"].arrayValue.forEach { photoItem in
+                                        var photoSizes = [VKImage]()
+                                        
+                                        photoItem["sizes"].arrayValue.forEach { size in
+                                            photoSizes.append(VKImage(type: size["type"].stringValue,
+                                                                      url: size["url"].stringValue,
+                                                                      width: size["width"].intValue,
+                                                                      height: size["height"].intValue))
+                                        }
+                                        
+                                        let newPhoto = VKPhoto(id: photoItem["id"].intValue,
+                                                               albumID: photoItem["album_id"].intValue,
+                                                               userID: photoItem["user_id"].intValue,
+                                                               imageSizes: photoSizes,
+                                                               text: photoItem["text"].stringValue,
+                                                               likes: VKLike(myLike: photoItem["likes"]["user_likes"].intValue, count: photoItem["likes"]["count"].intValue))
+                                        
+                                        postPhotos.append(newPhoto)
                                     }
                                     
-                                    let newPhoto = VKPhoto(id: photoItem["id"].intValue,
-                                                          albumID: photoItem["album_id"].intValue,
-                                                          userID: photoItem["user_id"].intValue,
-                                                          imageSizes: photoSizes,
-                                                          text: photoItem["text"].stringValue,
-                                                          likes: VKLike(myLike: photoItem["likes"]["user_likes"].intValue, count: photoItem["likes"]["count"].intValue))
-                                    
-                                    postPhotos.append(newPhoto)
+                                case .photo:
+                                    // ToDo: разобрать пост с просто фотками, у него другая логика лайков и комментариев и существенно проще структура. Также понадобится создать новый xib
+                                    break
+                                case .photo_tag:
+                                    break
+                                case .friend:
+                                    break
+                                case .note:
+                                    break
+                                case .audio:
+                                    break
+                                case .video:
+                                    break
                                 }
                                 
-                            case .photo:
-                                // ToDo: разобрать пост с просто фотками, у него другая логика лайков и комментариев и существенно проще структура. Также понадобится создать новый xib
-                                break
-                            case .photo_tag:
-                                break
-                            case .friend:
-                                break
-                            case .note:
-                                break
-                            case .audio:
-                                break
-                            case .video:
-                                break
+                                let post = VKPost(type: postType,
+                                                  postId: item["post_id"].intValue,
+                                                  sourceId: sourceID,
+                                                  date: Date(timeIntervalSince1970: item["date"].doubleValue),
+                                                  text: bodyText,
+                                                  photos: postPhotos,
+                                                  attachments: postAttachments,
+                                                  likes: VKLike(myLike: item["likes"]["user_likes"].intValue, count: item["likes"]["count"].intValue),
+                                                  comments: item["comments"]["count"].intValue,
+                                                  reposts: item["reposts"]["count"].intValue,
+                                                  views: item["views"]["count"].intValue,
+                                                  byUser: user,
+                                                  byGroup: group)
+                                
+                                postsResult.append(post)
                             }
-                            
-                            let post = VKPost(type: postType,
-                                              postId: item["post_id"].intValue,
-                                              sourceId: sourceID,
-                                              date: Date(timeIntervalSince1970: item["date"].doubleValue),
-                                              text: bodyText,
-                                              photos: postPhotos,
-                                              attachments: postAttachments,
-                                              likes: VKLike(myLike: item["likes"]["user_likes"].intValue, count: item["likes"]["count"].intValue),
-                                              comments: item["comments"]["count"].intValue,
-                                              reposts: item["reposts"]["count"].intValue,
-                                              views: item["views"]["count"].intValue,
-                                              byUser: user,
-                                              byGroup: group)
-                            
-                            postsResult.append(post)
                         }
                     }
                     
