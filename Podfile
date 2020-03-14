@@ -11,5 +11,6 @@ target 'iOS_UI_practice1' do
   pod 'RealmSwift', '~> 4.3.1'
   pod 'SwiftKeychainWrapper', '~> 3.4'
   pod 'SwiftyJSON', '~> 5.0'
-
+  pod 'PromiseKit', '~> 6.13'
+  
 end
