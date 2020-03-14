@@ -17,6 +17,7 @@
 		5A24DD9923CD0CC90067ABC3 /* LoginWKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A24DD9823CD0CC90067ABC3 /* LoginWKViewController.swift */; };
 		5A24DD9B23CD0DEA0067ABC3 /* SessionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A24DD9A23CD0DEA0067ABC3 /* SessionObject.swift */; };
 		5A298A4F23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A298A4E23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift */; };
+		5A29F0ED241D732800DEDC2A /* PostCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A29F0EC241D732800DEDC2A /* PostCollectionView.swift */; };
 		5A31F322241C1CE400838475 /* CountsFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A31F321241C1CE400838475 /* CountsFormatter.swift */; };
 		5A3573992395B77800D3D6AC /* GroupsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3573982395B77800D3D6AC /* GroupsFactory.swift */; };
 		5A35739B2395CC2600D3D6AC /* AllGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A35739A2395CC2600D3D6AC /* AllGroupsController.swift */; };
@@ -98,6 +99,7 @@
 		5A24DD9823CD0CC90067ABC3 /* LoginWKViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWKViewController.swift; sourceTree = "<group>"; };
 		5A24DD9A23CD0DEA0067ABC3 /* SessionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionObject.swift; sourceTree = "<group>"; };
 		5A298A4E23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiphotoCollectionFlow.swift; sourceTree = "<group>"; };
+		5A29F0EC241D732800DEDC2A /* PostCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionView.swift; sourceTree = "<group>"; };
 		5A31F321241C1CE400838475 /* CountsFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountsFormatter.swift; sourceTree = "<group>"; };
 		5A3573982395B77800D3D6AC /* GroupsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsFactory.swift; sourceTree = "<group>"; };
 		5A35739A2395CC2600D3D6AC /* AllGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsController.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				5AD3B0EA23A18D6100204692 /* Cells */,
 				F1D2EBC823A018F000F73236 /* CustomCollectionUILayout.swift */,
 				5A298A4E23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift */,
+				5A29F0EC241D732800DEDC2A /* PostCollectionView.swift */,
 				5AD3B0EB23A18D9B00204692 /* PostsViewController.swift */,
 			);
 			path = News;
@@ -593,6 +596,7 @@
 				5ACDE7DD239196CB00A9672F /* PhotoAlbumController.swift in Sources */,
 				5A5049E723DF651400CEE9B2 /* FriendsPresenter.swift in Sources */,
 				5AC930ED23D7AE4700DC1AF1 /* FullScreenPhoto.swift in Sources */,
+				5A29F0ED241D732800DEDC2A /* PostCollectionView.swift in Sources */,
 				5A3640362389DE7400945E79 /* LoginViewTestController.swift in Sources */,
 				5A5B518323B4047800A28E2D /* MultiphotoPostTableCell.swift in Sources */,
 				5ACE8BD823D61E61000A257D /* FileCacher.swift in Sources */,
@@ -789,7 +793,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9942MC6727;
 				INFOPLIST_FILE = iOS_UI_practice1/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -810,7 +814,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9942MC6727;
 				INFOPLIST_FILE = iOS_UI_practice1/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

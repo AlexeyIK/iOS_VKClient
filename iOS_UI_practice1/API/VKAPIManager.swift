@@ -104,7 +104,7 @@ class VKApi {
                       "filters": "post,photo",
                       "start_from": nextFrom ?? "",
 //                      "start_time", startTime ?? "",
-                      "count": "5"]
+                      "count": "10"]
         
         AF.request(requestURL, method: .post, parameters: params)
             .responseData { (result) in
@@ -151,7 +151,7 @@ class VKApi {
                                 //                            print("post: \n\(item)")
                                 
                                 // Пропускаем репосты пока что
-                                if item["copy_history"].array == nil {
+//                                if item["copy_history"].array == nil {
                                     let sourceID = item["source_id"].intValue
                                     var bodyText: String? = nil
                                     var postPhotos = [VKPhoto]()
@@ -290,7 +290,7 @@ class VKApi {
                                     postsResult.append(post)
                                 }
                             }
-                        }
+//                        }
                         
                         let nextFrom = response["next_from"].stringValue
                         

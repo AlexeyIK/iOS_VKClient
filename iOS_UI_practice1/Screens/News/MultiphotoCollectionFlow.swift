@@ -27,7 +27,7 @@ class MultiPhotoCollectionLayout: UICollectionViewLayout {
         
         // получаем необходимое количество строк при известном максимальном значении колонок
         let numOfRows = ceil(CGFloat(photosCount) / CGFloat(maxNumOfColumns))
-        let cellHeight = collectionView.frame.height / numOfRows
+        let cellHeight = collectionView.frame.width / numOfRows
         
         var lastX: CGFloat = 0
         var lastY: CGFloat = 0
@@ -77,6 +77,5 @@ class MultiPhotoCollectionLayout: UICollectionViewLayout {
     override var collectionViewContentSize: CGSize {
         return CGSize(width: collectionView?.frame.width ?? 0,
                       height: containerHeight)
-        
     }
 }
