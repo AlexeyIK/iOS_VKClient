@@ -40,7 +40,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
         tableView.register(UINib(nibName: "PostMultiPhotoCell", bundle: nil), forCellReuseIdentifier: "PostCollection")
         tableView.register(UINib(nibName: "PostFooterCell", bundle: nil), forCellReuseIdentifier: "PostFooter")
         
-        tableView.estimatedRowHeight = 200.0
+//        tableView.estimatedRowHeight = 200.0
 //        tableView.rowHeight = UITableView.automaticDimension
         tableView.prefetchDataSource = self
         
@@ -68,14 +68,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return postsArray.count
-        // ToDo: if post has photos or videos or links, there is 4 rows, otherwise - 3
-        switch postsArray[section].photos.count {
-        case 0:
-            return 3
-        default:
-            return 4
-        }
+        return 4
     }
     
     // размер отступа между постами
@@ -107,7 +100,8 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
                     return 0
                 }
             } else if post.photos.count > 1 {
-                return tableView.bounds.width - postLeftRightPadding * 2
+//                return tableView.bounds.width - postLeftRightPadding * 2
+                break
             } else {
                 return 0
             }
@@ -198,7 +192,8 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let post = postsArray[collectionView.tag]
+//        let collection = collectionView as! PostCollectionView
+//        collection.photosSizes = [VKImage]()
         return postsArray[collectionView.tag].photos.count
     }
     
@@ -207,6 +202,7 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
             return PostPhotoCell()
         }
         
+        let postCollection = collectionView as! PostCollectionView
         let post = postsArray[collectionView.tag]
         let photosForPost = post.photos
         
@@ -225,6 +221,9 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
         
             if let photo = photosForPost[indexPath.item].imageSizes.first(where: { $0.type == photoSize }),
                 let photoUrl = URL(string: photo.url) {
+                // добавляем фотографию в коллекцию, чтобы знать ее размеры еще до загрузки
+//                postCollection.photosSizes?.append(photo)
+                // ставим фотку на загрузку
                 cell.postPhoto.kf.setImage(with: photoUrl)
             }
             else {
