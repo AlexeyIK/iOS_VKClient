@@ -20,35 +20,40 @@ class VKApi {
     typealias Out = Swift.Result
     
     // MARK: generic request
-    func sendRequest<T: Decodable>(requestURL: String, method: HTTPMethod = .get, params: Parameters, completion: @escaping (Out<[T], Error>) -> Void) {
-        AF.request(requestURL, method: method, parameters: params)
-            .responseData { (result) in
-                guard let data = result.value else { return }
-                
-                do {
-                    let result = try JSONDecoder().decode(CommonResponse<T>.self, from: data)
-                    completion(.success(result.response.items))
-                } catch {
-                    completion(.failure(error))
-                    KeychainWrapper.standard.removeObject(forKey: "access_token")
-                    self.window = UIWindow(frame: UIScreen.main.bounds)
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let loginVC = storyboard.instantiateViewController(withIdentifier: "APILoginScreen")
-                    self.window?.rootViewController = loginVC
-                    self.window?.makeKeyAndVisible()
-                }
+    func sendRequest<T: Decodable>(requestURL: String, method: HTTPMethod = .get, params: Parameters) -> Promise<[T]> {
+        
+        return Promise<[T]> { resolver in
+            AF.request(requestURL, method: method, parameters: params)
+                .responseData { (result) in
+                    guard let data = result.value else { return }
+                    
+                    do {
+                        let result = try JSONDecoder().decode(CommonResponse<T>.self, from: data)
+//                        completion(.success(result.response.items))
+                        resolver.fulfill(result.response.items)
+                    } catch {
+//                        completion(.failure(error))
+                        resolver.reject(error)
+                        KeychainWrapper.standard.removeObject(forKey: "access_token")
+                        self.window = UIWindow(frame: UIScreen.main.bounds)
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let loginVC = storyboard.instantiateViewController(withIdentifier: "APILoginScreen")
+                        self.window?.rootViewController = loginVC
+                        self.window?.makeKeyAndVisible()
+                    }
+            }
         }
     }
     
     // MARK: friends list request
-    func getFriendList(apiVersion: String, token: String, completion: @escaping (Out<[VKUser], Error>) -> Void) {
+    func getFriendList(apiVersion: String, token: String) -> Promise<[VKUser]> {
         let requestURL = vkURL + "friends.get"
         let params = ["access_token": token,
                       "order": "name",
                       "fields": "photo_50, photo_100",
                       "v": apiVersion]
-          
-        sendRequest(requestURL: requestURL, method: .post, params: params) { completion($0) }
+        
+        let promise = sendRequest(requestURL: requestURL, method: .post, params: params)
     }
     
     // MARK: groups list request
@@ -107,7 +112,7 @@ class VKApi {
                       "count": "10"]
         
         AF.request(requestURL, method: .post, parameters: params)
-            .responseData { (result) in
+            .responseData { result in
                 guard let data = result.value else { return }
                 
                 do {
