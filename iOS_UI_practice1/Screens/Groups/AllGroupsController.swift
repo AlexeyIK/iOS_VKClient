@@ -43,15 +43,12 @@ extension AllGroupsController : UISearchBarDelegate {
             vkAPI.searchGroups(apiVersion: Session.shared.actualAPIVersion,
                                token: Session.shared.token,
                                searchText: searchText)
-            { (result) in
-                
-                switch result {
-                case .success(let groups):
-                    self.groupsToShow = groups
-                    print(groups)
-                case .failure(let error):
-                    print("Error requesting groups search: \(error)")
-                }
+            .done { groups in
+                self.groupsToShow = groups
+                print(groups)
+            }
+            .catch { error in
+                print("Error requesting groups search: \(error)")
             }
         } else {
             self.groupsToShow = [VKGroup]()

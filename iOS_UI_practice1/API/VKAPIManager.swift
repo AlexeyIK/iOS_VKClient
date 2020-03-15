@@ -21,25 +21,26 @@ class VKApi {
     
     // MARK: generic request
     func sendRequest<T: Decodable>(requestURL: String, method: HTTPMethod = .get, params: Parameters) -> Promise<[T]> {
-        
         return Promise<[T]> { resolver in
             AF.request(requestURL, method: method, parameters: params)
-                .responseData { (result) in
-                    guard let data = result.value else { return }
+                .responseData { result in
                     
-                    do {
-                        let result = try JSONDecoder().decode(CommonResponse<T>.self, from: data)
-//                        completion(.success(result.response.items))
-                        resolver.fulfill(result.response.items)
-                    } catch {
-//                        completion(.failure(error))
+                    switch result.result {
+                    case let .failure(error):
                         resolver.reject(error)
-                        KeychainWrapper.standard.removeObject(forKey: "access_token")
-                        self.window = UIWindow(frame: UIScreen.main.bounds)
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let loginVC = storyboard.instantiateViewController(withIdentifier: "APILoginScreen")
-                        self.window?.rootViewController = loginVC
-                        self.window?.makeKeyAndVisible()
+                    case let .success(data):
+                        do {
+                            let result = try JSONDecoder().decode(CommonResponse<T>.self, from: data)
+                            resolver.fulfill(result.response.items)
+                        } catch {
+                            resolver.reject(error)
+                            KeychainWrapper.standard.removeObject(forKey: "access_token")
+                            self.window = UIWindow(frame: UIScreen.main.bounds)
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let loginVC = storyboard.instantiateViewController(withIdentifier: "APILoginScreen")
+                            self.window?.rootViewController = loginVC
+                            self.window?.makeKeyAndVisible()
+                        }
                     }
             }
         }
@@ -53,11 +54,11 @@ class VKApi {
                       "fields": "photo_50, photo_100",
                       "v": apiVersion]
         
-        let promise = sendRequest(requestURL: requestURL, method: .post, params: params)
+        return sendRequest(requestURL: requestURL, method: .post, params: params)
     }
     
     // MARK: groups list request
-    func getUsersGroups(apiVersion: String, token: String, userID: Int = Session.shared.userId, completion: @escaping (Out<[VKGroup], Error>)  -> Void ) {
+    func getUsersGroups(apiVersion: String, token: String, userID: Int = Session.shared.userId) -> Promise<[VKGroup]> {
         let requestURL = vkURL + "groups.get"
         let params = ["access_token": token,
                       "user_id": String(userID),
@@ -65,11 +66,11 @@ class VKApi {
                       "fields": "activity",
                       "extended": "1"] // чтобы узнать больше информации
         
-        sendRequest(requestURL: requestURL, method: .post, params: params) { completion($0) }
+        return sendRequest(requestURL: requestURL, method: .post, params: params)
     }
     
     // MARK: user's photos request
-    func getUsersPhotos(apiVersion: String, token: String, userID: Int, completion: @escaping (Out<[VKPhoto], Error>)  -> Void) {
+    func getUsersPhotos(apiVersion: String, token: String, userID: Int) -> Promise<[VKPhoto]> {
         let requestURL = vkURL + "photos.get"
         let params = ["access_token": token,
                       "user_id": String(userID),
@@ -79,11 +80,11 @@ class VKApi {
                       "owner_id": String(userID),
                       "extended": "1"] // чтобы узнать количество лайков
         
-        sendRequest(requestURL: requestURL, method: .post, params: params) { completion($0) }
+        return sendRequest(requestURL: requestURL, method: .post, params: params)
     }
     
     // MARK: groups search request
-    func searchGroups(apiVersion: String, token: String, searchText: String, userID: Int = Session.shared.userId, completion: @escaping (Out<[VKGroup], Error>)  -> Void) {
+    func searchGroups(apiVersion: String, token: String, searchText: String, userID: Int = Session.shared.userId) -> Promise<[VKGroup]> {
         let requestURL = vkURL + "groups.search"
         let params = ["access_token": token,
                       "user_id": String(userID),
@@ -92,7 +93,7 @@ class VKApi {
                       "extended": "1",
                       "q": searchText]
         
-        sendRequest(requestURL: requestURL, method: .post, params: params) { completion($0) }
+        return sendRequest(requestURL: requestURL, method: .post, params: params)
     }
     
     // MARK: newsfeed request
@@ -275,6 +276,7 @@ class VKApi {
                                     case .audio:
                                         break
                                     case .video:
+                                        // ToDo: выводить превью от видео
                                         break
                                     }
                                     
