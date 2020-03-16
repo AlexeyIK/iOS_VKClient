@@ -1,34 +1,20 @@
 //
-//  MultiphotoPostTableCell.swift
+//  PostMultiPhotoCell.swift
 //  iOS_UI_practice1
 //
-//  Created by Alex on 25.12.2019.
-//  Copyright © 2019 Alexey Kuznetsov. All rights reserved.
+//  Created by Alex on 12/03/2020.
+//  Copyright © 2020 Alexey Kuznetsov. All rights reserved.
 //
 
 import UIKit
 
-class MultiphotoPostTableCell: UITableViewCell {
+class PostMultiPhotoCell: UITableViewCell {
     
-    @IBOutlet weak var avatar: CircleShadowImage!
-    @IBOutlet weak var authorName: UILabel!
-    @IBOutlet weak var timestamp: UILabel!
-    @IBOutlet weak var postBodyText: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var likesCount: LikeButton!
-    @IBOutlet weak var commentsLabel: UILabel!
-    @IBOutlet weak var respostsLabel: UILabel!
-    @IBOutlet weak var viewsLabel: UILabel!
-    
-    var viewClicked: ((UIView)->())? = nil
-    
-    @IBAction func likeOnClick(_ sender: Any) {
-        guard let likeButton = (sender as? LikeButton) else { return }
-        likeButton.Like()
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

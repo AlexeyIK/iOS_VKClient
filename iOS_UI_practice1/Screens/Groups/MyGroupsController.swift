@@ -66,18 +66,12 @@ class MyGroupsController: UITableViewController {
     /// Request groups from API
     func requestGroupList(completion: @escaping (Bool) -> () = { _ in }) {
         vkAPI.getUsersGroups(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token)
-        { (result) in
-            switch result {
-            case .success(let groups):
-//                self.groupsList = groups
+            .done { groups in
                 self.database.addGroups(groups: groups)
-//                self.groupsToShow = groups
-//                self.tableView.reloadData()
                 completion(true)
-            case .failure(let error):
+            }.catch { error in
                 print("Error requesting user's groups: \(error)")
             }
-        }
     }
     
     func addRefreshControl() {

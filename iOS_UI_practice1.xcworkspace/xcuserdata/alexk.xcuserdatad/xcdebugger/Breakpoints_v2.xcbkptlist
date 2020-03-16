@@ -279,17 +279,81 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7EDC5182-B706-4515-966F-56A5B08DE57F"
+            uuid = "8EBB3BEB-931D-4551-9641-8A691EE2A8E4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOS_UI_practice1/Screens/News/PostsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4CFFDA24-4700-4F8A-A4DA-EA737CEBA577"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOS_UI_practice1/Screens/News/PostsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "tableView(_:heightForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DA25185F-61DC-45C8-83E9-6B4A4B1B8007"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOS_UI_practice1/API/VKAPIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
-            landmarkName = "getNewsFeed(apiVersion:token:userID:completion:)"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "getNewsFeed(apiVersion:token:userID:nextFrom:completion:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DA25185F-61DC-45C8-83E9-6B4A4B1B8007 - fa86ae6f90dcd8ed"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in closure #1 (Alamofire.DataResponse&lt;Foundation.Data, Alamofire.AFError&gt;) -&gt; () in FakeVK.VKApi.getNewsFeed(apiVersion: Swift.String, token: Swift.String, userID: Swift.Int, nextFrom: Swift.Optional&lt;Swift.String&gt;, completion: (Swift.Result&lt;(Swift.Array&lt;FakeVK.VKPost&gt;, Swift.Optional&lt;Swift.String&gt;), Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "FakeVK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexk/Swift/Geekbrains_SwiftUI/iOS_UI_practice1/API/VKAPIManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146"
+                  offsetFromSymbolStart = "81">
+               </Location>
+               <Location
+                  uuid = "DA25185F-61DC-45C8-83E9-6B4A4B1B8007 - 6ca126ef0bee6fa8"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SwiftyJSON.JSON) -&gt; () in closure #2 () -&gt; () in closure #1 (Alamofire.DataResponse&lt;Foundation.Data, Alamofire.AFError&gt;) -&gt; () in FakeVK.VKApi.getNewsFeed(apiVersion: Swift.String, token: Swift.String, userID: Swift.Int, nextFrom: Swift.Optional&lt;Swift.String&gt;, completion: (Swift.Result&lt;(Swift.Array&lt;FakeVK.VKPost&gt;, Swift.Optional&lt;Swift.String&gt;), Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "FakeVK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexk/Swift/Geekbrains_SwiftUI/iOS_UI_practice1/API/VKAPIManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "147"
+                  endingLineNumber = "147"
+                  offsetFromSymbolStart = "352">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

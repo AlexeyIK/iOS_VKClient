@@ -67,14 +67,11 @@ class PhotoAlbumController: UICollectionViewController {
         vkAPI.getUsersPhotos(apiVersion: Session.shared.actualAPIVersion,
                              token: Session.shared.token,
                              userID: userID)
-        { (result) in
-            switch result {
-            case .success(let photos):
+            .done { photos in
                 self.database.addPhotos(userID: self.userID, albumID: -6, photos: photos) // не забыть избавиться здесь от хардкода, когда будет более одного альбома
-            case.failure(let error):
+            }.catch { error in
                 print("Error requesting photos of the user_id \(self.userID): \(error)")
             }
-        }
     }
     
     func updateNavigationItem() {

@@ -85,11 +85,11 @@ class VKNewsLink: VKAttachment {
 }
 
 // Аттачмент типа "фото"
-class VKNewsPhoto: VKAttachment {
-    let photo: VKPhoto
-    
-    init(type: AttachmentType, id: Int, albumID: Int, userID: Int?, imageSizes: [VKImage], text: String) {
-        self.photo = VKPhoto(id: id, albumID: albumID, userID: userID, imageSizes: imageSizes, text: text)
-        super.init(type: type)
-    }
-}
+//class VKNewsPhoto: VKAttachment {
+//    let photo: VKPhoto
+//    
+//    init(type: AttachmentType, id: Int, albumID: Int, userID: Int?, imageSizes: [VKImage], text: String) {
+//        self.photo = VKPhoto(id: id, albumID: albumID, userID: userID, imageSizes: imageSizes, text: text)
+//        super.init(type: type)
+//    }
+//}

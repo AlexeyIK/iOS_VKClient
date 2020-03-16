@@ -17,17 +17,15 @@ class MultiPhotoCollectionLayout: UICollectionViewLayout {
     @IBInspectable var maxNumOfColumns = 3
     var containerHeight: CGFloat = 0
     
-    private var totalCellsHeight: CGFloat = 0
-    
     override func prepare() {
         self.cacheAttributes = [:]
-        guard let collectionView = self.collectionView else { return }
+        guard let collectionView = self.collectionView as? PostCollectionView else { return }
         let photosCount = collectionView.numberOfItems(inSection: 0)
         guard photosCount > 0 else { return }
         
         // получаем необходимое количество строк при известном максимальном значении колонок
         let numOfRows = ceil(CGFloat(photosCount) / CGFloat(maxNumOfColumns))
-        let cellHeight = collectionView.frame.height / numOfRows
+        let cellHeight = numOfRows == 1 ? collectionView.frame.width / 1.5 : collectionView.frame.width / numOfRows
         
         var lastX: CGFloat = 0
         var lastY: CGFloat = 0
@@ -61,7 +59,7 @@ class MultiPhotoCollectionLayout: UICollectionViewLayout {
             
             cacheAttributes[indexPath] = attributeForIndex
         }
-        containerHeight = lastY
+        containerHeight = lastY == 0 ? cellHeight : lastY
     }
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
@@ -77,6 +75,5 @@ class MultiPhotoCollectionLayout: UICollectionViewLayout {
     override var collectionViewContentSize: CGSize {
         return CGSize(width: collectionView?.frame.width ?? 0,
                       height: containerHeight)
-        
     }
 }

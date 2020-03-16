@@ -55,19 +55,15 @@ class FriendsPresenterImplementation: FriendsPresenter {
     
     private func getUsersFromApi() {
         vkAPI.getFriendList(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token)
-        { (result) in
-            switch result {
-            case.success(let friends):
+            .done { friends in
                 self.database.addUsers(users: friends.filter { $0.deactivated == nil })
                 self.getUsersFromDB()
                 self.mapToSections()
-                
-            case .failure(let error):
-                print ("Error requesting friends: \(error)")
-                let alert = UIAlertController(title: "Ошибка загрузки данных", message: "Не удается загрузить список друзей", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-//                view?.showAlert(alert: alert, view: view)
-            }
+        }.catch { error in
+            print ("Error requesting friends: \(error)")
+            let alert = UIAlertController(title: "Ошибка загрузки данных", message: "Не удается загрузить список друзей", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            //                view?.showAlert(alert: alert, view: view)
         }
     }
     
