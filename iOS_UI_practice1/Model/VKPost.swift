@@ -6,7 +6,7 @@
 //  Copyright © 2020 Alexey Kuznetsov. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 // Типы постов
 enum PostType: String {
@@ -42,6 +42,10 @@ struct VKPost {
     var comments: Int
     var reposts: Int
     var views: Int
+    
+    // вычисляемые параметры
+    var textHeight: CGFloat = 0
+    var showFullText: Bool = false
     
     // сохранять юзера или группу, которым принадлежит пост
     let byUser: VKUser?

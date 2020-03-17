@@ -14,6 +14,9 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
     let maxHeightOfTextBlock: CGFloat = 200.0
     let postLeftRightPadding: CGFloat = 15.0
     
+    let showMoreLabel = "Показать полностью"
+    let showLessLabel = "Показать меньше"
+    
     let imageSizeKeyForBig = "x"
     let imageSizeKeyForMedium = "q"
     let imageSizeKeyForSmall = "p"
@@ -82,12 +85,16 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
         
         switch indexPath.row {
         case 1:
-            if let textBlock = post.text, !textBlock.isEmpty {
-                let autoSize = UITableView.automaticDimension
-                if autoSize > maxHeightOfTextBlock {
-                    return maxHeightOfTextBlock
+            if let text = post.text, !text.isEmpty {
+                if post.textHeight > maxHeightOfTextBlock {
+                    if post.showFullText {
+                        return post.textHeight
+                    } else {
+                        return maxHeightOfTextBlock
+                    }
+                } else {
+                    break
                 }
-                return autoSize
             } else {
                 return 0
             }
@@ -115,7 +122,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let post = postsArray[indexPath.section]
+        var post = postsArray[indexPath.section]
         
         switch indexPath.row {
         case 0:
@@ -143,7 +150,21 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostBodyText", for: indexPath) as! PostTextCell
-            cell.bodyText.text = post.text
+            
+            cell.showMoreButton.isHidden = true
+            cell.showMoreButton.tag = indexPath.section
+            
+            if let postText = post.text {
+                cell.bodyText.text = post.text
+                // сразу же вычислим высоту текста
+                post.textHeight = postText.getHeight(constraintedWidth: cell.bodyText.bounds.width, font: UIFont(name: "Helvetica Neue", size: 14.0)!)
+                
+                if post.textHeight > maxHeightOfTextBlock {
+                    cell.showMoreButton.isHidden = false
+                    cell.showMoreButton.addTarget(self, action: #selector(showMorePressed), for: .touchUpInside)
+                }
+            }
+            
             return cell
         case 2:
             if post.photos.count == 0 {
@@ -183,6 +204,19 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
         
         tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.section)
     }
+    
+    @objc func showMorePressed(sender: UIButton) {
+        var post = postsArray[sender.tag]
+        post.showFullText = !post.showFullText
+        
+        if post.showFullText {
+            sender.titleLabel?.text = showLessLabel
+        } else {
+            sender.titleLabel?.text = showMoreLabel
+        }
+        
+        tableView.reloadData()
+    }
 }
 
 extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -192,8 +226,6 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        let collection = collectionView as! PostCollectionView
-//        collection.photosSizes = [VKImage]()
         return postsArray[collectionView.tag].photos.count
     }
     

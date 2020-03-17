@@ -36,6 +36,7 @@
 		5A5049E923DF665100CEE9B2 /* FriendsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5049E823DF665100CEE9B2 /* FriendsConfigurator.swift */; };
 		5A54C3C52401F5B300E7F66D /* SimplePostTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A54C3C32401F5B300E7F66D /* SimplePostTableCell.swift */; };
 		5A54C3C62401F5B300E7F66D /* SimplePostTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A54C3C42401F5B300E7F66D /* SimplePostTableCell.xib */; };
+		5A567CAB24202FB100E160D7 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A567CAA24202FB100E160D7 /* StringExtensions.swift */; };
 		5A57E61923AFEFFF00E62316 /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A57E61823AFEFFF00E62316 /* CustomSegue.swift */; };
 		5A57E61C23B000AB00E62316 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A57E61B23B000AB00E62316 /* CircularTransition.swift */; };
 		5A5B518323B4047800A28E2D /* MultiphotoPostTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5B518123B4047800A28E2D /* MultiphotoPostTableCell.swift */; };
@@ -121,6 +122,7 @@
 		5A5049E823DF665100CEE9B2 /* FriendsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsConfigurator.swift; sourceTree = "<group>"; };
 		5A54C3C32401F5B300E7F66D /* SimplePostTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePostTableCell.swift; sourceTree = "<group>"; };
 		5A54C3C42401F5B300E7F66D /* SimplePostTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimplePostTableCell.xib; sourceTree = "<group>"; };
+		5A567CAA24202FB100E160D7 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		5A57E61823AFEFFF00E62316 /* CustomSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
 		5A57E61B23B000AB00E62316 /* CircularTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
 		5A5B518123B4047800A28E2D /* MultiphotoPostTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiphotoPostTableCell.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				F14DAF39239ABB3100D21230 /* LikeButton.swift */,
 				F16F1301239ACBF800BA8CE6 /* CircleShadowImage.swift */,
 				5AB12D8223A80BA800610167 /* Loader.swift */,
+				5A567CAA24202FB100E160D7 /* StringExtensions.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -618,6 +621,7 @@
 				F1D2EBC723A0162300F73236 /* UsersFactory.swift in Sources */,
 				F13729C223A2467C00731CF6 /* DateTimeHelper.swift in Sources */,
 				5A2953D6241E5F780088B3B0 /* Errors.swift in Sources */,
+				5A567CAB24202FB100E160D7 /* StringExtensions.swift in Sources */,
 				5A298A4F23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift in Sources */,
 				5A35739D2395CDE000D3D6AC /* GroupCell.swift in Sources */,
 				5AB6777423CFBE1700AB5520 /* VKAPIManager.swift in Sources */,
