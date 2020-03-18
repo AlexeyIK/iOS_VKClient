@@ -19,13 +19,13 @@ class MultiPhotoCollectionLayout: UICollectionViewLayout {
     
     override func prepare() {
         self.cacheAttributes = [:]
-        guard let collectionView = self.collectionView as? PostCollectionView else { return }
+        guard let collectionView = self.collectionView else { return }
         let photosCount = collectionView.numberOfItems(inSection: 0)
         guard photosCount > 0 else { return }
         
         // получаем необходимое количество строк при известном максимальном значении колонок
         let numOfRows = ceil(CGFloat(photosCount) / CGFloat(maxNumOfColumns))
-        let cellHeight = numOfRows == 1 ? collectionView.frame.width / 1.5 : collectionView.frame.width / numOfRows
+        let cellHeight = collectionView.frame.width / numOfRows
         
         var lastX: CGFloat = 0
         var lastY: CGFloat = 0
