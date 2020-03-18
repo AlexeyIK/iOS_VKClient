@@ -54,7 +54,7 @@ struct VKPost {
 
 struct PostsArray {
     var items: [VKPost]
-    var profiles: [VKUser] // вероятно заменить на VKUser
+    var profiles: [VKUser]
     var groups: [VKGroup]
 }
 

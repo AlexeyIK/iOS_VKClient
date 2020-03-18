@@ -36,7 +36,6 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        tableView.register(UINib(nibName: "MultiphotoPostTableCell", bundle: nil), forCellReuseIdentifier: "PostTemplate")
         tableView.register(UINib(nibName: "PostHeaderCell", bundle: nil), forCellReuseIdentifier: "PostHeader")
         tableView.register(UINib(nibName: "PostTextCell", bundle: nil), forCellReuseIdentifier: "PostBodyText")
         tableView.register(UINib(nibName: "PostSinglePhotoCell", bundle: nil), forCellReuseIdentifier: "PostPhoto")
@@ -88,7 +87,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
             if let text = post.text, !text.isEmpty {
                 if post.textHeight > maxHeightOfTextBlock {
                     if post.showFullText {
-                        return post.textHeight
+                        break
                     } else {
                         return maxHeightOfTextBlock
                     }
@@ -107,7 +106,6 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
                     return 0
                 }
             } else if post.photos.count > 1 {
-//                return tableView.bounds.width - postLeftRightPadding * 2
                 break
             } else {
                 return 0
@@ -122,7 +120,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var post = postsArray[indexPath.section]
+        let post = postsArray[indexPath.section]
         
         switch indexPath.row {
         case 0:
@@ -154,12 +152,12 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
             cell.showMoreButton.isHidden = true
             cell.showMoreButton.tag = indexPath.section
             
-            if let postText = post.text {
+            if let text = post.text, !text.isEmpty {
+                // вычислим высоту текста
+                postsArray[indexPath.section].textHeight = text.getHeight(constraintedWidth: cell.bodyText.bounds.width, font: UIFont(name: "Helvetica Neue", size: 14.0)!)
                 cell.bodyText.text = post.text
-                // сразу же вычислим высоту текста
-                post.textHeight = postText.getHeight(constraintedWidth: cell.bodyText.bounds.width, font: UIFont(name: "Helvetica Neue", size: 14.0)!)
                 
-                if post.textHeight > maxHeightOfTextBlock {
+                if postsArray[indexPath.section].textHeight > maxHeightOfTextBlock {
                     cell.showMoreButton.isHidden = false
                     cell.showMoreButton.addTarget(self, action: #selector(showMorePressed), for: .touchUpInside)
                 }
@@ -215,7 +213,10 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
             sender.titleLabel?.text = showMoreLabel
         }
         
-        tableView.reloadData()
+        tableView.beginUpdates()
+        tableView.reloadRows(at: [IndexPath(row: 1, section: sender.tag)], with: .automatic)
+        postsArray[sender.tag] = post
+        tableView.endUpdates()
     }
 }
 
@@ -279,7 +280,7 @@ extension PostsViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         guard !isFetchingMoreNews,
             let maxSection = indexPaths.map({ $0.section }).max(),
-            postsArray.count <= maxSection + 2 else { return }
+            postsArray.count <= maxSection + 3 else { return }
         
         isFetchingMoreNews = true
         vkAPI.getNewsFeed(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token, nextFrom: nextFrom) { result in

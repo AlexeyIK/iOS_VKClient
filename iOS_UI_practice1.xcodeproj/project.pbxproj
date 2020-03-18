@@ -85,7 +85,6 @@
 		F1D2EBC323A0109400F73236 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D2EBC123A0109400F73236 /* MessageCell.xib */; };
 		F1D2EBC523A0122E00F73236 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC423A0122E00F73236 /* MessageViewController.swift */; };
 		F1D2EBC723A0162300F73236 /* UsersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC623A0162300F73236 /* UsersFactory.swift */; };
-		F1D2EBC923A018F000F73236 /* CustomCollectionUILayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2EBC823A018F000F73236 /* CustomCollectionUILayout.swift */; };
 		F1F34F1423DC56BF007A496F /* CommonResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F34F1323DC56BF007A496F /* CommonResponse.swift */; };
 /* End PBXBuildFile section */
 
@@ -174,7 +173,6 @@
 		F1D2EBC123A0109400F73236 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		F1D2EBC423A0122E00F73236 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		F1D2EBC623A0162300F73236 /* UsersFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersFactory.swift; sourceTree = "<group>"; };
-		F1D2EBC823A018F000F73236 /* CustomCollectionUILayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionUILayout.swift; sourceTree = "<group>"; };
 		F1F34F1323DC56BF007A496F /* CommonResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -315,7 +313,6 @@
 			isa = PBXGroup;
 			children = (
 				5AD3B0EA23A18D6100204692 /* Cells */,
-				F1D2EBC823A018F000F73236 /* CustomCollectionUILayout.swift */,
 				5A298A4E23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift */,
 				5A29F0EC241D732800DEDC2A /* PostCollectionView.swift */,
 				5AD3B0EB23A18D9B00204692 /* PostsViewController.swift */,
@@ -590,7 +587,6 @@
 				5A5C5A0224199B940050CAFB /* PostTextCell.swift in Sources */,
 				F1F34F1423DC56BF007A496F /* CommonResponse.swift in Sources */,
 				5A36906823B13E600061A5A6 /* CardRotateTransition.swift in Sources */,
-				F1D2EBC923A018F000F73236 /* CustomCollectionUILayout.swift in Sources */,
 				F187C4F223D89C500024DF02 /* RealmPhoto.swift in Sources */,
 				F16F1302239ACBF800BA8CE6 /* CircleShadowImage.swift in Sources */,
 				F16C3A9323E0793800653149 /* RealmGroupRepository.swift in Sources */,

@@ -15,6 +15,9 @@ class PostTextCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        bodyText.textAlignment = .left
+        bodyText.sizeToFit()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

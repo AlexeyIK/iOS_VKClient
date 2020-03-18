@@ -26,7 +26,7 @@
         <!--LoginWK View Controller-->
         <scene sceneID="9B4-JN-R2O">
             <objects>
-                <viewController storyboardIdentifier="APILoginScreen" id="gKc-ZL-7qz" customClass="LoginWKViewController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="APILoginScreen" id="gKc-ZL-7qz" customClass="LoginWKViewController" customModule="FakeVK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GiK-F4-kl7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -49,7 +49,7 @@
                     <navigationItem key="navigationItem" id="B58-1J-2BU"/>
                     <connections>
                         <outlet property="loader" destination="tK3-We-mkL" id="ViO-ak-dEN"/>
-                        <segue destination="NCd-90-2Zo" kind="custom" customClass="CustomSegue" customModule="iOS_UI_practice1" customModuleProvider="target" id="Wat-8l-FXq"/>
+                        <segue destination="NCd-90-2Zo" kind="custom" customClass="CustomSegue" customModule="FakeVK" customModuleProvider="target" id="Wat-8l-FXq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ugs-Tp-Hxh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -59,7 +59,7 @@
         <!--Login View Test Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LoginScreen" id="BYZ-38-t0r" customClass="LoginViewTestController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginScreen" id="BYZ-38-t0r" customClass="LoginViewTestController" customModule="FakeVK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -127,7 +127,7 @@
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ai3-58-rIj" customClass="Loader" customModule="iOS_UI_practice1" customModuleProvider="target">
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ai3-58-rIj" customClass="Loader" customModule="FakeVK" customModuleProvider="target">
                                         <rect key="frame" x="156.33333333333334" y="490" width="62.333333333333343" height="30"/>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -239,7 +239,7 @@
         <!--Message View Controller-->
         <scene sceneID="XOH-SD-9RA">
             <objects>
-                <tableViewController id="UgM-wu-Ies" userLabel="Message View Controller" customClass="MessageViewController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="UgM-wu-Ies" userLabel="Message View Controller" customClass="MessageViewController" customModule="FakeVK" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="70" estimatedRowHeight="83" sectionHeaderHeight="18" sectionFooterHeight="18" id="fee-IN-aRH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -261,7 +261,7 @@
         <!--Full Screen Photo-->
         <scene sceneID="ckc-tQ-seH">
             <objects>
-                <viewController storyboardIdentifier="FullScreenPopup" modalPresentationStyle="fullScreen" id="XvQ-mO-uTg" customClass="FullScreenPhoto" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FullScreenPopup" modalPresentationStyle="fullScreen" id="XvQ-mO-uTg" customClass="FullScreenPhoto" customModule="FakeVK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x9m-gB-hxz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -276,7 +276,7 @@
         <!--Friends View Controller-->
         <scene sceneID="MxC-S8-oSY">
             <objects>
-                <tableViewController id="8Wt-0b-aBn" userLabel="Friends View Controller" customClass="FriendListViewController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="8Wt-0b-aBn" userLabel="Friends View Controller" customClass="FriendListViewController" customModule="FakeVK" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="70" estimatedRowHeight="83" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ixw-tj-vjb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -288,14 +288,14 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="RequestTemplate" rowHeight="70" id="upY-qH-Lwf" userLabel="RequestsTemplate" customClass="RequestCell" customModule="iOS_UI_practice1" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="RequestTemplate" rowHeight="70" id="upY-qH-Lwf" userLabel="RequestsTemplate" customClass="RequestCell" customModule="FakeVK" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="111.33333206176758" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="upY-qH-Lwf" id="v0a-2z-lWt">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kmi-KS-0nz" userLabel="Shadow Avatar" customClass="CircleShadowImage" customModule="iOS_UI_practice1" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kmi-KS-0nz" userLabel="Shadow Avatar" customClass="CircleShadowImage" customModule="FakeVK" customModuleProvider="target">
                                             <rect key="frame" x="15" y="10" width="50" height="50"/>
                                             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
@@ -336,14 +336,14 @@
                                     <outlet property="userName" destination="JQl-Zj-FQk" id="2hq-kd-C7a"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationWidth="10" reuseIdentifier="FriendTemplate" rowHeight="80" id="zad-TE-mBP" customClass="FriendCell" customModule="iOS_UI_practice1" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationWidth="10" reuseIdentifier="FriendTemplate" rowHeight="80" id="zad-TE-mBP" customClass="FriendCell" customModule="FakeVK" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="181.33333206176758" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zad-TE-mBP" id="vsw-YS-SK5">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tLf-uL-sgE" customClass="CircleShadowImage" customModule="iOS_UI_practice1" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tLf-uL-sgE" customClass="CircleShadowImage" customModule="FakeVK" customModuleProvider="target">
                                             <rect key="frame" x="15" y="15" width="50" height="50"/>
                                             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
@@ -410,14 +410,14 @@
         <!--Photo Controller-->
         <scene sceneID="uNX-RK-byo">
             <objects>
-                <collectionViewController storyboardIdentifier="PhotoAlbumController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ezR-W1-bZE" userLabel="Photo Controller" customClass="PhotoAlbumController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="PhotoAlbumController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ezR-W1-bZE" userLabel="Photo Controller" customClass="PhotoAlbumController" customModule="FakeVK" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="uak-i4-vOa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewLayout key="collectionViewLayout" id="EDt-Vc-fa3" customClass="AlbumCollectionFlow" customModule="iOS_UI_practice1" customModuleProvider="target"/>
+                        <collectionViewLayout key="collectionViewLayout" id="EDt-Vc-fa3" customClass="AlbumCollectionFlow" customModule="FakeVK" customModuleProvider="target"/>
                         <cells>
-                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photo" id="A2j-Rb-gib" customClass="PhotoCell" customModule="iOS_UI_practice1" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photo" id="A2j-Rb-gib" customClass="PhotoCell" customModule="FakeVK" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -447,7 +447,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="F3J-di-4xz" secondAttribute="trailing" id="xEy-yQ-o5z"/>
                                             </constraints>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAA-lp-iW8" userLabel="Like" customClass="LikeButton" customModule="iOS_UI_practice1" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAA-lp-iW8" userLabel="Like" customClass="LikeButton" customModule="FakeVK" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="32" width="50" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="16" id="hxA-gP-V7p"/>
@@ -505,7 +505,7 @@
         <!--Groups View Controller-->
         <scene sceneID="Tmm-7G-u5l">
             <objects>
-                <tableViewController id="Hj5-Zc-uth" userLabel="Groups View Controller" customClass="MyGroupsController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Hj5-Zc-uth" userLabel="Groups View Controller" customClass="MyGroupsController" customModule="FakeVK" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="oal-e7-X4P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -517,7 +517,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupTemplate" id="5yB-Yv-Qaq" userLabel="Group Cell" customClass="GroupCell" customModule="iOS_UI_practice1" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupTemplate" id="5yB-Yv-Qaq" userLabel="Group Cell" customClass="GroupCell" customModule="FakeVK" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5yB-Yv-Qaq" id="jbV-hz-2C3">
@@ -600,7 +600,7 @@
         <!--Groups Search Table View Controller-->
         <scene sceneID="Sp8-xS-UFO">
             <objects>
-                <tableViewController id="zOh-LV-05e" userLabel="Groups Search Table View Controller" customClass="AllGroupsController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="zOh-LV-05e" userLabel="Groups Search Table View Controller" customClass="AllGroupsController" customModule="FakeVK" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="1eC-Ur-KI8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -659,7 +659,7 @@
         <!--Posts View Controller-->
         <scene sceneID="6dG-5w-zUi">
             <objects>
-                <tableViewController id="H7b-fK-YYT" userLabel="Posts View Controller" customClass="PostsViewController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="H7b-fK-YYT" userLabel="Posts View Controller" customClass="PostsViewController" customModule="FakeVK" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="hcz-jL-dXv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -678,7 +678,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="79L-Ca-GfP">
                                                     <rect key="frame" x="15" y="5" width="136" height="50"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azi-qg-Lqg" userLabel="Avatar" customClass="CircleShadowImage" customModule="iOS_UI_practice1" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azi-qg-Lqg" userLabel="Avatar" customClass="CircleShadowImage" customModule="FakeVK" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                             <constraints>
@@ -813,7 +813,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="y6l-Al-rlW" userLabel="Footer">
                                                     <rect key="frame" x="0.0" y="9.6666666666666643" width="265" height="19"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGT-Ra-ZFi" userLabel="Likes" customClass="LikeButton" customModule="iOS_UI_practice1" customModuleProvider="target">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGT-Ra-ZFi" userLabel="Likes" customClass="LikeButton" customModule="FakeVK" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="81.666666666666671" height="19"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="60" id="fnG-XU-U2z"/>
@@ -943,7 +943,7 @@
         <!--Friends-->
         <scene sceneID="1Ch-j2-gGF">
             <objects>
-                <navigationController id="DXl-cd-v5N" customClass="CustomNavigationController" customModule="iOS_UI_practice1" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="DXl-cd-v5N" customClass="CustomNavigationController" customModule="FakeVK" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Friends" image="person.2" catalog="system" selectedImage="person.2.fill" id="zA2-Ih-ePm"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uQ6-ZY-Mss">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
