@@ -214,7 +214,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
         }
         
         tableView.beginUpdates()
-        tableView.reloadRows(at: [IndexPath(row: 1, section: sender.tag)], with: .automatic)
+        tableView.reloadRows(at: [IndexPath(row: 1, section: sender.tag)], with: .fade)
         postsArray[sender.tag] = post
         tableView.endUpdates()
     }
