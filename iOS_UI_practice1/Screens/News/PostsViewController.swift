@@ -42,10 +42,8 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
         tableView.register(UINib(nibName: "PostMultiPhotoCell", bundle: nil), forCellReuseIdentifier: "PostCollection")
         tableView.register(UINib(nibName: "PostFooterCell", bundle: nil), forCellReuseIdentifier: "PostFooter")
         
-//        tableView.estimatedRowHeight = 200.0
-//        tableView.rowHeight = UITableView.automaticDimension
         tableView.prefetchDataSource = self
-        
+
         getNewsFeed()
     }
     
@@ -204,18 +202,15 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
     }
     
     @objc func showMorePressed(sender: UIButton) {
-        var post = postsArray[sender.tag]
-        post.showFullText = !post.showFullText
+        postsArray[sender.tag].showFullText = !postsArray[sender.tag].showFullText
         
-        if post.showFullText {
-            sender.titleLabel?.text = showLessLabel
+        if postsArray[sender.tag].showFullText {
+            sender.setTitle(showLessLabel, for: .normal)
         } else {
-            sender.titleLabel?.text = showMoreLabel
+            sender.setTitle(showMoreLabel, for: .normal)
         }
         
         tableView.beginUpdates()
-        tableView.reloadRows(at: [IndexPath(row: 1, section: sender.tag)], with: .fade)
-        postsArray[sender.tag] = post
         tableView.endUpdates()
     }
 }
@@ -235,7 +230,6 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
             return PostPhotoCell()
         }
         
-        let postCollection = collectionView as! PostCollectionView
         let post = postsArray[collectionView.tag]
         let photosForPost = post.photos
         
@@ -254,8 +248,6 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
         
             if let photo = photosForPost[indexPath.item].imageSizes.first(where: { $0.type == photoSize }),
                 let photoUrl = URL(string: photo.url) {
-                // добавляем фотографию в коллекцию, чтобы знать ее размеры еще до загрузки
-//                postCollection.photosSizes?.append(photo)
                 // ставим фотку на загрузку
                 cell.postPhoto.kf.setImage(with: photoUrl)
             }
