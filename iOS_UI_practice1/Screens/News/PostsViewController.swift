@@ -288,7 +288,7 @@ extension PostsViewController {
                 if newPosts.count > 0 {
                     self.postsArray = newPosts + self.postsArray
                     let indexSet = IndexSet(integersIn: 0..<newPosts.count)
-                    self.tableView.insertSections(indexSet, with: .top)
+                    self.tableView.insertSections(indexSet, with: .fade)
                 }
                 self.refreshControl?.endRefreshing()
             case .failure(let error):
