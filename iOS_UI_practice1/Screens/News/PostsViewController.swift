@@ -41,16 +41,24 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
         tableView.register(UINib(nibName: "PostSinglePhotoCell", bundle: nil), forCellReuseIdentifier: "PostPhoto")
         tableView.register(UINib(nibName: "PostMultiPhotoCell", bundle: nil), forCellReuseIdentifier: "PostCollection")
         tableView.register(UINib(nibName: "PostFooterCell", bundle: nil), forCellReuseIdentifier: "PostFooter")
-        
         tableView.prefetchDataSource = self
-
+        
+        setupPullToRefresh()
         getNewsFeed()
+    }
+    
+    fileprivate func setupPullToRefresh() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Обновляем...")
+        refreshControl.tintColor = .blue
+        refreshControl.addTarget(self, action: #selector(refreshNewsfeed), for: .valueChanged)
+        self.refreshControl = refreshControl
     }
     
     private func getNewsFeed() {
         isFetchingMoreNews = true
         
-        vkAPI.getNewsFeed(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token, nextFrom: nil) { result in
+        vkAPI.getNewsFeed(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token, nextFrom: nil, startFrom: nil) { result in
             switch result {
             case .success(let posts, let nextFrom):
                 self.postsArray = posts
@@ -266,6 +274,31 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
 }
 
+// MARK: Pull to refresh
+extension PostsViewController {
+
+    @objc private func refreshNewsfeed() {
+        self.refreshControl?.beginRefreshing()
+        let lastPost = self.postsArray.first
+        let lastNewsDateTime = lastPost != nil ? lastPost!.date.timeIntervalSince1970 : Date().timeIntervalSince1970
+        
+        vkAPI.getNewsFeed(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token, nextFrom: nil, startFrom: String(lastNewsDateTime + 1)) { result in
+            switch result {
+            case .success(let newPosts, _):
+                if newPosts.count > 0 {
+                    self.postsArray = newPosts + self.postsArray
+                    let indexSet = IndexSet(integersIn: 0..<newPosts.count)
+                    self.tableView.insertSections(indexSet, with: .top)
+                }
+                self.refreshControl?.endRefreshing()
+            case .failure(let error):
+                print(error)
+                self.refreshControl?.endRefreshing()
+            }
+        }
+    }
+}
+
 // MARK: Infinite Scrolling
 extension PostsViewController: UITableViewDataSourcePrefetching {
     
@@ -275,7 +308,7 @@ extension PostsViewController: UITableViewDataSourcePrefetching {
             postsArray.count <= maxSection + 3 else { return }
         
         isFetchingMoreNews = true
-        vkAPI.getNewsFeed(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token, nextFrom: nextFrom) { result in
+        vkAPI.getNewsFeed(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token, nextFrom: nextFrom, startFrom: nil) { result in
             switch result {
             case .success(let posts, let nextFrom):
                 self.postsArray.append(contentsOf: posts)
