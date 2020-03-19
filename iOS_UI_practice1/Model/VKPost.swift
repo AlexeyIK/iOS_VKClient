@@ -88,6 +88,16 @@ class VKNewsLink: VKAttachment {
     }
 }
 
+// Аттачмент типа "видео"
+class VKNewsVideo: VKAttachment {
+    let video: VKVideo
+    
+    init(type: AttachmentType, title: String, description: String, video: VKVideo) {
+        self.video = video
+        super.init(type: type)
+    }
+}
+
 // Аттачмент типа "фото"
 //class VKNewsPhoto: VKAttachment {
 //    let photo: VKPhoto

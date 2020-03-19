@@ -1,22 +1,16 @@
 //
-//  PostSinglePhotoCell.swift
+//  PostVideoCell.swift
 //  iOS_UI_practice1
 //
-//  Created by Alex on 12/03/2020.
+//  Created by Alex on 19/03/2020.
 //  Copyright © 2020 Alexey Kuznetsov. All rights reserved.
 //
 
 import UIKit
 
-class PostSinglePhotoCell: UITableViewCell {
-
-    @IBOutlet weak var photo: UIImageView! {
-        didSet {
-            calculateHeight()
-        }
-    }
+class PostVideoCell: UITableViewCell {
     
-    var cellHeight : Int = 200
+    @IBOutlet weak var videoframe: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,7 +20,4 @@ class PostSinglePhotoCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    private func calculateHeight() {
-        layoutIfNeeded()
-    }
 }

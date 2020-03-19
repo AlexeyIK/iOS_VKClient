@@ -51,6 +51,9 @@
 		5A5C5A0A24199E070050CAFB /* PostMultiPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5C5A0824199E070050CAFB /* PostMultiPhotoCell.swift */; };
 		5A5C5A0B24199E070050CAFB /* PostMultiPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A5C5A0924199E070050CAFB /* PostMultiPhotoCell.xib */; };
 		5A5C5A0D2419A5780050CAFB /* PostHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5C5A0C2419A5770050CAFB /* PostHeaderCell.swift */; };
+		5A682F5824241408006BA47F /* PostVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A682F5624241408006BA47F /* PostVideoCell.swift */; };
+		5A682F5924241408006BA47F /* PostVideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A682F5724241408006BA47F /* PostVideoCell.xib */; };
+		5A682F5B2424173E006BA47F /* VKVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A682F5A2424173E006BA47F /* VKVideo.swift */; };
 		5A776BEB2392B8B400200AED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A776BEA2392B8B400200AED /* User.swift */; };
 		5AAC414723947AF900BA698A /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAC414623947AF900BA698A /* Group.swift */; };
 		5AAC414B23947EE300BA698A /* MyGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAC414A23947EE300BA698A /* MyGroupsController.swift */; };
@@ -136,6 +139,9 @@
 		5A5C5A0824199E070050CAFB /* PostMultiPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMultiPhotoCell.swift; sourceTree = "<group>"; };
 		5A5C5A0924199E070050CAFB /* PostMultiPhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostMultiPhotoCell.xib; sourceTree = "<group>"; };
 		5A5C5A0C2419A5770050CAFB /* PostHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostHeaderCell.swift; sourceTree = "<group>"; };
+		5A682F5624241408006BA47F /* PostVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVideoCell.swift; sourceTree = "<group>"; };
+		5A682F5724241408006BA47F /* PostVideoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostVideoCell.xib; sourceTree = "<group>"; };
+		5A682F5A2424173E006BA47F /* VKVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKVideo.swift; sourceTree = "<group>"; };
 		5A776BEA2392B8B400200AED /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5A9AD367241C3E210031318B /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AAC414623947AF900BA698A /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
@@ -281,6 +287,7 @@
 				5A0A0DA823D1007C002C718D /* VKGroup.swift */,
 				5A0A0DAA23D10087002C718D /* VKUser.swift */,
 				5A0A0DAC23D1008E002C718D /* VKPhoto.swift */,
+				5A682F5A2424173E006BA47F /* VKVideo.swift */,
 				F1D18C0E24056ED900F28B9B /* VKPost.swift */,
 			);
 			path = Model;
@@ -337,6 +344,8 @@
 				5A5C5A0124199B940050CAFB /* PostTextCell.xib */,
 				5A5C5A0424199CF20050CAFB /* PostSinglePhotoCell.swift */,
 				5A5C5A0524199CF20050CAFB /* PostSinglePhotoCell.xib */,
+				5A682F5624241408006BA47F /* PostVideoCell.swift */,
+				5A682F5724241408006BA47F /* PostVideoCell.xib */,
 				5A5C5A0824199E070050CAFB /* PostMultiPhotoCell.swift */,
 				5A5C5A0924199E070050CAFB /* PostMultiPhotoCell.xib */,
 			);
@@ -529,6 +538,7 @@
 				5A5C5A0324199B940050CAFB /* PostTextCell.xib in Resources */,
 				5A36403B2389DE7600945E79 /* Assets.xcassets in Resources */,
 				5A3640392389DE7400945E79 /* Main.storyboard in Resources */,
+				5A682F5924241408006BA47F /* PostVideoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,6 +601,7 @@
 				F16F1302239ACBF800BA8CE6 /* CircleShadowImage.swift in Sources */,
 				F16C3A9323E0793800653149 /* RealmGroupRepository.swift in Sources */,
 				5A24DD9B23CD0DEA0067ABC3 /* SessionObject.swift in Sources */,
+				5A682F5824241408006BA47F /* PostVideoCell.swift in Sources */,
 				5AEF0B9723B27C7E00294A37 /* PopupAnimator.swift in Sources */,
 				5AB12D8323A80BA800610167 /* Loader.swift in Sources */,
 				5A5C5A0A24199E070050CAFB /* PostMultiPhotoCell.swift in Sources */,
@@ -620,6 +631,7 @@
 				5A567CAB24202FB100E160D7 /* StringExtensions.swift in Sources */,
 				5A298A4F23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift in Sources */,
 				5A35739D2395CDE000D3D6AC /* GroupCell.swift in Sources */,
+				5A682F5B2424173E006BA47F /* VKVideo.swift in Sources */,
 				5AB6777423CFBE1700AB5520 /* VKAPIManager.swift in Sources */,
 				5AAC414723947AF900BA698A /* Group.swift in Sources */,
 				5A0E791A23CB53F800EDFBAD /* PostPhotoCell.swift in Sources */,

@@ -29,7 +29,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
     var isFetchingMoreNews = false
     var nextFrom: String?
     
-    var imageLoadQueue = DispatchQueue(label: "ru.geekbrains.images.posts", attributes: .concurrent)
+//    var imageLoadQueue = DispatchQueue(label: "ru.geekbrains.images.posts", attributes: .concurrent)
     
     var vkAPI = VKApi()
     var postsArray = [VKPost]()
@@ -39,8 +39,10 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
         tableView.register(UINib(nibName: "PostHeaderCell", bundle: nil), forCellReuseIdentifier: "PostHeader")
         tableView.register(UINib(nibName: "PostTextCell", bundle: nil), forCellReuseIdentifier: "PostBodyText")
         tableView.register(UINib(nibName: "PostSinglePhotoCell", bundle: nil), forCellReuseIdentifier: "PostPhoto")
+        tableView.register(UINib(nibName: "PostVideoCell", bundle: nil), forCellReuseIdentifier: "PostVideo")
         tableView.register(UINib(nibName: "PostMultiPhotoCell", bundle: nil), forCellReuseIdentifier: "PostCollection")
         tableView.register(UINib(nibName: "PostFooterCell", bundle: nil), forCellReuseIdentifier: "PostFooter")
+        
         tableView.prefetchDataSource = self
         
         setupPullToRefresh()
@@ -114,6 +116,10 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
             } else if post.photos.count > 1 {
                 break
             } else {
+                if post.attachments.count > 0, let videos = post.attachments as? [VKNewsVideo] {
+                    let aspectRatio = videos.first?.video.aspectRatio ?? 0.5625
+                    return (tableView.bounds.width - postLeftRightPadding * 2) * aspectRatio
+                }
                 return 0
             }
         case 3:
@@ -142,16 +148,13 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
                 avatarURL = URL(string: post.byGroup?.logo ?? "")
             }
             
-            imageLoadQueue.async {
-                if avatarURL != nil, let imageData = try? Data(contentsOf: avatarURL!) {
-                    DispatchQueue.main.async {
-                        cell.postAvatar.image.image = UIImage(data: imageData)
-                    }
-                }
+            if avatarURL != nil {
+                cell.postAvatar.image.kf.setImage(with: avatarURL)
             }
             
             cell.timestamp.text = DateTimeHelper.getFormattedDate(from: post.date)
             return cell
+            
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostBodyText", for: indexPath) as! PostTextCell
             
@@ -168,11 +171,24 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
                     cell.showMoreButton.addTarget(self, action: #selector(showMorePressed), for: .touchUpInside)
                 }
             }
-            
             return cell
+            
         case 2:
             if post.photos.count == 0 {
-                break
+                // если в посте содержится видео в качестве аттачмента
+                if post.attachments.count > 0, let postVideos = post.attachments as? [VKNewsVideo] {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "PostVideo", for: indexPath) as! PostVideoCell
+                    
+                    // пока возьмем только первое видео
+                    guard let video = postVideos.first?.video else { break }
+//                    cell.videoframe.bounds = CGRect(x: 0, y: 0, width: CGFloat(video.width), height: CGFloat(video.height))
+                    
+                    if let preview = video.image.max(by: { $0.resolution < $1.resolution }),
+                        let previewURL = URL(string: preview.url) {
+                        cell.videoframe.kf.setImage(with: previewURL)
+                    }
+                    return cell
+                }
             }
             else if post.photos.count == 1 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "PostPhoto", for: indexPath) as! PostSinglePhotoCell
@@ -188,6 +204,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "PostCollection", for: indexPath) as! PostMultiPhotoCell
                 return cell
             }
+            
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostFooter", for: indexPath) as! PostFooterCell
             cell.likeButton.isLiked = post.likes.myLike == 1 ? true : false
@@ -196,6 +213,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
             cell.reposts.text = CountsFormatter.ToString(value: post.reposts, threshold: 1000, devide: 3, format: "%.1fk")
             cell.views.text = CountsFormatter.ToString(value: post.views, threshold: 1000, devide: 3, format: "%.1fk")
             return cell
+            
         default:
             break
         }
@@ -209,6 +227,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
         tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.section)
     }
     
+    // обработчик кнопки "показать полность"
     @objc func showMorePressed(sender: UIButton) {
         postsArray[sender.tag].showFullText = !postsArray[sender.tag].showFullText
         
