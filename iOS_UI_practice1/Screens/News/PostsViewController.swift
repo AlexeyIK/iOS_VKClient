@@ -165,7 +165,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
         tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.section)
     }
     
-    // обработчик кнопки "показать полность"
+    // обработчик кнопки "показать полностью"
     @objc func showMorePressed(sender: UIButton) {
         postsArray[sender.tag].showFullText = !postsArray[sender.tag].showFullText
         
@@ -309,6 +309,8 @@ extension PostsViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostCollection", for: indexPath) as! PostMultiPhotoCell
             return cell
         }
+        
+        return UITableViewCell()
     }
     
     fileprivate func setupFooter(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
