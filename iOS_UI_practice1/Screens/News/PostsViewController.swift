@@ -60,7 +60,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
     private func getNewsFeed() {
         isFetchingMoreNews = true
         
-        vkAPI.getNewsFeed(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token, nextFrom: nil, startFrom: nil) { result in
+        vkAPI.getNewsFeed(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token) { result in
             switch result {
             case .success(let posts, let nextFrom):
                 self.postsArray = posts
@@ -319,9 +319,9 @@ extension PostsViewController {
         
         cell.likeButton.isLiked = post.likes.myLike == 1 ? true : false
         cell.likeButton.likeCount = post.likes.count
-        cell.comments.text = CountsFormatter.ToString(value: post.comments, threshold: 1000, devide: 3, format: "%.1fk")
-        cell.reposts.text = CountsFormatter.ToString(value: post.reposts, threshold: 1000, devide: 3, format: "%.1fk")
-        cell.views.text = CountsFormatter.ToString(value: post.views, threshold: 1000, devide: 3, format: "%.1fk")
+        cell.comments.text = CountsFormatter.ToString(value: post.comments, format: "%.1f")
+        cell.reposts.text = CountsFormatter.ToString(value: post.reposts, format: "%.1f")
+        cell.views.text = CountsFormatter.ToString(value: post.views, format: "%.1f")
         return cell
     }
 }
@@ -334,7 +334,7 @@ extension PostsViewController {
         let lastPost = self.postsArray.first
         let lastNewsDateTime = lastPost != nil ? lastPost!.date.timeIntervalSince1970 : Date().timeIntervalSince1970
         
-        vkAPI.getNewsFeed(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token, nextFrom: nil, startFrom: String(lastNewsDateTime + 1)) { result in
+        vkAPI.getNewsFeed(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token, startFrom: String(lastNewsDateTime + 1)) { result in
             switch result {
             case .success(let newPosts, _):
                 if newPosts.count > 0 {
@@ -360,7 +360,7 @@ extension PostsViewController: UITableViewDataSourcePrefetching {
             postsArray.count <= maxSection + 3 else { return }
         
         isFetchingMoreNews = true
-        vkAPI.getNewsFeed(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token, nextFrom: nextFrom, startFrom: nil) { result in
+        vkAPI.getNewsFeed(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token, nextFrom: nextFrom ?? "") { result in
             switch result {
             case .success(let posts, let nextFrom):
                 self.postsArray.append(contentsOf: posts)

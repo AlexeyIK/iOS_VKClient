@@ -100,8 +100,8 @@ class VKApi {
     func getNewsFeed(apiVersion: String,
                      token: String,
                      userID: Int = Session.shared.userId,
-                     nextFrom: String?,
-                     startFrom: String?,
+                     nextFrom: String = "",
+                     startFrom: String = "",
                      completion: @escaping (Out<([VKPost], String?), Error>) -> Void) {
         
         let requestURL = vkURL + "newsfeed.get"
@@ -109,8 +109,8 @@ class VKApi {
                       "user_id": String(userID),
                       "v": apiVersion,
                       "filters": "post,photo",
-                      "start_from": nextFrom ?? "",
-                      "start_time": startFrom ?? "",
+                      "start_from": nextFrom,
+                      "start_time": startFrom,
                       "count": "10"]
         
         AF.request(requestURL, method: .post, parameters: params)

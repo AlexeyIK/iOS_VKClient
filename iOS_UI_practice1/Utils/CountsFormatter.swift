@@ -10,15 +10,39 @@ import Foundation
 
 class CountsFormatter {
     
-    public static func ToString(value: Float, threshold : Int, devide rank: Int, format: String) -> String {
-        return value >= Float(threshold) ? String(format: format, value / (10 * Float(rank))) : String(value)
+    static let thousands = "K"
+    static let millions = "M"
+    
+    public static func ToString(value: Double, format: String, threshold: Double = 1000.0) -> String {
+        var str = String(value)
+        
+        if value >= threshold * threshold {
+            str = String(format: format + millions, Double(value) / (threshold * threshold))
+        } else if value >= threshold {
+            str = String(format: format + thousands, Double(value) / (threshold))
+        }
+        return str
     }
     
-    public static func ToString(value: Double, threshold: Int, devide rank: Int, format: String) -> String {
-        return value >= Double(threshold) ? String(format: format, value / (10 * Double(rank))) : String(value)
+    public static func ToString(value: Float, format: String, threshold: Float = 1000.0) -> String {
+        var str = String(value)
+        
+        if value >= threshold * threshold {
+            str = String(format: format + millions, Float(value) / (threshold * threshold))
+        } else if value >= threshold {
+            str = String(format: format + thousands, Float(value) / (threshold))
+        }
+        return str
     }
     
-    public static func ToString(value: Int, threshold: Int, devide rank: Int, format: String) -> String {
-        return value >= threshold ? String(format: format, Float(value) / (10 * Float(rank))) : String(value)
+    public static func ToString(value: Int, format: String, threshold: Int = 1000) -> String {
+        var str = String(value)
+        
+        if value >= threshold * threshold {
+            str = String(format: format + millions, Float(value) / (Float(threshold * threshold)))
+        } else if value >= threshold {
+            str = String(format: format + thousands, Float(value) / (Float(threshold)))
+        }
+        return str
     }
 }
