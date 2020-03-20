@@ -432,13 +432,11 @@
                                                 </activityIndicatorView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F3J-di-4xz">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="F3J-di-4xz" secondAttribute="height" multiplier="1:1" id="ikq-oy-5MV"/>
-                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
+                                                <constraint firstItem="F3J-di-4xz" firstAttribute="leading" secondItem="XxH-NI-mI6" secondAttribute="leading" id="2WW-IO-gfF"/>
                                                 <constraint firstAttribute="bottom" secondItem="F3J-di-4xz" secondAttribute="bottom" id="8yw-iD-uUf"/>
                                                 <constraint firstItem="Ve3-9A-BB6" firstAttribute="centerY" secondItem="XxH-NI-mI6" secondAttribute="centerY" id="Bf3-O8-FDE"/>
                                                 <constraint firstItem="F3J-di-4xz" firstAttribute="leading" secondItem="XxH-NI-mI6" secondAttribute="leading" id="Ju6-DP-xVd"/>

@@ -30,11 +30,6 @@
                                             <constraint firstAttribute="width" secondItem="GQX-8W-4UE" secondAttribute="height" multiplier="1:1" id="h14-42-5pD"/>
                                             <constraint firstAttribute="width" constant="50" id="uDS-Dv-yL8"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                <real key="value" value="0.10000000000000001"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="B6k-Ag-2ok">
                                         <rect key="frame" x="58" y="7.5" width="287" height="35"/>
