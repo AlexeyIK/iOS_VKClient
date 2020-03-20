@@ -133,8 +133,6 @@ class VKApi {
                     DispatchQueue.global().async(group: dispatchGroup) {
                         // парсим профили юзеров
                         profiles.forEach { profileItem in
-                            //                        print("profile: \(profileItem)")
-                            
                             let user = VKUser(id: profileItem["id"].intValue, firstName: profileItem["first_name"].stringValue, lastName: profileItem["last_name"].stringValue, avatarPath: profileItem["photo_100"].stringValue, isOnline: profileItem["online"].intValue)
                             usersResult.append(user)
                         }
@@ -143,8 +141,6 @@ class VKApi {
                     DispatchQueue.global().async(group: dispatchGroup) {
                         // парсим группы
                         groups.forEach { groupItem in
-                            //                        print("group: \(groupItem)")
-                            
                             let group = VKGroup(id: groupItem["id"].intValue, name: groupItem["name"].stringValue, logo: groupItem["photo_100"].stringValue, isMember: groupItem["is_member"].intValue)
                             groupsResult.append(group)
                         }
@@ -156,9 +152,8 @@ class VKApi {
                         items.forEach { item in
                             if let postType = PostType(rawValue: item["type"].stringValue) {
                                 //                            print("post: \n\(item)")
-                                
-                                // Пропускаем репосты пока что
-//                                if item["copy_history"].array == nil {
+
+                                if item["copy_history"].array == nil {
                                     let sourceID = item["source_id"].intValue
                                     var bodyText: String? = nil
                                     var postPhotos = [VKPhoto]()
@@ -220,8 +215,6 @@ class VKApi {
                                                                     width: size["width"].intValue,
                                                                     height: size["height"].intValue))
                                                     }
-                                                    
-                                                    print(attachedData)
                                                     
                                                     // теперь уже можем создать видео
                                                     let video = VKVideo(id: attachedData["id"].intValue,
@@ -329,7 +322,7 @@ class VKApi {
                                     postsResult.append(post)
                                 }
                             }
-//                        }
+                        }
                         
                         let nextFrom = response["next_from"].stringValue
                         

@@ -21,10 +21,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8uL-2O-cQC">
-                                <rect key="frame" x="15" y="6" width="345" height="52"/>
+                                <rect key="frame" x="15" y="7" width="345" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GQX-8W-4UE" userLabel="Avatar" customClass="CircleShadowImage" customModule="FakeVK" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="GQX-8W-4UE" secondAttribute="height" multiplier="1:1" id="h14-42-5pD"/>
@@ -37,16 +37,16 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="B6k-Ag-2ok">
-                                        <rect key="frame" x="58" y="8" width="287" height="36"/>
+                                        <rect key="frame" x="58" y="7.5" width="287" height="35"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6YD-iz-CPS">
-                                                <rect key="frame" x="0.0" y="0.0" width="287" height="18"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="287" height="17.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="today in 12:01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PCj-OO-9G8">
-                                                <rect key="frame" x="0.0" y="18" width="287" height="18"/>
+                                                <rect key="frame" x="0.0" y="17.5" width="287" height="17.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -55,7 +55,6 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="52" id="0Se-zw-wt8"/>
                                     <constraint firstItem="GQX-8W-4UE" firstAttribute="centerY" secondItem="8uL-2O-cQC" secondAttribute="centerY" id="0w3-tX-doZ"/>
                                     <constraint firstItem="B6k-Ag-2ok" firstAttribute="height" secondItem="8uL-2O-cQC" secondAttribute="height" multiplier="0.7" id="hGZ-fc-ASH"/>
                                 </constraints>
