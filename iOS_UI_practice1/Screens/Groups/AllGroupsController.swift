@@ -21,17 +21,15 @@ class AllGroupsController: UITableViewController {
         tableView.register(UINib(nibName: "GroupsCell", bundle: nil), forCellReuseIdentifier: "GroupsTemplate")
         tableView.estimatedRowHeight = 75
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
-    }
 }
 
 // MARK: - Search
 extension AllGroupsController : UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchInGroups(searchText: searchText)
+        if !searchText.trimmingCharacters(in: CharacterSet(charactersIn: " ")).isEmpty {
+            searchInGroups(searchText: searchText)
+        }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -45,20 +43,18 @@ extension AllGroupsController : UISearchBarDelegate {
                                searchText: searchText)
             .done { groups in
                 self.groupsToShow = groups
-                print(groups)
+                self.tableView.reloadData()
             }
             .catch { error in
                 print("Error requesting groups search: \(error)")
             }
         } else {
             self.groupsToShow = [VKGroup]()
+            self.tableView.reloadData()
         }
-        
-        tableView.reloadData()
     }
 }
 
-// MARK: - Table and cell settings
 extension AllGroupsController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -95,16 +91,4 @@ extension AllGroupsController {
         
         return cell
     }
-    
-    /*override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let targetGroup = groupsToShow[indexPath.row]
-        let index = GroupsFactory.allGroupsList.firstIndex(where: {$0.id == targetGroup.id})
-        
-        if index != nil {
-            GroupsFactory.allGroupsList[index!].isMeInGroup = true
-            GroupsFactory.updateList()
-            groupsToShow = GroupsFactory.otherGroups
-            tableView.deleteRows(at: [indexPath], with: .left)
-        }
-    }*/
 }

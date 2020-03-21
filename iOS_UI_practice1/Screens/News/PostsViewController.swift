@@ -95,6 +95,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
     // Переопределяем высоту ячеек в зависимости от их роли
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let post = postsArray[indexPath.section]
+        let deviceSizes = CurrentDevice.getPixelSizes()
         
         switch indexPath.row {
         case 1:
@@ -116,15 +117,14 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
             
         case 2:
             if post.photos.count == 1 { // если одно фото
-                if let image = (post.photos.first)?.imageSizes.first(where: { $0.type == imageSizeKeyForBig }) {
+                if let image = (post.photos.first)?.imageSizes.first(where: { $0.width >= Int(deviceSizes.width) }) {
                     let aspectRatio = image.aspectRatio ?? 1
                     return tableView.bounds.width * aspectRatio
                 } else {
                     return 0
                 }
-            
             } else if post.photos.count > 1 { // если коллекция фоток
-                break
+                return tableView.bounds.width
             } else { // если фоток нет, но есть видео в аттачментах
                 if post.attachments.count > 0, let videos = post.attachments as? [VKNewsVideo] {
                     let aspectRatio = videos.first?.video.aspectRatio ?? 0.5625
@@ -320,7 +320,6 @@ extension PostsViewController {
                             .done { result in
                                 guard let url = result else { return }
                                 let request = URLRequest(url: url)
-                                
                                 youtubeCell.wk.navigationDelegate = youtubeCell
                                 youtubeCell.wk.load(request)
                             }.catch { error in
@@ -344,7 +343,7 @@ extension PostsViewController {
         else if post.photos.count == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostPhoto", for: indexPath) as! PostSinglePhotoCell
             
-            if let photo = (post.photos.first)?.imageSizes.first(where: { $0.type == imageSizeKeyForBig }),
+            if let photo = (post.photos.first)?.imageSizes.first(where: { $0.width >= Int(deviceSizes.width) }),
                 let photoUrl = URL(string: photo.url) {
                 cell.photo.kf.setImage(with: photoUrl)
             }
@@ -403,15 +402,17 @@ extension PostsViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         guard !isFetchingMoreNews,
             let maxSection = indexPaths.map({ $0.section }).max(),
-            postsArray.count <= maxSection + 3 else { return }
+            postsArray.count <= maxSection + 2 else { return }
         
         isFetchingMoreNews = true
         vkAPI.getNewsFeed(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token, nextFrom: nextFrom ?? "") { result in
             switch result {
             case .success(let posts, let nextFrom):
+                let postsCountBefore = self.postsArray.count
                 self.postsArray.append(contentsOf: posts)
                 self.nextFrom = nextFrom
-                self.tableView.reloadData()
+                let indexSet = IndexSet(integersIn: postsCountBefore..<self.postsArray.count)
+                self.tableView.insertSections(indexSet, with: .none)
             case .failure(let error):
                 print(error)
             }
