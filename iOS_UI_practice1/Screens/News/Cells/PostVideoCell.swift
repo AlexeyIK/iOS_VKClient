@@ -1,26 +1,23 @@
 //
-//  PostTextCell.swift
+//  PostVideoCell.swift
 //  iOS_UI_practice1
 //
-//  Created by Alex on 12/03/2020.
+//  Created by Alex on 19/03/2020.
 //  Copyright © 2020 Alexey Kuznetsov. All rights reserved.
 //
 
 import UIKit
 
-class PostTextCell: UITableViewCell {
+class PostVideoCell: UITableViewCell {
     
-    @IBOutlet weak var bodyText: UILabel!
-    @IBOutlet weak var showMoreButton: UIButton!
+    @IBOutlet weak var videoframe: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        bodyText.textAlignment = .left
-        bodyText.sizeToFit()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
 }

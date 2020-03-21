@@ -53,7 +53,7 @@ class LikeButton: UIButton {
     }
     
     private func needUpdate() {
-        setTitle(String(CountsFormatter.ToString(value: likeCount, threshold: 1000, devide: 3, format: "%.1f")), for: .normal)
+        setTitle(String(CountsFormatter.ToString(value: likeCount, format: "%.1f")), for: .normal)
         setNeedsDisplay()
     }
     

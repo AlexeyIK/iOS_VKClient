@@ -6,7 +6,7 @@
 //  Copyright © 2020 Alexey Kuznetsov. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 // Типы постов
 enum PostType: String {
@@ -43,6 +43,10 @@ struct VKPost {
     var reposts: Int
     var views: Int
     
+    // вычисляемые параметры
+    var textHeight: CGFloat = 0
+    var showFullText: Bool = false
+    
     // сохранять юзера или группу, которым принадлежит пост
     let byUser: VKUser?
     let byGroup: VKGroup?
@@ -50,7 +54,7 @@ struct VKPost {
 
 struct PostsArray {
     var items: [VKPost]
-    var profiles: [VKUser] // вероятно заменить на VKUser
+    var profiles: [VKUser]
     var groups: [VKGroup]
 }
 
@@ -80,6 +84,16 @@ class VKNewsLink: VKAttachment {
     
     init(type: AttachmentType, url: String, title: String, description: String, target: String) {
         self.link = VKLink(url: url, title: title, descr: description, target: target)
+        super.init(type: type)
+    }
+}
+
+// Аттачмент типа "видео"
+class VKNewsVideo: VKAttachment {
+    let video: VKVideo
+    
+    init(type: AttachmentType, title: String, description: String, video: VKVideo) {
+        self.video = video
         super.init(type: type)
     }
 }

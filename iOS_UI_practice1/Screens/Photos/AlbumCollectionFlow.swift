@@ -27,7 +27,7 @@ class AlbumCollectionFlow : UICollectionViewLayout {
         
         // получаем необходимое количество строк при известном максимальном значении колонок
         let numOfRows = ceil(CGFloat(photosCount) / CGFloat(maxNumOfColumns))
-        let cellHeight = collectionView.frame.width / CGFloat(maxNumOfColumns) + photoCaptionHeight
+        let cellHeight = collectionView.frame.width / CGFloat(maxNumOfColumns) * 1.333 + photoCaptionHeight
         
         var lastX: CGFloat = 0
         var lastY: CGFloat = 0
@@ -37,12 +37,12 @@ class AlbumCollectionFlow : UICollectionViewLayout {
             let indexPath = IndexPath(item: i, section: 0)
             let attributeForIndex = UICollectionViewLayoutAttributes(forCellWith: indexPath)
             
-            // еслим строка еще не последняя, то делим на количество столбцов, если последняя, то на оставшиеся количество фотографий
+            // если строка еще не последняя, то делим на количество столбцов, если последняя, то на оставшиеся количество фотографий
             if ceil(CGFloat(i + 1) / CGFloat(maxNumOfColumns)) < numOfRows || photosCount % maxNumOfColumns == 0 {
-                cellWidth = collectionView.frame.width / CGFloat(maxNumOfColumns)
+                cellWidth = (collectionView.frame.width - cellsMarginX * (CGFloat(maxNumOfColumns) - 1)) / CGFloat(maxNumOfColumns)
             }
             else {
-                cellWidth = collectionView.frame.width / CGFloat(photosCount % maxNumOfColumns)
+                cellWidth = (collectionView.frame.width - cellsMarginX * CGFloat(photosCount % maxNumOfColumns - 1)) / CGFloat(photosCount % maxNumOfColumns)
             }
             
             attributeForIndex.frame = CGRect(

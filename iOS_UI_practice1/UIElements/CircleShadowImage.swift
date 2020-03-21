@@ -12,8 +12,8 @@ class CircleShadowImage : UIView {
     
     var image: UIImageView!
     @IBInspectable let shadowColor : UIColor = UIColor.black
-    @IBInspectable let shadowOpacity : Float = 0.4
-    @IBInspectable let shadowRadius : CGFloat = 4.0
+    @IBInspectable let shadowOpacity : Float = 0.3
+    @IBInspectable let shadowRadius : CGFloat = 3.0
     
     override init(frame: CGRect) {
         super.init(frame: frame)

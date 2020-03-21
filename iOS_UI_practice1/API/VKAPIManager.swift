@@ -100,7 +100,8 @@ class VKApi {
     func getNewsFeed(apiVersion: String,
                      token: String,
                      userID: Int = Session.shared.userId,
-                     nextFrom: String?,
+                     nextFrom: String = "",
+                     startFrom: String = "",
                      completion: @escaping (Out<([VKPost], String?), Error>) -> Void) {
         
         let requestURL = vkURL + "newsfeed.get"
@@ -108,8 +109,8 @@ class VKApi {
                       "user_id": String(userID),
                       "v": apiVersion,
                       "filters": "post,photo",
-                      "start_from": nextFrom ?? "",
-//                      "start_time", startTime ?? "",
+                      "start_from": nextFrom,
+                      "start_time": startFrom,
                       "count": "10"]
         
         AF.request(requestURL, method: .post, parameters: params)
@@ -132,8 +133,6 @@ class VKApi {
                     DispatchQueue.global().async(group: dispatchGroup) {
                         // парсим профили юзеров
                         profiles.forEach { profileItem in
-                            //                        print("profile: \(profileItem)")
-                            
                             let user = VKUser(id: profileItem["id"].intValue, firstName: profileItem["first_name"].stringValue, lastName: profileItem["last_name"].stringValue, avatarPath: profileItem["photo_100"].stringValue, isOnline: profileItem["online"].intValue)
                             usersResult.append(user)
                         }
@@ -142,8 +141,6 @@ class VKApi {
                     DispatchQueue.global().async(group: dispatchGroup) {
                         // парсим группы
                         groups.forEach { groupItem in
-                            //                        print("group: \(groupItem)")
-                            
                             let group = VKGroup(id: groupItem["id"].intValue, name: groupItem["name"].stringValue, logo: groupItem["photo_100"].stringValue, isMember: groupItem["is_member"].intValue)
                             groupsResult.append(group)
                         }
@@ -155,9 +152,8 @@ class VKApi {
                         items.forEach { item in
                             if let postType = PostType(rawValue: item["type"].stringValue) {
                                 //                            print("post: \n\(item)")
-                                
-                                // Пропускаем репосты пока что
-//                                if item["copy_history"].array == nil {
+
+                                if item["copy_history"].array == nil {
                                     let sourceID = item["source_id"].intValue
                                     var bodyText: String? = nil
                                     var postPhotos = [VKPhoto]()
@@ -208,8 +204,37 @@ class VKApi {
                                                 case .audio:
                                                     break
                                                 case .video:
-                                                    // ToDo: разобрать видео-превью, сеттить в качестве фотки с дорисовкой значка видео
-                                                    break
+                                                    // сначала соберем все превью
+                                                    let previewsArray = attachedData["image"].arrayValue
+                                                    var photoSizes = [VKImage]()
+                                                    
+                                                    previewsArray.forEach { size in
+                                                        photoSizes.append(
+                                                            VKImage(type: size["type"].stringValue,
+                                                                    url: size["url"].stringValue,
+                                                                    width: size["width"].intValue,
+                                                                    height: size["height"].intValue))
+                                                    }
+                                                    
+                                                    // теперь уже можем создать видео
+                                                    let video = VKVideo(id: attachedData["id"].intValue,
+                                                                        width: attachedData["width"].int ?? 1280,
+                                                                        height: attachedData["height"].int ?? 720,
+                                                                        duration: attachedData["duration"].intValue,
+                                                                        title: attachedData["title"].stringValue,
+                                                                        ownerId: attachedData["owner_id"].intValue,
+                                                                        userId: attachedData["user_id"].intValue,
+                                                                        accessKey: attachedData["access_key"].stringValue,
+                                                                        image: photoSizes,
+                                                                        firstFrame: [VKImage](),
+                                                                        views: attachedData["views"].intValue)
+                                                    
+                                                    postAttachments.append(
+                                                        VKNewsVideo(type: .video,
+                                                                    title: attachedData["title"].stringValue,
+                                                                    description: attachedData["description"].stringValue,
+                                                                    video: video)
+                                                    )
                                                 }
                                             }
                                         }
@@ -297,7 +322,7 @@ class VKApi {
                                     postsResult.append(post)
                                 }
                             }
-//                        }
+                        }
                         
                         let nextFrom = response["next_from"].stringValue
                         
