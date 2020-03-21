@@ -18,13 +18,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OJR-PE-jdp" userLabel="Container">
-                        <rect key="frame" x="15" y="0.0" width="345" height="205"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="205"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UlJ-2G-dOL" userLabel="VideoFrame">
-                                <rect key="frame" x="0.0" y="0.0" width="345" height="205"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="205"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play.fill" catalog="system" highlightedImage="play" translatesAutoresizingMaskIntoConstraints="NO" id="gqM-K4-hje">
-                                <rect key="frame" x="122.5" y="54" width="100" height="96.5"/>
+                                <rect key="frame" x="137.5" y="54" width="100" height="96.5"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="G5x-eZ-B6Y"/>
@@ -45,8 +45,8 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="OJR-PE-jdp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="DwQ-M2-Ocr"/>
-                    <constraint firstItem="OJR-PE-jdp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="j1z-HM-cmG"/>
-                    <constraint firstAttribute="trailing" secondItem="OJR-PE-jdp" secondAttribute="trailing" constant="15" id="sPE-30-GDb"/>
+                    <constraint firstItem="OJR-PE-jdp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="j1z-HM-cmG"/>
+                    <constraint firstAttribute="trailing" secondItem="OJR-PE-jdp" secondAttribute="trailing" id="sPE-30-GDb"/>
                     <constraint firstAttribute="bottom" secondItem="OJR-PE-jdp" secondAttribute="bottom" id="z6D-OB-D1l"/>
                 </constraints>
             </tableViewCellContentView>

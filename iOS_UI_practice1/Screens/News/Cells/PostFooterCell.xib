@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zwI-NH-EyF">
-                        <rect key="frame" x="15" y="0.0" width="345" height="42"/>
+                        <rect key="frame" x="10" y="0.0" width="355" height="42"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bXR-zc-qTB" userLabel="Footer">
                                 <rect key="frame" x="0.0" y="10.5" width="204" height="21"/>
@@ -92,7 +92,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleAspectFit" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="J5k-3W-Dpi" userLabel="Views">
-                                <rect key="frame" x="268.5" y="10.5" width="76.5" height="21"/>
+                                <rect key="frame" x="278.5" y="10.5" width="76.5" height="21"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="views_ico" translatesAutoresizingMaskIntoConstraints="NO" id="suM-E0-nER">
                                         <rect key="frame" x="0.0" y="0.0" width="21" height="21"/>
@@ -127,10 +127,10 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="zwI-NH-EyF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="QUa-Ko-snq"/>
+                    <constraint firstItem="zwI-NH-EyF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="QUa-Ko-snq"/>
                     <constraint firstItem="zwI-NH-EyF" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="VBz-P5-9m5"/>
                     <constraint firstItem="zwI-NH-EyF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="rZJ-ei-jND"/>
-                    <constraint firstAttribute="trailing" secondItem="zwI-NH-EyF" secondAttribute="trailing" constant="15" id="tzz-VX-mVj"/>
+                    <constraint firstAttribute="trailing" secondItem="zwI-NH-EyF" secondAttribute="trailing" constant="10" id="tzz-VX-mVj"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

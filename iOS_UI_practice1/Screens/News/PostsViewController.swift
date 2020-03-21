@@ -12,7 +12,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
     
     let postsBottomMargin: CGFloat = 8.0
     let maxHeightOfTextBlock: CGFloat = 200.0
-    let postLeftRightPadding: CGFloat = 15.0
+    let postLeftRightPadding: CGFloat = 10.0
     
     let showMoreLabel = "Показать полностью"
     let showLessLabel = "Показать меньше"
@@ -49,7 +49,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
         getNewsFeed()
     }
     
-    fileprivate func setupPullToRefresh() {
+    private func setupPullToRefresh() {
         let refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "Обновляем...")
         refreshControl.tintColor = .blue
@@ -116,7 +116,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
             if post.photos.count == 1 { // если одно фото
                 if let image = (post.photos.first)?.imageSizes.first(where: { $0.type == imageSizeKeyForBig }) {
                     let aspectRatio = image.aspectRatio ?? 1
-                    return (tableView.bounds.width - postLeftRightPadding * 2) * aspectRatio
+                    return tableView.bounds.width * aspectRatio
                 } else {
                     return 0
                 }
@@ -126,7 +126,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
             } else { // если фоток нет, но есть видео в аттачментах
                 if post.attachments.count > 0, let videos = post.attachments as? [VKNewsVideo] {
                     let aspectRatio = videos.first?.video.aspectRatio ?? 0.5625
-                    return (tableView.bounds.width - postLeftRightPadding * 2) * aspectRatio
+                    return tableView.bounds.width * aspectRatio
                 }
                 return 0
             }
@@ -180,6 +180,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
     }
 }
 
+// MARK: Collection with photos
 extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -265,7 +266,7 @@ extension PostsViewController {
         
         if let text = post.text, !text.isEmpty {
             // вычислим высоту текста
-            postsArray[indexPath.section].textHeight = text.getHeight(constraintedWidth: cell.bodyText.bounds.width, font: UIFont(name: "Helvetica Neue", size: 14.0)!)
+            postsArray[indexPath.section].textHeight = text.getHeight(constraintedWidth: cell.bounds.width - postLeftRightPadding * 2, font: UIFont(name: "Helvetica Neue", size: 14.0)!)
             cell.bodyText.text = post.text
             
             if postsArray[indexPath.section].textHeight > maxHeightOfTextBlock {
