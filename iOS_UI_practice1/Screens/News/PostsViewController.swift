@@ -364,9 +364,9 @@ extension PostsViewController {
         
         cell.likeButton.isLiked = post.likes.myLike == 1 ? true : false
         cell.likeButton.likeCount = post.likes.count
-        cell.comments.text = CountsFormatter.ToString(value: post.comments, format: "%.1f")
-        cell.reposts.text = CountsFormatter.ToString(value: post.reposts, format: "%.1f")
-        cell.views.text = CountsFormatter.ToString(value: post.views, format: "%.1f")
+        cell.comments.text = CounterFormatter.toString(value: post.comments, format: "%.1f")
+        cell.reposts.text = CounterFormatter.toString(value: post.reposts, format: "%.1f")
+        cell.views.text = CounterFormatter.toString(value: post.views, format: "%.1f")
         return cell
     }
 }
