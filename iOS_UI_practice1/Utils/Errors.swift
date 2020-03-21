@@ -11,4 +11,5 @@ import Foundation
 enum RequestsErrors: Error {
     case noDataReceived
     case parsingError
+    case noVideoReceived
 }

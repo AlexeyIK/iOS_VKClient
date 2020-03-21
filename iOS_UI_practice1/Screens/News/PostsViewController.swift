@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 class PostsViewController: UITableViewController, ImageViewPresenterSource {
     
@@ -29,7 +30,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
     var isFetchingMoreNews = false
     var nextFrom: String?
     
-//    var imageLoadQueue = DispatchQueue(label: "ru.geekbrains.images.posts", attributes: .concurrent)
+    var videoLoadQueue = DispatchQueue(label: "ru.geekbrains.videoload", attributes: .concurrent)
     
     var vkAPI = VKApi()
     var postsArray = [VKPost]()
@@ -40,6 +41,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
         tableView.register(UINib(nibName: "PostTextCell", bundle: nil), forCellReuseIdentifier: "PostBodyText")
         tableView.register(UINib(nibName: "PostSinglePhotoCell", bundle: nil), forCellReuseIdentifier: "PostPhoto")
         tableView.register(UINib(nibName: "PostVideoCell", bundle: nil), forCellReuseIdentifier: "PostVideo")
+        tableView.register(UINib(nibName: "PostYouTubeCell", bundle: nil), forCellReuseIdentifier: "PostYoutube")
         tableView.register(UINib(nibName: "PostMultiPhotoCell", bundle: nil), forCellReuseIdentifier: "PostCollection")
         tableView.register(UINib(nibName: "PostFooterCell", bundle: nil), forCellReuseIdentifier: "PostFooter")
         
@@ -62,7 +64,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
         
         vkAPI.getNewsFeed(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token) { result in
             switch result {
-            case .success(let posts, let nextFrom):
+            case let .success(posts, nextFrom):
                 self.postsArray = posts
                 self.nextFrom = nextFrom
                 self.tableView.reloadData()
@@ -160,9 +162,25 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let tableViewCell = cell as? PostMultiPhotoCell else { return }
         
-        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.section)
+        switch indexPath.row {
+        case 0:
+            break
+        case 1:
+            break
+        case 2:
+            if let multiPhotoCell = cell as? PostMultiPhotoCell {
+                multiPhotoCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.section)
+            }
+            if let youtubeCell = cell as? PostYouTubeCell {
+                youtubeCell.placeholder.alpha = 1.0
+                youtubeCell.placeholder.isHidden = false
+            }
+        case 3:
+            break
+        default:
+            break
+        }
     }
     
     // обработчик кнопки "показать полностью"
@@ -199,6 +217,7 @@ extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSou
         let post = postsArray[collectionView.tag]
         let photosForPost = post.photos
         
+        // позже отдадим этот выбор в класс для лейаута
         if (photosForPost.count > 1) {
             var photoSize = "x"
             
@@ -279,21 +298,47 @@ extension PostsViewController {
     
     fileprivate func setupMediaBlock(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let post = postsArray[indexPath.section]
+        let deviceSizes = CurrentDevice.getPixelSizes()
         
         if post.photos.count == 0 {
             // если в посте содержится видео в качестве аттачмента
             if post.attachments.count > 0, let postVideos = post.attachments as? [VKNewsVideo] {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "PostVideo", for: indexPath) as! PostVideoCell
-                
                 // пока возьмем только первое видео
                 guard let video = postVideos.first?.video else { return UITableViewCell() }
-//                cell.videoframe.bounds = CGRect(x: 0, y: 0, width: CGFloat(video.width), height: CGFloat(video.height))
                 
-                if let preview = video.image.max(by: { $0.resolution < $1.resolution }),
-                    let previewURL = URL(string: preview.url) {
-                    cell.videoframe.kf.setImage(with: previewURL)
+                switch video.platform {
+                case "youtube":
+                    let youtubeCell = tableView.dequeueReusableCell(withIdentifier: "PostYoutube", for: indexPath) as! PostYouTubeCell
+                    
+                    if let preview = video.image.first(where: { $0.width >= Int(UIScreen.main.bounds.width) }),
+                        let previewURL = URL(string: preview.url) {
+                        youtubeCell.videoframe.kf.setImage(with: previewURL)
+                    }
+                    
+                    self.videoLoadQueue.async {
+                        self.vkAPI.getVideo(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token, videoID: video.id, ownerID: video.ownerId, accessKey: video.accessKey)
+                            .done { result in
+                                guard let url = result else { return }
+                                let request = URLRequest(url: url)
+                                
+                                youtubeCell.wk.navigationDelegate = youtubeCell
+                                youtubeCell.wk.load(request)
+                            }.catch { error in
+                                print("Video request error: \(error)")
+                            }
+                    }
+                    return youtubeCell
+                case "vimeo":
+                    break
+                default:
+                    let simpleVideoCell = tableView.dequeueReusableCell(withIdentifier: "PostVideo", for: indexPath) as! PostVideoCell
+                    
+                    if let preview = video.image.first(where: { $0.width >= Int(deviceSizes.width) }),
+                        let previewURL = URL(string: preview.url) {
+                        simpleVideoCell.videoframe.kf.setImage(with: previewURL)
+                    }
+                    return simpleVideoCell
                 }
-                return cell
             }
         }
         else if post.photos.count == 1 {

@@ -96,6 +96,42 @@ class VKApi {
         return sendRequest(requestURL: requestURL, method: .post, params: params)
     }
     
+    // MARK: get video by access key
+    func getVideo(apiVersion: String,
+                  token: String,
+                  userID: Int = Session.shared.userId,
+                  videoID: Int,
+                  ownerID: Int,
+                  accessKey: String) -> Promise<URL?> {
+        
+        let targetVideoKey = String(ownerID) + "_" + String(videoID)
+        
+        let requestURL = vkURL + "video.get"
+        let params = ["access_token": token,
+                      "user_id": String(userID),
+                      "v": apiVersion,
+                      "owner_id": String(ownerID),
+                      "videos": targetVideoKey]
+        
+        return Promise { resolver in
+            AF.request(requestURL, method: .post, parameters: params)
+                .responseData { result in
+                    switch result.result {
+                    case .failure(let error):
+                        resolver.reject(error)
+                    case .success(let data):
+                        let response = JSON(data)["response"]
+                        if let items = response["items"].array {
+                            let videoURL = items.first!["player"].stringValue
+                            resolver.fulfill(URL(string: videoURL))
+                        } else {
+                            resolver.reject(RequestsErrors.noVideoReceived)
+                        }
+                    }
+            }
+        }
+    }
+    
     // MARK: newsfeed request
     func getNewsFeed(apiVersion: String,
                      token: String,
@@ -111,7 +147,7 @@ class VKApi {
                       "filters": "post,photo",
                       "start_from": nextFrom,
                       "start_time": startFrom,
-                      "count": "10"]
+                      "count": "5"]
         
         AF.request(requestURL, method: .post, parameters: params)
             .responseData { result in
@@ -224,6 +260,7 @@ class VKApi {
                                                                         title: attachedData["title"].stringValue,
                                                                         ownerId: attachedData["owner_id"].intValue,
                                                                         userId: attachedData["user_id"].intValue,
+                                                                        platform: attachedData["platform"].string?.lowercased(),
                                                                         accessKey: attachedData["access_key"].stringValue,
                                                                         image: photoSizes,
                                                                         firstFrame: [VKImage](),

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="212" id="KGk-i7-Jjw" customClass="PostYouTubeCell" customModule="FakeVK" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="212"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="212"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JoA-aX-Vde">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="JoA-aX-Vde" secondAttribute="height" multiplier="16:9" id="0Zg-fi-mHg"/>
+                        </constraints>
+                        <wkWebViewConfiguration key="configuration">
+                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                            <wkPreferences key="preferences"/>
+                        </wkWebViewConfiguration>
+                    </wkWebView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6N3-pV-GXM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cXX-BN-UhQ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play.rectangle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="HSp-JX-z19">
+                                <rect key="frame" x="137.5" y="56.5" width="100" height="97.5"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Upd-MV-P7Y"/>
+                                    <constraint firstAttribute="width" secondItem="HSp-JX-z19" secondAttribute="height" multiplier="1:1" id="n25-0n-LXC"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="cXX-BN-UhQ" secondAttribute="bottom" id="Aik-Fr-cU7"/>
+                            <constraint firstItem="HSp-JX-z19" firstAttribute="centerY" secondItem="6N3-pV-GXM" secondAttribute="centerY" id="BWb-cF-gjp"/>
+                            <constraint firstItem="HSp-JX-z19" firstAttribute="centerX" secondItem="6N3-pV-GXM" secondAttribute="centerX" id="LYt-ju-pCV"/>
+                            <constraint firstAttribute="trailing" secondItem="cXX-BN-UhQ" secondAttribute="trailing" id="sOL-Ti-eFJ"/>
+                            <constraint firstItem="cXX-BN-UhQ" firstAttribute="top" secondItem="6N3-pV-GXM" secondAttribute="top" id="wvP-aR-8iV"/>
+                            <constraint firstItem="cXX-BN-UhQ" firstAttribute="leading" secondItem="6N3-pV-GXM" secondAttribute="leading" id="zkf-EE-Cns"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="6N3-pV-GXM" firstAttribute="width" secondItem="JoA-aX-Vde" secondAttribute="width" id="1pl-dx-TS5"/>
+                    <constraint firstItem="6N3-pV-GXM" firstAttribute="centerX" secondItem="JoA-aX-Vde" secondAttribute="centerX" id="COb-EC-lQz"/>
+                    <constraint firstItem="6N3-pV-GXM" firstAttribute="height" secondItem="JoA-aX-Vde" secondAttribute="height" id="ZdZ-8E-V1c"/>
+                    <constraint firstItem="6N3-pV-GXM" firstAttribute="centerY" secondItem="JoA-aX-Vde" secondAttribute="centerY" id="lPe-l2-haF"/>
+                    <constraint firstAttribute="trailing" secondItem="JoA-aX-Vde" secondAttribute="trailing" id="uyQ-Ee-4OZ"/>
+                    <constraint firstItem="JoA-aX-Vde" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="wPY-zN-IPv"/>
+                    <constraint firstItem="JoA-aX-Vde" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="y42-6x-ryi"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="placeholder" destination="6N3-pV-GXM" id="m9U-iM-C64"/>
+                <outlet property="videoframe" destination="cXX-BN-UhQ" id="zbi-Qe-L7R"/>
+                <outlet property="wk" destination="JoA-aX-Vde" id="pxf-9X-p6T"/>
+            </connections>
+            <point key="canvasLocation" x="97.826086956521749" y="209.59821428571428"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="play.rectangle.fill" catalog="system" width="64" height="46"/>
+    </resources>
+</document>

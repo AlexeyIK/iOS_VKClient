@@ -37,7 +37,7 @@ class LoginWKViewController: UIViewController {
         urlComponents.queryItems = [URLQueryItem(name: "client_id", value: apiID),
                               URLQueryItem(name: "display", value: "mobile"),
                               URLQueryItem(name: "redirect_uri", value: urlComponents.host! + firstPage),
-                              URLQueryItem(name: "scope", value: "271430"),
+                              URLQueryItem(name: "scope", value: "271446"),
                               URLQueryItem(name: "response_type", value: "token"),
                               URLQueryItem(name: "v", value: Session.shared.actualAPIVersion)]
         
