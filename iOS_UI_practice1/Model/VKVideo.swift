@@ -19,7 +19,7 @@ struct VKVideo {
     let platform: String? // YouTube, Vimeo и т.д.
     
     var accessKey: String
-    var image: [VKImage]
+    var preview: [VKImage]
     var firstFrame: [VKImage]
     var views: Int
     
