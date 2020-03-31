@@ -17,11 +17,11 @@
 		5A24DD9923CD0CC90067ABC3 /* LoginWKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A24DD9823CD0CC90067ABC3 /* LoginWKViewController.swift */; };
 		5A24DD9B23CD0DEA0067ABC3 /* SessionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A24DD9A23CD0DEA0067ABC3 /* SessionObject.swift */; };
 		5A2953D6241E5F780088B3B0 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2953D5241E5F780088B3B0 /* Errors.swift */; };
+		5A29794B24269AAC003FE25D /* CurrentDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A29794A24269AAC003FE25D /* CurrentDevice.swift */; };
 		5A298A4F23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A298A4E23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift */; };
-		5A29F0ED241D732800DEDC2A /* PostCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A29F0EC241D732800DEDC2A /* PostCollectionView.swift */; };
-		5A31F322241C1CE400838475 /* CountsFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A31F321241C1CE400838475 /* CountsFormatter.swift */; };
+		5A31F322241C1CE400838475 /* CounterFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A31F321241C1CE400838475 /* CounterFormatter.swift */; };
 		5A3573992395B77800D3D6AC /* GroupsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3573982395B77800D3D6AC /* GroupsFactory.swift */; };
-		5A35739B2395CC2600D3D6AC /* AllGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A35739A2395CC2600D3D6AC /* AllGroupsController.swift */; };
+		5A35739B2395CC2600D3D6AC /* FindGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A35739A2395CC2600D3D6AC /* FindGroupsController.swift */; };
 		5A35739D2395CDE000D3D6AC /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A35739C2395CDE000D3D6AC /* GroupCell.swift */; };
 		5A3640342389DE7400945E79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3640332389DE7400945E79 /* AppDelegate.swift */; };
 		5A3640362389DE7400945E79 /* LoginViewTestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3640352389DE7400945E79 /* LoginViewTestController.swift */; };
@@ -50,6 +50,8 @@
 		5A682F5824241408006BA47F /* PostVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A682F5624241408006BA47F /* PostVideoCell.swift */; };
 		5A682F5924241408006BA47F /* PostVideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A682F5724241408006BA47F /* PostVideoCell.xib */; };
 		5A682F5B2424173E006BA47F /* VKVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A682F5A2424173E006BA47F /* VKVideo.swift */; };
+		5A6A2B5B24264EB600CD95F1 /* PostYouTubeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6A2B5924264EB600CD95F1 /* PostYouTubeCell.swift */; };
+		5A6A2B5C24264EB600CD95F1 /* PostYouTubeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A6A2B5A24264EB600CD95F1 /* PostYouTubeCell.xib */; };
 		5A776BEB2392B8B400200AED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A776BEA2392B8B400200AED /* User.swift */; };
 		5AAC414723947AF900BA698A /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAC414623947AF900BA698A /* Group.swift */; };
 		5AAC414B23947EE300BA698A /* MyGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAC414A23947EE300BA698A /* MyGroupsController.swift */; };
@@ -99,11 +101,11 @@
 		5A24DD9823CD0CC90067ABC3 /* LoginWKViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWKViewController.swift; sourceTree = "<group>"; };
 		5A24DD9A23CD0DEA0067ABC3 /* SessionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionObject.swift; sourceTree = "<group>"; };
 		5A2953D5241E5F780088B3B0 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		5A29794A24269AAC003FE25D /* CurrentDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDevice.swift; sourceTree = "<group>"; };
 		5A298A4E23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiphotoCollectionFlow.swift; sourceTree = "<group>"; };
-		5A29F0EC241D732800DEDC2A /* PostCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionView.swift; sourceTree = "<group>"; };
-		5A31F321241C1CE400838475 /* CountsFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountsFormatter.swift; sourceTree = "<group>"; };
+		5A31F321241C1CE400838475 /* CounterFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterFormatter.swift; sourceTree = "<group>"; };
 		5A3573982395B77800D3D6AC /* GroupsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsFactory.swift; sourceTree = "<group>"; };
-		5A35739A2395CC2600D3D6AC /* AllGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsController.swift; sourceTree = "<group>"; };
+		5A35739A2395CC2600D3D6AC /* FindGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindGroupsController.swift; sourceTree = "<group>"; };
 		5A35739C2395CDE000D3D6AC /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		5A3640302389DE7400945E79 /* FakeVK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FakeVK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A3640332389DE7400945E79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +136,8 @@
 		5A682F5624241408006BA47F /* PostVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVideoCell.swift; sourceTree = "<group>"; };
 		5A682F5724241408006BA47F /* PostVideoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostVideoCell.xib; sourceTree = "<group>"; };
 		5A682F5A2424173E006BA47F /* VKVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKVideo.swift; sourceTree = "<group>"; };
+		5A6A2B5924264EB600CD95F1 /* PostYouTubeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostYouTubeCell.swift; sourceTree = "<group>"; };
+		5A6A2B5A24264EB600CD95F1 /* PostYouTubeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostYouTubeCell.xib; sourceTree = "<group>"; };
 		5A776BEA2392B8B400200AED /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5A9AD367241C3E210031318B /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AAC414623947AF900BA698A /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
@@ -199,8 +203,9 @@
 			isa = PBXGroup;
 			children = (
 				F13729C123A2467C00731CF6 /* DateTimeHelper.swift */,
-				5A31F321241C1CE400838475 /* CountsFormatter.swift */,
+				5A31F321241C1CE400838475 /* CounterFormatter.swift */,
 				5A2953D5241E5F780088B3B0 /* Errors.swift */,
+				5A29794A24269AAC003FE25D /* CurrentDevice.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -313,7 +318,6 @@
 			children = (
 				5AD3B0EA23A18D6100204692 /* Cells */,
 				5A298A4E23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift */,
-				5A29F0EC241D732800DEDC2A /* PostCollectionView.swift */,
 				5AD3B0EB23A18D9B00204692 /* PostsViewController.swift */,
 			);
 			path = News;
@@ -334,6 +338,8 @@
 				5A5C5A0524199CF20050CAFB /* PostSinglePhotoCell.xib */,
 				5A682F5624241408006BA47F /* PostVideoCell.swift */,
 				5A682F5724241408006BA47F /* PostVideoCell.xib */,
+				5A6A2B5924264EB600CD95F1 /* PostYouTubeCell.swift */,
+				5A6A2B5A24264EB600CD95F1 /* PostYouTubeCell.xib */,
 				5A5C5A0824199E070050CAFB /* PostMultiPhotoCell.swift */,
 				5A5C5A0924199E070050CAFB /* PostMultiPhotoCell.xib */,
 			);
@@ -391,7 +397,7 @@
 			children = (
 				5AFD0BE123D46481002E5A5F /* Cells */,
 				5AAC414A23947EE300BA698A /* MyGroupsController.swift */,
-				5A35739A2395CC2600D3D6AC /* AllGroupsController.swift */,
+				5A35739A2395CC2600D3D6AC /* FindGroupsController.swift */,
 			);
 			path = Groups;
 			sourceTree = "<group>";
@@ -514,6 +520,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A5C59F92419946E0050CAFB /* PostHeaderCell.xib in Resources */,
+				5A6A2B5C24264EB600CD95F1 /* PostYouTubeCell.xib in Resources */,
 				5A5C59FF241997A00050CAFB /* PostFooterCell.xib in Resources */,
 				5A0E791623CB500300EDFBAD /* PostPhotoCell.xib in Resources */,
 				5A36403E2389DE7600945E79 /* LaunchScreen.storyboard in Resources */,
@@ -595,13 +602,12 @@
 				5ACDE7DD239196CB00A9672F /* PhotoAlbumController.swift in Sources */,
 				5A5049E723DF651400CEE9B2 /* FriendsPresenter.swift in Sources */,
 				5AC930ED23D7AE4700DC1AF1 /* FullScreenPhoto.swift in Sources */,
-				5A29F0ED241D732800DEDC2A /* PostCollectionView.swift in Sources */,
 				5A3640362389DE7400945E79 /* LoginViewTestController.swift in Sources */,
 				5ACE8BD823D61E61000A257D /* FileCacher.swift in Sources */,
 				5A36906E23B16D3A0061A5A6 /* CustomNavigationController.swift in Sources */,
 				5AD3B0EC23A18D9B00204692 /* PostsViewController.swift in Sources */,
 				F1958D5123D75B0E008A5FF5 /* AlbumCollectionFlow.swift in Sources */,
-				5A31F322241C1CE400838475 /* CountsFormatter.swift in Sources */,
+				5A31F322241C1CE400838475 /* CounterFormatter.swift in Sources */,
 				F1D2EBC523A0122E00F73236 /* MessageViewController.swift in Sources */,
 				5A36906A23B148F60061A5A6 /* CardRotateTransitionInverted.swift in Sources */,
 				5A3640342389DE7400945E79 /* AppDelegate.swift in Sources */,
@@ -615,6 +621,7 @@
 				5A567CAB24202FB100E160D7 /* StringExtensions.swift in Sources */,
 				5A298A4F23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift in Sources */,
 				5A35739D2395CDE000D3D6AC /* GroupCell.swift in Sources */,
+				5A6A2B5B24264EB600CD95F1 /* PostYouTubeCell.swift in Sources */,
 				5A682F5B2424173E006BA47F /* VKVideo.swift in Sources */,
 				5AB6777423CFBE1700AB5520 /* VKAPIManager.swift in Sources */,
 				5AAC414723947AF900BA698A /* Group.swift in Sources */,
@@ -628,9 +635,10 @@
 				5AC8597523A659C400103D51 /* GroupsCell.swift in Sources */,
 				5A3573992395B77800D3D6AC /* GroupsFactory.swift in Sources */,
 				5A0A0DAD23D1008E002C718D /* VKPhoto.swift in Sources */,
-				5A35739B2395CC2600D3D6AC /* AllGroupsController.swift in Sources */,
+				5A35739B2395CC2600D3D6AC /* FindGroupsController.swift in Sources */,
 				5A36906C23B154770061A5A6 /* SwipeTransition.swift in Sources */,
 				5AEF0B9B23B280D100294A37 /* UIApplication+Controller.swift in Sources */,
+				5A29794B24269AAC003FE25D /* CurrentDevice.swift in Sources */,
 				5A0A0DAB23D10087002C718D /* VKUser.swift in Sources */,
 				F1D2EBC223A0109400F73236 /* MessageCell.swift in Sources */,
 				5A776BEB2392B8B400200AED /* User.swift in Sources */,

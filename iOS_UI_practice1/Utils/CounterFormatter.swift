@@ -1,5 +1,5 @@
 //
-//  CountsFormatter.swift
+//  CounterFormatter.swift
 //  iOS_UI_practice1
 //
 //  Created by Alex on 13/03/2020.
@@ -8,12 +8,12 @@
 
 import Foundation
 
-class CountsFormatter {
+class CounterFormatter {
     
     static let thousands = "K"
     static let millions = "M"
     
-    public static func ToString(value: Double, format: String, threshold: Double = 1000.0) -> String {
+    public static func toString(value: Double, format: String, threshold: Double = 1000.0) -> String {
         var str = String(value)
         
         if value >= threshold * threshold {
@@ -24,7 +24,7 @@ class CountsFormatter {
         return str
     }
     
-    public static func ToString(value: Float, format: String, threshold: Float = 1000.0) -> String {
+    public static func toString(value: Float, format: String, threshold: Float = 1000.0) -> String {
         var str = String(value)
         
         if value >= threshold * threshold {
@@ -35,7 +35,7 @@ class CountsFormatter {
         return str
     }
     
-    public static func ToString(value: Int, format: String, threshold: Int = 1000) -> String {
+    public static func toString(value: Int, format: String, threshold: Int = 1000) -> String {
         var str = String(value)
         
         if value >= threshold * threshold {

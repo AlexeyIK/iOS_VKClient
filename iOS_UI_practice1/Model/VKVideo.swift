@@ -14,8 +14,9 @@ struct VKVideo {
     let height: Int
     let duration: Int
     let title: String
-    let ownerId: Int? // пока не интересует
-    let userId: Int? // пока не интересует
+    let ownerId: Int
+    let userId: Int
+    let platform: String? // YouTube, Vimeo и т.д.
     
     var accessKey: String
     var image: [VKImage]

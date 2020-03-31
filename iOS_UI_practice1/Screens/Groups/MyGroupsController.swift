@@ -52,7 +52,7 @@ class MyGroupsController: UITableViewController {
                 case let .update(_, deletions, insertions, modifications):
                     self?.tableView.beginUpdates()
                     self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .left)
-                    self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .right)
+                    self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .fade)
                     self?.tableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0) }, with: .none)
                     self?.tableView.endUpdates()
                 }

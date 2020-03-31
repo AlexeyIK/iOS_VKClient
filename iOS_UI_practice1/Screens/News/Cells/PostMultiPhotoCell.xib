@@ -13,12 +13,12 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="374" id="KGk-i7-Jjw" customClass="PostMultiPhotoCell" customModule="FakeVK" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="374"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="375" height="374"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" ambiguous="YES" scrollEnabled="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Iic-6H-Lxp">
-                        <rect key="frame" x="15" y="0.0" width="345" height="345"/>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" scrollEnabled="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Iic-6H-Lxp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Iic-6H-Lxp" secondAttribute="height" multiplier="1:1" id="YEx-TO-13C"/>
@@ -28,7 +28,6 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Iic-6H-Lxp" secondAttribute="trailing" id="GAZ-ti-R1q"/>
-                    <constraint firstAttribute="bottom" secondItem="Iic-6H-Lxp" secondAttribute="bottom" id="b96-gf-VOS"/>
                     <constraint firstItem="Iic-6H-Lxp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="glA-lr-lMV"/>
                     <constraint firstItem="Iic-6H-Lxp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="vIt-FO-e8g"/>
                 </constraints>
