@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 import PromiseKit
 
 protocol PostsPresenter {
@@ -30,7 +31,8 @@ protocol PostsPresenter {
     func numOfItemsInCollection(forTableCell tag: Int) -> Int
     func getPhotoForCollectionCell(forTableCell tag: Int, cellForItemAt indexPath: IndexPath) -> VKImage?
     
-    func loadVideo(video: VKVideo) -> Promise<URL?>
+    func getVideoURL(video: VKVideo) -> Promise<URL?>
+    func loadVideoWK(webView: WKWebView, url: URL)
     
     func getPostMediaType(cellForRowAt indexPath: IndexPath) -> PostMediaType
     
@@ -129,6 +131,7 @@ class PostsPresenterImplementation: PostsPresenter {
             }
             
         case 2:
+            // Медиа-контент
             if post.photos.count == 1 { // если одно фото
                 if let image = (post.photos.first)?.imageSizes.first(where: { $0.width >= Int(deviceSizes.width) }) {
                     let aspectRatio = image.aspectRatio ?? 1
@@ -138,13 +141,13 @@ class PostsPresenterImplementation: PostsPresenter {
                 }
             } else if post.photos.count > 1 { // если коллекция фоток
                 return deviceSizes.width
-            } else { // если фоток нет, но есть видео в аттачментах
-                if post.attachments.count > 0, let videos = post.attachments as? [VKNewsVideo] {
+            } else if post.attachments.count > 0 { // если фоток нет, но есть видео в аттачментах
+                if let videos = post.attachments as? [VKNewsVideo] {
                     let aspectRatio = videos.first?.video.aspectRatio ?? 0.5625
                     return deviceSizes.width * aspectRatio
                 }
-                return 0
             }
+            return 0
             
         case 3:
             break
@@ -168,12 +171,19 @@ class PostsPresenterImplementation: PostsPresenter {
         return postsArray[indexPath.section].mediaType
     }
     
-    func loadVideo(video: VKVideo) -> Promise<URL?> {
+    func getVideoURL(video: VKVideo) -> Promise<URL?> {
         return vkAPI.getVideo(apiVersion: Session.shared.actualAPIVersion,
                               token: Session.shared.token,
                               videoID: video.id,
                               ownerID: video.ownerId,
                               accessKey: video.accessKey)
+    }
+    
+    func loadVideoWK(webView: WKWebView, url: URL) {
+        self.videoLoadQueue.async {
+            let request = URLRequest(url: url)
+            webView.load(request)
+        }
     }
     
     func setupHeader(cellForRowAt indexPath: IndexPath) -> (String, URL?, Date) {
@@ -317,7 +327,7 @@ class PostsPresenterImplementation: PostsPresenter {
     func infiniteScrolling(indexPaths: [IndexPath]) {
         guard !isFetchingMoreNews,
             let maxSection = indexPaths.map({ $0.section }).max(),
-            postsArray.count <= maxSection + 2 else { return }
+            postsArray.count <= maxSection + 3 else { return }
         
         isFetchingMoreNews = true
         vkAPI.getNewsFeed(apiVersion: Session.shared.actualAPIVersion, token: Session.shared.token, nextFrom: nextFrom ?? "") { result in

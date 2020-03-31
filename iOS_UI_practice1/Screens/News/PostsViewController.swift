@@ -113,16 +113,15 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
                         if let previewURL = URL(string: video.preview.first?.url ?? "") {
                             youtubeCell.videoframe.kf.setImage(with: previewURL)
                         }
-                        presenter?.loadVideo(video: video)
+                        presenter?.getVideoURL(video: video)
                             .done { result in
                                 guard let url = result else { return }
-                                let request = URLRequest(url: url)
                                 youtubeCell.wk.navigationDelegate = youtubeCell
-                                youtubeCell.wk.load(request)
+                                self.presenter?.loadVideoWK(webView: youtubeCell.wk, url: url)
                         }.catch { error in
                             print("Video request error: \(error)")
                         }
-                        
+                        return youtubeCell
                     case "vimeo":
                         break
                     default:
