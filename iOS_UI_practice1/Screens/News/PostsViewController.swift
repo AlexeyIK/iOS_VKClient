@@ -108,7 +108,7 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
             case .singleVideo: // к посту прикреплено одно видео
                 if let video = presenter?.getPostVideos(cellForRowAt: indexPath).first {
                     switch video.platform {
-                    case "youtube":
+                    case "youtube", "vimeo":
                         let youtubeCell = tableView.dequeueReusableCell(withIdentifier: "PostYoutube", for: indexPath) as! PostYouTubeCell
                         if let previewURL = URL(string: video.preview.first?.url ?? "") {
                             youtubeCell.videoframe.kf.setImage(with: previewURL)
@@ -122,8 +122,6 @@ class PostsViewController: UITableViewController, ImageViewPresenterSource {
                             print("Video request error: \(error)")
                         }
                         return youtubeCell
-                    case "vimeo":
-                        break
                     default:
                         let simpleVideoCell = tableView.dequeueReusableCell(withIdentifier: "PostVideo", for: indexPath) as! PostVideoCell
                         if let previewURL = URL(string: video.preview.first?.url ?? "") {
