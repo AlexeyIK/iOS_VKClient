@@ -14,6 +14,7 @@
 		5A0E791A23CB53F800EDFBAD /* PostPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0E791923CB53F800EDFBAD /* PostPhotoCell.swift */; };
 		5A1A64BE23918E5700AB76EB /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1A64BD23918E5700AB76EB /* FriendListViewController.swift */; };
 		5A1A64C0239192B900AB76EB /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1A64BF239192B900AB76EB /* FriendCell.swift */; };
+		5A22510D2426DA9A00346475 /* PostsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A22510C2426DA9A00346475 /* PostsPresenter.swift */; };
 		5A24DD9923CD0CC90067ABC3 /* LoginWKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A24DD9823CD0CC90067ABC3 /* LoginWKViewController.swift */; };
 		5A24DD9B23CD0DEA0067ABC3 /* SessionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A24DD9A23CD0DEA0067ABC3 /* SessionObject.swift */; };
 		5A2953D6241E5F780088B3B0 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2953D5241E5F780088B3B0 /* Errors.swift */; };
@@ -98,6 +99,7 @@
 		5A0E791923CB53F800EDFBAD /* PostPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPhotoCell.swift; sourceTree = "<group>"; };
 		5A1A64BD23918E5700AB76EB /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
 		5A1A64BF239192B900AB76EB /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		5A22510C2426DA9A00346475 /* PostsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsPresenter.swift; sourceTree = "<group>"; };
 		5A24DD9823CD0CC90067ABC3 /* LoginWKViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWKViewController.swift; sourceTree = "<group>"; };
 		5A24DD9A23CD0DEA0067ABC3 /* SessionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionObject.swift; sourceTree = "<group>"; };
 		5A2953D5241E5F780088B3B0 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				5AD3B0EA23A18D6100204692 /* Cells */,
 				5A298A4E23C4D57A00AB08BC /* MultiphotoCollectionFlow.swift */,
 				5AD3B0EB23A18D9B00204692 /* PostsViewController.swift */,
+				5A22510C2426DA9A00346475 /* PostsPresenter.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -642,6 +645,7 @@
 				5A0A0DAB23D10087002C718D /* VKUser.swift in Sources */,
 				F1D2EBC223A0109400F73236 /* MessageCell.swift in Sources */,
 				5A776BEB2392B8B400200AED /* User.swift in Sources */,
+				5A22510D2426DA9A00346475 /* PostsPresenter.swift in Sources */,
 				F15EBB2323D86B2200E876CC /* RealmGroup.swift in Sources */,
 				5A5C5A0624199CF20050CAFB /* PostSinglePhotoCell.swift in Sources */,
 				5AEF0B9923B27EE100294A37 /* ImageViewerPresenter.swift in Sources */,

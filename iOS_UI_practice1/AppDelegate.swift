@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         if let token = KeychainWrapper.standard.string(forKey: "access_token"),
-            let userID =  KeychainWrapper.standard.integer(forKey: "user_id") {
+            let userID = KeychainWrapper.standard.integer(forKey: "user_id") {
             Session.shared.token = token
             Session.shared.userId = userID
             window = UIWindow(frame: UIScreen.main.bounds)

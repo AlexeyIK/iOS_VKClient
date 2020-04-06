@@ -13,11 +13,20 @@ enum PostType: String {
     case post
     case wall_photo
     case photo
-    case photo_tag
-    case friend
-    case note
+//    case photo_tag
+//    case friend
+//    case note
     case audio
     case video
+    case mixed
+}
+
+enum PostMediaType {
+    case none
+    case singlePhoto
+    case gif
+    case singleVideo
+    case collection
 }
 
 // Типы вложений в пост
@@ -34,6 +43,7 @@ struct VKPost {
     let sourceId: Int // если положительный - новость пользователя, отрицательный - новость группы
     let date: Date
     let text: String? // текст поста
+    let mediaType: PostMediaType // тип визуального наполнения поста (фото, видео, коллекция, гиф)
     
     var photos: [VKPhoto]
     var attachments: [VKAttachment]
@@ -46,6 +56,7 @@ struct VKPost {
     // вычисляемые параметры
     var textHeight: CGFloat = 0
     var showFullText: Bool = false
+    var hasBigText: Bool = false
     
     // сохранять юзера или группу, которым принадлежит пост
     let byUser: VKUser?

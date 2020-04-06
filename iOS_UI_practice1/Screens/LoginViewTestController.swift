@@ -249,7 +249,7 @@ class CustomNavigationControllerAnimation: NSObject, UINavigationControllerDeleg
                 return FadePopAnimation()
             case .push:
                 return FadePushAnimation()
-            case .none:
+            default:
                 return nil
         }
     }

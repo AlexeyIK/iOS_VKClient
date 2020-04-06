@@ -279,86 +279,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DA25185F-61DC-45C8-83E9-6B4A4B1B8007"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iOS_UI_practice1/API/VKAPIManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
-            landmarkName = "getNewsFeed(apiVersion:token:userID:nextFrom:startFrom:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "DA25185F-61DC-45C8-83E9-6B4A4B1B8007 - fa86ae6f90dcd8ed"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in closure #1 (Alamofire.DataResponse&lt;Foundation.Data, Alamofire.AFError&gt;) -&gt; () in FakeVK.VKApi.getNewsFeed(apiVersion: Swift.String, token: Swift.String, userID: Swift.Int, nextFrom: Swift.Optional&lt;Swift.String&gt;, completion: (Swift.Result&lt;(Swift.Array&lt;FakeVK.VKPost&gt;, Swift.Optional&lt;Swift.String&gt;), Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "FakeVK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alexk/Swift/Geekbrains_SwiftUI/iOS_UI_practice1/API/VKAPIManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "146"
-                  endingLineNumber = "146"
-                  offsetFromSymbolStart = "81">
-               </Location>
-               <Location
-                  uuid = "DA25185F-61DC-45C8-83E9-6B4A4B1B8007 - 6ca126ef0bee6fa8"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (SwiftyJSON.JSON) -&gt; () in closure #2 () -&gt; () in closure #1 (Alamofire.DataResponse&lt;Foundation.Data, Alamofire.AFError&gt;) -&gt; () in FakeVK.VKApi.getNewsFeed(apiVersion: Swift.String, token: Swift.String, userID: Swift.Int, nextFrom: Swift.Optional&lt;Swift.String&gt;, completion: (Swift.Result&lt;(Swift.Array&lt;FakeVK.VKPost&gt;, Swift.Optional&lt;Swift.String&gt;), Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "FakeVK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alexk/Swift/Geekbrains_SwiftUI/iOS_UI_practice1/API/VKAPIManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "147"
-                  endingLineNumber = "147"
-                  offsetFromSymbolStart = "352">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "075A6CCE-E8A2-44AE-96B7-EF8A988BB9AE"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iOS_UI_practice1/API/VKAPIManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "getNewsFeed(apiVersion:token:userID:nextFrom:startFrom:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4A53133A-6B75-4C49-8E63-0BC1964C812F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iOS_UI_practice1/Screens/News/PostsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "307"
-            endingLineNumber = "307"
-            landmarkName = "refreshNewsfeed()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "CB160A8C-D8A2-490E-84E9-E5791C5451A7"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -366,8 +286,8 @@
             filePath = "iOS_UI_practice1/API/VKAPIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
+            startingLineNumber = "352"
+            endingLineNumber = "352"
             landmarkName = "getNewsFeed(apiVersion:token:userID:nextFrom:startFrom:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -382,24 +302,8 @@
             filePath = "iOS_UI_practice1/API/VKAPIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
-            landmarkName = "getNewsFeed(apiVersion:token:userID:nextFrom:startFrom:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DE7175DB-E370-43ED-BD25-75DBF1DA4FFA"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iOS_UI_practice1/API/VKAPIManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
+            startingLineNumber = "366"
+            endingLineNumber = "366"
             landmarkName = "getNewsFeed(apiVersion:token:userID:nextFrom:startFrom:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -414,8 +318,8 @@
             filePath = "iOS_UI_practice1/API/VKAPIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
             landmarkName = "getNewsFeed(apiVersion:token:userID:nextFrom:startFrom:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -430,10 +334,134 @@
             filePath = "iOS_UI_practice1/API/VKAPIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
             landmarkName = "getNewsFeed(apiVersion:token:userID:nextFrom:startFrom:completion:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6B0D8BD1-5828-4524-8B10-CC6A095EEFE6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOS_UI_practice1/Screens/Photos/AlbumCollectionFlow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "prepare()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F9F84A93-CFC2-4362-B156-7F9C84BFBEEF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOS_UI_practice1/API/VKAPIManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
+            landmarkName = "getNewsFeed(apiVersion:token:userID:nextFrom:startFrom:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "357723F4-6F3D-423D-9BDC-B859E46DDCF6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOS_UI_practice1/Screens/Groups/AllGroupsController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "searchInGroups(searchText:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "24ECCEA2-71B5-468F-8221-7945F4BA4B13"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOS_UI_practice1/Screens/Groups/AllGroupsController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B9B6A11B-D014-4FBA-8BAF-DE1EE592982A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOS_UI_practice1/Screens/Groups/AllGroupsController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "092FEE47-75C6-4DA8-A348-F63405CF8D1C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOS_UI_practice1/Screens/Groups/AllGroupsController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "searchBar(_:textDidChange:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "278A2D76-3FF8-468B-9D20-A1A6BCE2F6A7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOS_UI_practice1/Screens/News/PostsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "262"
+            endingLineNumber = "262">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FE23F571-B6F7-437B-853B-680382514E26"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOS_UI_practice1/Screens/News/PostsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "262"
+            endingLineNumber = "262">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
