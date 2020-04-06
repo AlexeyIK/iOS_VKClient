@@ -307,7 +307,7 @@ extension PostsViewController {
                 guard let video = postVideos.first?.video else { return UITableViewCell() }
                 
                 switch video.platform {
-                case "youtube", "vimeo":
+                case "youtube":
                     let youtubeCell = tableView.dequeueReusableCell(withIdentifier: "PostYoutube", for: indexPath) as! PostYouTubeCell
                     
                     if let preview = video.image.first(where: { $0.width >= Int(UIScreen.main.bounds.width) }),
@@ -327,6 +327,8 @@ extension PostsViewController {
                             }
                     }
                     return youtubeCell
+                case "vimeo":
+                    break
                 default:
                     let simpleVideoCell = tableView.dequeueReusableCell(withIdentifier: "PostVideo", for: indexPath) as! PostVideoCell
                     
